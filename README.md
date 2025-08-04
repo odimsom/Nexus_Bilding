@@ -170,7 +170,8 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 👥 Autores
 
-- **Tu Nombre** - _Desarrollo inicial_ - [TuUsuario](https://github.com/tu-usuario)
+- **Francisco Daniel Castro Borrome** - _Desarrollo inicial_ - [Odimsom](https://github.com/Odimsom)
+-  **Eva Nazareth Gonzalez Velasco** - _Desarrollo inicial_ - [GGeva07](https://github.com/GGeva07)
 
 ## 🆘 Soporte
 

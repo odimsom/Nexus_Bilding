@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\Nexus_Bilding\\Nexus_Bilding_API\\nexus_bilding_API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E0395960-B98C-4F54-9400-97063C884B68}|nexus_bilding_api.presentation.api\\nexus_bilding_api.presentation.api.csproj|c:\\users\\usuario\\onedrive\\desktop\\nexus_bilding\\nexus_bilding_api\\nexus_bilding_api\\nexus_bilding_api.presentation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0395960-B98C-4F54-9400-97063C884B68}|nexus_bilding_api.presentation.api\\nexus_bilding_api.presentation.api.csproj|solutionrelative:nexus_bilding_api.presentation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Desktop\\Nexus_Bilding\\Nexus_Bilding_API\\nexus_bilding_API\\nexus_bilding_api.presentation.api\\Program.cs",
+              "RelativeDocumentMoniker": "nexus_bilding_api.presentation.api\\Program.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Desktop\\Nexus_Bilding\\Nexus_Bilding_API\\nexus_bilding_API\\nexus_bilding_api.presentation.api\\Program.cs",
+              "RelativeToolTip": "nexus_bilding_api.presentation.api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T16:53:21.468Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

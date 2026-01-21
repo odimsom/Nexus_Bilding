@@ -1,0 +1,12 @@
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\bin\Debug\net10.0\nexus_bilding_api.infrastructure.shared.deps.json
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\bin\Debug\net10.0\nexus_bilding_api.infrastructure.shared.dll
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\bin\Debug\net10.0\nexus_bilding_api.infrastructure.shared.pdb
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\nexus_bilding_api.infrastructure.shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\nexus_bilding_api.infrastructure.shared.AssemblyInfoInputs.cache
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\nexus_bilding_api.infrastructure.shared.AssemblyInfo.cs
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\nexus_bilding_api.infrastructure.shared.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\nexus_bilding_api.infrastructure.shared.sourcelink.json
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\nexus_bilding_api.infrastructure.shared.dll
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\refint\nexus_bilding_api.infrastructure.shared.dll
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\nexus_bilding_api.infrastructure.shared.pdb
+C:\Users\Usuario\OneDrive\Desktop\Nexus_Bilding\Nexus_Bilding_API\nexus_bilding_API\nexus_bilding_api.infrastructure.shared\obj\Debug\net10.0\ref\nexus_bilding_api.infrastructure.shared.dll

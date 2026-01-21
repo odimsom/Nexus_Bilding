@@ -1,0 +1,6 @@
+@nexus_bilding_api.presentation.api_HostAddress = http://localhost:5231
+
+GET {{nexus_bilding_api.presentation.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

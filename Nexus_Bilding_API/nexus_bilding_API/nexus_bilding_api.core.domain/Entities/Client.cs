@@ -21,6 +21,5 @@ public class Client : BaseEntity
     
     public string? Notes { get; set; }
     
-    // Navigation Properties
     public ICollection<FiscalDocument> FiscalDocuments { get; set; } = new List<FiscalDocument>();
 }

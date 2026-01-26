@@ -31,7 +31,6 @@ public class FiscalDocument : BaseEntity
     
     public string? Notes { get; set; }
     
-    // Navigation Properties
     public ICollection<FiscalDocumentItem> Items { get; set; } = new List<FiscalDocumentItem>();
     public ICollection<Payment> Payments { get; set; } = new List<Payment>();
 }

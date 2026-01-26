@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Database, Mail, Lock } from 'lucide-react';
-import { mockUser } from '../../../services/mockData';
+import { authService } from '../../../services/auth.service';
 
 export function Login() {
   const navigate = useNavigate();
@@ -9,15 +9,28 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
-    setTimeout(() => {
+    try {
+      const response = await authService.login(email, password);
+      // Backend returns User with Role, navigate accordingly
+      const userRole = response.user.roles && response.user.roles.length > 0 ? response.user.roles[0] : 'seller'; // Default fallback
+      
+      // Simple mapping if backend roles differ from frontend routes (e.g. 'Admin' -> 'admin')
+      const routeRole = userRole.toLowerCase();
+      
+      navigate(`/${routeRole}/dashboard`);
+    } catch (err: any) {
+      console.error(err);
+      setError('Invalid email or password.');
+    } finally {
       setLoading(false);
-      navigate(`/${mockUser.role}/dashboard`);
-    }, 1000);
+    }
   };
 
   return (
@@ -35,6 +48,11 @@ export function Login() {
 
         <div className="bg-matte-surface py-10 px-8 shadow-none rounded-lg border border-matte-border sm:px-10">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-2 rounded-md text-sm">
+                {error}
+              </div>
+            )}
             <div>
               <label className="block text-sm font-medium leading-6 text-matte-text pb-2" htmlFor="email">
                 Email Address

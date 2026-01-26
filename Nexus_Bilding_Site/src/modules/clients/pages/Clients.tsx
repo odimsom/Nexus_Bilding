@@ -4,8 +4,7 @@ import { Plus, Search, Users, Mail, Phone, MapPin, MoreHorizontal } from 'lucide
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Badge } from '../../core/components/ui/Badge';
 import { LoadingState } from '../../core/components/ui/LoadingState';
-import { api } from '../../../services/api';
-import { mockUser } from '../../../services/mockData';
+import { clientService } from '../../../services/client.service';
 import { CreateClientModal } from '../components/CreateClientModal';
 import { Client } from '../../../types';
 
@@ -16,11 +15,14 @@ export function Clients() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Get user from local storage
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const data = await api.clients.getAll();
+        const data = await clientService.getAll();
         setClients(data);
       } finally {
         setIsLoading(false);
@@ -38,7 +40,7 @@ export function Clients() {
   });
 
   return (
-    <DashboardLayout title="Clients" user={mockUser}>
+    <DashboardLayout title="Clients" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         {/* Header Section */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

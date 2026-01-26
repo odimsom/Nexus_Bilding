@@ -4,8 +4,7 @@ import { Plus, Search, Package, MoreHorizontal } from 'lucide-react';
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Badge } from '../../core/components/ui/Badge';
 import { LoadingState } from '../../core/components/ui/LoadingState';
-import { api } from '../../../services/api';
-import { mockUser } from '../../../services/mockData';
+import { productService } from '../../../services/product.service';
 import { CreateProductModal } from '../components/CreateProductModal';
 import { Product } from '../../../types';
 
@@ -16,11 +15,14 @@ export function Products() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Get user from local storage
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await api.products.getAll();
+        const data = await productService.getAll();
         setProducts(data);
       } finally {
         setIsLoading(false);
@@ -50,7 +52,7 @@ export function Products() {
   };
 
   return (
-    <DashboardLayout title="Inventory" user={mockUser}>
+    <DashboardLayout title="Inventory" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         {/* Header Section */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

@@ -4,7 +4,7 @@ import { ArrowLeft, Mail, Download, CheckCircle2 } from 'lucide-react';
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Card } from '../../core/components/ui/Card';
 import { Badge } from '../../core/components/ui/Badge';
-import { mockUser, mockFiscalDocuments } from '../../../services/mockData';
+import { fiscalService } from '../../../services/fiscal.service';
 import { FiscalDocument } from '../../../types';
 import { ReportGenerator } from '../../../helpers/ReportGenerator';
 
@@ -12,23 +12,33 @@ export function InvoiceDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [invoice, setInvoice] = useState<FiscalDocument | null>(null);
+  
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   useEffect(() => {
-    // Simulate API fetch
-    const found = mockFiscalDocuments.find(d => d.id === id);
-    if (found) setInvoice(found);
+    const fetchInvoice = async () => {
+      if (id) {
+          try {
+             const data = await fiscalService.getById(id);
+             setInvoice(data);
+          } catch (e) {
+             console.error("Failed to load invoice", e);
+          }
+      }
+    };
+    fetchInvoice();
   }, [id]);
 
   if (!invoice) {
     return (
-      <DashboardLayout title="Invoice Details" user={mockUser}>
+      <DashboardLayout title="Invoice Details" user={user}>
         <div className="flex justify-center py-20">Loading...</div>
       </DashboardLayout>
     );
   }
 
   return (
-    <DashboardLayout title={`Invoice #${invoice.eCFNumber || 'DRAFT'}`} user={mockUser}>
+    <DashboardLayout title={`Invoice #${invoice.eCFNumber || 'DRAFT'}`} user={user}>
       <div className="mx-auto max-w-4xl flex flex-col gap-6">
         <button 
           onClick={() => navigate(-1)}

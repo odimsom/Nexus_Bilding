@@ -5,24 +5,32 @@ import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Card } from '../../core/components/ui/Card';
 import { Badge } from '../../core/components/ui/Badge';
 import { LoadingState } from '../../core/components/ui/LoadingState';
-import { api } from '../../../services/api';
-import { mockUser } from '../../../services/mockData';
+import { dashboardService } from '../../../services/dashboard.service';
+import { fiscalService } from '../../../services/fiscal.service';
 import { DashboardMetrics, FiscalDocument } from '../../../types';
 
 export function Dashboard() {
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [recentDocuments, setRecentDocuments] = useState<FiscalDocument[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Get user from local storage
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  // Normalize role from backend (roles array) or fallback
+  const userRole = user.roles && user.roles.length > 0 ? user.roles[0] : (user.role || 'seller');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [metricsData, documentsData] = await Promise.all([
-          api.dashboard.getMetrics(),
-          api.documents.getRecent(5),
+          dashboardService.getMetrics(),
+          fiscalService.getRecent(5),
         ]);
         setMetrics(metricsData);
         setRecentDocuments(documentsData);
+      } catch (error) {
+        console.error('Failed to fetch dashboard data:', error);
+        // Could set a specific error state here if UI needs to show it
       } finally {
         setIsLoading(false);
       }
@@ -32,7 +40,7 @@ export function Dashboard() {
 
   if (isLoading) {
     return (
-      <DashboardLayout title="Dashboard Overview" user={mockUser}>
+      <DashboardLayout title="Dashboard Overview" user={user}>
         <div className="flex h-[80vh] items-center justify-center">
           <LoadingState message="Loading dashboard..." />
         </div>
@@ -45,7 +53,7 @@ export function Dashboard() {
     : 0;
 
   return (
-    <DashboardLayout title="Dashboard Overview" user={mockUser}>
+    <DashboardLayout title="Dashboard Overview" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card>
@@ -65,7 +73,7 @@ export function Dashboard() {
           </Card>
 
           
-          {['owner', 'admin'].includes(mockUser.role) && (
+          {['owner', 'admin'].includes(userRole) && (
             <>
               <Card>
                 <div className="flex items-center justify-between mb-3">
@@ -163,7 +171,7 @@ export function Dashboard() {
           <Card>
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-bold text-matte-text">Recent Documents</h3>
-              <Link to={`/${mockUser.role}/invoices`} className="text-sm font-medium text-primary hover:text-primary/80">
+              <Link to={`/${userRole}/invoices`} className="text-sm font-medium text-primary hover:text-primary/80">
                 View All
               </Link>
             </div>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import {Login, Register, ForgotPassword} from './modules/auth/pages';
+import {Login, Register, ForgotPassword, ConfirmEmail} from './modules/auth/pages';
 import { Clients, ClientDetails } from './modules/clients/pages/index';
 import { Products, ProductDetails } from './modules/inventory/pages/index';
 import { Dashboard } from './modules/dashboard/pages/Dashboard';
@@ -18,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/confirm-email" element={<ConfirmEmail />} />
 
         {/* Separated Role-Based Namespaces */}
         

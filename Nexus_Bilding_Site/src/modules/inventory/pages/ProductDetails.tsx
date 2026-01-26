@@ -4,21 +4,25 @@ import { ShoppingCart, TrendingUp, Truck, RotateCcw, Filter, Download, Image as 
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Card } from '../../core/components/ui/Card';
 import { Badge } from '../../core/components/ui/Badge';
-import { api } from '../../../services/api';
-import { mockUser } from '../../../services/mockData';
+
+import { productService } from '../../../services/product.service';
+import { stockService } from '../../../services/stock.service';
 import { Product, StockTransaction } from '../../../types';
 
 export function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [transactions, setTransactions] = useState<StockTransaction[]>([]);
+  
+  // Get user from local storage
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
         const [productData, transactionsData] = await Promise.all([
-          api.products.getById(id),
-          api.products.getStockTransactions(id),
+          productService.getById(id),
+          stockService.getByProductId(id),
         ]);
         if (productData) setProduct(productData);
         setTransactions(transactionsData);
@@ -29,7 +33,7 @@ export function ProductDetails() {
 
   if (!product) {
     return (
-      <DashboardLayout title="Product Details" user={mockUser}>
+      <DashboardLayout title="Product Details" user={user}>
         <div className="flex h-64 items-center justify-center">
           <div className="text-matte-text-muted">Loading...</div>
         </div>
@@ -42,7 +46,7 @@ export function ProductDetails() {
   const stockPercentage = Math.min((stock / (threshold * 6)) * 100, 100);
 
   return (
-    <DashboardLayout title="Product Details" user={mockUser}>
+    <DashboardLayout title="Product Details" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           <div className="flex flex-col gap-6 lg:col-span-4">

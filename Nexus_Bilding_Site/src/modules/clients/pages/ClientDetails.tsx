@@ -4,27 +4,41 @@ import { Edit, Plus, Mail, Phone, MapPin, MoreHorizontal, Download, Filter, File
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Card } from '../../core/components/ui/Card';
 import { Badge } from '../../core/components/ui/Badge';
-import { api } from '../../../services/api';
-import { mockUser, mockFiscalDocuments } from '../../../services/mockData';
+
+import { clientService } from '../../../services/client.service';
+import { fiscalService } from '../../../services/fiscal.service';
 import { Client } from '../../../types';
+import { FiscalDocument } from '../../../types/fiscal/FiscalDocument';
 
 export function ClientDetails() {
   const { id } = useParams();
   const [client, setClient] = useState<Client | null>(null);
+  const [documents, setDocuments] = useState<FiscalDocument[]>([]);
+  
+  // Get user from local storage
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   useEffect(() => {
-    const fetchClient = async () => {
+    const fetchData = async () => {
       if (id) {
-        const data = await api.clients.getById(id);
-        if (data) setClient(data);
+        try {
+            const clientData = await clientService.getById(id);
+            if (clientData) setClient(clientData);
+
+            // Fetch all documents and filter by client (Optimization: Backend should support /Fiscal?clientId=X)
+            const allDocs = await fiscalService.getAll();
+            setDocuments(allDocs.filter(d => d.clientId === id));
+        } catch (error) {
+            console.error("Failed to fetch client details", error);
+        }
       }
     };
-    fetchClient();
+    fetchData();
   }, [id]);
 
   if (!client) {
     return (
-      <DashboardLayout title="Client Details" user={mockUser}>
+      <DashboardLayout title="Client Details" user={user}>
         <div className="flex h-64 items-center justify-center">
           <div className="text-matte-text-muted">Loading...</div>
         </div>
@@ -32,10 +46,10 @@ export function ClientDetails() {
     );
   }
 
-  const clientDocuments = mockFiscalDocuments.filter(doc => doc.clientId === client.id);
+  const clientDocuments = documents;
 
   return (
-    <DashboardLayout title="Client Details" user={mockUser}>
+    <DashboardLayout title="Client Details" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         <Card className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-5">

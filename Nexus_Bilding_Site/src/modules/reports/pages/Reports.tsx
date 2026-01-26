@@ -3,7 +3,6 @@ import { FileText, Download, DollarSign, Users, Package, TrendingUp, TrendingDow
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Card } from '../../core/components/ui/Card';
 import { Badge } from '../../core/components/ui/Badge';
-import { mockUser } from '../../../services/mockData';
 
 type ReportPeriod = 'week' | 'month' | 'quarter' | 'year';
 
@@ -15,6 +14,7 @@ interface ReportMetric {
 }
 
 export function Reports() {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
   const [period, setPeriod] = useState<ReportPeriod>('month');
 
   // Mock data for reports
@@ -62,7 +62,7 @@ export function Reports() {
   ];
 
   return (
-    <DashboardLayout title="Reports" user={mockUser}>
+    <DashboardLayout title="Reports" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         {/* Header Section */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

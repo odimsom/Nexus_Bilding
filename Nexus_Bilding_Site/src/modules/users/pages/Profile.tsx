@@ -2,11 +2,10 @@ import { useRef, useState } from 'react';
 import { Camera, Save, Mail, Lock, User as UserIcon } from 'lucide-react';
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Card } from '../../core/components/ui/Card';
-import { mockUser } from '../../../services/mockData';
 import { uploadProfileImage } from '../../../helpers/UploadImagesProfile';
 
 export function Profile() {
-  const [user, setUser] = useState(mockUser);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') || '{}'));
   const [isEditing, setIsEditing] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -27,8 +26,7 @@ export function Profile() {
     try {
       setIsUploading(true);
       const newImageUrl = await uploadProfileImage(file);
-      // In a real app, we would update the backend here
-      setUser(prev => ({ ...prev, avatarUrl: newImageUrl }));
+      setUser((prev: any) => ({ ...prev, avatarUrl: newImageUrl }));
     } catch (error) {
       console.error('Upload failed:', error);
       alert('Failed to upload image');
@@ -39,11 +37,10 @@ export function Profile() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
     setTimeout(() => {
-      setUser(prev => ({ ...prev, name: formData.name, email: formData.email }));
+      setUser((prev: any) => ({ ...prev, name: formData.name, email: formData.email }));
       setIsEditing(false);
-      setFormData(prev => ({ ...prev, currentPassword: '', newPassword: '', confirmPassword: '' }));
+      setFormData((prev: any) => ({ ...prev, currentPassword: '', newPassword: '', confirmPassword: '' }));
       alert('Profile updated successfully!');
     }, 1000);
   };

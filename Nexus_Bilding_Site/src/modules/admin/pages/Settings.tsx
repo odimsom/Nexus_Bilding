@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Settings as SettingsIcon, User, Building2, Bell, Shield, Save } from 'lucide-react';
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Card } from '../../core/components/ui/Card';
-import { mockUser } from '../../../services/mockData';
 
 export function Settings() {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
   const [activeTab, setActiveTab] = useState<'profile' | 'company' | 'notifications' | 'security'>('profile');
   
   // Form states
@@ -36,7 +36,7 @@ export function Settings() {
   };
 
   return (
-    <DashboardLayout title="Settings" user={mockUser}>
+    <DashboardLayout title="Settings" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         {/* Header Section */}
         <div className="flex items-center gap-2.5">

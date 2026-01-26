@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Database, Mail, Lock } from 'lucide-react';
+import { authService } from '../../../services/auth.service';
 
 export function Register() {
   const navigate = useNavigate();
@@ -19,15 +20,45 @@ export function Register() {
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [success, setSuccess] = useState(false);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-      navigate(`/${role || 'seller'}/dashboard`);
-    }, 1000);
+    
+    try {
+        // Using temporary password confirmation logic as frontend field doesn't exist yet or just duplicate it
+        const confirmPassword = password; 
+        await authService.register(name, email, password, confirmPassword);
+        setSuccess(true);
+    } catch(err) {
+        console.error(err);
+        // Handle error (show message)
+    } finally {
+        setLoading(false);
+    }
   };
+
+  if (success) {
+      return (
+        <div className="bg-matte-base font-display text-matte-text antialiased min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                    <Database className="h-6 w-6 text-green-600" aria-hidden="true" />
+                </div>
+                <h2 className="mt-6 text-3xl font-bold tracking-tight text-matte-text">Registration Successful</h2>
+                <p className="mt-2 text-sm text-matte-text-muted">
+                    We have sent an email to <span className="font-semibold text-matte-text">{email}</span> with a link to activate your account.
+                </p>
+                <div className="mt-6">
+                    <Link to="/login" className="font-medium text-primary hover:text-primary/80">
+                        Back to Login
+                    </Link>
+                </div>
+            </div>
+        </div>
+      );
+  }
 
   return (
     <div className="bg-matte-base font-display text-matte-text antialiased min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">

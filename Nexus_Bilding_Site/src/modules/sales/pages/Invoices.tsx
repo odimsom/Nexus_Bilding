@@ -4,8 +4,7 @@ import { Plus, Search, FileText, MoreHorizontal, Download } from 'lucide-react';
 import { DashboardLayout } from '../../core/layouts/DashboardLayout';
 import { Badge } from '../../core/components/ui/Badge';
 import { LoadingState } from '../../core/components/ui/LoadingState';
-import { api } from '../../../services/api';
-import { mockUser } from '../../../services/mockData';
+import { fiscalService } from '../../../services/fiscal.service';
 import { FiscalDocument } from '../../../types';
 
 import { ReportGenerator } from '../../../helpers/ReportGenerator';
@@ -18,6 +17,10 @@ export function Invoices() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'draft' | 'issued' | 'paid'>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Get user from local storage
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+
 
   const handleExport = async () => {
     // For MVP, we export all filtered documents to Excel
@@ -28,8 +31,10 @@ export function Invoices() {
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
-        const data = await api.documents.getAll();
+        const data = await fiscalService.getAll();
         setDocuments(data);
+      } catch (error) {
+        console.error('Failed to fetch documents:', error);
       } finally {
         setIsLoading(false);
       }
@@ -49,7 +54,7 @@ export function Invoices() {
   });
 
   return (
-    <DashboardLayout title="Fiscal Documents" user={mockUser}>
+    <DashboardLayout title="Fiscal Documents" user={user}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8">
         {/* Header Section */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

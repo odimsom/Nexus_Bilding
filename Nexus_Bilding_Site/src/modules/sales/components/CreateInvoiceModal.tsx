@@ -1,7 +1,8 @@
+
 import { useState } from 'react';
 import { PaginatedModal } from '../../core/components/ui/PaginatedModal';
 import { FileText, Calendar, User, Package, Plus, Trash2 } from 'lucide-react';
-import { mockUser } from '../../../services/mockData';
+import { fiscalService } from '../../../services/fiscal.service';
 
 interface CreateInvoiceModalProps {
   isOpen: boolean;

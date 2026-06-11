@@ -1,3 +1,4 @@
+using NexusBilling.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Sales.Entities;
 using NexusBilling.Core.Domain.Sales.Repositories;

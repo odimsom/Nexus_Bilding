@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NexusBilling.Infrastructure.Persistence;
+using NexusBilling.Infrastructure.Persistence.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -12,15 +12,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NexusBilling.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(NexusBillingDbContext))]
-    [Migration("20260611044121_ExpandedCoreDomain")]
-    partial class ExpandedCoreDomain
+    [Migration("20260611044517_MultiSchemaSetup")]
+    partial class MultiSchemaSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("erp")
                 .HasAnnotation("ProductVersion", "10.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -48,7 +47,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tenant", "erp");
+                    b.ToTable("tenant", "administration");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Finance.Entities.GLAccount", b =>
@@ -91,7 +90,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.HasIndex("TenantId", "No")
                         .IsUnique();
 
-                    b.ToTable("g_l_account", "erp");
+                    b.ToTable("g_l_account", "finance");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Inventory.Entities.Item", b =>
@@ -138,7 +137,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("item", "erp");
+                    b.ToTable("item", "inventory");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Inventory.Entities.ItemUnitOfMeasure", b =>
@@ -176,7 +175,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.HasIndex("TenantId", "ItemNo", "Code")
                         .IsUnique();
 
-                    b.ToTable("item_unit_of_measure", "erp");
+                    b.ToTable("item_unit_of_measure", "inventory");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Inventory.Entities.Location", b =>
@@ -220,7 +219,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.HasIndex("TenantId", "Code")
                         .IsUnique();
 
-                    b.ToTable("location", "erp");
+                    b.ToTable("location", "inventory");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Purchasing.Entities.PurchaseHeader", b =>
@@ -266,7 +265,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.HasIndex("TenantId", "DocumentType", "No")
                         .IsUnique();
 
-                    b.ToTable("purchase_header", "erp");
+                    b.ToTable("purchase_header", "purchasing");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Purchasing.Entities.Vendor", b =>
@@ -318,7 +317,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.HasIndex("TenantId", "No")
                         .IsUnique();
 
-                    b.ToTable("vendor", "erp");
+                    b.ToTable("vendor", "purchasing");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Sales.Entities.Customer", b =>
@@ -370,7 +369,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.HasIndex("TenantId", "No")
                         .IsUnique();
 
-                    b.ToTable("customer", "erp");
+                    b.ToTable("customer", "sales");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Sales.Entities.SalesHeader", b =>
@@ -416,7 +415,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.HasIndex("TenantId", "DocumentType", "No")
                         .IsUnique();
 
-                    b.ToTable("sales_header", "erp");
+                    b.ToTable("sales_header", "sales");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Security.Entities.User", b =>
@@ -454,7 +453,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("user", "erp");
+                    b.ToTable("user", "security");
                 });
 #pragma warning restore 612, 618
         }

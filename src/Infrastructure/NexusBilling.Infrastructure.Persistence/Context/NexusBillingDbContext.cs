@@ -1,3 +1,4 @@
+using NexusBilling.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Administration.Entities;
 using NexusBilling.Core.Domain.Security.Entities;
@@ -7,7 +8,7 @@ using NexusBilling.Core.Domain.Sales.Entities;
 using NexusBilling.Core.Domain.Purchasing.Entities;
 using System.Reflection;
 
-namespace NexusBilling.Infrastructure.Persistence;
+namespace NexusBilling.Infrastructure.Persistence.Context;
 
 public class NexusBillingDbContext : DbContext
 {
@@ -36,7 +37,6 @@ public class NexusBillingDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("erp");
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
     }

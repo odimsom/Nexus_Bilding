@@ -6,14 +6,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NexusBilling.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class ExpandedCoreDomain : Migration
+    public partial class MultiSchemaSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "sales");
+
+            migrationBuilder.EnsureSchema(
+                name: "finance");
+
+            migrationBuilder.EnsureSchema(
+                name: "inventory");
+
+            migrationBuilder.EnsureSchema(
+                name: "purchasing");
+
+            migrationBuilder.EnsureSchema(
+                name: "administration");
+
+            migrationBuilder.EnsureSchema(
+                name: "security");
+
             migrationBuilder.CreateTable(
                 name: "customer",
-                schema: "erp",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -34,7 +52,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "g_l_account",
-                schema: "erp",
+                schema: "finance",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -53,8 +71,29 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "item",
+                schema: "inventory",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    tenant_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    No = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    BaseUnitOfMeasure = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "numeric(18,5)", precision: 18, scale: 5, nullable: false),
+                    UnitCost = table.Column<decimal>(type: "numeric(18,5)", precision: 18, scale: 5, nullable: false),
+                    Blocked = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_item", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "item_unit_of_measure",
-                schema: "erp",
+                schema: "inventory",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -72,7 +111,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "location",
-                schema: "erp",
+                schema: "inventory",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -91,7 +130,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "purchase_header",
-                schema: "erp",
+                schema: "purchasing",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -111,7 +150,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "sales_header",
-                schema: "erp",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -130,8 +169,43 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "tenant",
+                schema: "administration",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tenant", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "user",
+                schema: "security",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Username = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    tenant_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "vendor",
-                schema: "erp",
+                schema: "purchasing",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -152,49 +226,49 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_customer_tenant_id_No",
-                schema: "erp",
+                schema: "sales",
                 table: "customer",
                 columns: new[] { "tenant_id", "No" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_g_l_account_tenant_id_No",
-                schema: "erp",
+                schema: "finance",
                 table: "g_l_account",
                 columns: new[] { "tenant_id", "No" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_item_unit_of_measure_tenant_id_ItemNo_Code",
-                schema: "erp",
+                schema: "inventory",
                 table: "item_unit_of_measure",
                 columns: new[] { "tenant_id", "ItemNo", "Code" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_location_tenant_id_Code",
-                schema: "erp",
+                schema: "inventory",
                 table: "location",
                 columns: new[] { "tenant_id", "Code" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_purchase_header_tenant_id_DocumentType_No",
-                schema: "erp",
+                schema: "purchasing",
                 table: "purchase_header",
                 columns: new[] { "tenant_id", "DocumentType", "No" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_sales_header_tenant_id_DocumentType_No",
-                schema: "erp",
+                schema: "sales",
                 table: "sales_header",
                 columns: new[] { "tenant_id", "DocumentType", "No" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_vendor_tenant_id_No",
-                schema: "erp",
+                schema: "purchasing",
                 table: "vendor",
                 columns: new[] { "tenant_id", "No" },
                 unique: true);
@@ -205,31 +279,43 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "customer",
-                schema: "erp");
+                schema: "sales");
 
             migrationBuilder.DropTable(
                 name: "g_l_account",
-                schema: "erp");
+                schema: "finance");
+
+            migrationBuilder.DropTable(
+                name: "item",
+                schema: "inventory");
 
             migrationBuilder.DropTable(
                 name: "item_unit_of_measure",
-                schema: "erp");
+                schema: "inventory");
 
             migrationBuilder.DropTable(
                 name: "location",
-                schema: "erp");
+                schema: "inventory");
 
             migrationBuilder.DropTable(
                 name: "purchase_header",
-                schema: "erp");
+                schema: "purchasing");
 
             migrationBuilder.DropTable(
                 name: "sales_header",
-                schema: "erp");
+                schema: "sales");
+
+            migrationBuilder.DropTable(
+                name: "tenant",
+                schema: "administration");
+
+            migrationBuilder.DropTable(
+                name: "user",
+                schema: "security");
 
             migrationBuilder.DropTable(
                 name: "vendor",
-                schema: "erp");
+                schema: "purchasing");
         }
     }
 }

@@ -1,3 +1,4 @@
+using NexusBilling.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Common;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -10,7 +11,7 @@ public class GLAccountConfiguration : IEntityTypeConfiguration<GLAccount>
 {
     public void Configure(EntityTypeBuilder<GLAccount> builder)
     {
-        builder.ToTable("g_l_account", "erp");
+        builder.ToTable("g_l_account", "finance");
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.TenantId)

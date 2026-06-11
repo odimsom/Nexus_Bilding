@@ -1,3 +1,4 @@
+using NexusBilling.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Common;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -9,7 +10,7 @@ public class PurchaseHeaderConfiguration : IEntityTypeConfiguration<PurchaseHead
 {
     public void Configure(EntityTypeBuilder<PurchaseHeader> builder)
     {
-        builder.ToTable("purchase_header", "erp");
+        builder.ToTable("purchase_header", "purchasing");
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.TenantId).HasConversion(v => v.Value, v => TenantIdentifier.Create(v)).HasColumnName("tenant_id").IsRequired();

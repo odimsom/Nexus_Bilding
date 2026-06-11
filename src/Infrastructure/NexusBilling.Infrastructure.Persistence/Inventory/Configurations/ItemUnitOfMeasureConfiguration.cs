@@ -1,3 +1,4 @@
+using NexusBilling.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Common;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -9,7 +10,7 @@ public class ItemUnitOfMeasureConfiguration : IEntityTypeConfiguration<ItemUnitO
 {
     public void Configure(EntityTypeBuilder<ItemUnitOfMeasure> builder)
     {
-        builder.ToTable("item_unit_of_measure", "erp");
+        builder.ToTable("item_unit_of_measure", "inventory");
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.TenantId).HasConversion(v => v.Value, v => TenantIdentifier.Create(v)).HasColumnName("tenant_id").IsRequired();

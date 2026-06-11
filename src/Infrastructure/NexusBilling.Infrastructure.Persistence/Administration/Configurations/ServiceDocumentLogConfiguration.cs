@@ -1,0 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NexusBilling.Core.Domain.Common;
+using NexusBilling.Core.Domain.Administration.Entities;
+
+namespace NexusBilling.Infrastructure.Persistence.Administration.Configurations;
+
+public class ServiceDocumentLogConfiguration : IEntityTypeConfiguration<ServiceDocumentLog>
+{
+    public void Configure(EntityTypeBuilder<ServiceDocumentLog> builder)
+    {
+        builder.ToTable("service_document_log", "administration");
+        builder.HasKey(x => x.Id);
+        builder.Property(x => x.TenantId).HasConversion(v => v.Value, v => TenantIdentifier.Create(v)).HasColumnName("tenant_id").IsRequired();
+        builder.Property(x => x.DocumentNo).HasColumnName("document_no");
+        builder.Property(x => x.EntryNo).HasColumnName("entry_no");
+        builder.Property(x => x.EventNo).HasColumnName("event_no");
+        builder.Property(x => x.ServiceItemLineNo).HasColumnName("service_item_line_no");
+        builder.Property(x => x.After).HasColumnName("after");
+        builder.Property(x => x.Before).HasColumnName("before");
+        builder.Property(x => x.ChangeDate).HasColumnName("change_date");
+        builder.Property(x => x.ChangeTime).HasColumnName("change_time");
+        builder.Property(x => x.UserId).HasColumnName("user_id");
+        builder.Property(x => x.DocumentType).HasColumnName("document_type");
+    }
+}

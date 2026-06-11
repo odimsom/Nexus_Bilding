@@ -1,0 +1,90 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NexusBilling.Core.Domain.Common;
+using NexusBilling.Core.Domain.Resources.Entities;
+
+namespace NexusBilling.Infrastructure.Persistence.Resources.Configurations;
+
+public class JobLedgerEntryConfiguration : IEntityTypeConfiguration<JobLedgerEntry>
+{
+    public void Configure(EntityTypeBuilder<JobLedgerEntry> builder)
+    {
+        builder.ToTable("job_ledger_entry", "resources");
+        builder.HasKey(x => x.Id);
+        builder.Property(x => x.TenantId).HasConversion(v => v.Value, v => TenantIdentifier.Create(v)).HasColumnName("tenant_id").IsRequired();
+        builder.Property(x => x.EntryNo).HasColumnName("entry_no");
+        builder.Property(x => x.JobNo).HasColumnName("job_no");
+        builder.Property(x => x.PostingDate).HasColumnName("posting_date");
+        builder.Property(x => x.DocumentNo).HasColumnName("document_no");
+        builder.Property(x => x.Type).HasColumnName("type");
+        builder.Property(x => x.No).HasColumnName("no");
+        builder.Property(x => x.Description).HasColumnName("description");
+        builder.Property(x => x.Quantity).HasColumnName("quantity").HasPrecision(18, 5);
+        builder.Property(x => x.DirectUnitCostLcy).HasColumnName("direct_unit_cost_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.UnitCostLcy).HasColumnName("unit_cost_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.TotalCostLcy).HasColumnName("total_cost_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.UnitPriceLcy).HasColumnName("unit_price_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.TotalPriceLcy).HasColumnName("total_price_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.ResourceGroupNo).HasColumnName("resource_group_no");
+        builder.Property(x => x.UnitOfMeasureCode).HasColumnName("unit_of_measure_code");
+        builder.Property(x => x.LocationCode).HasColumnName("location_code");
+        builder.Property(x => x.JobPostingGroup).HasColumnName("job_posting_group");
+        builder.Property(x => x.GlobalDimension1Code).HasColumnName("global_dimension_1_code");
+        builder.Property(x => x.GlobalDimension2Code).HasColumnName("global_dimension_2_code");
+        builder.Property(x => x.WorkTypeCode).HasColumnName("work_type_code");
+        builder.Property(x => x.CustomerPriceGroup).HasColumnName("customer_price_group");
+        builder.Property(x => x.UserId).HasColumnName("user_id");
+        builder.Property(x => x.SourceCode).HasColumnName("source_code");
+        builder.Property(x => x.AmtToPostToGL).HasColumnName("amt_to_post_to_g_l").HasPrecision(18, 5);
+        builder.Property(x => x.AmtPostedToGL).HasColumnName("amt_posted_to_g_l").HasPrecision(18, 5);
+        builder.Property(x => x.EntryType).HasColumnName("entry_type");
+        builder.Property(x => x.JournalBatchName).HasColumnName("journal_batch_name");
+        builder.Property(x => x.ReasonCode).HasColumnName("reason_code");
+        builder.Property(x => x.TransactionType).HasColumnName("transaction_type");
+        builder.Property(x => x.TransportMethod).HasColumnName("transport_method");
+        builder.Property(x => x.CountryRegionCode).HasColumnName("country_region_code");
+        builder.Property(x => x.GenBusPostingGroup).HasColumnName("gen_bus_posting_group");
+        builder.Property(x => x.GenProdPostingGroup).HasColumnName("gen_prod_posting_group");
+        builder.Property(x => x.EntryExitPoint).HasColumnName("entry_exit_point");
+        builder.Property(x => x.DocumentDate).HasColumnName("document_date");
+        builder.Property(x => x.ExternalDocumentNo).HasColumnName("external_document_no");
+        builder.Property(x => x.Area).HasColumnName("area");
+        builder.Property(x => x.TransactionSpecification).HasColumnName("transaction_specification");
+        builder.Property(x => x.NoSeries).HasColumnName("no_series");
+        builder.Property(x => x.AdditionalCurrencyTotalCost).HasColumnName("additional_currency_total_cost").HasPrecision(18, 5);
+        builder.Property(x => x.AddCurrencyTotalPrice).HasColumnName("add_currency_total_price").HasPrecision(18, 5);
+        builder.Property(x => x.AddCurrencyLineAmount).HasColumnName("add_currency_line_amount").HasPrecision(18, 5);
+        builder.Property(x => x.DimensionSetId).HasColumnName("dimension_set_id");
+        builder.Property(x => x.JobTaskNo).HasColumnName("job_task_no");
+        builder.Property(x => x.LineAmountLcy).HasColumnName("line_amount_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.UnitCost).HasColumnName("unit_cost").HasPrecision(18, 5);
+        builder.Property(x => x.TotalCost).HasColumnName("total_cost").HasPrecision(18, 5);
+        builder.Property(x => x.UnitPrice).HasColumnName("unit_price").HasPrecision(18, 5);
+        builder.Property(x => x.TotalPrice).HasColumnName("total_price").HasPrecision(18, 5);
+        builder.Property(x => x.LineAmount).HasColumnName("line_amount").HasPrecision(18, 5);
+        builder.Property(x => x.LineDiscountAmount).HasColumnName("line_discount_amount").HasPrecision(18, 5);
+        builder.Property(x => x.LineDiscountAmountLcy).HasColumnName("line_discount_amount_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.CurrencyCode).HasColumnName("currency_code");
+        builder.Property(x => x.CurrencyFactor).HasColumnName("currency_factor").HasPrecision(18, 5);
+        builder.Property(x => x.Description2).HasColumnName("description_2");
+        builder.Property(x => x.LedgerEntryType).HasColumnName("ledger_entry_type");
+        builder.Property(x => x.LedgerEntryNo).HasColumnName("ledger_entry_no");
+        builder.Property(x => x.SerialNo).HasColumnName("serial_no");
+        builder.Property(x => x.LotNo).HasColumnName("lot_no");
+        builder.Property(x => x.LineDiscount).HasColumnName("line_discount").HasPrecision(18, 5);
+        builder.Property(x => x.LineType).HasColumnName("line_type");
+        builder.Property(x => x.OriginalUnitCostLcy).HasColumnName("original_unit_cost_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.OriginalTotalCostLcy).HasColumnName("original_total_cost_lcy").HasPrecision(18, 5);
+        builder.Property(x => x.OriginalUnitCost).HasColumnName("original_unit_cost").HasPrecision(18, 5);
+        builder.Property(x => x.OriginalTotalCost).HasColumnName("original_total_cost").HasPrecision(18, 5);
+        builder.Property(x => x.OriginalTotalCostAcy).HasColumnName("original_total_cost_acy").HasPrecision(18, 5);
+        builder.Property(x => x.Adjusted).HasColumnName("adjusted");
+        builder.Property(x => x.DatetimeAdjusted).HasColumnName("datetime_adjusted");
+        builder.Property(x => x.VariantCode).HasColumnName("variant_code");
+        builder.Property(x => x.BinCode).HasColumnName("bin_code");
+        builder.Property(x => x.QtyPerUnitOfMeasure).HasColumnName("qty_per_unit_of_measure").HasPrecision(18, 5);
+        builder.Property(x => x.QuantityBase).HasColumnName("quantity_base").HasPrecision(18, 5);
+        builder.Property(x => x.ServiceOrderNo).HasColumnName("service_order_no");
+        builder.Property(x => x.PostedServiceShipmentNo).HasColumnName("posted_service_shipment_no");
+    }
+}

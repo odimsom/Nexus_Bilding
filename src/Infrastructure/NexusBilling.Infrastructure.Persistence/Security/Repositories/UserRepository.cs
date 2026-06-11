@@ -6,12 +6,18 @@ using NexusBilling.Infrastructure.Persistence.Repositories.Base;
 
 namespace NexusBilling.Infrastructure.Persistence.Security.Repositories;
 
-public class UserRepository(NexusBillingDbContext dbContext) 
+public class UserRepository(NexusBillingDbContext dbContext)
     : GenericRepository<User>(dbContext), IUserRepository
 {
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+        => await _dbContext.Set<User>()
+            .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+
     public async Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken = default)
-    {
-        return await _dbContext.Set<User>()
+        => await _dbContext.Set<User>()
             .FirstOrDefaultAsync(x => x.Username == username, cancellationToken);
-    }
+
+    public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default)
+        => await _dbContext.Set<User>()
+            .AnyAsync(x => x.Email == email, cancellationToken);
 }

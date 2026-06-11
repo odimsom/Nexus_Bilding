@@ -22,14 +22,28 @@ public class SessionEvent : Entity
     public string Comment { get; private set; }
     public Guid SessionUniqueId { get; private set; }
 
-    public static OperationResult<SessionEvent, DomainError> Create(TenantIdentifier tenantId)
+    public static OperationResult<SessionEvent, DomainError> Create(
+        TenantIdentifier tenantId,
+        Guid userSid,
+        short eventType,
+        string userId,
+        Guid sessionUniqueId,
+        string comment = "")
     {
         if (tenantId == null || tenantId.Value == Guid.Empty)
             return OperationResult<SessionEvent, DomainError>.Fail(DomainError.Validation("security.tenant_required", "El TenantIdentifier es obligatorio."));
 
         var entity = new SessionEvent()
         {
-            TenantId = tenantId
+            TenantId = tenantId,
+            UserSid = userSid,
+            EventType = eventType,
+            EventDatetime = DateTime.UtcNow,
+            UserId = userId,
+            SessionUniqueId = sessionUniqueId,
+            Comment = comment,
+            DatabaseName = "nexus_db",
+            ServerInstanceId = 1
         };
         return OperationResult<SessionEvent, DomainError>.Ok(entity);
     }

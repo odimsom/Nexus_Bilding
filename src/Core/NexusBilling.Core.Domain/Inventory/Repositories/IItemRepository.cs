@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using NexusBilling.Core.Domain.Inventory.Entities;
+using NexusBilling.Core.Domain.Interfaces.Repositories.Base;
 
 namespace NexusBilling.Core.Domain.Inventory.Repositories;
 
-public interface IItemRepository
+public interface IItemRepository : IGenericRepository<Item>
 {
-    Task<Item?> GetByIdAsync(Guid id);
-    Task<IEnumerable<Item>> GetAllAsync();
-    Task AddAsync(Item item);
-    void Update(Item item);
-    void Delete(Item item);
+    Task<Item?> GetByNoAsync(string no, CancellationToken cancellationToken = default);
 }

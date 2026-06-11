@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using NexusBilling.Core.Domain.Administration.Entities;
+using NexusBilling.Core.Domain.Interfaces.Repositories.Base;
 
 namespace NexusBilling.Core.Domain.Administration.Repositories;
 
-public interface ITenantRepository
+public interface ITenantRepository : IGenericRepository<Tenant>
 {
-    Task<Tenant?> GetByIdAsync(Guid id);
-    Task<IEnumerable<Tenant>> GetAllAsync();
-    Task AddAsync(Tenant tenant);
-    void Update(Tenant tenant);
-    void Delete(Tenant tenant);
 }

@@ -130,7 +130,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Inventory.Entities.Item", b =>
                 {
-                    b.OwnsOne("NexusBilling.Core.Domain.Common.TenantId", "TenantId", b1 =>
+                    b.OwnsOne("NexusBilling.Core.Domain.Common.TenantIdentifier", "TenantIdentifier", b1 =>
                         {
                             b1.Property<Guid>("ItemId")
                                 .HasColumnType("uuid");
@@ -147,13 +147,13 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                                 .HasForeignKey("ItemId");
                         });
 
-                    b.Navigation("TenantId")
+                    b.Navigation("TenantIdentifier")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Security.Entities.User", b =>
                 {
-                    b.OwnsOne("NexusBilling.Core.Domain.Common.TenantId", "TenantId", b1 =>
+                    b.OwnsOne("NexusBilling.Core.Domain.Common.TenantIdentifier", "TenantIdentifier", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -170,7 +170,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                                 .HasForeignKey("UserId");
                         });
 
-                    b.Navigation("TenantId")
+                    b.Navigation("TenantIdentifier")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

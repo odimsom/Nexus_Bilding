@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NexusBilling.Core.Domain.Common;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NexusBilling.Core.Domain.Administration.Entities;
 

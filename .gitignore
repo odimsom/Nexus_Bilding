@@ -1,0 +1,14 @@
+# Architecture rules hidden from repo
+architecture_rules.md
+
+# .NET Core
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# Angular
+node_modules/
+dist/
+.angular/

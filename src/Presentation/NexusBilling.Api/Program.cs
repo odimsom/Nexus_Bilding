@@ -14,8 +14,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("NexusBillingCors");
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 
 app.Run();

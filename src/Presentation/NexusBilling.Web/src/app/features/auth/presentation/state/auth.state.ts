@@ -1,5 +1,5 @@
 import { signal, computed, Injectable } from '@angular/core';
-import { AuthUser } from '../domain/entities/auth-user.entity';
+import { AuthUser } from '../../domain/entities/auth-user.entity';
 
 @Injectable({
   providedIn: 'root'

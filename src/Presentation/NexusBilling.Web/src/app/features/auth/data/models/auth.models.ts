@@ -3,13 +3,18 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface TokenResponse {
+export interface LoginResponse {
   token: string;
   refreshToken: string;
   expiresAt: string;
   username: string;
   email: string;
   tenantId: string;
+}
+
+export interface RefreshRequest {
+  token: string;
+  refreshToken: string;
 }
 
 export interface CurrentUserDto {

@@ -1,0 +1,176 @@
+  table_schema  |      table_name       |     column_name     |        data_type         | max_len | is_nullable 
+----------------+-----------------------+---------------------+--------------------------+---------+-------------
+ administration | tenant                | Id                  | uuid                     |         | NO
+ administration | tenant                | Name                | character varying        |     100 | NO
+ administration | tenant                | IsActive            | boolean                  |         | NO
+ administration | tenant                | CreatedAt           | timestamp with time zone |         | NO
+ administration | tenant                | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | customer              | Id                  | uuid                     |         | NO
+ erp            | customer              | tenant_id           | uuid                     |         | NO
+ erp            | customer              | No                  | character varying        |      20 | NO
+ erp            | customer              | Name                | character varying        |      50 | NO
+ erp            | customer              | Address             | character varying        |      50 | NO
+ erp            | customer              | City                | character varying        |      30 | NO
+ erp            | customer              | Contact             | character varying        |      50 | NO
+ erp            | customer              | Blocked             | boolean                  |         | NO
+ erp            | customer              | CreatedAt           | timestamp with time zone |         | NO
+ erp            | customer              | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | g_l_account           | Id                  | uuid                     |         | NO
+ erp            | g_l_account           | tenant_id           | uuid                     |         | NO
+ erp            | g_l_account           | No                  | character varying        |      20 | NO
+ erp            | g_l_account           | Name                | character varying        |      50 | NO
+ erp            | g_l_account           | AccountType         | smallint                 |         | NO
+ erp            | g_l_account           | IncomeBalance       | smallint                 |         | NO
+ erp            | g_l_account           | Blocked             | boolean                  |         | NO
+ erp            | g_l_account           | CreatedAt           | timestamp with time zone |         | NO
+ erp            | g_l_account           | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | item                  | Id                  | uuid                     |         | NO
+ erp            | item                  | No                  | character varying        |      20 | NO
+ erp            | item                  | Description         | character varying        |      50 | NO
+ erp            | item                  | BaseUnitOfMeasure   | character varying        |      10 | NO
+ erp            | item                  | UnitPrice           | numeric                  |         | NO
+ erp            | item                  | UnitCost            | numeric                  |         | NO
+ erp            | item                  | Blocked             | boolean                  |         | NO
+ erp            | item                  | tenant_id           | uuid                     |         | NO
+ erp            | item                  | CreatedAt           | timestamp with time zone |         | NO
+ erp            | item                  | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | item_unit_of_measure  | Id                  | uuid                     |         | NO
+ erp            | item_unit_of_measure  | tenant_id           | uuid                     |         | NO
+ erp            | item_unit_of_measure  | ItemNo              | character varying        |      20 | NO
+ erp            | item_unit_of_measure  | Code                | character varying        |      10 | NO
+ erp            | item_unit_of_measure  | QtyPerUnitOfMeasure | numeric                  |         | NO
+ erp            | item_unit_of_measure  | CreatedAt           | timestamp with time zone |         | NO
+ erp            | item_unit_of_measure  | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | location              | Id                  | uuid                     |         | NO
+ erp            | location              | tenant_id           | uuid                     |         | NO
+ erp            | location              | Code                | character varying        |      10 | NO
+ erp            | location              | Name                | character varying        |      50 | NO
+ erp            | location              | Address             | character varying        |      50 | NO
+ erp            | location              | City                | character varying        |      30 | NO
+ erp            | location              | CreatedAt           | timestamp with time zone |         | NO
+ erp            | location              | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | purchase_header       | Id                  | uuid                     |         | NO
+ erp            | purchase_header       | tenant_id           | uuid                     |         | NO
+ erp            | purchase_header       | DocumentType        | text                     |         | NO
+ erp            | purchase_header       | No                  | character varying        |      20 | NO
+ erp            | purchase_header       | BuyFromVendorNo     | character varying        |      20 | NO
+ erp            | purchase_header       | PayToName           | character varying        |      50 | NO
+ erp            | purchase_header       | PostingDate         | timestamp with time zone |         | NO
+ erp            | purchase_header       | CreatedAt           | timestamp with time zone |         | NO
+ erp            | purchase_header       | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | sales_header          | Id                  | uuid                     |         | NO
+ erp            | sales_header          | tenant_id           | uuid                     |         | NO
+ erp            | sales_header          | DocumentType        | text                     |         | NO
+ erp            | sales_header          | No                  | character varying        |      20 | NO
+ erp            | sales_header          | SellToCustomerNo    | character varying        |      20 | NO
+ erp            | sales_header          | BillToName          | character varying        |      50 | NO
+ erp            | sales_header          | PostingDate         | timestamp with time zone |         | NO
+ erp            | sales_header          | CreatedAt           | timestamp with time zone |         | NO
+ erp            | sales_header          | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | tenant                | Id                  | uuid                     |         | NO
+ erp            | tenant                | Name                | character varying        |     100 | NO
+ erp            | tenant                | IsActive            | boolean                  |         | NO
+ erp            | tenant                | CreatedAt           | timestamp with time zone |         | NO
+ erp            | tenant                | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | user                  | Id                  | uuid                     |         | NO
+ erp            | user                  | Username            | character varying        |      50 | NO
+ erp            | user                  | Email               | character varying        |     100 | NO
+ erp            | user                  | PasswordHash        | text                     |         | NO
+ erp            | user                  | IsActive            | boolean                  |         | NO
+ erp            | user                  | tenant_id           | uuid                     |         | NO
+ erp            | user                  | CreatedAt           | timestamp with time zone |         | NO
+ erp            | user                  | UpdatedAt           | timestamp with time zone |         | NO
+ erp            | vendor                | Id                  | uuid                     |         | NO
+ erp            | vendor                | tenant_id           | uuid                     |         | NO
+ erp            | vendor                | No                  | character varying        |      20 | NO
+ erp            | vendor                | Name                | character varying        |      50 | NO
+ erp            | vendor                | Address             | character varying        |      50 | NO
+ erp            | vendor                | City                | character varying        |      30 | NO
+ erp            | vendor                | Contact             | character varying        |      50 | NO
+ erp            | vendor                | Blocked             | boolean                  |         | NO
+ erp            | vendor                | CreatedAt           | timestamp with time zone |         | NO
+ erp            | vendor                | UpdatedAt           | timestamp with time zone |         | NO
+ finance        | g_l_account           | Id                  | uuid                     |         | NO
+ finance        | g_l_account           | tenant_id           | uuid                     |         | NO
+ finance        | g_l_account           | No                  | character varying        |      20 | NO
+ finance        | g_l_account           | Name                | character varying        |      50 | NO
+ finance        | g_l_account           | AccountType         | smallint                 |         | NO
+ finance        | g_l_account           | IncomeBalance       | smallint                 |         | NO
+ finance        | g_l_account           | Blocked             | boolean                  |         | NO
+ finance        | g_l_account           | CreatedAt           | timestamp with time zone |         | NO
+ finance        | g_l_account           | UpdatedAt           | timestamp with time zone |         | NO
+ inventory      | item                  | Id                  | uuid                     |         | NO
+ inventory      | item                  | tenant_id           | uuid                     |         | NO
+ inventory      | item                  | No                  | character varying        |      20 | NO
+ inventory      | item                  | Description         | character varying        |      50 | NO
+ inventory      | item                  | BaseUnitOfMeasure   | character varying        |      10 | NO
+ inventory      | item                  | UnitPrice           | numeric                  |         | NO
+ inventory      | item                  | UnitCost            | numeric                  |         | NO
+ inventory      | item                  | Blocked             | boolean                  |         | NO
+ inventory      | item                  | CreatedAt           | timestamp with time zone |         | NO
+ inventory      | item                  | UpdatedAt           | timestamp with time zone |         | NO
+ inventory      | item_unit_of_measure  | Id                  | uuid                     |         | NO
+ inventory      | item_unit_of_measure  | tenant_id           | uuid                     |         | NO
+ inventory      | item_unit_of_measure  | ItemNo              | character varying        |      20 | NO
+ inventory      | item_unit_of_measure  | Code                | character varying        |      10 | NO
+ inventory      | item_unit_of_measure  | QtyPerUnitOfMeasure | numeric                  |         | NO
+ inventory      | item_unit_of_measure  | CreatedAt           | timestamp with time zone |         | NO
+ inventory      | item_unit_of_measure  | UpdatedAt           | timestamp with time zone |         | NO
+ inventory      | location              | Id                  | uuid                     |         | NO
+ inventory      | location              | tenant_id           | uuid                     |         | NO
+ inventory      | location              | Code                | character varying        |      10 | NO
+ inventory      | location              | Name                | character varying        |      50 | NO
+ inventory      | location              | Address             | character varying        |      50 | NO
+ inventory      | location              | City                | character varying        |      30 | NO
+ inventory      | location              | CreatedAt           | timestamp with time zone |         | NO
+ inventory      | location              | UpdatedAt           | timestamp with time zone |         | NO
+ public         | __EFMigrationsHistory | MigrationId         | character varying        |     150 | NO
+ public         | __EFMigrationsHistory | ProductVersion      | character varying        |      32 | NO
+ purchasing     | purchase_header       | Id                  | uuid                     |         | NO
+ purchasing     | purchase_header       | tenant_id           | uuid                     |         | NO
+ purchasing     | purchase_header       | DocumentType        | text                     |         | NO
+ purchasing     | purchase_header       | No                  | character varying        |      20 | NO
+ purchasing     | purchase_header       | BuyFromVendorNo     | character varying        |      20 | NO
+ purchasing     | purchase_header       | PayToName           | character varying        |      50 | NO
+ purchasing     | purchase_header       | PostingDate         | timestamp with time zone |         | NO
+ purchasing     | purchase_header       | CreatedAt           | timestamp with time zone |         | NO
+ purchasing     | purchase_header       | UpdatedAt           | timestamp with time zone |         | NO
+ purchasing     | vendor                | Id                  | uuid                     |         | NO
+ purchasing     | vendor                | tenant_id           | uuid                     |         | NO
+ purchasing     | vendor                | No                  | character varying        |      20 | NO
+ purchasing     | vendor                | Name                | character varying        |      50 | NO
+ purchasing     | vendor                | Address             | character varying        |      50 | NO
+ purchasing     | vendor                | City                | character varying        |      30 | NO
+ purchasing     | vendor                | Contact             | character varying        |      50 | NO
+ purchasing     | vendor                | Blocked             | boolean                  |         | NO
+ purchasing     | vendor                | CreatedAt           | timestamp with time zone |         | NO
+ purchasing     | vendor                | UpdatedAt           | timestamp with time zone |         | NO
+ sales          | customer              | Id                  | uuid                     |         | NO
+ sales          | customer              | tenant_id           | uuid                     |         | NO
+ sales          | customer              | No                  | character varying        |      20 | NO
+ sales          | customer              | Name                | character varying        |      50 | NO
+ sales          | customer              | Address             | character varying        |      50 | NO
+ sales          | customer              | City                | character varying        |      30 | NO
+ sales          | customer              | Contact             | character varying        |      50 | NO
+ sales          | customer              | Blocked             | boolean                  |         | NO
+ sales          | customer              | CreatedAt           | timestamp with time zone |         | NO
+ sales          | customer              | UpdatedAt           | timestamp with time zone |         | NO
+ sales          | sales_header          | Id                  | uuid                     |         | NO
+ sales          | sales_header          | tenant_id           | uuid                     |         | NO
+ sales          | sales_header          | DocumentType        | text                     |         | NO
+ sales          | sales_header          | No                  | character varying        |      20 | NO
+ sales          | sales_header          | SellToCustomerNo    | character varying        |      20 | NO
+ sales          | sales_header          | BillToName          | character varying        |      50 | NO
+ sales          | sales_header          | PostingDate         | timestamp with time zone |         | NO
+ sales          | sales_header          | CreatedAt           | timestamp with time zone |         | NO
+ sales          | sales_header          | UpdatedAt           | timestamp with time zone |         | NO
+ security       | user                  | Id                  | uuid                     |         | NO
+ security       | user                  | Username            | character varying        |      50 | NO
+ security       | user                  | Email               | character varying        |     100 | NO
+ security       | user                  | PasswordHash        | text                     |         | NO
+ security       | user                  | IsActive            | boolean                  |         | NO
+ security       | user                  | tenant_id           | uuid                     |         | NO
+ security       | user                  | CreatedAt           | timestamp with time zone |         | NO
+ security       | user                  | UpdatedAt           | timestamp with time zone |         | NO
+(172 rows)
+

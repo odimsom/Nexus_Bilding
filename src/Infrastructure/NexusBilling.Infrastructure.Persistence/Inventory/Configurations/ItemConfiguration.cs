@@ -1,7 +1,6 @@
-using NexusBilling.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using NexusBilling.Core.Domain.Common;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NexusBilling.Core.Domain.Common;
 using NexusBilling.Core.Domain.Inventory.Entities;
 
 namespace NexusBilling.Infrastructure.Persistence.Inventory.Configurations;
@@ -12,27 +11,12 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
     {
         builder.ToTable("item", "inventory");
         builder.HasKey(x => x.Id);
-
         builder.Property(x => x.TenantId).HasConversion(v => v.Value, v => TenantIdentifier.Create(v)).HasColumnName("tenant_id").IsRequired();
-
-        builder.Property(x => x.No)
-            .IsRequired()
-            .HasMaxLength(20);
-
-        builder.Property(x => x.Description)
-            .IsRequired()
-            .HasMaxLength(50);
-
-        builder.Property(x => x.BaseUnitOfMeasure)
-            .HasMaxLength(10);
-
-        builder.Property(x => x.UnitPrice)
-            .HasPrecision(18, 5);
-
-        builder.Property(x => x.UnitCost)
-            .HasPrecision(18, 5);
-
-        builder.Property(x => x.Blocked)
-            .IsRequired();
+        builder.Property(x => x.No).HasColumnName("no");
+        builder.Property(x => x.Description).HasColumnName("description");
+        builder.Property(x => x.BaseUnitOfMeasure).HasColumnName("base_unit_of_measure");
+        builder.Property(x => x.UnitPrice).HasColumnName("unit_price");
+        builder.Property(x => x.UnitCost).HasColumnName("unit_cost");
+        builder.Property(x => x.Blocked).HasColumnName("blocked");
     }
 }

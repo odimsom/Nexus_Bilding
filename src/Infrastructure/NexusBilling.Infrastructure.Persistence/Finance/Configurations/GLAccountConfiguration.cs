@@ -1,6 +1,4 @@
-using NexusBilling.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using NexusBilling.Core.Domain.Common;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NexusBilling.Core.Domain.Common;
 using NexusBilling.Core.Domain.Finance.Entities;
@@ -11,31 +9,13 @@ public class GLAccountConfiguration : IEntityTypeConfiguration<GLAccount>
 {
     public void Configure(EntityTypeBuilder<GLAccount> builder)
     {
-        builder.ToTable("g_l_account", "finance");
+        builder.ToTable("gl_account", "finance");
         builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.TenantId)
-            .HasConversion(v => v.Value, v => TenantIdentifier.Create(v))
-            .HasColumnName("tenant_id")
-            .IsRequired();
-
-        builder.Property(x => x.No)
-            .IsRequired()
-            .HasMaxLength(20);
-
-        builder.Property(x => x.Name)
-            .IsRequired()
-            .HasMaxLength(50);
-
-        builder.Property(x => x.AccountType)
-            .IsRequired();
-
-        builder.Property(x => x.IncomeBalance)
-            .IsRequired();
-
-        builder.Property(x => x.Blocked)
-            .IsRequired();
-            
-        builder.HasIndex(x => new { x.TenantId, x.No }).IsUnique();
+        builder.Property(x => x.TenantId).HasConversion(v => v.Value, v => TenantIdentifier.Create(v)).HasColumnName("tenant_id").IsRequired();
+        builder.Property(x => x.No).HasColumnName("no");
+        builder.Property(x => x.Name).HasColumnName("name");
+        builder.Property(x => x.AccountType).HasColumnName("account_type");
+        builder.Property(x => x.IncomeBalance).HasColumnName("income_balance");
+        builder.Property(x => x.Blocked).HasColumnName("blocked");
     }
 }

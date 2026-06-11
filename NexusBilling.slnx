@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/NexusBilling.Core.Application/NexusBilling.Core.Application.csproj" />
+    <Project Path="src/Core/NexusBilling.Core.Domain/NexusBilling.Core.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="src/Infrastructure/NexusBilling.Infrastructure.ExternalServices/NexusBilling.Infrastructure.ExternalServices.csproj" />
+    <Project Path="src/Infrastructure/NexusBilling.Infrastructure.Identity/NexusBilling.Infrastructure.Identity.csproj" />
+    <Project Path="src/Infrastructure/NexusBilling.Infrastructure.Persistence/NexusBilling.Infrastructure.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/src/Presentation/">
+    <Project Path="src/Presentation/NexusBilling.Api/NexusBilling.Api.csproj" />
+  </Folder>
+</Solution>

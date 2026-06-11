@@ -1,161 +1,106 @@
-.login-container {
-  height: 100vh;
+/* ================================================================
+ * Login Page — local layout styles
+ * All colors/spacing use --nx-* tokens from _theme-colors.css.
+ * ================================================================ */
+
+/* Full-screen two-column layout */
+.nx-login-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--nx-canvas);
+}
+
+/* ── BRAND PANEL (left half) ──────────────────────────────────── */
+.nx-login-brand {
+  display: none; /* hidden on mobile */
+  flex: 0 0 44%;
+  background: linear-gradient(155deg, var(--nx-emerald-800) 0%, var(--nx-emerald-600) 60%, var(--nx-emerald-500) 100%);
+  padding: var(--nx-space-12) var(--nx-space-8);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative pattern overlay */
+.nx-login-brand::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.nx-login-brand__inner {
+  position: relative; /* above ::before */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  max-width: 360px;
+}
+
+.nx-login-brand__logo {
+  width: 56px; height: 56px;
+  margin-bottom: var(--nx-space-6);
+}
+.nx-login-brand__logo svg { width: 100%; height: 100%; }
+
+.nx-login-brand__name {
+  font-family: var(--nx-font-display);
+  font-size: var(--nx-text-4xl);
+  font-weight: var(--nx-weight-black);
+  color: #fff;
+  letter-spacing: var(--nx-tracking-tighter);
+  line-height: var(--nx-leading-tight);
+  margin-bottom: var(--nx-space-2);
+}
+
+.nx-login-brand__tagline {
+  font-size: var(--nx-text-lg);
+  color: rgba(255,255,255,0.70);
+  margin-bottom: var(--nx-space-10);
+}
+
+.nx-login-feature-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: var(--nx-space-4);
+}
+.nx-login-feature-list li {
+  display: flex; align-items: center; gap: var(--nx-space-3);
+  color: rgba(255,255,255,0.85);
+  font-size: var(--nx-text-md);
+  font-weight: var(--nx-weight-medium);
+}
+.nx-login-feature-list li svg {
+  width: 18px; height: 18px; flex: none;
+  color: var(--nx-gold-300);
+}
+
+/* ── FORM PANEL (right half) ──────────────────────────────────── */
+.nx-login-form-panel {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at top right, #1a1a2e, #16213e, #0f3460);
-  overflow: hidden;
-  position: relative;
+  padding: var(--nx-space-8) var(--nx-space-6);
 }
 
-.login-container::before {
-  content: '';
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: rgba(0, 123, 255, 0.1);
-  border-radius: 50%;
-  top: -100px;
-  left: -100px;
-  filter: blur(80px);
-}
-
-.glass-card {
+.nx-login-form-wrap {
   width: 100%;
-  max-width: 420px;
-  padding: 3rem;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.8s ease-out;
+  max-width: 400px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Mobile logo (brand panel is hidden on mobile) */
+.nx-login-logo-mobile {
+  display: flex;
+  align-items: center;
+  gap: var(--nx-space-3);
+  margin-bottom: var(--nx-space-8);
 }
 
-.login-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.logo {
-  width: 64px;
-  margin-bottom: 1rem;
-}
-
-h1 {
-  font-size: 2rem;
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  margin: 0;
-}
-
-.subtitle {
-  color: #8b9bb4;
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-}
-
-.form-field {
-  margin-bottom: 1.5rem;
-}
-
-label {
-  display: block;
-  color: #fff;
-  font-size: 0.85rem;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.input-wrapper {
-  position: relative;
-}
-
-input {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: #fff;
-  font-size: 1rem;
-  transition: all 0.3s;
-  outline: none;
-}
-
-input:focus {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: #007bff;
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
-}
-
-.error-message {
-  padding: 0.75rem;
-  background: rgba(220, 53, 69, 0.1);
-  border: 1px solid rgba(220, 53, 69, 0.2);
-  border-radius: 8px;
-  color: #ff6b6b;
-  font-size: 0.85rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.btn-login {
-  width: 100%;
-  padding: 14px;
-  background: #007bff;
-  border: none;
-  border-radius: 12px;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn-login:hover:not(:disabled) {
-  background: #0069d9;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-}
-
-.btn-login:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.login-footer {
-  text-align: center;
-  margin-top: 1.5rem;
-}
-
-.login-footer a {
-  color: #8b9bb4;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.login-footer a:hover {
-  color: #fff;
-}
-
-.loader {
-  width: 24px;
-  height: 24px;
-  border: 3px solid rgba(255,255,255,.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-  margin: 0 auto;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media (min-width: 860px) {
+  .nx-login-brand { display: flex; }
+  .nx-login-logo-mobile { display: none; }
 }

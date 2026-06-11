@@ -1,0 +1,306 @@
+/* ================================================================
+ * Nexus Billing — Theme Colors
+ * Design token layer. Import this first before any component CSS.
+ *
+ * Philosophy: ERP is a long-session workspace. Canvas stays calm
+ * and paper-like so dense data reads clearly. "Ledger Emerald"
+ * carries every action and positive signal. Deep ink-slate anchors
+ * navigation & chrome. Money amounts use tabular mono for alignment.
+ * ================================================================ */
+
+/* Google Fonts — loaded here so all partials can reference them */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ────────────────────────────────────────────────────────────
+   * RAW PALETTE — never reference these directly in components.
+   * Use the semantic aliases below instead.
+   * ──────────────────────────────────────────────────────────── */
+
+  /* Neutral ramp — cool slate, paper-leaning */
+  --nx-slate-0:   #FFFFFF;
+  --nx-slate-25:  #FAFBFC;
+  --nx-slate-50:  #F4F6F9;
+  --nx-slate-100: #ECEFF4;
+  --nx-slate-150: #E2E6EE;
+  --nx-slate-200: #D5DBE6;
+  --nx-slate-300: #BEC6D6;
+  --nx-slate-400: #9AA4B8;
+  --nx-slate-500: #727E96;
+  --nx-slate-600: #545F76;
+  --nx-slate-700: #3B4459;
+  --nx-slate-800: #262D3D;
+  --nx-slate-900: #171C28;
+  --nx-slate-950: #0F131C;
+
+  /* Brand: Ledger Emerald — primary action / positive signals */
+  --nx-emerald-50:  #E7F4EF;
+  --nx-emerald-100: #C6E6D9;
+  --nx-emerald-200: #97D2BC;
+  --nx-emerald-300: #5FB99A;
+  --nx-emerald-400: #2EA17E;
+  --nx-emerald-500: #138A68;
+  --nx-emerald-600: #0C7156;
+  --nx-emerald-700: #0A5A45;
+  --nx-emerald-800: #0A4636;
+  --nx-emerald-900: #08362A;
+
+  /* Signal: Nexus Gold — highlight, branding spark, data accent */
+  --nx-gold-50:  #FBF2DC;
+  --nx-gold-100: #F6E2B2;
+  --nx-gold-300: #E8B84A;
+  --nx-gold-500: #CF9412;
+  --nx-gold-700: #9C6E0C;
+
+  /* Semantic hues */
+  --nx-blue-50:  #E7EEFB;
+  --nx-blue-500: #2C63D6;
+  --nx-blue-700: #1E47A0;
+
+  --nx-amber-50:  #FBEFD3;
+  --nx-amber-500: #C5810A;
+  --nx-amber-700: #8E5C06;
+
+  --nx-red-50:  #FBE8E6;
+  --nx-red-500: #CE3F35;
+  --nx-red-700: #9A2A22;
+
+  /* Data-viz categorical scale */
+  --nx-viz-1: #138A68;  /* emerald  */
+  --nx-viz-2: #2C63D6;  /* blue     */
+  --nx-viz-3: #CF9412;  /* gold     */
+  --nx-viz-4: #8254C8;  /* violet   */
+  --nx-viz-5: #2EA1A1;  /* teal     */
+  --nx-viz-6: #CE3F35;  /* red      */
+
+  /* ────────────────────────────────────────────────────────────
+   * SEMANTIC ALIASES — light (default) theme
+   * ──────────────────────────────────────────────────────────── */
+
+  /* Surfaces */
+  --nx-canvas:           var(--nx-slate-50);   /* app background          */
+  --nx-surface:          var(--nx-slate-0);    /* cards, panels, rows     */
+  --nx-surface-sunken:   var(--nx-slate-100);  /* wells, table headers    */
+  --nx-surface-hover:    var(--nx-slate-50);   /* row / item hover        */
+  --nx-surface-selected: var(--nx-emerald-50); /* active nav / selected   */
+  --nx-surface-inverse:  var(--nx-slate-900);  /* sidebar, tooltips       */
+
+  /* Text */
+  --nx-text-strong:    var(--nx-slate-900);  /* headings, key figures    */
+  --nx-text-body:      var(--nx-slate-800);  /* default body             */
+  --nx-text-muted:     var(--nx-slate-500);  /* captions, secondary      */
+  --nx-text-faint:     var(--nx-slate-400);  /* placeholders, disabled   */
+  --nx-text-on-brand:  #FFFFFF;
+  --nx-text-on-inverse: var(--nx-slate-100);
+  --nx-text-link:      var(--nx-emerald-600);
+
+  /* Borders & dividers */
+  --nx-border-subtle:  var(--nx-slate-150);  /* table rules, card edges  */
+  --nx-border-default: var(--nx-slate-200);  /* inputs, controls         */
+  --nx-border-strong:  var(--nx-slate-300);  /* emphasis                 */
+  --nx-border-inverse: rgba(255,255,255,0.10);
+  --nx-hairline:       rgba(23,28,40,0.08);
+
+  /* Brand action */
+  --nx-action:       var(--nx-emerald-600);
+  --nx-action-hover: var(--nx-emerald-700);
+  --nx-action-press: var(--nx-emerald-800);
+  --nx-action-tint:  var(--nx-emerald-50);
+  --nx-action-ring:  rgba(12,113,86,0.32);
+
+  /* Focus */
+  --nx-focus-ring:        var(--nx-emerald-500);
+  --nx-focus-ring-offset: var(--nx-slate-0);
+  --nx-focus-w:           2px;
+
+  /* Status pairs (fg on tinted bg) */
+  --nx-status-success-fg: var(--nx-emerald-700);  --nx-status-success-bg: var(--nx-emerald-50);
+  --nx-status-info-fg:    var(--nx-blue-700);      --nx-status-info-bg:    var(--nx-blue-50);
+  --nx-status-warn-fg:    var(--nx-amber-700);     --nx-status-warn-bg:    var(--nx-amber-50);
+  --nx-status-danger-fg:  var(--nx-red-700);       --nx-status-danger-bg:  var(--nx-red-50);
+  --nx-status-neutral-fg: var(--nx-slate-600);     --nx-status-neutral-bg: var(--nx-slate-100);
+
+  /* Money semantics — used in financial ledger display */
+  --nx-money-positive: var(--nx-emerald-600);
+  --nx-money-negative: var(--nx-red-500);
+  --nx-money-zero:     var(--nx-slate-400);
+
+  /* ────────────────────────────────────────────────────────────
+   * TYPOGRAPHY
+   * ──────────────────────────────────────────────────────────── */
+  --nx-font-display: 'Space Grotesk', 'Hanken Grotesk', system-ui, sans-serif;
+  --nx-font-sans:    'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --nx-font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type scale (rem @ 16px root) */
+  --nx-text-2xs: 0.6875rem;  /* 11 — micro labels, tags     */
+  --nx-text-xs:  0.75rem;    /* 12 — captions, badges       */
+  --nx-text-sm:  0.8125rem;  /* 13 — secondary cells        */
+  --nx-text-md:  0.875rem;   /* 14 — UI base (body/inputs)  */
+  --nx-text-lg:  1rem;       /* 16 — emphasized body        */
+  --nx-text-xl:  1.1875rem;  /* 19 — card titles            */
+  --nx-text-2xl: 1.5rem;     /* 24 — page titles            */
+  --nx-text-3xl: 1.9375rem;  /* 31 — KPI figures            */
+  --nx-text-4xl: 2.5rem;     /* 40 — hero / login           */
+
+  /* Weights */
+  --nx-weight-regular:  400;
+  --nx-weight-medium:   500;
+  --nx-weight-semibold: 600;
+  --nx-weight-bold:     700;
+  --nx-weight-black:    800;
+
+  /* Line heights */
+  --nx-leading-none:    1;
+  --nx-leading-tight:   1.18;
+  --nx-leading-snug:    1.35;
+  --nx-leading-normal:  1.5;
+  --nx-leading-relaxed: 1.65;
+
+  /* Letter spacing */
+  --nx-tracking-tighter: -0.02em;
+  --nx-tracking-tight:   -0.01em;
+  --nx-tracking-normal:  0;
+  --nx-tracking-wide:    0.02em;
+  --nx-tracking-caps:    0.06em;  /* eyebrows, overline labels */
+
+  /* ────────────────────────────────────────────────────────────
+   * SPACING (4px grid)
+   * ──────────────────────────────────────────────────────────── */
+  --nx-space-0:   0;
+  --nx-space-1:   0.25rem;   /*  4 */
+  --nx-space-2:   0.5rem;    /*  8 */
+  --nx-space-3:   0.75rem;   /* 12 */
+  --nx-space-4:   1rem;      /* 16 */
+  --nx-space-5:   1.25rem;   /* 20 */
+  --nx-space-6:   1.5rem;    /* 24 */
+  --nx-space-8:   2rem;      /* 32 */
+  --nx-space-10:  2.5rem;    /* 40 */
+  --nx-space-12:  3rem;      /* 48 */
+  --nx-space-16:  4rem;      /* 64 */
+
+  /* Border radii — tight, professional (ERP, not playful) */
+  --nx-radius-xs:   3px;
+  --nx-radius-sm:   5px;
+  --nx-radius-md:   8px;
+  --nx-radius-lg:   12px;
+  --nx-radius-xl:   16px;
+  --nx-radius-pill: 999px;
+
+  /* Control heights — consistent hit targets */
+  --nx-control-sm: 28px;
+  --nx-control-md: 34px;
+  --nx-control-lg: 42px;
+
+  /* Border widths */
+  --nx-border-w:   1px;
+  --nx-border-w-2: 1.5px;
+
+  /* Layout rails */
+  --nx-sidebar-w:           248px;
+  --nx-sidebar-w-collapsed: 56px;
+  --nx-topbar-h:            52px;
+  --nx-content-max:         1440px;
+
+  /* ────────────────────────────────────────────────────────────
+   * ELEVATION — soft, cool-tinted; borders do most separation
+   * ──────────────────────────────────────────────────────────── */
+  --nx-shadow-xs:    0 1px 2px rgba(23,28,40,0.06);
+  --nx-shadow-sm:    0 1px 3px rgba(23,28,40,0.08), 0 1px 2px rgba(23,28,40,0.04);
+  --nx-shadow-md:    0 4px 12px rgba(23,28,40,0.10), 0 1px 3px rgba(23,28,40,0.06);
+  --nx-shadow-lg:    0 12px 28px rgba(23,28,40,0.14), 0 4px 8px rgba(23,28,40,0.06);
+  --nx-shadow-xl:    0 24px 56px rgba(15,19,28,0.22), 0 8px 16px rgba(15,19,28,0.10);
+  --nx-shadow-inset: inset 0 1px 2px rgba(23,28,40,0.08);
+  --nx-ring-focus:   0 0 0 var(--nx-focus-w) var(--nx-focus-ring-offset), 0 0 0 calc(var(--nx-focus-w) + 2px) var(--nx-action-ring);
+  --nx-scrim:        rgba(15,19,28,0.44);
+
+  /* ────────────────────────────────────────────────────────────
+   * MOTION — functional and quick; ERP must feel instantaneous
+   * ──────────────────────────────────────────────────────────── */
+  --nx-ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --nx-ease-entrance: cubic-bezier(0.16, 0.84, 0.44, 1);
+  --nx-ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+
+  --nx-dur-instant: 80ms;
+  --nx-dur-fast:    140ms;
+  --nx-dur-base:    200ms;
+  --nx-dur-slow:    280ms;
+
+  --nx-transition-colors:  color var(--nx-dur-fast) var(--nx-ease-standard),
+                            background-color var(--nx-dur-fast) var(--nx-ease-standard),
+                            border-color var(--nx-dur-fast) var(--nx-ease-standard);
+  --nx-transition-control: var(--nx-transition-colors),
+                            box-shadow var(--nx-dur-fast) var(--nx-ease-standard),
+                            transform var(--nx-dur-fast) var(--nx-ease-standard);
+}
+
+/* ================================================================
+ * DARK THEME
+ * Applied with [data-theme="dark"] on <html>.
+ * Only semantic aliases are overridden; raw ramp values stay the
+ * same so components referencing the ramp directly still work.
+ * Dark canvas = deep cool-slate (not pure black) for long sessions.
+ * ================================================================ */
+[data-theme="dark"] {
+  /* Surfaces */
+  --nx-canvas:           #0E1219;
+  --nx-surface:          #171E2E;
+  --nx-surface-sunken:   #111620;
+  --nx-surface-hover:    rgba(255,255,255,0.05);
+  --nx-surface-selected: rgba(19,138,104,0.20);
+  --nx-surface-inverse:  #090C13;
+
+  /* Text */
+  --nx-text-strong:    #F2F5FA;
+  --nx-text-body:      #C8D0E0;
+  --nx-text-muted:     #8A95AB;
+  --nx-text-faint:     #5E6A7F;
+  --nx-text-on-brand:  #FFFFFF;
+  --nx-text-on-inverse:#C8D0E0;
+  --nx-text-link:      var(--nx-emerald-300);
+
+  /* Borders */
+  --nx-border-subtle:  rgba(255,255,255,0.10);
+  --nx-border-default: rgba(255,255,255,0.16);
+  --nx-border-strong:  rgba(255,255,255,0.28);
+  --nx-border-inverse: rgba(255,255,255,0.08);
+  --nx-hairline:       rgba(255,255,255,0.09);
+
+  /* Action */
+  --nx-action:       var(--nx-emerald-500);
+  --nx-action-hover: var(--nx-emerald-400);
+  --nx-action-press: var(--nx-emerald-600);
+  --nx-action-tint:  rgba(19,138,104,0.16);
+  --nx-action-ring:  rgba(47,161,126,0.42);
+
+  /* Focus */
+  --nx-focus-ring:        var(--nx-emerald-400);
+  --nx-focus-ring-offset: #111520;
+
+  /* Status */
+  --nx-status-success-fg: var(--nx-emerald-300);  --nx-status-success-bg: #0D2318;
+  --nx-status-info-fg:    #7EA6E8;                 --nx-status-info-bg:    #0E1C3A;
+  --nx-status-warn-fg:    #E4B046;                 --nx-status-warn-bg:    #251A08;
+  --nx-status-danger-fg:  #E8766A;                 --nx-status-danger-bg:  #2A1010;
+  --nx-status-neutral-fg: var(--nx-slate-400);     --nx-status-neutral-bg: rgba(255,255,255,0.06);
+
+  /* Money */
+  --nx-money-positive: var(--nx-emerald-300);
+  --nx-money-negative: #E8766A;
+  --nx-money-zero:     var(--nx-slate-600);
+
+  /* Shadows — black-based on dark bg */
+  --nx-shadow-xs:    0 1px 3px rgba(0,0,0,0.28);
+  --nx-shadow-sm:    0 2px 6px rgba(0,0,0,0.34);
+  --nx-shadow-md:    0 4px 14px rgba(0,0,0,0.44);
+  --nx-shadow-lg:    0 12px 32px rgba(0,0,0,0.54);
+  --nx-shadow-xl:    0 24px 64px rgba(0,0,0,0.64), 0 8px 20px rgba(0,0,0,0.38);
+  --nx-shadow-inset: inset 0 1px 2px rgba(0,0,0,0.40);
+  --nx-scrim:        rgba(0,0,0,0.64);
+}
+
+/* Scrollbars — dark mode */
+[data-theme="dark"] { scrollbar-color: var(--nx-slate-700) transparent; }
+[data-theme="dark"] *::-webkit-scrollbar-thumb { background: var(--nx-slate-700); background-clip: content-box; }
+[data-theme="dark"] *::-webkit-scrollbar-thumb:hover { background: var(--nx-slate-600); background-clip: content-box; }
+[data-theme="dark"] ::selection { background: var(--nx-emerald-800); color: var(--nx-emerald-100); }

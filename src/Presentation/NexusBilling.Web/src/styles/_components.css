@@ -1,0 +1,818 @@
+/* ================================================================
+ * Nexus Billing — Components Library
+ * Reusable classes for buttons, inputs, selects, badges, tables,
+ * cards, stats, tabs, etc. — built on _theme-colors.css tokens.
+ *
+ * CLASS NAMING CONVENTION:
+ *   .nx-{component}                 base
+ *   .nx-{component}--{modifier}     variant / size
+ *   .nx-{component}__{element}      child element
+ *
+ * ALL components rely exclusively on --nx-* custom properties.
+ * ================================================================ */
+
+/* ── GLOBAL BASE ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--nx-font-sans);
+  font-size: var(--nx-text-md);
+  line-height: var(--nx-leading-normal);
+  color: var(--nx-text-body);
+  background: var(--nx-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: var(--nx-font-display);
+  font-weight: var(--nx-weight-bold);
+  letter-spacing: var(--nx-tracking-tight);
+  line-height: var(--nx-leading-tight);
+  color: var(--nx-text-strong);
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: var(--nx-text-link); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+code, kbd, samp { font-family: var(--nx-font-mono); }
+
+::selection { background: var(--nx-emerald-100); color: var(--nx-emerald-900); }
+
+:focus-visible {
+  outline: var(--nx-focus-w) solid var(--nx-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--nx-radius-xs);
+}
+
+/* Slim, unobtrusive scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--nx-slate-300) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: var(--nx-slate-300); border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb:hover { background: var(--nx-slate-400); background-clip: content-box; }
+
+
+/* ================================================================
+ * BUTTON
+ * Usage: <button class="nx-btn nx-btn--primary">Label</button>
+ * Variants: primary | secondary | ghost | subtle | danger | link
+ * Sizes:    sm (28px) | md (34px, default) | lg (42px)
+ * ================================================================ */
+.nx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nx-space-2);
+  height: var(--nx-control-md);
+  padding: 0 var(--nx-space-4);
+  font-family: var(--nx-font-sans);
+  font-size: var(--nx-text-md);
+  font-weight: var(--nx-weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  border: var(--nx-border-w) solid transparent;
+  border-radius: var(--nx-radius-sm);
+  background: transparent;
+  color: var(--nx-text-body);
+  transition: var(--nx-transition-control);
+  text-decoration: none;
+}
+.nx-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--nx-focus-ring-offset), 0 0 0 4px var(--nx-action-ring);
+}
+.nx-btn:disabled,
+.nx-btn[aria-disabled="true"] { cursor: not-allowed; opacity: 0.5; pointer-events: none; }
+.nx-btn:active:not(:disabled) { transform: translateY(0.5px); }
+.nx-btn svg, .nx-btn i { width: 16px; height: 16px; flex: none; display: inline-flex; }
+
+/* Sizes */
+.nx-btn--sm { height: var(--nx-control-sm); padding: 0 var(--nx-space-3); font-size: var(--nx-text-sm); }
+.nx-btn--lg { height: var(--nx-control-lg); padding: 0 var(--nx-space-5); font-size: var(--nx-text-lg); }
+.nx-btn--block { width: 100%; }
+
+/* Primary — Ledger Emerald CTA. One per view region. */
+.nx-btn--primary {
+  background: var(--nx-action);
+  color: var(--nx-text-on-brand);
+  box-shadow: var(--nx-shadow-xs);
+}
+.nx-btn--primary:hover:not(:disabled) { background: var(--nx-action-hover); }
+.nx-btn--primary:active:not(:disabled) { background: var(--nx-action-press); }
+
+/* Secondary — bordered neutral, the everyday workhorse */
+.nx-btn--secondary {
+  background: var(--nx-surface);
+  color: var(--nx-text-body);
+  border-color: var(--nx-border-default);
+  box-shadow: var(--nx-shadow-xs);
+}
+.nx-btn--secondary:hover:not(:disabled) {
+  background: var(--nx-surface-hover);
+  border-color: var(--nx-border-strong);
+}
+.nx-btn--secondary:active:not(:disabled) { background: var(--nx-surface-sunken); }
+
+/* Ghost — no chrome until hover */
+.nx-btn--ghost { background: transparent; color: var(--nx-text-body); }
+.nx-btn--ghost:hover:not(:disabled) { background: var(--nx-surface-sunken); }
+.nx-btn--ghost:active:not(:disabled) { background: var(--nx-slate-150); }
+
+/* Subtle — tinted brand for secondary affirmatives (e.g. "Post") */
+.nx-btn--subtle { background: var(--nx-action-tint); color: var(--nx-action-hover); }
+.nx-btn--subtle:hover:not(:disabled) { background: var(--nx-emerald-100); }
+
+/* Danger — destructive actions */
+.nx-btn--danger { background: var(--nx-red-500); color: #fff; box-shadow: var(--nx-shadow-xs); }
+.nx-btn--danger:hover:not(:disabled) { background: var(--nx-red-700); }
+
+/* Link — inline text-style action */
+.nx-btn--link {
+  height: auto; padding: 0;
+  background: none; color: var(--nx-text-link);
+  font-weight: var(--nx-weight-medium);
+}
+.nx-btn--link:hover:not(:disabled) { text-decoration: underline; text-underline-offset: 2px; }
+
+/* Icon-only button */
+.nx-iconbtn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--nx-control-md); height: var(--nx-control-md); padding: 0;
+  border: var(--nx-border-w) solid transparent; border-radius: var(--nx-radius-sm);
+  background: transparent; color: var(--nx-text-muted); cursor: pointer;
+  transition: var(--nx-transition-control);
+}
+.nx-iconbtn:hover:not(:disabled) { background: var(--nx-surface-sunken); color: var(--nx-text-body); }
+.nx-iconbtn:active:not(:disabled) { background: var(--nx-slate-150); }
+.nx-iconbtn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--nx-focus-ring-offset), 0 0 0 4px var(--nx-action-ring); }
+.nx-iconbtn:disabled { opacity: 0.45; cursor: not-allowed; }
+.nx-iconbtn--sm { width: var(--nx-control-sm); height: var(--nx-control-sm); }
+.nx-iconbtn svg, .nx-iconbtn i { width: 17px; height: 17px; }
+
+
+/* ================================================================
+ * FIELD WRAPPER — label + input/select + hint/error
+ * Usage: <div class="nx-field">...</div>
+ * ================================================================ */
+.nx-field { display: flex; flex-direction: column; gap: var(--nx-space-2); }
+
+.nx-label {
+  font-size: var(--nx-text-sm);
+  font-weight: var(--nx-weight-semibold);
+  color: var(--nx-text-body);
+  line-height: var(--nx-leading-snug);
+}
+.nx-label .nx-req { color: var(--nx-red-500); margin-left: 2px; }
+
+.nx-hint { font-size: var(--nx-text-xs); color: var(--nx-text-muted); }
+.nx-hint--error { color: var(--nx-status-danger-fg); }
+
+
+/* ================================================================
+ * INPUT — text, email, number, date, search, textarea
+ * Usage: <input class="nx-input" />
+ * Modifiers: nx-input--mono (amounts/codes), nx-input--sm, nx-input--lg
+ * ================================================================ */
+.nx-input {
+  height: var(--nx-control-md);
+  width: 100%;
+  padding: 0 var(--nx-space-3);
+  font-family: var(--nx-font-sans);
+  font-size: var(--nx-text-md);
+  color: var(--nx-text-strong);
+  background: var(--nx-surface);
+  border: var(--nx-border-w) solid var(--nx-border-default);
+  border-radius: var(--nx-radius-sm);
+  transition: var(--nx-transition-control);
+}
+textarea.nx-input {
+  height: auto;
+  padding: var(--nx-space-2) var(--nx-space-3);
+  line-height: var(--nx-leading-snug);
+  resize: vertical;
+}
+.nx-input::placeholder { color: var(--nx-text-faint); }
+.nx-input:hover:not(:disabled) { border-color: var(--nx-border-strong); }
+.nx-input:focus {
+  outline: none;
+  border-color: var(--nx-action);
+  box-shadow: 0 0 0 3px var(--nx-action-ring);
+}
+.nx-input:disabled {
+  background: var(--nx-surface-sunken);
+  color: var(--nx-text-muted);
+  cursor: not-allowed;
+}
+/* Validation state — mirrors aria-invalid for no-JS contexts */
+.nx-input[aria-invalid="true"],
+.nx-input.is-invalid { border-color: var(--nx-red-500); }
+.nx-input[aria-invalid="true"]:focus,
+.nx-input.is-invalid:focus { box-shadow: 0 0 0 3px var(--nx-red-50); }
+
+/* Mono variant — amounts, document numbers, codes */
+.nx-input--mono { font-family: var(--nx-font-mono); font-variant-numeric: tabular-nums; }
+
+/* Size variants */
+.nx-input--sm { height: var(--nx-control-sm); font-size: var(--nx-text-sm); }
+.nx-input--lg { height: var(--nx-control-lg); font-size: var(--nx-text-lg); }
+
+/* Input with leading adornment (currency prefix, search icon) */
+.nx-inputgroup { position: relative; display: flex; align-items: center; }
+.nx-inputgroup .nx-input { padding-left: 34px; }
+.nx-inputgroup .nx-adorn {
+  position: absolute; left: 11px;
+  display: inline-flex; align-items: center;
+  color: var(--nx-text-faint);
+  pointer-events: none;
+  font-size: var(--nx-text-sm);
+  font-family: var(--nx-font-mono);
+}
+.nx-inputgroup .nx-adorn svg { width: 16px; height: 16px; }
+
+/* Input with trailing adornment */
+.nx-inputgroup--trail .nx-input { padding-right: 34px; }
+.nx-inputgroup--trail .nx-adorn { left: auto; right: 11px; }
+
+
+/* ================================================================
+ * SELECT
+ * Usage: <select class="nx-select">...</select>
+ * ================================================================ */
+.nx-select {
+  height: var(--nx-control-md);
+  width: 100%;
+  padding: 0 32px 0 var(--nx-space-3);
+  font-family: var(--nx-font-sans);
+  font-size: var(--nx-text-md);
+  color: var(--nx-text-strong);
+  background: var(--nx-surface)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23727E96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 10px center;
+  border: var(--nx-border-w) solid var(--nx-border-default);
+  border-radius: var(--nx-radius-sm);
+  appearance: none;
+  cursor: pointer;
+  transition: var(--nx-transition-control);
+}
+.nx-select:hover:not(:disabled) { border-color: var(--nx-border-strong); }
+.nx-select:focus { outline: none; border-color: var(--nx-action); box-shadow: 0 0 0 3px var(--nx-action-ring); }
+.nx-select:disabled { background-color: var(--nx-surface-sunken); color: var(--nx-text-muted); cursor: not-allowed; }
+.nx-select--sm { height: var(--nx-control-sm); font-size: var(--nx-text-sm); }
+.nx-select--lg { height: var(--nx-control-lg); font-size: var(--nx-text-lg); }
+
+
+/* ================================================================
+ * CHECKBOX & RADIO
+ * Usage: <label class="nx-check"><input type="checkbox"><span class="nx-check__box"><svg…/></span> Label</label>
+ * ================================================================ */
+.nx-check {
+  display: inline-flex; align-items: center;
+  gap: var(--nx-space-2); cursor: pointer;
+  font-size: var(--nx-text-md); color: var(--nx-text-body);
+}
+.nx-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+.nx-check__box {
+  width: 17px; height: 17px; flex: none;
+  border-radius: var(--nx-radius-xs);
+  border: var(--nx-border-w-2) solid var(--nx-border-strong);
+  background: var(--nx-surface);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: var(--nx-transition-control); color: #fff;
+}
+.nx-check__box svg { width: 12px; height: 12px; opacity: 0; transition: opacity var(--nx-dur-fast) var(--nx-ease-standard); }
+.nx-check input:checked + .nx-check__box { background: var(--nx-action); border-color: var(--nx-action); }
+.nx-check input:checked + .nx-check__box svg { opacity: 1; }
+.nx-check input:focus-visible + .nx-check__box { box-shadow: 0 0 0 3px var(--nx-action-ring); }
+.nx-check--radio .nx-check__box { border-radius: var(--nx-radius-pill); }
+.nx-check input:disabled ~ * { opacity: 0.5; }
+
+
+/* ================================================================
+ * SWITCH / TOGGLE
+ * Usage: <label class="nx-switch"><input type="checkbox"><span class="nx-switch__track"><span class="nx-switch__thumb"></span></span><span>Label</span></label>
+ * ================================================================ */
+.nx-switch { display: inline-flex; align-items: center; gap: var(--nx-space-2); cursor: pointer; font-size: var(--nx-text-md); color: var(--nx-text-body); }
+.nx-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.nx-switch__track {
+  width: 34px; height: 20px; border-radius: var(--nx-radius-pill);
+  background: var(--nx-slate-300); position: relative;
+  transition: var(--nx-transition-colors); flex: none;
+}
+.nx-switch__thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #fff; box-shadow: var(--nx-shadow-sm);
+  transition: transform var(--nx-dur-fast) var(--nx-ease-standard);
+}
+.nx-switch input:checked + .nx-switch__track { background: var(--nx-action); }
+.nx-switch input:checked + .nx-switch__track .nx-switch__thumb { transform: translateX(14px); }
+.nx-switch input:focus-visible + .nx-switch__track { box-shadow: 0 0 0 3px var(--nx-action-ring); }
+.nx-switch input:disabled + .nx-switch__track { opacity: 0.5; }
+
+
+/* ================================================================
+ * BADGE — status indicators (Posted, Open, Overdue, Draft…)
+ * Reflects the DocumentStatus / posting states in SalesHeader,
+ * CustLedgerEntry, SalesInvoiceHeader, etc.
+ * Usage: <span class="nx-badge nx-badge--success"><span class="nx-badge__dot"></span>Posted</span>
+ * ================================================================ */
+.nx-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  height: 21px; padding: 0 8px;
+  font-size: var(--nx-text-xs); font-weight: var(--nx-weight-semibold);
+  line-height: 1; border-radius: var(--nx-radius-sm); white-space: nowrap;
+  background: var(--nx-status-neutral-bg); color: var(--nx-status-neutral-fg);
+}
+.nx-badge__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+.nx-badge--success { background: var(--nx-status-success-bg); color: var(--nx-status-success-fg); }
+.nx-badge--info    { background: var(--nx-status-info-bg);    color: var(--nx-status-info-fg);    }
+.nx-badge--warn    { background: var(--nx-status-warn-bg);    color: var(--nx-status-warn-fg);    }
+.nx-badge--danger  { background: var(--nx-status-danger-bg);  color: var(--nx-status-danger-fg);  }
+.nx-badge--solid   { background: var(--nx-action); color: #fff; }
+.nx-badge--outline { background: transparent; box-shadow: inset 0 0 0 1px var(--nx-border-default); color: var(--nx-text-muted); }
+
+
+/* ================================================================
+ * TAG — removable filter chips (City, Category, Blocked…)
+ * Usage: <span class="nx-tag">City: Santo Domingo <button class="nx-tag__x">×</button></span>
+ * ================================================================ */
+.nx-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 24px; padding: 0 8px;
+  font-size: var(--nx-text-sm); font-weight: var(--nx-weight-medium);
+  background: var(--nx-surface-sunken); color: var(--nx-text-body);
+  border: var(--nx-border-w) solid var(--nx-border-subtle);
+  border-radius: var(--nx-radius-xs);
+}
+.nx-tag__x { display: inline-flex; cursor: pointer; color: var(--nx-text-faint); border-radius: 2px; background: none; border: none; padding: 0; line-height: 1; }
+.nx-tag__x:hover { color: var(--nx-text-body); }
+.nx-tag__x svg { width: 13px; height: 13px; }
+
+
+/* ================================================================
+ * AVATAR — user / customer initials or image
+ * Usage: <div class="nx-avatar">JR</div>
+ * ================================================================ */
+.nx-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: var(--nx-radius-sm);
+  background: var(--nx-emerald-100); color: var(--nx-emerald-800);
+  font-weight: var(--nx-weight-bold); font-size: var(--nx-text-sm);
+  overflow: hidden; flex: none; text-transform: uppercase;
+}
+.nx-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.nx-avatar--circle { border-radius: var(--nx-radius-pill); }
+.nx-avatar--sm { width: 26px; height: 26px; font-size: var(--nx-text-xs); }
+.nx-avatar--lg { width: 44px; height: 44px; font-size: var(--nx-text-lg); }
+
+
+/* ================================================================
+ * CARD — the primary container for data groups
+ * Maps to: customer card, invoice card, KPI summary, etc.
+ * Usage: <div class="nx-card"><div class="nx-card__head">…</div><div class="nx-card__body">…</div></div>
+ * ================================================================ */
+.nx-card {
+  background: var(--nx-surface);
+  border: var(--nx-border-w) solid var(--nx-border-subtle);
+  border-radius: var(--nx-radius-md);
+  overflow: clip;
+}
+.nx-card__head {
+  display: flex; align-items: center; gap: var(--nx-space-3);
+  padding: var(--nx-space-3) var(--nx-space-4);
+  border-bottom: var(--nx-border-w) solid var(--nx-border-subtle);
+}
+.nx-card__title {
+  font-family: var(--nx-font-display);
+  font-size: var(--nx-text-lg);
+  font-weight: var(--nx-weight-bold);
+  color: var(--nx-text-strong);
+  letter-spacing: var(--nx-tracking-tight);
+}
+.nx-card__subtitle {
+  font-size: var(--nx-text-sm);
+  color: var(--nx-text-muted);
+  margin-top: 1px;
+}
+.nx-card__actions { margin-left: auto; display: flex; gap: var(--nx-space-1); align-items: center; }
+.nx-card__body { padding: var(--nx-space-4); }
+.nx-card__foot {
+  padding: var(--nx-space-3) var(--nx-space-4);
+  border-top: var(--nx-border-w) solid var(--nx-border-subtle);
+  background: var(--nx-slate-25);
+  display: flex; align-items: center; gap: var(--nx-space-3);
+}
+
+
+/* ================================================================
+ * STAT TILE — KPI / summary number
+ * Used on dashboard for: Total Sales, Open Invoices, Due Amount, etc.
+ * Usage: <div class="nx-stat"><span class="nx-stat__label">…</span><span class="nx-stat__value">…</span></div>
+ * ================================================================ */
+.nx-stat {
+  display: flex; flex-direction: column; gap: var(--nx-space-1);
+  padding: var(--nx-space-4);
+  background: var(--nx-surface);
+  border: var(--nx-border-w) solid var(--nx-border-subtle);
+  border-radius: var(--nx-radius-md);
+}
+.nx-stat__label {
+  font-size: var(--nx-text-xs);
+  font-weight: var(--nx-weight-semibold);
+  letter-spacing: var(--nx-tracking-caps);
+  text-transform: uppercase;
+  color: var(--nx-text-muted);
+}
+.nx-stat__value {
+  font-family: var(--nx-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--nx-text-3xl);
+  font-weight: var(--nx-weight-semibold);
+  color: var(--nx-text-strong);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.nx-stat__delta {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: var(--nx-text-sm); font-weight: var(--nx-weight-semibold);
+}
+.nx-stat__delta svg { width: 14px; height: 14px; }
+.nx-stat__delta--up   { color: var(--nx-money-positive); }
+.nx-stat__delta--down { color: var(--nx-money-negative); }
+.nx-stat__delta--flat { color: var(--nx-money-zero); }
+
+
+/* ================================================================
+ * KEY / VALUE GRID — record field display
+ * Used on: Customer Card, SalesHeader detail, CustLedgerEntry view
+ * Usage: <dl class="nx-kv"><dt class="nx-kv__k">No.</dt><dd class="nx-kv__v nx-kv__v--mono">C-00001</dd></dl>
+ * ================================================================ */
+.nx-kv {
+  display: grid;
+  grid-template-columns: minmax(120px, 38%) 1fr;
+  gap: 1px var(--nx-space-4);
+  align-items: baseline;
+}
+.nx-kv__k {
+  font-size: var(--nx-text-sm);
+  color: var(--nx-text-muted);
+  padding: 7px 0;
+}
+.nx-kv__v {
+  font-size: var(--nx-text-md);
+  color: var(--nx-text-strong);
+  padding: 7px 0;
+  font-weight: var(--nx-weight-medium);
+}
+.nx-kv__v--mono { font-family: var(--nx-font-mono); font-variant-numeric: tabular-nums; }
+.nx-kv--ruled .nx-kv__k,
+.nx-kv--ruled .nx-kv__v { border-bottom: var(--nx-border-w) solid var(--nx-border-subtle); }
+
+/* Amount — used for monetary values (positive/negative/zero) */
+.nx-amount { font-family: var(--nx-font-mono); font-variant-numeric: tabular-nums; }
+.nx-amount--positive { color: var(--nx-money-positive); }
+.nx-amount--negative { color: var(--nx-money-negative); }
+.nx-amount--zero     { color: var(--nx-money-zero); }
+
+
+/* ================================================================
+ * TABLE — data grid for list views
+ * Reflects: Customer List, SalesHeader list, CustLedgerEntry list,
+ *           Item list, Vendor list, etc.
+ * Usage: <table class="nx-table"><thead>…</thead><tbody>…</tbody></table>
+ * ================================================================ */
+.nx-table { width: 100%; border-collapse: collapse; font-size: var(--nx-text-md); }
+
+.nx-table thead th {
+  text-align: left;
+  font-size: var(--nx-text-xs);
+  font-weight: var(--nx-weight-semibold);
+  letter-spacing: var(--nx-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nx-text-muted);
+  padding: var(--nx-space-2) var(--nx-space-3);
+  background: var(--nx-surface-sunken);
+  border-bottom: var(--nx-border-w) solid var(--nx-border-default);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+.nx-table tbody td {
+  padding: var(--nx-space-2) var(--nx-space-3);
+  border-bottom: var(--nx-border-w) solid var(--nx-border-subtle);
+  color: var(--nx-text-body);
+  vertical-align: middle;
+}
+.nx-table tbody tr { transition: background-color var(--nx-dur-fast) var(--nx-ease-standard); cursor: default; }
+.nx-table tbody tr:hover { background: var(--nx-surface-hover); }
+.nx-table tbody tr[aria-selected="true"] { background: var(--nx-surface-selected); }
+
+/* Numeric cell — amounts, quantities (right-aligned mono) */
+.nx-table .nx-td--num { text-align: right; font-family: var(--nx-font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* Document number cell — codes, No. fields */
+.nx-table .nx-td--doc { font-family: var(--nx-font-mono); font-weight: var(--nx-weight-medium); color: var(--nx-text-strong); }
+.nx-table th.nx-th--num { text-align: right; }
+
+/* Zebra striping option */
+.nx-table--zebra tbody tr:nth-child(even) { background: var(--nx-slate-25); }
+.nx-table--zebra tbody tr:nth-child(even):hover { background: var(--nx-surface-hover); }
+
+/* Drill link — navigate to related record */
+.nx-link {
+  color: var(--nx-text-link);
+  font-weight: var(--nx-weight-medium);
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 3px;
+}
+.nx-link:hover { text-decoration: underline; text-underline-offset: 2px; }
+.nx-link svg { width: 13px; height: 13px; opacity: 0.7; }
+
+
+/* ================================================================
+ * TABS — section navigation within a page
+ * Used on: Customer Card tabs, SalesHeader tabs (Lines, Shipping…)
+ * Usage: <div class="nx-tabs"><button class="nx-tab" aria-selected="true">Lines</button>…</div>
+ * ================================================================ */
+.nx-tabs {
+  display: flex; gap: var(--nx-space-1);
+  border-bottom: var(--nx-border-w) solid var(--nx-border-default);
+}
+.nx-tab {
+  appearance: none; background: none; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: var(--nx-space-2);
+  padding: var(--nx-space-3) var(--nx-space-3); margin-bottom: -1px;
+  font-family: var(--nx-font-sans); font-size: var(--nx-text-md);
+  font-weight: var(--nx-weight-semibold); color: var(--nx-text-muted);
+  border-bottom: 2px solid transparent;
+  transition: var(--nx-transition-colors);
+}
+.nx-tab:hover { color: var(--nx-text-body); }
+.nx-tab[aria-selected="true"] { color: var(--nx-text-strong); border-bottom-color: var(--nx-action); }
+.nx-tab__count {
+  font-family: var(--nx-font-mono); font-size: var(--nx-text-xs);
+  color: var(--nx-text-faint);
+  background: var(--nx-surface-sunken);
+  border-radius: var(--nx-radius-pill);
+  padding: 1px 7px;
+}
+.nx-tab[aria-selected="true"] .nx-tab__count { color: var(--nx-action-hover); background: var(--nx-action-tint); }
+
+
+/* ================================================================
+ * BREADCRUMB
+ * Usage: <nav class="nx-crumbs"><a>Dashboard</a><span class="nx-crumbs__sep">›</span><span class="nx-crumb--current">Customers</span></nav>
+ * ================================================================ */
+.nx-crumbs { display: flex; align-items: center; gap: var(--nx-space-1); font-size: var(--nx-text-sm); color: var(--nx-text-muted); flex-wrap: wrap; }
+.nx-crumbs a, .nx-crumbs .nx-crumb { color: var(--nx-text-muted); cursor: pointer; }
+.nx-crumbs a:hover, .nx-crumbs .nx-crumb:hover { color: var(--nx-text-link); text-decoration: none; }
+.nx-crumbs .nx-crumb--current { color: var(--nx-text-strong); font-weight: var(--nx-weight-semibold); }
+.nx-crumbs__sep { color: var(--nx-border-strong); }
+
+
+/* ================================================================
+ * BANNER — inline contextual messages
+ * Maps to: validation errors, posting confirmations, blocked customer alerts
+ * Usage: <div class="nx-banner nx-banner--warn"><div class="nx-banner__body">…</div></div>
+ * ================================================================ */
+.nx-banner {
+  display: flex; align-items: flex-start; gap: var(--nx-space-3);
+  padding: var(--nx-space-3) var(--nx-space-4);
+  border: var(--nx-border-w) solid transparent;
+  border-radius: var(--nx-radius-md);
+  font-size: var(--nx-text-md); color: var(--nx-text-body);
+  background: var(--nx-status-info-bg);
+  border-color: color-mix(in srgb, var(--nx-status-info-fg) 22%, transparent);
+}
+.nx-banner__icon { color: var(--nx-status-info-fg); flex: none; margin-top: 1px; }
+.nx-banner__icon svg { width: 18px; height: 18px; display: block; }
+.nx-banner__body { flex: 1; min-width: 0; }
+.nx-banner__title { font-weight: var(--nx-weight-semibold); color: var(--nx-text-strong); }
+.nx-banner__text { color: var(--nx-text-muted); font-size: var(--nx-text-sm); margin-top: 2px; }
+
+.nx-banner--success { background: var(--nx-status-success-bg); border-color: color-mix(in srgb, var(--nx-status-success-fg) 22%, transparent); }
+.nx-banner--success .nx-banner__icon { color: var(--nx-status-success-fg); }
+.nx-banner--warn { background: var(--nx-status-warn-bg); border-color: color-mix(in srgb, var(--nx-status-warn-fg) 26%, transparent); }
+.nx-banner--warn .nx-banner__icon { color: var(--nx-status-warn-fg); }
+.nx-banner--danger { background: var(--nx-status-danger-bg); border-color: color-mix(in srgb, var(--nx-status-danger-fg) 24%, transparent); }
+.nx-banner--danger .nx-banner__icon { color: var(--nx-status-danger-fg); }
+
+
+/* ================================================================
+ * COLLAPSIBLE SECTION
+ * Used on: Customer Card General/Invoicing/Shipping sections
+ * ================================================================ */
+.nx-collapse { border: var(--nx-border-w) solid var(--nx-border-subtle); border-radius: var(--nx-radius-md); overflow: clip; }
+.nx-collapse__trigger {
+  display: flex; align-items: center; gap: var(--nx-space-2);
+  width: 100%; padding: var(--nx-space-3) var(--nx-space-4);
+  background: var(--nx-surface-sunken); border: none; cursor: pointer;
+  text-align: left; font: inherit; color: var(--nx-text-body);
+  transition: var(--nx-transition-colors);
+}
+.nx-collapse__trigger:hover { background: var(--nx-slate-100); }
+[data-theme="dark"] .nx-collapse__trigger:hover { background: rgba(255,255,255,0.04); }
+.nx-collapse__label {
+  font-family: var(--nx-font-display);
+  font-size: var(--nx-text-md); font-weight: var(--nx-weight-bold);
+  color: var(--nx-text-strong); letter-spacing: var(--nx-tracking-tight); flex: 1;
+}
+.nx-collapse__chevron { color: var(--nx-text-faint); transition: transform var(--nx-dur-base) var(--nx-ease-standard); flex: none; }
+.nx-collapse__chevron svg { width: 16px; height: 16px; display: block; }
+.nx-collapse__trigger[aria-expanded="false"] .nx-collapse__chevron { transform: rotate(-90deg); }
+/* CSS grid-rows trick: animates height without JS-measured heights */
+.nx-collapse__body { display: grid; grid-template-rows: 1fr; transition: grid-template-rows var(--nx-dur-base) var(--nx-ease-standard); }
+.nx-collapse__body[data-closed] { grid-template-rows: 0fr; }
+.nx-collapse__body > .nx-collapse__inner { overflow: hidden; }
+
+
+/* ================================================================
+ * EMPTY STATE
+ * Usage: <div class="nx-empty"><div class="nx-empty__icon">…</div><p class="nx-empty__title">…</p></div>
+ * ================================================================ */
+.nx-empty {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: var(--nx-space-3);
+  padding: var(--nx-space-12) var(--nx-space-6);
+  color: var(--nx-text-muted);
+}
+.nx-empty__icon {
+  width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--nx-radius-md); background: var(--nx-surface-sunken); color: var(--nx-text-faint);
+}
+.nx-empty__icon svg { width: 22px; height: 22px; }
+.nx-empty__title { font-family: var(--nx-font-display); font-size: var(--nx-text-lg); font-weight: var(--nx-weight-bold); color: var(--nx-text-strong); }
+.nx-empty__text { font-size: var(--nx-text-sm); max-width: 38ch; }
+
+
+/* ================================================================
+ * SIDEBAR LAYOUT — app shell (collapsible)
+ * Matches: --nx-sidebar-w / --nx-sidebar-w-collapsed / --nx-topbar-h
+ * ================================================================ */
+.nx-shell { display: flex; height: 100vh; overflow: hidden; background: var(--nx-canvas); }
+
+.nx-sidebar {
+  width: var(--nx-sidebar-w);
+  background: var(--nx-surface-inverse);
+  border-right: var(--nx-border-w) solid var(--nx-border-inverse);
+  display: flex; flex-direction: column;
+  transition: width var(--nx-dur-slow) var(--nx-ease-standard);
+  flex: none;
+  overflow: hidden;
+}
+.nx-sidebar.is-collapsed { width: var(--nx-sidebar-w-collapsed); }
+
+.nx-sidebar__brand {
+  display: flex; align-items: center; gap: var(--nx-space-3);
+  padding: var(--nx-space-4) var(--nx-space-3);
+  border-bottom: var(--nx-border-w) solid var(--nx-border-inverse);
+  height: var(--nx-topbar-h);
+  overflow: hidden;
+  flex: none;
+}
+.nx-sidebar__logo { width: 28px; height: 28px; flex: none; }
+.nx-sidebar__name {
+  font-family: var(--nx-font-display); font-size: var(--nx-text-lg);
+  font-weight: var(--nx-weight-bold); color: var(--nx-text-on-inverse);
+  white-space: nowrap;
+}
+
+.nx-sidebar__nav { flex: 1; padding: var(--nx-space-3); overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+.nx-sidebar__section-label {
+  font-size: var(--nx-text-2xs);
+  font-weight: var(--nx-weight-semibold);
+  letter-spacing: var(--nx-tracking-caps);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.30);
+  padding: var(--nx-space-3) var(--nx-space-2) var(--nx-space-1);
+  white-space: nowrap;
+}
+
+.nx-navitem {
+  display: flex; align-items: center; gap: var(--nx-space-3);
+  padding: 7px var(--nx-space-2);
+  border-radius: var(--nx-radius-sm);
+  color: rgba(255,255,255,0.60);
+  font-size: var(--nx-text-md); font-weight: var(--nx-weight-medium);
+  cursor: pointer; text-decoration: none;
+  transition: var(--nx-transition-colors);
+  white-space: nowrap; overflow: hidden;
+}
+.nx-navitem svg, .nx-navitem i { width: 18px; height: 18px; flex: none; opacity: 0.7; }
+.nx-navitem:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.90); }
+.nx-navitem:hover svg, .nx-navitem:hover i { opacity: 1; }
+.nx-navitem.active,
+.nx-navitem[aria-current="page"] {
+  background: var(--nx-action-tint);
+  color: var(--nx-emerald-300);
+}
+.nx-navitem.active svg,
+.nx-navitem[aria-current="page"] svg { opacity: 1; }
+.nx-navitem__label { flex: 1; }
+.nx-navitem__badge { font-family: var(--nx-font-mono); font-size: var(--nx-text-2xs); background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.60); border-radius: var(--nx-radius-pill); padding: 1px 6px; }
+
+.nx-sidebar__foot {
+  padding: var(--nx-space-3);
+  border-top: var(--nx-border-w) solid var(--nx-border-inverse);
+  flex: none;
+}
+
+
+/* ================================================================
+ * TOP BAR
+ * ================================================================ */
+.nx-topbar {
+  height: var(--nx-topbar-h);
+  background: var(--nx-surface);
+  border-bottom: var(--nx-border-w) solid var(--nx-border-subtle);
+  display: flex; align-items: center; gap: var(--nx-space-4);
+  padding: 0 var(--nx-space-6); flex: none;
+}
+.nx-topbar__search { flex: 1; max-width: 360px; }
+.nx-topbar__actions { margin-left: auto; display: flex; align-items: center; gap: var(--nx-space-2); }
+
+
+/* ================================================================
+ * PAGE LAYOUT
+ * ================================================================ */
+.nx-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.nx-content { flex: 1; overflow-y: auto; padding: var(--nx-space-6); }
+.nx-content--compact { padding: var(--nx-space-4); }
+
+.nx-page-header {
+  display: flex; align-items: center; gap: var(--nx-space-4);
+  margin-bottom: var(--nx-space-6);
+}
+.nx-page-title {
+  font-family: var(--nx-font-display);
+  font-size: var(--nx-text-2xl);
+  font-weight: var(--nx-weight-bold);
+  color: var(--nx-text-strong);
+  letter-spacing: var(--nx-tracking-tighter);
+  line-height: var(--nx-leading-tight);
+}
+.nx-page-subtitle { font-size: var(--nx-text-md); color: var(--nx-text-muted); margin-top: 2px; }
+.nx-page-actions { margin-left: auto; display: flex; align-items: center; gap: var(--nx-space-2); }
+
+
+/* ================================================================
+ * SPINNER
+ * Usage: <span class="nx-spinner"></span>
+ * ================================================================ */
+@keyframes nx-spin { to { transform: rotate(360deg); } }
+.nx-spinner {
+  display: inline-block;
+  width: 18px; height: 18px;
+  border: 2px solid var(--nx-border-default);
+  border-top-color: var(--nx-action);
+  border-radius: 50%;
+  animation: nx-spin 0.7s linear infinite;
+  flex: none;
+}
+.nx-spinner--sm { width: 14px; height: 14px; }
+.nx-spinner--lg { width: 24px; height: 24px; border-width: 3px; }
+
+
+/* ================================================================
+ * UTILITY HELPERS
+ * ================================================================ */
+.nx-eyebrow {
+  font-family: var(--nx-font-sans);
+  font-weight: var(--nx-weight-semibold);
+  font-size: var(--nx-text-xs);
+  letter-spacing: var(--nx-tracking-caps);
+  text-transform: uppercase;
+  color: var(--nx-text-muted);
+}
+.nx-display {
+  font-family: var(--nx-font-display);
+  font-weight: var(--nx-weight-bold);
+  letter-spacing: var(--nx-tracking-tighter);
+  line-height: var(--nx-leading-tight);
+}
+.nx-num {
+  font-family: var(--nx-font-mono);
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  font-variant-numeric: tabular-nums;
+}
+.nx-divider {
+  border: none;
+  border-top: var(--nx-border-w) solid var(--nx-border-subtle);
+  margin: var(--nx-space-4) 0;
+}
+.nx-sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}

@@ -1,40 +1,152 @@
-<div class="login-container">
-  <div class="glass-card">
-    <div class="login-header">
-      <img src="assets/logo.svg" alt="NexusBilling Logo" class="logo">
-      <h1>NexusBilling</h1>
-      <p class="subtitle">Enterprise Resource Planning</p>
+<!-- Login Page — NexusBilling Design System -->
+<div class="nx-login-page">
+
+  <!-- Left panel: branding / marketing column -->
+  <aside class="nx-login-brand" aria-hidden="true">
+    <div class="nx-login-brand__inner">
+      <!-- Logo mark -->
+      <div class="nx-login-brand__logo">
+        <svg viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#138A68"/>
+          <path d="M10 30V10h6l6 12 6-12h6v20H30V18.5L25 30h-4l-5-11.5V30H10z" fill="white"/>
+        </svg>
+      </div>
+      <h1 class="nx-login-brand__name">NexusBilling</h1>
+      <p class="nx-login-brand__tagline">Enterprise Resource Planning</p>
+
+      <ul class="nx-login-feature-list">
+        <li>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.3 4L6 11.3l-3.3-3.3"/></svg>
+          Gestión completa de ventas y facturación
+        </li>
+        <li>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.3 4L6 11.3l-3.3-3.3"/></svg>
+          Control de inventario y compras
+        </li>
+        <li>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.3 4L6 11.3l-3.3-3.3"/></svg>
+          Mayor general y contabilidad integrada
+        </li>
+        <li>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.3 4L6 11.3l-3.3-3.3"/></svg>
+          Multi-empresa y multi-moneda
+        </li>
+      </ul>
     </div>
+  </aside>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-      <div class="form-field">
-        <label for="email">Correo Electrónico</label>
-        <div class="input-wrapper">
-          <i class="icon-email"></i>
-          <input id="email" type="email" formControlName="email" placeholder="nombre@empresa.com">
+  <!-- Right panel: auth form -->
+  <main class="nx-login-form-panel">
+    <div class="nx-login-form-wrap">
+
+      <!-- Mobile logo (visible below md) -->
+      <div class="nx-login-logo-mobile">
+        <svg viewBox="0 0 32 32" fill="none" style="width:36px;height:36px;">
+          <rect width="32" height="32" rx="8" fill="#138A68"/>
+          <path d="M8 24V8h5l5 10 5-10h5v16H24V15L20 24h-3l-4-9v9H8z" fill="white"/>
+        </svg>
+        <span class="nx-display" style="font-size:var(--nx-text-xl);color:var(--nx-text-strong);">NexusBilling</span>
+      </div>
+
+      <!-- Heading -->
+      <div style="margin-bottom: var(--nx-space-8);">
+        <h2 class="nx-display" style="font-size:var(--nx-text-2xl); color:var(--nx-text-strong);">Bienvenido</h2>
+        <p style="font-size:var(--nx-text-md); color:var(--nx-text-muted); margin-top:var(--nx-space-1);">
+          Ingresa tus credenciales para continuar
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate autocomplete="on">
+
+        <!-- Email field -->
+        <div class="nx-field" style="margin-bottom:var(--nx-space-4);">
+          <label class="nx-label" for="login-email">
+            Correo electrónico
+          </label>
+          <div class="nx-inputgroup">
+            <span class="nx-adorn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <input
+              id="login-email"
+              type="email"
+              class="nx-input"
+              style="padding-left:36px;"
+              placeholder="nombre@empresa.com"
+              formControlName="email"
+              autocomplete="email"
+              [attr.aria-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched ? 'true' : null"
+            />
+          </div>
+          @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <span class="nx-hint nx-hint--error">Ingresa un correo electrónico válido</span>
+          }
         </div>
-      </div>
 
-      <div class="form-field">
-        <label for="password">Contraseña</label>
-        <div class="input-wrapper">
-          <i class="icon-lock"></i>
-          <input id="password" type="password" formControlName="password" placeholder="••••••••">
+        <!-- Password field -->
+        <div class="nx-field" style="margin-bottom:var(--nx-space-2);">
+          <label class="nx-label" for="login-password">Contraseña</label>
+          <div class="nx-inputgroup">
+            <span class="nx-adorn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input
+              id="login-password"
+              type="password"
+              class="nx-input"
+              style="padding-left:36px;"
+              placeholder="••••••••"
+              formControlName="password"
+              autocomplete="current-password"
+              [attr.aria-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched ? 'true' : null"
+            />
+          </div>
+          @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <span class="nx-hint nx-hint--error">La contraseña debe tener al menos 6 caracteres</span>
+          }
         </div>
-      </div>
 
-      <div *ngIf="error()" class="error-message">
-        {{ error() }}
-      </div>
+        <!-- Forgot password -->
+        <div style="text-align:right; margin-bottom:var(--nx-space-6);">
+          <a href="#" class="nx-btn nx-btn--link" style="font-size:var(--nx-text-sm);">¿Olvidaste tu contraseña?</a>
+        </div>
 
-      <button type="submit" [disabled]="loginForm.invalid || isLoading()" class="btn-login">
-        <span *ngIf="!isLoading()">Entrar al Sistema</span>
-        <div *ngIf="isLoading()" class="loader"></div>
-      </button>
+        <!-- Error banner -->
+        @if (error()) {
+          <div class="nx-banner nx-banner--danger" style="margin-bottom:var(--nx-space-4);" role="alert">
+            <svg class="nx-banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <div class="nx-banner__body">
+              <p class="nx-banner__text">{{ error() }}</p>
+            </div>
+          </div>
+        }
 
-      <div class="login-footer">
-        <a href="#">¿Olvidaste tu contraseña?</a>
-      </div>
-    </form>
-  </div>
+        <!-- Submit -->
+        <button
+          id="login-submit"
+          type="submit"
+          class="nx-btn nx-btn--primary nx-btn--block nx-btn--lg"
+          [disabled]="loginForm.invalid || isLoading()"
+          [attr.aria-busy]="isLoading()"
+        >
+          @if (isLoading()) {
+            <span class="nx-spinner nx-spinner--sm" aria-hidden="true" style="border-top-color:#fff;"></span>
+            <span>Iniciando sesión…</span>
+          } @else {
+            Entrar al Sistema
+          }
+        </button>
+
+      </form>
+
+    </div>
+  </main>
+
 </div>

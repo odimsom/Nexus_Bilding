@@ -8,6 +8,7 @@
     <Project Path="src/Infrastructure/NexusBilling.Infrastructure.ExternalServices/NexusBilling.Infrastructure.ExternalServices.csproj" />
     <Project Path="src/Infrastructure/NexusBilling.Infrastructure.Identity/NexusBilling.Infrastructure.Identity.csproj" />
     <Project Path="src/Infrastructure/NexusBilling.Infrastructure.Persistence/NexusBilling.Infrastructure.Persistence.csproj" />
+    <Project Path="src/Infrastructure/NexusBilling.Infrastructure.Shared/NexusBilling.Infrastructure.Shared.csproj" />
   </Folder>
   <Folder Name="/src/Presentation/">
     <Project Path="src/Presentation/NexusBilling.Api/NexusBilling.Api.csproj" />

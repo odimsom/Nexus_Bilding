@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\Infrastructure\NexusBilling.Infrastructure.Persistence\NexusBilling.Infrastructure.Persistence.csproj" />
     <ProjectReference Include="..\..\Infrastructure\NexusBilling.Infrastructure.Identity\NexusBilling.Infrastructure.Identity.csproj" />
     <ProjectReference Include="..\..\Infrastructure\NexusBilling.Infrastructure.ExternalServices\NexusBilling.Infrastructure.ExternalServices.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\NexusBilling.Infrastructure.Shared\NexusBilling.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
 </Project>

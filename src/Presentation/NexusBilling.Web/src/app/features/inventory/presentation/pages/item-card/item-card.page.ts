@@ -1,8 +1,8 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ItemService, ItemFormData } from '../../../data/item.service';
+import { ItemService, ItemFormData, LedgerEntry } from '../../../data/item.service';
 import { Item } from '../../../domain/item.model';
 
 @Component({
@@ -53,7 +53,7 @@ import { Item } from '../../../domain/item.model';
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             Editar
           </button>
-          <button class="nx-btn nx-btn--primary nx-btn--sm">Ajustar Inventario</button>
+          <button class="nx-btn nx-btn--primary nx-btn--sm" (click)="openAdjust()">Ajustar Inventario</button>
         </div>
       </div>
 
@@ -183,7 +183,7 @@ import { Item } from '../../../domain/item.model';
             <div class="nx-factbox__sectionlabel">Acciones Rápidas</div>
             <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
               <button class="nx-btn nx-btn--secondary nx-btn--sm nx-btn--block" (click)="openEdit()">Editar Artículo</button>
-              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block">Diario de Artículo</button>
+              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block" (click)="openLedger()">Diario de Artículo</button>
               <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block">Movimientos de Artículo</button>
               @if (item()!.blocked) {
                 <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block" [disabled]="actionLoading()" (click)="toggleBlock()">
@@ -291,6 +291,121 @@ import { Item } from '../../../domain/item.model';
         </div>
       </div>
     }
+
+    <!-- ── AJUSTE DE INVENTARIO ──────────────────────────────────── -->
+    @if (showAdjust()) {
+      <div class="modal-backdrop" (click)="closeAdjust()">
+        <div class="modal-box" style="max-width:440px;" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h2 class="nx-page-title" style="margin:0;">Ajustar Inventario</h2>
+            <button class="nx-iconbtn" (click)="closeAdjust()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            @if (adjustError()) {
+              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ adjustError() }}</div>
+            }
+            <div class="nx-callout nx-callout--info" style="margin-bottom:var(--nx-space-4);">
+              Existencia actual: <strong>{{ item()!.inventory ?? 0 }} {{ item()!.baseUnitOfMeasure }}</strong>
+            </div>
+            <div class="form-grid" style="grid-template-columns:1fr;">
+              <div class="nx-field">
+                <label class="nx-label">Cantidad *</label>
+                <input class="nx-input nx-num" type="number" [(ngModel)]="adjustForm.quantity"
+                  placeholder="Positivo para entrada, negativo para salida" />
+                <span style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);">
+                  Resultado: {{ (item()!.inventory ?? 0) + (adjustForm.quantity || 0) }} {{ item()!.baseUnitOfMeasure }}
+                </span>
+              </div>
+              <div class="nx-field">
+                <label class="nx-label">No. Documento</label>
+                <input class="nx-input" [(ngModel)]="adjustForm.documentNo" placeholder="AJ-001 (opcional)" />
+              </div>
+              <div class="nx-field">
+                <label class="nx-label">Descripción / Motivo</label>
+                <input class="nx-input" [(ngModel)]="adjustForm.description" placeholder="Conteo físico, merma, etc." />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="nx-btn nx-btn--ghost" (click)="closeAdjust()">Cancelar</button>
+            <button class="nx-btn nx-btn--primary" [disabled]="adjustSaving()" (click)="saveAdjust()">
+              @if (adjustSaving()) { Procesando… } @else { Confirmar Ajuste }
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ── DIARIO DE ARTÍCULO ────────────────────────────────────── -->
+    @if (showLedger()) {
+      <div class="modal-backdrop" (click)="closeLedger()">
+        <div class="modal-box" style="max-width:860px;" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <div>
+              <h2 class="nx-page-title" style="margin:0;">Movimientos de Artículo</h2>
+              <div style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">{{ item()?.no }} — {{ item()?.description }}</div>
+            </div>
+            <button class="nx-iconbtn" (click)="closeLedger()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            @if (ledgerLoading()) {
+              <div class="nx-empty"><div class="nx-spinner"></div></div>
+            } @else if (ledgerEntries().length === 0) {
+              <div class="nx-empty">
+                <p class="nx-empty__title">Sin movimientos</p>
+                <p class="nx-empty__text">Este artículo aún no tiene entradas en el diario.</p>
+              </div>
+            } @else {
+              <table class="nx-table">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Documento</th>
+                    <th>Descripción</th>
+                    <th>U/M</th>
+                    <th class="nx-th--num">Cantidad</th>
+                    <th class="nx-th--num">Restante</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (e of ledgerEntries(); track e.entryNo) {
+                    <tr>
+                      <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ e.entryNo }}</td>
+                      <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ e.postingDate }}</td>
+                      <td>
+                        <span class="nx-badge" [class]="e.positive ? 'nx-badge--success' : 'nx-badge--warn'">
+                          {{ e.entryTypeLabel }}
+                        </span>
+                      </td>
+                      <td class="nx-td--doc">{{ e.documentNo || '—' }}</td>
+                      <td>{{ e.description }}</td>
+                      <td style="color:var(--nx-text-muted);">{{ e.unitOfMeasureCode }}</td>
+                      <td class="nx-td--num nx-num" [style.color]="e.positive ? 'var(--nx-green-600)' : 'var(--nx-red-500)'" style="font-weight:var(--nx-weight-semibold);">
+                        {{ e.positive ? '+' : '' }}{{ e.quantity | number:'1.0-2' }}
+                      </td>
+                      <td class="nx-td--num nx-num" style="color:var(--nx-text-muted);">{{ e.remainingQuantity | number:'1.0-2' }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+              <div style="margin-top:var(--nx-space-3);font-size:var(--nx-text-sm);color:var(--nx-text-muted);">
+                Mostrando {{ ledgerEntries().length }} de {{ ledgerTotal() }} movimientos
+              </div>
+            }
+          </div>
+          <div class="modal-footer">
+            <button class="nx-btn nx-btn--ghost" (click)="closeLedger()">Cerrar</button>
+            <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="openAdjust(); closeLedger()">Nuevo Ajuste</button>
+          </div>
+        </div>
+      </div>
+    }
   `,
   styles: [`
     :host { display: block; }
@@ -327,6 +442,18 @@ export class ItemCardPage implements OnInit {
   saving = signal(false);
   editError = signal<string | null>(null);
   form: ItemFormData = {} as ItemFormData;
+
+  // Ajuste de inventario
+  showAdjust   = signal(false);
+  adjustSaving = signal(false);
+  adjustError  = signal('');
+  adjustForm   = { quantity: 0, documentNo: '', description: '' };
+
+  // Diario de artículo
+  showLedger    = signal(false);
+  ledgerLoading = signal(false);
+  ledgerEntries = signal<LedgerEntry[]>([]);
+  ledgerTotal   = signal(0);
 
   margen(): number {
     const i = this.item();
@@ -385,6 +512,51 @@ export class ItemCardPage implements OnInit {
       this.actionLoading.set(false);
     }
   }
+
+  openAdjust(): void {
+    this.adjustForm = { quantity: 0, documentNo: '', description: '' };
+    this.adjustError.set('');
+    this.showAdjust.set(true);
+  }
+
+  closeAdjust(): void { this.showAdjust.set(false); }
+
+  async saveAdjust(): Promise<void> {
+    if (!this.adjustForm.quantity) { this.adjustError.set('La cantidad es obligatoria y no puede ser cero.'); return; }
+    this.adjustSaving.set(true);
+    this.adjustError.set('');
+    try {
+      await this.svc.adjustInventory(
+        this.item()!.no,
+        this.adjustForm.quantity,
+        this.adjustForm.documentNo,
+        this.adjustForm.description || 'Ajuste manual'
+      );
+      const updated = await this.svc.getByNo(this.item()!.no);
+      this.item.set(updated);
+      this.showAdjust.set(false);
+    } catch (e: any) {
+      this.adjustError.set(e?.error?.error?.message ?? 'Error al registrar el ajuste.');
+    } finally {
+      this.adjustSaving.set(false);
+    }
+  }
+
+  async openLedger(): Promise<void> {
+    this.showLedger.set(true);
+    this.ledgerLoading.set(true);
+    try {
+      const result = await this.svc.getLedger(this.item()!.no);
+      this.ledgerEntries.set(result.items);
+      this.ledgerTotal.set(result.totalCount);
+    } catch {
+      this.ledgerEntries.set([]);
+    } finally {
+      this.ledgerLoading.set(false);
+    }
+  }
+
+  closeLedger(): void { this.showLedger.set(false); }
 
   async saveEdit(): Promise<void> {
     if (!this.form.description?.trim()) {

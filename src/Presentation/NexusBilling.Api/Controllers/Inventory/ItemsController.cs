@@ -136,6 +136,29 @@ public sealed class ItemsController(IMediator mediator) : ControllerBase
             : NotFound(ApiResponse<object?>.NotFound($"El artículo {no} no fue encontrado."));
     }
 
+    [HttpGet("{no}/ledger")]
+    public async Task<IActionResult> Ledger(string no, [FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken cancellationToken = default)
+    {
+        var tenantId = GetTenantId();
+        var result = await mediator.Send(new GetItemLedgerEntriesQuery(tenantId, no, page, pageSize), cancellationToken);
+        return Ok(ApiResponse<GetItemLedgerEntriesResult>.Ok(result));
+    }
+
+    public record AdjustInventoryRequest(decimal Quantity, string DocumentNo, string Description);
+
+    [HttpPost("{no}/adjust")]
+    public async Task<IActionResult> Adjust(string no, [FromBody] AdjustInventoryRequest req, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        var item = await mediator.Send(new GetItemByNoQuery(tenantId, no), cancellationToken);
+        if (item is null) return NotFound(ApiResponse<object?>.NotFound($"El artículo {no} no fue encontrado."));
+
+        var entryNo = await mediator.Send(new AdjustInventoryCommand(
+            tenantId, no, req.Quantity, req.DocumentNo, req.Description, item.BaseUnitOfMeasure), cancellationToken);
+
+        return Ok(ApiResponse<object>.Ok(new { entryNo }));
+    }
+
     private Guid GetTenantId()
     {
         var claim = User.FindFirst("tenant_id")?.Value;

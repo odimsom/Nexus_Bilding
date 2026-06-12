@@ -3,6 +3,26 @@ import { ApiService, PagedData } from '../../../core/services/api.service';
 import { Item, ItemSortField } from '../domain/item.model';
 import { firstValueFrom } from 'rxjs';
 
+export interface LedgerEntry {
+  entryNo: number;
+  postingDate: string;
+  entryTypeLabel: string;
+  entryType: number;
+  documentNo: string;
+  description: string;
+  quantity: number;
+  remainingQuantity: number;
+  unitOfMeasureCode: string;
+  positive: boolean;
+}
+
+export interface LedgerResult {
+  items: LedgerEntry[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+}
+
 export interface ItemListItem {
   no: string;
   description: string;
@@ -99,6 +119,18 @@ export class ItemService {
 
   async unblock(no: string): Promise<void> {
     await firstValueFrom(this.api.patch<{ blocked: boolean }>(`inventory/items/${encodeURIComponent(no)}/unblock`));
+  }
+
+  async adjustInventory(no: string, quantity: number, documentNo: string, description: string): Promise<number> {
+    const res = await firstValueFrom(this.api.post<{ entryNo: number }>(
+      `inventory/items/${encodeURIComponent(no)}/adjust`,
+      { quantity, documentNo, description }
+    ));
+    return res.entryNo;
+  }
+
+  async getLedger(no: string, page = 1, pageSize = 50): Promise<LedgerResult> {
+    return firstValueFrom(this.api.get<LedgerResult>(`inventory/items/${encodeURIComponent(no)}/ledger`, { page, pageSize }));
   }
 
   sorted(sortField: ItemSortField = 'no', sortAsc = true): ItemListItem[] {

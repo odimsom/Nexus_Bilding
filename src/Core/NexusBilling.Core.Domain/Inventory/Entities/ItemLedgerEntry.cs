@@ -111,4 +111,61 @@ public class ItemLedgerEntry : Entity
 
         return OperationResult<ItemLedgerEntry, DomainError>.Ok(entity);
     }
+
+    // EntryType constants
+    public const short Purchase          = 0;
+    public const short Sale              = 1;
+    public const short PositiveAdjustment = 2;
+    public const short NegativeAdjustment = 3;
+    public const short Transfer          = 4;
+
+    public static ItemLedgerEntry CreateAdjustment(
+        TenantIdentifier tenantId,
+        int entryNo,
+        string itemNo,
+        decimal quantity,
+        string documentNo,
+        string description,
+        string unitOfMeasureCode)
+    {
+        short entryType = quantity >= 0 ? PositiveAdjustment : NegativeAdjustment;
+        var entry = new ItemLedgerEntry
+        {
+            TenantId = tenantId,
+            EntryNo = entryNo,
+            ItemNo = itemNo,
+            PostingDate = DateTime.UtcNow,
+            EntryType = entryType,
+            DocumentNo = documentNo,
+            Description = description,
+            Quantity = quantity,
+            RemainingQuantity = quantity,
+            InvoicedQuantity = 0,
+            Open = true,
+            Positive = quantity >= 0,
+            UnitOfMeasureCode = unitOfMeasureCode,
+            QtyPerUnitOfMeasure = 1,
+            DocumentDate = DateTime.UtcNow,
+            SourceNo = string.Empty,
+            GlobalDimension1Code = string.Empty,
+            GlobalDimension2Code = string.Empty,
+            TransactionType = string.Empty,
+            TransportMethod = string.Empty,
+            EntryExitPoint = string.Empty,
+            ExternalDocumentNo = string.Empty,
+            TransactionSpecification = string.Empty,
+            NoSeries = string.Empty,
+            OrderNo = string.Empty,
+            JobTaskNo = string.Empty,
+            VariantCode = string.Empty,
+            CrossReferenceNo = string.Empty,
+            OriginallyOrderedVarCode = string.Empty,
+            ItemCategoryCode = string.Empty,
+            ProductGroupCode = string.Empty,
+            SerialNo = string.Empty,
+            LotNo = string.Empty,
+            ReturnReasonCode = string.Empty,
+        };
+        return entry;
+    }
 }

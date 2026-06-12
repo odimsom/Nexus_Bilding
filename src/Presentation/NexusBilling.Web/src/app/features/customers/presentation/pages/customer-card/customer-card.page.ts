@@ -6,6 +6,8 @@ import { CustomerService, CustomerFormData } from '../../../data/customer.servic
 import { Customer } from '../../../domain/customer.model';
 import { InvoiceService, CreateSalesOrderData, SalesOrderLine } from '../../../../sales/data/invoice.service';
 import { ItemService } from '../../../../inventory/data/item.service';
+import { RncPipe } from '../../../../../shared/pipes/rnc.pipe';
+import { PhonePipe } from '../../../../../shared/pipes/phone.pipe';
 
 interface OrderLine {
   itemNo: string;
@@ -19,7 +21,7 @@ interface OrderLine {
 @Component({
   selector: 'app-customer-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, RncPipe, PhonePipe],
   template: `
     @if (loading()) {
       <div class="nx-empty" style="min-height:300px;">
@@ -116,19 +118,19 @@ interface OrderLine {
                 <dt class="nx-kv__k">Contacto</dt>
                 <dd class="nx-kv__v">{{ customer()!.contact || '—' }}</dd>
                 <dt class="nx-kv__k">Teléfono</dt>
-                <dd class="nx-kv__v">
+                <dd class="nx-kv__v nx-kv__v--mono">
                   @if (customer()!.phoneNo) {
-                    <a [href]="'tel:'+customer()!.phoneNo" class="nx-link">{{ customer()!.phoneNo }}</a>
+                    <a [href]="'tel:'+customer()!.phoneNo" class="nx-link">{{ customer()!.phoneNo | phone }}</a>
                   } @else { — }
                 </dd>
-                <dt class="nx-kv__k">Correo Electrónico</dt>
+                <dt class="nx-kv__k">Correo electrónico</dt>
                 <dd class="nx-kv__v">
                   @if (customer()!.email) {
                     <a [href]="'mailto:'+customer()!.email" class="nx-link">{{ customer()!.email }}</a>
                   } @else { — }
                 </dd>
                 <dt class="nx-kv__k">RNC / Cédula</dt>
-                <dd class="nx-kv__v nx-kv__v--mono">{{ customer()!.vatRegistrationNo || '—' }}</dd>
+                <dd class="nx-kv__v nx-kv__v--mono">{{ customer()!.vatRegistrationNo | rnc }}</dd>
               </dl>
             </div>
           </div>

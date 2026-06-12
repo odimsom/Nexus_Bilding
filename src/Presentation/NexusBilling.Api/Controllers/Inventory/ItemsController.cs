@@ -8,7 +8,7 @@ using NexusBilling.Core.Application.Inventory.Queries;
 namespace NexusBilling.Api.Controllers.Inventory;
 
 public record UpsertItemRequest(
-    string No,
+    string? No,
     string Description,
     string Description2,
     string BaseUnitOfMeasure,

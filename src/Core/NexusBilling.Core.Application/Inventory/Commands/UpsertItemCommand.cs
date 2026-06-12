@@ -5,7 +5,7 @@ namespace NexusBilling.Core.Application.Inventory.Commands;
 public record UpsertItemCommand(
     Guid TenantId,
     string? ExistingNo,
-    string No,
+    string? No,
     string Description,
     string Description2,
     string BaseUnitOfMeasure,

@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ItemService, ItemListItem, ItemFormData } from '../../../data/item.service';
 import { ItemSortField } from '../../../domain/item.model';
@@ -182,7 +182,7 @@ import { ItemSortField } from '../../../domain/item.model';
             <div class="form-grid">
               <div class="nx-field">
                 <label class="nx-label">No. Artículo *</label>
-                <input class="nx-input" [(ngModel)]="form.no" placeholder="ART-00001" />
+                <span class="nx-input" style="background:var(--nx-surface-sunken);color:var(--nx-text-faint);cursor:default;">Se asigna automáticamente</span>
               </div>
               <div class="nx-field">
                 <label class="nx-label">Tipo *</label>
@@ -271,6 +271,7 @@ import { ItemSortField } from '../../../domain/item.model';
 })
 export class ItemListPage implements OnInit {
   readonly svc = inject(ItemService);
+  private readonly router = inject(Router);
 
   searchText = '';
   showBlocked: 'all' | 'active' | 'blocked' = 'active';
@@ -349,16 +350,16 @@ export class ItemListPage implements OnInit {
   closeModal(): void { this.showModal.set(false); }
 
   async saveItem(): Promise<void> {
-    if (!this.form.no?.trim() || !this.form.description?.trim()) {
-      this.modalError.set('El No. de artículo y la descripción son obligatorios.');
+    if (!this.form.description?.trim()) {
+      this.modalError.set('La descripción es obligatoria.');
       return;
     }
     this.saving.set(true);
     this.modalError.set(null);
     try {
-      await this.svc.create(this.form);
+      const no = await this.svc.create(this.form);
       this.closeModal();
-      this.reload();
+      this.router.navigate(['/inventory', no]);
     } catch (e: any) {
       this.modalError.set(e?.error?.error?.message ?? 'Error al guardar el artículo.');
     } finally {

@@ -8,7 +8,7 @@ using NexusBilling.Core.Application.Sales.Queries;
 namespace NexusBilling.Api.Controllers.Sales;
 
 public record UpsertCustomerRequest(
-    string No,
+    string? No,
     string Name,
     string Address,
     string City,

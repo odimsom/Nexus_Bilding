@@ -21,7 +21,9 @@ public sealed class GetSalesOrderByNoQueryHandler(
         DocTypeMap.TryGetValue(header.DocumentType, out var docTypeShort);
         var rawLines = await lineRepo.GetByDocumentNoAsync(docTypeShort, header.No, cancellationToken);
         var lines = rawLines.OrderBy(l => l.LineNo).Select(l => new SalesLineDto(
-            l.LineNo, l.Type, l.No, l.Description, l.UnitOfMeasure,
+            l.LineNo,
+            l.Type switch { 1 => "G/L Account", 2 => "Item", 3 => "Resource", 4 => "Fixed Asset", 5 => "Charge", _ => string.Empty },
+            l.No, l.Description, l.UnitOfMeasure,
             l.Quantity, l.UnitPrice, l.LineDiscount, l.LineDiscountAmount,
             l.Amount, l.AmountIncludingVat, l.Vat)).ToList();
 

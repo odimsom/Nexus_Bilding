@@ -1,6 +1,6 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CustomerService, CustomerListItem, CustomerFormData } from '../../../data/customer.service';
 import { CustomerSortField } from '../../../domain/customer.model';
@@ -166,7 +166,7 @@ import { CustomerSortField } from '../../../domain/customer.model';
             <div class="form-grid">
               <div class="nx-field">
                 <label class="nx-label">No. Cliente *</label>
-                <input class="nx-input" [(ngModel)]="form.no" placeholder="C-00011" />
+                <span class="nx-input" style="background:var(--nx-surface-sunken);color:var(--nx-text-faint);cursor:default;">Se asigna automáticamente</span>
               </div>
               <div class="nx-field">
                 <label class="nx-label">Nombre *</label>
@@ -277,6 +277,7 @@ import { CustomerSortField } from '../../../domain/customer.model';
 })
 export class CustomerListPage implements OnInit {
   readonly svc = inject(CustomerService);
+  private readonly router = inject(Router);
 
   searchText = '';
   showBlocked: 'all' | 'active' | 'blocked' = 'all';
@@ -358,16 +359,16 @@ export class CustomerListPage implements OnInit {
   closeModal(): void { this.showModal.set(false); }
 
   async saveCustomer(): Promise<void> {
-    if (!this.form.no?.trim() || !this.form.name?.trim()) {
-      this.modalError.set('El No. de cliente y el nombre son obligatorios.');
+    if (!this.form.name?.trim()) {
+      this.modalError.set('El nombre es obligatorio.');
       return;
     }
     this.saving.set(true);
     this.modalError.set(null);
     try {
-      await this.svc.create(this.form);
+      const no = await this.svc.create(this.form);
       this.closeModal();
-      this.reload();
+      this.router.navigate(['/customers', no]);
     } catch (e: any) {
       this.modalError.set(e?.error?.error?.message ?? 'Error al guardar el cliente.');
     } finally {

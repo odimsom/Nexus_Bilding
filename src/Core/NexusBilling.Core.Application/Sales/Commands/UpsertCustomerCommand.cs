@@ -5,7 +5,7 @@ namespace NexusBilling.Core.Application.Sales.Commands;
 public record UpsertCustomerCommand(
     Guid TenantId,
     string? ExistingNo,
-    string No,
+    string? No,
     string Name,
     string Address,
     string City,

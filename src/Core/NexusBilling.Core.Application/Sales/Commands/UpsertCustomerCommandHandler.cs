@@ -1,18 +1,23 @@
 using MediatR;
+using NexusBilling.Core.Application.Administration.Services;
 using NexusBilling.Core.Domain.Common;
 using NexusBilling.Core.Domain.Interfaces.Repositories.Base;
 using NexusBilling.Core.Domain.Sales.Repositories;
 
 namespace NexusBilling.Core.Application.Sales.Commands;
 
-public sealed class UpsertCustomerCommandHandler(ICustomerRepository repo, IUnitOfWork uow)
+public sealed class UpsertCustomerCommandHandler(ICustomerRepository repo, NoSeriesService noSeries, IUnitOfWork uow)
     : IRequestHandler<UpsertCustomerCommand, UpsertCustomerResult>
 {
+    private const string CustomerSeriesCode = "CUST";
+
     public async Task<UpsertCustomerResult> Handle(UpsertCustomerCommand cmd, CancellationToken ct)
     {
         var tid = TenantIdentifier.Create(cmd.TenantId);
         var lookupNo = cmd.ExistingNo ?? cmd.No;
-        var existing = await repo.GetByNoForTenantAsync(cmd.TenantId, lookupNo, ct);
+        var existing = lookupNo is not null
+            ? await repo.GetByNoForTenantAsync(cmd.TenantId, lookupNo, ct)
+            : null;
 
         if (existing is not null)
         {
@@ -35,8 +40,12 @@ public sealed class UpsertCustomerCommandHandler(ICustomerRepository repo, IUnit
             return new UpsertCustomerResult(false, existing.No);
         }
 
+        var assignedNo = cmd.No is { Length: > 0 } manual
+            ? manual
+            : await noSeries.GetNextNoAsync(cmd.TenantId, CustomerSeriesCode, ct);
+
         var result = Domain.Sales.Entities.Customer.Create(
-            tid, cmd.No, cmd.Name, cmd.Address, cmd.City, cmd.Contact);
+            tid, assignedNo, cmd.Name, cmd.Address, cmd.City, cmd.Contact);
 
         if (!result.IsSuccess)
             throw new InvalidOperationException(result.GetError()!.Message);

@@ -68,3 +68,36 @@ export interface SalesOrder {
 
 export type SalesOrderStatus = 'open' | 'released' | 'pending_approval' | 'pending_prepayment';
 
+export interface SalesOrderDetailLine {
+  lineNo: number;
+  type: string;
+  no: string;
+  description: string;
+  unitOfMeasure: string;
+  quantity: number;
+  unitPrice: number;
+  lineDiscount: number;
+  lineDiscountAmount: number;
+  amount: number;
+  amountIncludingVat: number;
+  vat: number;
+}
+
+export interface SalesOrderDetail {
+  no: string;
+  documentType: string;
+  sellToCustomerNo: string;
+  sellToCustomerName: string;
+  postingDate: string;
+  dueDate: string | null;
+  amount: number;
+  amountIncludingVat: number;
+  currencyCode: string;
+  paymentTermsCode: string;
+  paymentMethodCode: string;
+  salespersonCode: string;
+  externalDocumentNo: string;
+  status: string;
+  lines: SalesOrderDetailLine[];
+}
+

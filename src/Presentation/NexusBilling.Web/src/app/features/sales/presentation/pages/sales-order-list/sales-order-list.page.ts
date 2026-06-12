@@ -1,6 +1,6 @@
-import { Component, inject, signal, OnInit, computed } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InvoiceService } from '../../../data/invoice.service';
 
@@ -79,7 +79,7 @@ import { InvoiceService } from '../../../data/invoice.service';
             </thead>
             <tbody>
               @for (order of filtered(); track order.no) {
-                <tr>
+                <tr style="cursor:pointer;" (click)="router.navigate(['/sales', order.no])">
                   <td class="nx-td--doc">{{ order.no }}</td>
                   <td>
                     <span class="nx-badge nx-badge--outline">{{ docTypeLabel(order.documentType) }}</span>
@@ -104,7 +104,7 @@ import { InvoiceService } from '../../../data/invoice.service';
                   <td class="nx-td--num nx-num">{{ order.amount | number:'1.2-2' }}</td>
                   <td class="nx-td--num nx-num" style="font-weight:var(--nx-weight-semibold);">{{ order.amountIncludingVat | number:'1.2-2' }}</td>
                   <td>
-                    <a [routerLink]="['/customers', order.sellToCustomerNo]" class="nx-iconbtn nx-iconbtn--sm">
+                    <a [routerLink]="['/sales', order.no]" class="nx-iconbtn nx-iconbtn--sm" (click)="$event.stopPropagation()">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                     </a>
                   </td>
@@ -124,6 +124,7 @@ import { InvoiceService } from '../../../data/invoice.service';
 })
 export class SalesOrderListPage implements OnInit {
   readonly svc = inject(InvoiceService);
+  readonly router = inject(Router);
 
   readonly tabs = [
     { id: 'all',   label: 'Todas' },

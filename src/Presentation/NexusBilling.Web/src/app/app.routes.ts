@@ -55,6 +55,13 @@ export const routes: Routes = [
           )
       },
       {
+        path: 'sales/:no',
+        loadComponent: () =>
+          import('./features/sales/presentation/pages/sales-order-card/sales-order-card.page').then(
+            m => m.SalesOrderCardPage
+          )
+      },
+      {
         path: 'invoices',
         loadComponent: () =>
           import('./features/sales/presentation/pages/invoice-list/invoice-list.page').then(

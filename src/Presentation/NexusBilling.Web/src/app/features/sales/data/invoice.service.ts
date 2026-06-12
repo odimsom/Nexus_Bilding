@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ApiService, PagedData } from '../../../core/services/api.service';
-import { Invoice, InvoiceFilter, InvoiceLine, InvoiceSortField, SalesOrder } from '../domain/invoice.model';
+import { Invoice, InvoiceFilter, InvoiceLine, InvoiceSortField, SalesOrder, SalesOrderDetail } from '../domain/invoice.model';
 
 export interface SalesOrderLine {
   itemNo: string;
@@ -58,6 +58,10 @@ export class InvoiceService {
   async createOrder(data: CreateSalesOrderData): Promise<string> {
     const res = await firstValueFrom(this.api.post<{ no: string }>('sales/orders', data));
     return res.no;
+  }
+
+  async getOrderDetail(no: string): Promise<SalesOrderDetail> {
+    return firstValueFrom(this.api.get<SalesOrderDetail>(`sales/orders/${encodeURIComponent(no)}`));
   }
 
   // Legacy mock methods kept for invoice list (posted invoices not yet in DB)

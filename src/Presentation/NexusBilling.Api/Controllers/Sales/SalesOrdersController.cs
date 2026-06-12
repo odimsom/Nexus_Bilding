@@ -96,12 +96,9 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
         if (tenantId == Guid.Empty)
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
-        var result = await mediator.Send(
-            new GetSalesOrdersQuery(tenantId, null, null, no, 1, 1), cancellationToken);
-
-        var order = result.Items.FirstOrDefault(x => x.No == no);
+        var order = await mediator.Send(new GetSalesOrderByNoQuery(tenantId, no), cancellationToken);
         return order is not null
-            ? Ok(ApiResponse<object>.Ok(order))
+            ? Ok(ApiResponse<SalesOrderDetailDto>.Ok(order))
             : NotFound(ApiResponse<object?>.NotFound($"La orden {no} no fue encontrada."));
     }
 

@@ -161,7 +161,16 @@ import { CustomerSortField } from '../../../domain/customer.model';
           </div>
           <div class="modal-body">
             @if (modalError()) {
-              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ modalError() }}</div>
+              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">
+                {{ noSeriesMissing() ? 'No hay una secuencia numérica configurada para clientes (CUST).' : modalError() }}
+                @if (noSeriesMissing()) {
+                  <br />
+                  <a class="nx-link" style="font-size:var(--nx-text-sm);cursor:pointer;"
+                     (click)="goConfigureSeries()">
+                    Configurar series → Configuración
+                  </a>
+                }
+              </div>
             }
             <div class="form-grid">
               <div class="nx-field">
@@ -284,9 +293,10 @@ export class CustomerListPage implements OnInit {
   sortField: CustomerSortField = 'name';
   sortAsc = true;
 
-  showModal = signal(false);
-  saving = signal(false);
-  modalError = signal<string | null>(null);
+  showModal        = signal(false);
+  saving           = signal(false);
+  modalError       = signal<string | null>(null);
+  noSeriesMissing  = signal(false);
 
   form: CustomerFormData = this.emptyForm();
 
@@ -353,10 +363,16 @@ export class CustomerListPage implements OnInit {
   openModal(): void {
     this.form = this.emptyForm();
     this.modalError.set(null);
+    this.noSeriesMissing.set(false);
     this.showModal.set(true);
   }
 
   closeModal(): void { this.showModal.set(false); }
+
+  goConfigureSeries(): void {
+    this.closeModal();
+    this.router.navigate(['/settings'], { queryParams: { tab: 'sequences', returnTo: '/customers' } });
+  }
 
   async saveCustomer(): Promise<void> {
     if (!this.form.name?.trim()) {
@@ -370,7 +386,10 @@ export class CustomerListPage implements OnInit {
       this.closeModal();
       this.router.navigate(['/customers', no]);
     } catch (e: any) {
-      this.modalError.set(e?.error?.error?.message ?? 'Error al guardar el cliente.');
+      const msg: string = e?.error?.error?.message ?? e?.message ?? 'Error al guardar el cliente.';
+      const isMissing = msg.toLowerCase().includes('serie') || msg.toLowerCase().includes('series');
+      this.noSeriesMissing.set(isMissing);
+      this.modalError.set(msg);
     } finally {
       this.saving.set(false);
     }

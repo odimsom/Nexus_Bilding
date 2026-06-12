@@ -15,9 +15,9 @@ public class NoSeriesService(INoSeriesLineRepository lineRepo, IUnitOfWork uow)
         var line = await lineRepo.GetActiveLineAsync(tenantId, seriesCode, ct)
             ?? throw new InvalidOperationException($"No se encontró una línea activa para la serie '{seriesCode}'.");
 
-        string nextNo = IncrementNo(
-            string.IsNullOrEmpty(line.LastNoUsed) ? line.StartingNo : line.LastNoUsed,
-            line.IncrementByNo);
+        string nextNo = string.IsNullOrEmpty(line.LastNoUsed)
+            ? line.StartingNo
+            : IncrementNo(line.LastNoUsed, line.IncrementByNo);
 
         if (!string.IsNullOrEmpty(line.EndingNo) &&
             string.Compare(nextNo, line.EndingNo, StringComparison.Ordinal) > 0)

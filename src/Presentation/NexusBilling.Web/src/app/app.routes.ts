@@ -13,6 +13,13 @@ export const routes: Routes = [
   },
   { path: 'login', component: LoginPage },
   {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/forgot-password/forgot-password.page').then(
+        m => m.ForgotPasswordPage
+      )
+  },
+  {
     path: '',
     loadComponent: () =>
       import('./shared/components/layout/dashboard-layout.component').then(

@@ -177,7 +177,16 @@ import { ItemSortField } from '../../../domain/item.model';
           </div>
           <div class="modal-body">
             @if (modalError()) {
-              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ modalError() }}</div>
+              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">
+                {{ noSeriesMissing() ? 'No hay una secuencia numérica configurada para artículos (ITEM).' : modalError() }}
+                @if (noSeriesMissing()) {
+                  <br />
+                  <a class="nx-link" style="font-size:var(--nx-text-sm);cursor:pointer;"
+                     (click)="goConfigureSeries()">
+                    Configurar series → Configuración
+                  </a>
+                }
+              </div>
             }
             <div class="form-grid">
               <div class="nx-field">
@@ -270,7 +279,8 @@ import { ItemSortField } from '../../../domain/item.model';
   `]
 })
 export class ItemListPage implements OnInit {
-  readonly svc = inject(ItemService);
+  readonly svc    = inject(ItemService);
+  readonly noSeriesMissing = signal(false);
   private readonly router = inject(Router);
 
   searchText = '';
@@ -344,7 +354,13 @@ export class ItemListPage implements OnInit {
   openModal(): void {
     this.form = this.emptyForm();
     this.modalError.set(null);
+    this.noSeriesMissing.set(false);
     this.showModal.set(true);
+  }
+
+  goConfigureSeries(): void {
+    this.closeModal();
+    this.router.navigate(['/settings'], { queryParams: { tab: 'sequences', returnTo: '/inventory' } });
   }
 
   closeModal(): void { this.showModal.set(false); }
@@ -361,7 +377,10 @@ export class ItemListPage implements OnInit {
       this.closeModal();
       this.router.navigate(['/inventory', no]);
     } catch (e: any) {
-      this.modalError.set(e?.error?.error?.message ?? 'Error al guardar el artículo.');
+      const msg: string = e?.error?.error?.message ?? e?.message ?? 'Error al guardar el artículo.';
+      const isMissing = msg.toLowerCase().includes('serie') || msg.toLowerCase().includes('series');
+      this.noSeriesMissing.set(isMissing);
+      this.modalError.set(msg);
     } finally {
       this.saving.set(false);
     }

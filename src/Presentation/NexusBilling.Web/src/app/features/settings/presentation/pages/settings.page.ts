@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NoSeriesService, NoSeriesItem } from '../../data/no-series.service';
 import { UserService, AppUser } from '../../../../features/security/data/user.service';
@@ -641,8 +641,10 @@ interface NcfSeries {
   `]
 })
 export class SettingsPage implements OnInit {
-  readonly activeTab = signal<SettingsTab>('company');
+  readonly activeTab   = signal<SettingsTab>('company');
   readonly noSeriesSvc = inject(NoSeriesService);
+  private readonly router = inject(Router);
+  private readonly route  = inject(ActivatedRoute);
 
   readonly tabs: { id: SettingsTab; label: string }[] = [
     { id: 'company',   label: 'Empresa' },
@@ -677,7 +679,14 @@ export class SettingsPage implements OnInit {
     fullName: string; email: string; employeeNo: string; groupCode: string;
   } = { username: '', password: '', newPassword: '', fullName: '', email: '', employeeNo: '', groupCode: '' };
 
+  private returnTo: string | null = null;
+
   async ngOnInit(): Promise<void> {
+    const params = this.route.snapshot.queryParamMap;
+    const tab = params.get('tab') as SettingsTab | null;
+    if (tab) this.activeTab.set(tab);
+    this.returnTo = params.get('returnTo');
+
     await Promise.all([
       this.noSeriesSvc.load(),
       this.userSvc.loadUsers(),
@@ -777,6 +786,11 @@ export class SettingsPage implements OnInit {
         open: true
       });
       this.showSeriesModal.set(false);
+      if (this.returnTo) {
+        const dest = this.returnTo;
+        this.returnTo = null;
+        this.router.navigate([dest]);
+      }
     } catch (e: any) {
       this.seriesError.set(e?.message ?? 'Error al guardar la serie.');
     } finally {

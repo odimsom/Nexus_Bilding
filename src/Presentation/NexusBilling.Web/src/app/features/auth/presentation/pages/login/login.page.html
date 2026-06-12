@@ -5,7 +5,7 @@
   <aside class="erp-login__aside">
     <div style="position:relative;z-index:1;">
       <div class="erp-brand" style="padding:0;height:auto;border:none;margin-bottom:0;">
-        <img src="/assets/logo-mark.svg" width="34" height="34" alt="Nexus Billing" />
+        <img src="/logo-mark.svg" width="34" height="34" alt="Nexus Billing" />
         <b style="font-size:22px;">Nexus<span class="l"> Billing</span></b>
       </div>
     </div>
@@ -80,7 +80,7 @@
           <input type="checkbox" formControlName="rememberMe" style="width:14px;height:14px;accent-color:var(--action);" />
           <span>Recordarme</span>
         </label>
-        <a href="#" style="font-size:13px;color:var(--action);text-decoration:none;" (click)="$event.preventDefault()">
+        <a routerLink="/forgot-password" style="font-size:13px;color:var(--action);text-decoration:none;">
           ¿No recordás la contraseña?
         </a>
       </div>

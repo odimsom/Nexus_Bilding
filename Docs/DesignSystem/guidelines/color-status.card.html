@@ -1,0 +1,54 @@
+<!-- @dsCard group="Colors" viewport="700x178" name="Semantic status" subtitle="Five reserved states — fg-on-tint pairs, shown as real badges + tokens" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background: var(--surface); padding: 22px; font-family: var(--font-sans); color: var(--text-body); }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .col { display: flex; flex-direction: column; gap: 10px; }
+  /* real product badge (soft tint) */
+  .badge { display:inline-flex; align-items:center; gap:6px; align-self:flex-start; height:24px; padding:0 10px; font-size:12px; font-weight:600; border-radius:var(--radius-sm); }
+  .dot { width:6px; height:6px; border-radius:50%; background: currentColor; }
+  /* fg/bg pair swatch */
+  .pair { display:flex; height:34px; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--border-subtle); }
+  .pair .bg { flex:1.6; display:flex; align-items:center; padding-left:10px; font-family:var(--font-mono); font-size:10px; }
+  .pair .fg { flex:1; }
+  .meta { display:flex; flex-direction:column; gap:2px; }
+  .meta .k { font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); }
+  .meta .v { font-size:12.5px; color:var(--text-muted); }
+  .meta .v b { color:var(--text-strong); font-weight:600; }
+  .tok { font-family:var(--font-mono); font-size:10px; color:var(--text-faint); }
+</style></head>
+<body>
+  <div class="row">
+    <!-- SUCCESS -->
+    <div class="col">
+      <span class="badge" style="background:var(--status-success-bg);color:var(--status-success-fg)"><span class="dot"></span>Posted</span>
+      <div class="pair"><span class="bg" style="background:var(--status-success-bg);color:var(--status-success-fg)">bg</span><span class="fg" style="background:var(--status-success-fg)"></span></div>
+      <div class="meta"><span class="k">Success</span><span class="v"><b>Posted</b> · Active · Paid</span><span class="tok">--status-success</span></div>
+    </div>
+    <!-- INFO -->
+    <div class="col">
+      <span class="badge" style="background:var(--status-info-bg);color:var(--status-info-fg)"><span class="dot"></span>Open</span>
+      <div class="pair"><span class="bg" style="background:var(--status-info-bg);color:var(--status-info-fg)">bg</span><span class="fg" style="background:var(--status-info-fg)"></span></div>
+      <div class="meta"><span class="k">Info</span><span class="v"><b>Open</b> · Released · New</span><span class="tok">--status-info</span></div>
+    </div>
+    <!-- WARNING -->
+    <div class="col">
+      <span class="badge" style="background:var(--status-warn-bg);color:var(--status-warn-fg)"><span class="dot"></span>Pending</span>
+      <div class="pair"><span class="bg" style="background:var(--status-warn-bg);color:var(--status-warn-fg)">bg</span><span class="fg" style="background:var(--status-warn-fg)"></span></div>
+      <div class="meta"><span class="k">Warning</span><span class="v"><b>Pending</b> · On hold</span><span class="tok">--status-warn</span></div>
+    </div>
+    <!-- DANGER -->
+    <div class="col">
+      <span class="badge" style="background:var(--status-danger-bg);color:var(--status-danger-fg)"><span class="dot"></span>Overdue</span>
+      <div class="pair"><span class="bg" style="background:var(--status-danger-bg);color:var(--status-danger-fg)">bg</span><span class="fg" style="background:var(--status-danger-fg)"></span></div>
+      <div class="meta"><span class="k">Danger</span><span class="v"><b>Overdue</b> · Blocked</span><span class="tok">--status-danger</span></div>
+    </div>
+    <!-- NEUTRAL -->
+    <div class="col">
+      <span class="badge" style="background:var(--status-neutral-bg);color:var(--status-neutral-fg)"><span class="dot"></span>Draft</span>
+      <div class="pair"><span class="bg" style="background:var(--status-neutral-bg);color:var(--status-neutral-fg)">bg</span><span class="fg" style="background:var(--status-neutral-fg)"></span></div>
+      <div class="meta"><span class="k">Neutral</span><span class="v"><b>Draft</b> · Inactive</span><span class="tok">--status-neutral</span></div>
+    </div>
+  </div>
+</body></html>

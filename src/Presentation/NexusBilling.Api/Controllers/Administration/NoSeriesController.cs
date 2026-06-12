@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using NexusBilling.Api.Common;
 using NexusBilling.Core.Application.Administration.Commands;
 using NexusBilling.Core.Application.Administration.Queries;
+using NexusBilling.Core.Application.Administration.Services;
 
 namespace NexusBilling.Api.Controllers.Administration;
 
@@ -13,7 +14,7 @@ public record UpsertNoSeriesLineRequest(string SeriesCode, string StartingNo, st
 [Authorize]
 [ApiController]
 [Route("api/v1/administration/no-series")]
-public sealed class NoSeriesController(IMediator mediator) : ControllerBase
+public sealed class NoSeriesController(IMediator mediator, NoSeriesService noSeriesService) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -54,6 +55,19 @@ public sealed class NoSeriesController(IMediator mediator) : ControllerBase
 
         return ok ? Ok(ApiResponse<object>.Ok(new { seriesCode = req.SeriesCode }))
                   : BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", "No se pudo guardar la línea."));
+    }
+
+    [HttpGet("{code}/next")]
+    public async Task<IActionResult> PeekNext(string code, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        var nextNo = await noSeriesService.PeekNextNoAsync(tenantId, code, cancellationToken);
+        return nextNo is not null
+            ? Ok(ApiResponse<object>.Ok(new { code, nextNo }))
+            : NotFound(ApiResponse<object?>.NotFound($"La serie '{code}' no tiene línea activa configurada."));
     }
 
     [HttpDelete("{code}")]

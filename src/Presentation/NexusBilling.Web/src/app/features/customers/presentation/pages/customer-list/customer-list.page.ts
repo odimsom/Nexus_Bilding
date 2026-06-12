@@ -2,13 +2,17 @@ import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 import { CustomerService, CustomerListItem, CustomerFormData } from '../../../data/customer.service';
 import { CustomerSortField } from '../../../domain/customer.model';
+import { ApiService } from '../../../../../core/services/api.service';
+import { RncFormatDirective } from '../../../../../shared/directives/rnc-format.directive';
+import { PhoneFormatDirective } from '../../../../../shared/directives/phone-format.directive';
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, RncFormatDirective, PhoneFormatDirective],
   template: `
     <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
       <a routerLink="/dashboard">Dashboard</a>
@@ -174,8 +178,20 @@ import { CustomerSortField } from '../../../domain/customer.model';
             }
             <div class="form-grid">
               <div class="nx-field">
-                <label class="nx-label">No. Cliente *</label>
-                <span class="nx-input" style="background:var(--nx-surface-sunken);color:var(--nx-text-faint);cursor:default;">Se asigna automáticamente</span>
+                <label class="nx-label">No. Cliente</label>
+                <div style="display:flex;gap:var(--nx-space-2);">
+                  <input
+                    class="nx-input"
+                    style="font-family:var(--nx-font-mono);flex:1;"
+                    [(ngModel)]="form.no"
+                    [placeholder]="loadingNextNo() ? 'Cargando…' : previewNo() || '(secuencia)'"
+                    autocomplete="off"
+                  />
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" [disabled]="loadingNextNo()" (click)="fetchNextNo()" title="Obtener siguiente número">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  </button>
+                </div>
+                
               </div>
               <div class="nx-field">
                 <label class="nx-label">Nombre *</label>
@@ -199,7 +215,7 @@ import { CustomerSortField } from '../../../domain/customer.model';
               </div>
               <div class="nx-field">
                 <label class="nx-label">Teléfono</label>
-                <input class="nx-input" type="tel" [(ngModel)]="form.phoneNo" placeholder="809-555-0000" />
+                <input class="nx-input" type="tel" nxPhone [(ngModel)]="form.phoneNo" placeholder="809-555-0000" />
               </div>
               <div class="nx-field">
                 <label class="nx-label">Correo Electrónico</label>
@@ -207,7 +223,7 @@ import { CustomerSortField } from '../../../domain/customer.model';
               </div>
               <div class="nx-field">
                 <label class="nx-label">RNC / Cédula</label>
-                <input class="nx-input" [(ngModel)]="form.vatRegistrationNo" placeholder="1-30-XXXXX-X" />
+                <input class="nx-input" nxRnc [(ngModel)]="form.vatRegistrationNo" placeholder="131-00004-5" />
               </div>
               <div class="nx-field">
                 <label class="nx-label">Límite de Crédito (DOP)</label>
@@ -287,6 +303,7 @@ import { CustomerSortField } from '../../../domain/customer.model';
 export class CustomerListPage implements OnInit {
   readonly svc = inject(CustomerService);
   private readonly router = inject(Router);
+  private readonly api = inject(ApiService);
 
   searchText = '';
   showBlocked: 'all' | 'active' | 'blocked' = 'all';
@@ -297,6 +314,8 @@ export class CustomerListPage implements OnInit {
   saving           = signal(false);
   modalError       = signal<string | null>(null);
   noSeriesMissing  = signal(false);
+  loadingNextNo    = signal(false);
+  previewNo        = signal('');
 
   form: CustomerFormData = this.emptyForm();
 
@@ -364,7 +383,23 @@ export class CustomerListPage implements OnInit {
     this.form = this.emptyForm();
     this.modalError.set(null);
     this.noSeriesMissing.set(false);
+    this.previewNo.set('');
     this.showModal.set(true);
+    this.fetchNextNo();
+  }
+
+  async fetchNextNo(): Promise<void> {
+    this.loadingNextNo.set(true);
+    try {
+      const res = await firstValueFrom(this.api.get<{ code: string; nextNo: string }>('administration/no-series/CUST/next'));
+      this.previewNo.set(res.nextNo);
+      this.form.no = res.nextNo;
+    } catch {
+      this.previewNo.set('');
+      this.form.no = '';
+    } finally {
+      this.loadingNextNo.set(false);
+    }
   }
 
   closeModal(): void { this.showModal.set(false); }
@@ -381,15 +416,24 @@ export class CustomerListPage implements OnInit {
     }
     this.saving.set(true);
     this.modalError.set(null);
+    this.noSeriesMissing.set(false);
     try {
       const no = await this.svc.create(this.form);
       this.closeModal();
       this.router.navigate(['/customers', no]);
     } catch (e: any) {
-      const msg: string = e?.error?.error?.message ?? e?.message ?? 'Error al guardar el cliente.';
-      const isMissing = msg.toLowerCase().includes('serie') || msg.toLowerCase().includes('series');
-      this.noSeriesMissing.set(isMissing);
-      this.modalError.set(msg);
+      const msg: string = e?.error?.error?.message ?? e?.message ?? '';
+      if (msg.toLowerCase().includes('serie') || msg.toLowerCase().includes('series')) {
+        this.noSeriesMissing.set(true);
+        this.modalError.set('No hay una secuencia de numeración configurada para clientes.');
+      } else if (msg.toLowerCase().includes('already') || msg.toLowerCase().includes('ya existe') || msg.toLowerCase().includes('duplicate')) {
+        this.modalError.set('El número de cliente ya fue asignado a otro registro. Haz clic en el botón actualizar para obtener un número disponible.');
+        this.fetchNextNo();
+      } else if (msg) {
+        this.modalError.set(msg);
+      } else {
+        this.modalError.set('Ocurrió un error al guardar el cliente. Intenta de nuevo.');
+      }
     } finally {
       this.saving.set(false);
     }

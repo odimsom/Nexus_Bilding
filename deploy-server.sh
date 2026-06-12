@@ -9,17 +9,18 @@ IMAGE="nexus-billing:latest"
 DB_CONN="Host=synset-postgres;Port=5432;Database=nexus_db;Username=nexus_user;Password=NexusBilling2026!;"
 TENANT_ID="aaaaaaaa-0000-0000-0000-000000000001"
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 echo "=== Nexus Billing Deploy $(date) ==="
 
 # 1. Build frontend Angular
 echo "--- [1/4] Build frontend..."
-cd "$(dirname "$0")/src/Presentation/NexusBilling.Web"
+cd "$SCRIPT_DIR/src/Presentation/NexusBilling.Web"
 npm run build -- --configuration=production --output-path=/tmp/nexus-web-dist 2>&1 | tail -5
-cd "$(dirname "$0")"
+cd "$SCRIPT_DIR"
 
 # 2. Publish .NET API
 echo "--- [2/4] Publish API..."
-dotnet publish src/Presentation/NexusBilling.Api/NexusBilling.Api.csproj \
+dotnet publish "$SCRIPT_DIR/src/Presentation/NexusBilling.Api/NexusBilling.Api.csproj" \
   -c Release -o /tmp/nexus-publish --nologo -v q
 
 # Copiar frontend al wwwroot del API
@@ -56,6 +57,11 @@ docker save $IMAGE | gzip | sshpass -p "$SERVER_PASS" \
      -e 'Jwt__Audience=NexusBilling.Web' \
      -e 'Jwt__ExpiryMinutes=60' \
      -e 'Cors__AllowedOrigins__0=https://nexus.server.synsetsolutions.com' \
+     --label 'traefik.enable=true' \
+     --label 'traefik.http.routers.nexus.entrypoints=websecure' \
+     --label 'traefik.http.routers.nexus.rule=Host(\`nexus.server.synsetsolutions.com\`)' \
+     --label 'traefik.http.routers.nexus.tls.certresolver=le' \
+     --label 'traefik.http.services.nexus.loadbalancer.server.port=8080' \
      --restart unless-stopped \
      $IMAGE && \
    echo '=== Container started ===' && \
@@ -69,6 +75,7 @@ INSERT INTO administration.no_series ("Id", tenant_id, code, description, defaul
 VALUES
   (gen_random_uuid(), '$TENANT_ID', 'CUST', 'Clientes',            true, false, false, NOW(), NOW()),
   (gen_random_uuid(), '$TENANT_ID', 'ITEM', 'Artículos',           true, false, false, NOW(), NOW()),
+  (gen_random_uuid(), '$TENANT_ID', 'VEND', 'Proveedores',         true, false, false, NOW(), NOW()),
   (gen_random_uuid(), '$TENANT_ID', 'PV',   'Pedidos de Venta',    true, false, false, NOW(), NOW()),
   (gen_random_uuid(), '$TENANT_ID', 'COT',  'Cotizaciones',        true, false, false, NOW(), NOW()),
   (gen_random_uuid(), '$TENANT_ID', 'FAC',  'Facturas Directas',   true, false, false, NOW(), NOW()),
@@ -79,21 +86,54 @@ INSERT INTO administration.no_series_line ("Id", tenant_id, series_code, line_no
 SELECT gen_random_uuid(), '$TENANT_ID', code, 10,
   CASE code
     WHEN 'CUST' THEN 'C-00001'   WHEN 'ITEM' THEN 'ART-00001'
-    WHEN 'PV'   THEN 'PV-000001' WHEN 'COT'  THEN 'COT-000001'
+    WHEN 'VEND' THEN 'V-00001'   WHEN 'PV'   THEN 'PV-000001' 
+    WHEN 'COT'  THEN 'COT-000001'
     WHEN 'FAC'  THEN 'FAC-000001' WHEN 'SI'  THEN 'SI-000001'
   END,
   CASE code
     WHEN 'CUST' THEN 'C-99999'   WHEN 'ITEM' THEN 'ART-99999'
-    WHEN 'PV'   THEN 'PV-999999' WHEN 'COT'  THEN 'COT-999999'
+    WHEN 'VEND' THEN 'V-99999'   WHEN 'PV'   THEN 'PV-999999'
+    WHEN 'COT'  THEN 'COT-999999'
     WHEN 'FAC'  THEN 'FAC-999999' WHEN 'SI'  THEN 'SI-999999'
   END,
   '', 1, '', true, NOW(), NOW()
 FROM administration.no_series
-WHERE tenant_id = '$TENANT_ID' AND code IN ('CUST','ITEM','PV','COT','FAC','SI')
+WHERE tenant_id = '$TENANT_ID' AND code IN ('CUST','ITEM','VEND','PV','COT','FAC','SI')
   AND NOT EXISTS (
     SELECT 1 FROM administration.no_series_line l
     WHERE l.tenant_id = '$TENANT_ID' AND l.series_code = no_series.code
   );
+
+-- Insertar Proveedores de prueba
+INSERT INTO purchasing.vendor ("Id", tenant_id, no, name, address, city, contact, blocked, "CreatedAt", "UpdatedAt")
+SELECT gen_random_uuid(), '$TENANT_ID', 'V-00001', 'Proveedora Mundial S.R.L.', 'Calle Principal 45', 'Santo Domingo', 'Juan Pérez', false, NOW(), NOW()
+WHERE NOT EXISTS (SELECT 1 FROM purchasing.vendor WHERE tenant_id = '$TENANT_ID' AND no = 'V-00001');
+
+INSERT INTO purchasing.vendor ("Id", tenant_id, no, name, address, city, contact, blocked, "CreatedAt", "UpdatedAt")
+SELECT gen_random_uuid(), '$TENANT_ID', 'V-00002', 'Almacenes Central', 'Av. John F. Kennedy', 'Santiago', 'María López', false, NOW(), NOW()
+WHERE NOT EXISTS (SELECT 1 FROM purchasing.vendor WHERE tenant_id = '$TENANT_ID' AND no = 'V-00002');
+
+UPDATE administration.no_series_line SET last_no_used = 'V-00002' WHERE tenant_id = '$TENANT_ID' AND series_code = 'VEND';
+
+-- Insertar Pedidos de Venta (PVs) de prueba si no existen
+INSERT INTO sales.sales_header ("Id", tenant_id, "DocumentType", "No", "SellToCustomerNo", "BillToName", "PostingDate", "CreatedAt", "UpdatedAt", amount, amount_including_vat, currency_code, payment_terms_code, payment_method_code, salesperson_code, external_document_no, status, due_date, sell_to_customer_name)
+SELECT gen_random_uuid(), '$TENANT_ID', 'Order', 'PV-000001', 'C-00001', 'Cliente Local', NOW(), NOW(), NOW(), 1500, 1770, 'DOP', 'CONTADO', 'EFECTIVO', 'VEND01', '', 'Open', NOW(), 'Cliente Local'
+WHERE NOT EXISTS (SELECT 1 FROM sales.sales_header WHERE tenant_id = '$TENANT_ID' AND "No" = 'PV-000001');
+
+INSERT INTO sales.sales_header ("Id", tenant_id, "DocumentType", "No", "SellToCustomerNo", "BillToName", "PostingDate", "CreatedAt", "UpdatedAt", amount, amount_including_vat, currency_code, payment_terms_code, payment_method_code, salesperson_code, external_document_no, status, due_date, sell_to_customer_name)
+SELECT gen_random_uuid(), '$TENANT_ID', 'Order', 'PV-000002', 'C-00002', 'Empresa XYZ', NOW(), NOW(), NOW(), 4500, 5310, 'DOP', 'CREDITO', 'TRANSFERENCIA', 'VEND02', 'REF-99', 'Released', NOW(), 'Empresa XYZ'
+WHERE NOT EXISTS (SELECT 1 FROM sales.sales_header WHERE tenant_id = '$TENANT_ID' AND "No" = 'PV-000002');
+
+INSERT INTO sales.sales_line ("Id", tenant_id, document_type, sell_to_customer_no, document_no, line_no, type, no, location_code, posting_group, description, description2, unit_of_measure, quantity, outstanding_quantity, qty_to_invoice, qty_to_ship, unit_price, unit_cost_lcy, vat, line_discount, line_discount_amount, amount, amount_including_vat, "CreatedAt", "UpdatedAt")
+SELECT gen_random_uuid(), '$TENANT_ID', 1, 'C-00001', 'PV-000001', 10000, 1, 'ART-001', '', '', 'Servicio de Consultoría', '', 'SRV', 1, 1, 1, 1, 1500, 0, 18, 0, 0, 1500, 1770, NOW(), NOW()
+WHERE NOT EXISTS (SELECT 1 FROM sales.sales_line WHERE tenant_id = '$TENANT_ID' AND document_no = 'PV-000001');
+
+INSERT INTO sales.sales_line ("Id", tenant_id, document_type, sell_to_customer_no, document_no, line_no, type, no, location_code, posting_group, description, description2, unit_of_measure, quantity, outstanding_quantity, qty_to_invoice, qty_to_ship, unit_price, unit_cost_lcy, vat, line_discount, line_discount_amount, amount, amount_including_vat, "CreatedAt", "UpdatedAt")
+SELECT gen_random_uuid(), '$TENANT_ID', 1, 'C-00002', 'PV-000002', 10000, 1, 'ART-002', '', '', 'Licencia de Software', '', 'UND', 3, 3, 3, 3, 1500, 500, 18, 0, 0, 4500, 5310, NOW(), NOW()
+WHERE NOT EXISTS (SELECT 1 FROM sales.sales_line WHERE tenant_id = '$TENANT_ID' AND document_no = 'PV-000002');
+
+-- Actualizar correlativo
+UPDATE administration.no_series_line SET last_no_used = 'PV-000002' WHERE tenant_id = '$TENANT_ID' AND series_code = 'PV';
 SQL
 
 echo "=== Deploy completado ==="

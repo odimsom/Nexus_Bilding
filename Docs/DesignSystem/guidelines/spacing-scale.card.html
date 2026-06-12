@@ -1,0 +1,23 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Spacing scale" subtitle="4px grid — most density lives 4–16px" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background: var(--surface); padding: 24px; font-family: var(--font-sans); }
+  .row { display:flex; gap: 18px; align-items: flex-end; }
+  .item { display:flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { background: var(--emerald-500); border-radius: var(--radius-xs); }
+  .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .tok { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="width:var(--space-1); height:var(--space-1)"></div><div class="lbl">4</div><div class="tok">1</div></div>
+    <div class="item"><div class="box" style="width:var(--space-2); height:var(--space-2)"></div><div class="lbl">8</div><div class="tok">2</div></div>
+    <div class="item"><div class="box" style="width:var(--space-3); height:var(--space-3)"></div><div class="lbl">12</div><div class="tok">3</div></div>
+    <div class="item"><div class="box" style="width:var(--space-4); height:var(--space-4)"></div><div class="lbl">16</div><div class="tok">4</div></div>
+    <div class="item"><div class="box" style="width:var(--space-6); height:var(--space-6)"></div><div class="lbl">24</div><div class="tok">6</div></div>
+    <div class="item"><div class="box" style="width:var(--space-8); height:var(--space-8)"></div><div class="lbl">32</div><div class="tok">8</div></div>
+    <div class="item"><div class="box" style="width:var(--space-12); height:var(--space-12)"></div><div class="lbl">48</div><div class="tok">12</div></div>
+    <div class="item"><div class="box" style="width:var(--space-16); height:var(--space-16)"></div><div class="lbl">64</div><div class="tok">16</div></div>
+  </div>
+</body></html>

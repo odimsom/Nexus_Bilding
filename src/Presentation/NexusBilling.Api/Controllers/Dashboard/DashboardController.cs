@@ -15,8 +15,17 @@ public sealed class DashboardController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> GetStats(CancellationToken ct)
     {
         var tenantId = GetTenantId();
-        var result = await mediator.Send(new GetDashboardStatsQuery(tenantId), ct);
-        return Ok(ApiResponse<DashboardStatsDto>.Ok(result));
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+        try
+        {
+            var result = await mediator.Send(new GetDashboardStatsQuery(tenantId), ct);
+            return Ok(ApiResponse<DashboardStatsDto>.Ok(result));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ApiResponse<object?>.Fail("INTERNAL_ERROR", $"Error al cargar el dashboard: {ex.Message}"));
+        }
     }
 
     private Guid GetTenantId()

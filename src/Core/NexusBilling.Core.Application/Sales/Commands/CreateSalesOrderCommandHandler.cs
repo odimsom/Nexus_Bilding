@@ -25,16 +25,19 @@ public sealed class CreateSalesOrderCommandHandler(
             ? await noSeriesService.GetNextNoAsync(cmd.TenantId, cmd.SeriesCode, ct)
             : cmd.ManualNo ?? throw new InvalidOperationException("Se requiere SeriesCode o ManualNo.");
 
+        static DateTime Utc(DateTime d) => DateTime.SpecifyKind(d, DateTimeKind.Utc);
+        static DateTime? UtcN(DateTime? d) => d.HasValue ? DateTime.SpecifyKind(d.Value, DateTimeKind.Utc) : null;
+
         var headerResult = SalesHeader.Create(
             tid, cmd.DocumentType, docNo,
             cmd.SellToCustomerNo, cmd.SellToCustomerName, cmd.SellToCustomerName,
-            cmd.PostingDate);
+            Utc(cmd.PostingDate));
 
         if (!headerResult.IsSuccess)
             throw new InvalidOperationException(headerResult.GetError()!.Message);
 
         var header = headerResult.GetValue()!;
-        header.DueDate = cmd.DueDate;
+        header.DueDate = UtcN(cmd.DueDate);
         header.CurrencyCode = cmd.CurrencyCode ?? string.Empty;
         header.PaymentTermsCode = cmd.PaymentTermsCode ?? string.Empty;
         header.PaymentMethodCode = cmd.PaymentMethodCode ?? string.Empty;
@@ -55,8 +58,8 @@ public sealed class CreateSalesOrderCommandHandler(
 
             var line = lineResult.GetValue()!;
             line.SellToCustomerNo = cmd.SellToCustomerNo;
-            line.Type = 2; // Item
-            line.No = l.ItemNo;
+            line.Type = l.LineType switch { "G/L Account" => 1, "Service" => 3, _ => 2 };
+            line.No = l.ItemNo ?? string.Empty;
             line.Description = l.Description;
             line.UnitOfMeasure = l.UnitOfMeasure;
             line.Quantity = l.Quantity;

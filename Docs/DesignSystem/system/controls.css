@@ -1,0 +1,135 @@
+/* Nexus Billing — Controls (buttons, inputs, selects, toggles)
+ * Thin, classed primitives. JSX components apply these classes; plain HTML
+ * can use them directly. State (hover/press/focus/disabled) lives here. */
+
+/* ============== BUTTON ============== */
+.nx-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  height: var(--control-md); padding: 0 var(--space-4);
+  font-family: var(--font-sans); font-size: var(--text-md); font-weight: var(--weight-semibold);
+  line-height: 1; white-space: nowrap; cursor: pointer; user-select: none;
+  border: var(--border-w) solid transparent; border-radius: var(--radius-sm);
+  background: transparent; color: var(--text-body);
+  transition: var(--transition-control);
+}
+.nx-btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--focus-ring-offset), 0 0 0 4px var(--action-ring); }
+.nx-btn:disabled, .nx-btn[aria-disabled="true"] { cursor: not-allowed; opacity: 0.5; }
+.nx-btn:active:not(:disabled) { transform: translateY(0.5px); }
+.nx-btn svg { width: 16px; height: 16px; flex: none; }
+
+.nx-btn--sm { height: var(--control-sm); padding: 0 var(--space-3); font-size: var(--text-sm); }
+.nx-btn--lg { height: var(--control-lg); padding: 0 var(--space-5); font-size: var(--text-lg); }
+.nx-btn--block { width: 100%; }
+
+/* Primary — ledger emerald */
+.nx-btn--primary { background: var(--action); color: var(--text-on-brand); box-shadow: var(--shadow-xs); }
+.nx-btn--primary:hover:not(:disabled) { background: var(--action-hover); }
+.nx-btn--primary:active:not(:disabled) { background: var(--action-press); }
+
+/* Secondary — bordered neutral (the workhorse) */
+.nx-btn--secondary { background: var(--surface); color: var(--text-body); border-color: var(--border-default); box-shadow: var(--shadow-xs); }
+.nx-btn--secondary:hover:not(:disabled) { background: var(--surface-hover); border-color: var(--border-strong); }
+.nx-btn--secondary:active:not(:disabled) { background: var(--surface-sunken); }
+
+/* Ghost — no chrome until hover */
+.nx-btn--ghost { background: transparent; color: var(--text-body); }
+.nx-btn--ghost:hover:not(:disabled) { background: var(--surface-sunken); }
+.nx-btn--ghost:active:not(:disabled) { background: var(--slate-150); }
+
+/* Danger */
+.nx-btn--danger { background: var(--red-500); color: #fff; box-shadow: var(--shadow-xs); }
+.nx-btn--danger:hover:not(:disabled) { background: var(--red-700); }
+
+/* Subtle — tinted brand, for secondary affirmatives */
+.nx-btn--subtle { background: var(--action-tint); color: var(--action-hover); }
+.nx-btn--subtle:hover:not(:disabled) { background: var(--emerald-100); }
+
+/* Icon-only */
+.nx-iconbtn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--control-md); height: var(--control-md); padding: 0;
+  border: var(--border-w) solid transparent; border-radius: var(--radius-sm);
+  background: transparent; color: var(--text-muted); cursor: pointer;
+  transition: var(--transition-control);
+}
+.nx-iconbtn:hover:not(:disabled) { background: var(--surface-sunken); color: var(--text-body); }
+.nx-iconbtn:active:not(:disabled) { background: var(--slate-150); }
+.nx-iconbtn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--focus-ring-offset), 0 0 0 4px var(--action-ring); }
+.nx-iconbtn:disabled { opacity: 0.45; cursor: not-allowed; }
+.nx-iconbtn--sm { width: var(--control-sm); height: var(--control-sm); }
+.nx-iconbtn svg { width: 17px; height: 17px; }
+
+/* ============== INPUT / TEXTAREA ============== */
+.nx-field { display: flex; flex-direction: column; gap: var(--space-2); }
+.nx-label { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-body); }
+.nx-label .nx-req { color: var(--red-500); margin-left: 2px; }
+.nx-hint { font-size: var(--text-xs); color: var(--text-muted); }
+.nx-hint--error { color: var(--status-danger-fg); }
+
+.nx-input {
+  height: var(--control-md); width: 100%;
+  padding: 0 var(--space-3);
+  font-family: var(--font-sans); font-size: var(--text-md); color: var(--text-strong);
+  background: var(--surface); border: var(--border-w) solid var(--border-default);
+  border-radius: var(--radius-sm); transition: var(--transition-control);
+}
+textarea.nx-input { height: auto; padding: var(--space-2) var(--space-3); line-height: var(--leading-snug); resize: vertical; }
+.nx-input::placeholder { color: var(--text-faint); }
+.nx-input:hover:not(:disabled) { border-color: var(--border-strong); }
+.nx-input:focus { outline: none; border-color: var(--action); box-shadow: 0 0 0 3px var(--action-ring); }
+.nx-input:disabled { background: var(--surface-sunken); color: var(--text-muted); cursor: not-allowed; }
+.nx-input[aria-invalid="true"] { border-color: var(--red-500); }
+.nx-input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px var(--red-50); }
+.nx-input--mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Input with adornment (e.g. currency, search icon) */
+.nx-inputgroup { position: relative; display: flex; align-items: center; }
+.nx-inputgroup .nx-input { padding-left: 34px; }
+.nx-inputgroup .nx-adorn { position: absolute; left: 11px; display: inline-flex; color: var(--text-faint); pointer-events: none; }
+.nx-inputgroup .nx-adorn svg { width: 16px; height: 16px; }
+
+/* ============== SELECT ============== */
+.nx-select {
+  height: var(--control-md); width: 100%;
+  padding: 0 32px 0 var(--space-3);
+  font-family: var(--font-sans); font-size: var(--text-md); color: var(--text-strong);
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23727E96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+  border: var(--border-w) solid var(--border-default); border-radius: var(--radius-sm);
+  appearance: none; cursor: pointer; transition: var(--transition-control);
+}
+.nx-select:hover:not(:disabled) { border-color: var(--border-strong); }
+.nx-select:focus { outline: none; border-color: var(--action); box-shadow: 0 0 0 3px var(--action-ring); }
+.nx-select:disabled { background-color: var(--surface-sunken); color: var(--text-muted); cursor: not-allowed; }
+
+/* ============== CHECKBOX & RADIO ============== */
+.nx-check { display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer; font-size: var(--text-md); color: var(--text-body); }
+.nx-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+.nx-check__box {
+  width: 17px; height: 17px; flex: none; border-radius: var(--radius-xs);
+  border: var(--border-w-2) solid var(--border-strong); background: var(--surface);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: var(--transition-control); color: #fff;
+}
+.nx-check__box svg { width: 12px; height: 12px; opacity: 0; transition: opacity var(--dur-fast) var(--ease-standard); }
+.nx-check input:checked + .nx-check__box { background: var(--action); border-color: var(--action); }
+.nx-check input:checked + .nx-check__box svg { opacity: 1; }
+.nx-check input:focus-visible + .nx-check__box { box-shadow: 0 0 0 3px var(--action-ring); }
+.nx-check--radio .nx-check__box { border-radius: var(--radius-pill); }
+.nx-check input:disabled ~ * { opacity: 0.5; }
+
+/* ============== SWITCH ============== */
+.nx-switch { display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer; }
+.nx-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.nx-switch__track {
+  width: 34px; height: 20px; border-radius: var(--radius-pill);
+  background: var(--slate-300); position: relative; transition: var(--transition-colors);
+}
+.nx-switch__thumb {
+  position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+  border-radius: 50%; background: #fff; box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease-standard);
+}
+.nx-switch input:checked + .nx-switch__track { background: var(--action); }
+.nx-switch input:checked + .nx-switch__track .nx-switch__thumb { transform: translateX(14px); }
+.nx-switch input:focus-visible + .nx-switch__track { box-shadow: 0 0 0 3px var(--action-ring); }
+.nx-switch input:disabled + .nx-switch__track { opacity: 0.5; }

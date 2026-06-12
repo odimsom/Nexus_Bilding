@@ -1,0 +1,19 @@
+/* Nexus Billing — Motion
+ * Motion is functional and quick. Nothing bounces; an ERP must feel
+ * instantaneous and certain. Transitions communicate state change, never
+ * decorate. Respect prefers-reduced-motion at the component level.
+ * ease-standard: most UI · ease-entrance: popovers · ease-exit: dismiss
+ * dur-fast: hover/press · dur-base: menus/tabs · dur-slow: modal/drawer */
+:root {
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1); /* @kind other */
+  --ease-entrance: cubic-bezier(0.16, 0.84, 0.44, 1); /* @kind other */
+  --ease-exit:     cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+
+  --dur-instant: 80ms; /* @kind other */
+  --dur-fast:    140ms; /* @kind other */
+  --dur-base:    200ms; /* @kind other */
+  --dur-slow:    280ms; /* @kind other */
+
+  --transition-colors: color var(--dur-fast) var(--ease-standard), background-color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard);
+  --transition-control: var(--transition-colors), box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+}

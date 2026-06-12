@@ -1,0 +1,10 @@
+/* Nexus Billing — Webfonts
+ * Loaded from Google Fonts CDN. To fully self-host, drop the .woff2 files in
+ * assets/fonts/ and swap the @import for local @font-face src: url(...) rules.
+ *
+ * Type system:
+ *   Space Grotesk  → brand wordmark + display headings (geometric, "networky")
+ *   Hanken Grotesk → all UI text, labels, body, tables (highly legible at density)
+ *   JetBrains Mono → numerics, document numbers, codes, ledger figures (tabular)
+ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');

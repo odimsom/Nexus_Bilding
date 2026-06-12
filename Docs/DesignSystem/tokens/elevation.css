@@ -1,0 +1,24 @@
+/* Nexus Billing — Elevation & Effects
+ * Shadows are soft, cool-tinted (slate, not pure black) and low-spread —
+ * the UI feels flat and trustworthy, lifting only menus, popovers, modals
+ * and the FactBox. Borders do most of the separation work. */
+:root {
+  /* Resting surfaces use borders, not shadow. These are for floating UI. */
+  --shadow-xs:  0 1px 2px rgba(23,28,40,0.06);
+  --shadow-sm:  0 1px 3px rgba(23,28,40,0.08), 0 1px 2px rgba(23,28,40,0.04);
+  --shadow-md:  0 4px 12px rgba(23,28,40,0.10), 0 1px 3px rgba(23,28,40,0.06);
+  --shadow-lg:  0 12px 28px rgba(23,28,40,0.14), 0 4px 8px rgba(23,28,40,0.06);
+  --shadow-xl:  0 24px 56px rgba(15,19,28,0.22), 0 8px 16px rgba(15,19,28,0.10);
+
+  /* Inset for wells / pressed states */
+  --shadow-inset: inset 0 1px 2px rgba(23,28,40,0.08);
+
+  /* Focus ring (apply with outline or box-shadow) */
+  --ring-focus: 0 0 0 var(--focus-w) var(--focus-ring-offset), 0 0 0 calc(var(--focus-w) + 2px) var(--action-ring);
+
+  /* Overlay scrim for modals */
+  --scrim: rgba(15,19,28,0.44);
+
+  /* Subtle key-line that reads on both light surfaces and tints */
+  --hairline: rgba(23,28,40,0.08);
+}

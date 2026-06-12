@@ -8,7 +8,8 @@ public record SalesOrderLineInput(
     decimal Quantity,
     decimal UnitPrice,
     decimal LineDiscountPct,
-    string UnitOfMeasure);
+    string UnitOfMeasure,
+    string LineType = "Item");  // "Item" | "Service" | "G/L Account"
 
 public record CreateSalesOrderCommand(
     Guid TenantId,

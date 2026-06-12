@@ -1,0 +1,408 @@
+<!-- @template name="Landing page" description="Marketing landing page for Nexus Billing — hero, features, modules, ECharts dashboard, CTA, footer" -->
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexus Billing — ERP & Billing Platform</title>
+<link rel="icon" href="./logo-tile.svg">
+<script src="./ds-base.js"></script>
+<link rel="stylesheet" href="./landing.css">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--slate-950); }
+  /* Light mode overrides for landing */
+  [data-theme="light"] body { background: var(--canvas); }
+  [data-theme="light"] .ld-hero { background: var(--slate-900); }
+  [data-theme="light"] .ld-strip { background: var(--slate-900); }
+  [data-theme="light"] .ld-cta { background: var(--slate-900); }
+  [data-theme="light"] .ld-footer { background: var(--slate-950); }
+</style>
+</head>
+<body class="ld">
+
+<!-- NAV -->
+<nav class="ld-nav">
+  <a class="ld-nav__brand" href="#">
+    <img src="./logo-mark.svg" width="26" height="26" alt="Nexus">
+    <b>Nexus<span class="dim"> Billing</span></b>
+  </a>
+  <div class="ld-nav__links">
+    <a class="ld-nav__link" href="#features">Plataforma</a>
+    <a class="ld-nav__link" href="#modules">Módulos</a>
+    <a class="ld-nav__link" href="#metrics">Métricas</a>
+    <a class="ld-nav__link" href="#">Documentación</a>
+  </div>
+  <div class="ld-nav__right">
+    <button class="ld-nav__signin" id="themeToggle">
+      <i data-lucide="sun" style="width:16px;height:16px;vertical-align:middle"></i>
+    </button>
+    <button class="ld-nav__signin" onclick="window.location.href='../../ui_kits/erp/index.html'">Iniciar sesión</button>
+    <button class="ld-nav__cta" onclick="window.location.href='../../ui_kits/erp/index.html'">Solicitar demo</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="ld-hero">
+  <div class="ld-hero__eyebrow"><span class="ld-hero__dot"></span>ERP & Billing · República Dominicana</div>
+  <h1>Todo lo que necesitas, a <em>un clic</em> de distancia</h1>
+  <p class="ld-hero__sub">Clientes, inventario, ventas y contabilidad en un solo sistema. Abre cualquier registro y llega a todo lo relacionado sin perder tu lugar.</p>
+  <div class="ld-hero__actions">
+    <button class="ld-hero__primary" onclick="window.location.href='../../ui_kits/erp/index.html'">
+      <i data-lucide="play" style="width:16px;height:16px"></i>
+      Ver demo en vivo
+    </button>
+    <button class="ld-hero__secondary">Ver documentación</button>
+  </div>
+
+  <!-- Product preview mockup -->
+  <div class="ld-hero__preview">
+    <div class="ld-hero__chrome">
+      <span style="background:#FF5F57"></span>
+      <span style="background:#FEBC2E"></span>
+      <span style="background:#28C840"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;height:340px;background:#1A2035;overflow:hidden">
+      <!-- Sidebar -->
+      <div style="background:#0B0E17;border-right:1px solid rgba(255,255,255,0.06);padding:14px 10px;display:flex;flex-direction:column;gap:2px">
+        <div style="padding:10px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
+          <img src="./logo-mark.svg" width="18" height="18">
+          <span style="font-family:var(--font-display);font-weight:700;font-size:13px;color:#fff;letter-spacing:-0.02em">Nexus<span style="font-weight:500;color:var(--slate-600)"> Billing</span></span>
+        </div>
+        <div style="padding:6px 10px;background:var(--emerald-600);border-radius:5px;font-size:12px;color:#fff;font-weight:600;display:flex;align-items:center;gap:8px">
+          <i data-lucide="layout-dashboard" style="width:14px;height:14px"></i>Dashboard
+        </div>
+        <div style="padding:6px 10px;font-size:12px;color:var(--slate-500);font-weight:500;display:flex;align-items:center;gap:8px">
+          <i data-lucide="users" style="width:14px;height:14px"></i>Clientes<span style="margin-left:auto;font-family:var(--font-mono);font-size:10px">6</span>
+        </div>
+        <div style="padding:6px 10px;font-size:12px;color:var(--slate-500);font-weight:500;display:flex;align-items:center;gap:8px">
+          <i data-lucide="file-text" style="width:14px;height:14px"></i>Facturas<span style="margin-left:auto;font-family:var(--font-mono);font-size:10px">18</span>
+        </div>
+        <div style="padding:6px 10px;font-size:12px;color:var(--slate-500);font-weight:500;display:flex;align-items:center;gap:8px">
+          <i data-lucide="package" style="width:14px;height:14px"></i>Artículos
+        </div>
+        <div style="padding:6px 10px;font-size:12px;color:var(--slate-500);font-weight:500;display:flex;align-items:center;gap:8px">
+          <i data-lucide="book-open" style="width:14px;height:14px"></i>Contabilidad
+        </div>
+      </div>
+      <!-- Main content -->
+      <div style="display:flex;flex-direction:column;overflow:hidden">
+        <!-- Topbar -->
+        <div style="height:40px;background:#1A2035;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;padding:0 16px;gap:12px">
+          <span style="font-family:var(--font-display);font-size:13px;font-weight:700;color:rgba(255,255,255,0.9)">Dashboard</span>
+          <span style="margin-left:auto;display:flex;gap:8px;align-items:center">
+            <span style="height:26px;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:0 10px;font-size:11px;color:var(--slate-500)">
+              <i data-lucide="search" style="width:11px;height:11px"></i>Buscar…<kbd style="font-size:9px;background:rgba(255,255,255,0.06);border-radius:3px;padding:1px 5px;margin-left:4px">⌘K</kbd>
+            </span>
+          </span>
+        </div>
+        <!-- KPIs -->
+        <div style="padding:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:none">
+          <div style="background:#242B40;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--slate-600);margin-bottom:5px">AR TOTAL</div>
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:#F2F5FA;letter-spacing:-0.01em">1.28M</div>
+            <div style="font-size:11px;color:var(--emerald-400);margin-top:3px">↑ +12.4%</div>
+          </div>
+          <div style="background:#242B40;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--slate-600);margin-bottom:5px">VENCIDO</div>
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:#F2F5FA;letter-spacing:-0.01em">84,120</div>
+            <div style="font-size:11px;color:#E8766A;margin-top:3px">↓ -3.1%</div>
+          </div>
+          <div style="background:#242B40;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--slate-600);margin-bottom:5px">CONTABILIZADOS HOY</div>
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:#F2F5FA;letter-spacing:-0.01em">37</div>
+            <div style="font-size:11px;color:var(--emerald-400);margin-top:3px">↑ +6</div>
+          </div>
+        </div>
+        <!-- Mini table -->
+        <div style="margin:0 14px;background:#242B40;border:1px solid rgba(255,255,255,0.07);border-radius:8px;overflow:hidden;flex:1;min-height:0">
+          <div style="padding:8px 14px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:var(--font-display);font-size:12px;font-weight:700;color:#F2F5FA">Facturas abiertas</span>
+            <span style="font-size:10px;height:22px;padding:0 10px;background:var(--emerald-600);color:#fff;border-radius:5px;display:flex;align-items:center;font-weight:600">+ Nueva</span>
+          </div>
+          <table style="width:100%;border-collapse:collapse;font-size:11px">
+            <thead><tr style="background:rgba(255,255,255,0.03)">
+              <th style="text-align:left;padding:6px 14px;color:var(--slate-600);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;font-size:9.5px">No.</th>
+              <th style="text-align:left;padding:6px 8px;color:var(--slate-600);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;font-size:9.5px">Cliente</th>
+              <th style="text-align:left;padding:6px 8px;color:var(--slate-600);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;font-size:9.5px">Estado</th>
+              <th style="text-align:right;padding:6px 14px;color:var(--slate-600);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;font-size:9.5px">Monto</th>
+            </tr></thead>
+            <tbody>
+              <tr style="background:rgba(19,138,104,0.10)"><td style="padding:7px 14px;font-family:var(--font-mono);color:#5FB99A;font-weight:500">SI-2026-001847</td><td style="padding:7px 8px;color:#C8D0E0">Altagracia Comercial</td><td style="padding:7px 8px"><span style="background:#0E1C3A;color:#7EA6E8;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px">● Abierta</span></td><td style="padding:7px 14px;text-align:right;font-family:var(--font-mono);color:#C8D0E0">12,400.00</td></tr>
+              <tr><td style="padding:7px 14px;font-family:var(--font-mono);color:var(--slate-500)">SI-2026-001848</td><td style="padding:7px 8px;color:var(--slate-500)">Distribuidora Caribe</td><td style="padding:7px 8px"><span style="background:#0D2318;color:#5FB99A;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px">● Contabilizada</span></td><td style="padding:7px 14px;text-align:right;font-family:var(--font-mono);color:var(--slate-500)">208,750.00</td></tr>
+              <tr><td style="padding:7px 14px;font-family:var(--font-mono);color:var(--slate-500)">CM-2026-000219</td><td style="padding:7px 8px;color:var(--slate-500)">Ferretería del Sur</td><td style="padding:7px 8px"><span style="background:#251A08;color:#E4B046;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px">● Pendiente</span></td><td style="padding:7px 14px;text-align:right;font-family:var(--font-mono);color:var(--slate-500)">1,905.40</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="height:14px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div class="ld-strip">
+  <span class="ld-strip__label">Utilizado por</span>
+  <span class="ld-strip__co">Altagracia Comercial</span>
+  <span class="ld-strip__co">Distribuidora Caribe</span>
+  <span class="ld-strip__co">Constructora Bávaro</span>
+  <span class="ld-strip__co">Supermercado Nacional</span>
+  <span class="ld-strip__co">Ferretería del Sur</span>
+</div>
+
+<!-- FEATURES -->
+<section class="ld-section" id="features">
+  <div class="ld-sh">
+    <div class="ld-sh__eye">Plataforma</div>
+    <h2>Un ERP diseñado para claridad total</h2>
+    <p>Cada módulo conectado. Cada registro accesible. Diseñado para que nada se rompa y todo quepa.</p>
+  </div>
+  <div class="ld-features">
+    <div class="ld-feat">
+      <div class="ld-feat__icon"><i data-lucide="link-2"></i></div>
+      <h3>Todo conectado</h3>
+      <p>Desde un cliente puedes llegar a sus facturas, su historial contable, los artículos que compra y su vendedor asignado. Sin salir de la pantalla.</p>
+    </div>
+    <div class="ld-feat">
+      <div class="ld-feat__icon"><i data-lucide="shield-check"></i></div>
+      <h3>Multi-tenant seguro</h3>
+      <p>Arquitectura de tenant aislado. Cada empresa opera en su propio espacio. Control de acceso por rol, permisos granulares y JWT robusto.</p>
+    </div>
+    <div class="ld-feat">
+      <div class="ld-feat__icon"><i data-lucide="zap"></i></div>
+      <h3>Tiempo real</h3>
+      <p>SignalR integrado. Notificaciones de posting, aprobaciones pendientes y alertas de crédito llegan al instante a todos los usuarios conectados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE NEXUS IDEA -->
+<section style="background:var(--surface-sunken);padding:80px 0">
+  <div class="ld-section">
+    <div class="ld-idea">
+      <div>
+        <div class="ld-idea__eyebrow">La idea Nexus</div>
+        <h2>Cualquier registro, a un clic del siguiente</h2>
+        <p>Un ERP es una red de registros relacionados. En Nexus Billing, el <strong>FactBox</strong> — el panel derecho en cada pantalla — te muestra todo lo conectado al registro que estás mirando.</p>
+        <p>Abre un cliente y ves su balance, sus facturas abiertas, sus artículos más comprados y su vendedor. Haz clic en una factura y llegas al item, al GL entry, a la disponibilidad de inventario. Nunca un callejón sin salida.</p>
+        <div style="margin-top:24px;display:flex;align-items:center;gap:10px;color:var(--action);font-size:14px;font-weight:600;cursor:pointer" onclick="window.location.href='../../ui_kits/erp/index.html'">
+          Ver el FactBox en vivo <i data-lucide="arrow-right" style="width:16px;height:16px"></i>
+        </div>
+      </div>
+      <!-- FactBox mockup -->
+      <div class="ld-idea__demo">
+        <div class="ld-demo__head">
+          <div class="ld-demo__eyebrow">Cliente</div>
+          <div class="ld-demo__title">Altagracia Comercial, S.R.L.</div>
+        </div>
+        <div class="ld-demo__kv">
+          <div class="k">Balance (LCY)</div><div class="v" style="font-family:var(--font-mono);font-size:13px">RD$ 84,120.00</div>
+          <div class="k">Vencido</div><div class="v" style="font-family:var(--font-mono);font-size:13px;color:var(--money-negative)">RD$ 12,400.00</div>
+          <div class="k">Límite de crédito</div><div class="v" style="font-family:var(--font-mono);font-size:13px">RD$ 250,000.00</div>
+          <div class="k">Crédito disponible</div><div class="v" style="font-family:var(--font-mono);font-size:13px;color:var(--money-positive)">RD$ 165,880.00</div>
+        </div>
+        <div class="ld-demo__related">
+          <div class="ld-demo__rlabel">Relacionados</div>
+          <div class="ld-demo__link">Facturas de venta abiertas (3) <i data-lucide="arrow-up-right"></i></div>
+          <div class="ld-demo__link">Facturas contabilizadas (28) <i data-lucide="arrow-up-right"></i></div>
+          <div class="ld-demo__link">Entradas del libro mayor <i data-lucide="arrow-up-right"></i></div>
+          <div class="ld-demo__link">Artículos comprados <i data-lucide="arrow-up-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="ld-section" id="modules">
+  <div class="ld-sh">
+    <div class="ld-sh__eye">Módulos</div>
+    <h2>Seis módulos. Un sistema.</h2>
+    <p>Construido sobre Domain-Driven Design + Onion Architecture. Cada módulo es independiente pero todos hablan el mismo lenguaje.</p>
+  </div>
+  <div class="ld-modules">
+    <div class="ld-mod"><div class="ld-mod__icon"><i data-lucide="users"></i></div><h4>Ventas & Clientes</h4><p>Facturas, notas de crédito, cotizaciones. Clientes con historial completo, límites de crédito y drill-through a sus documentos.</p></div>
+    <div class="ld-mod"><div class="ld-mod__icon"><i data-lucide="truck"></i></div><h4>Compras & Proveedores</h4><p>Órdenes de compra, proveedores, costos. Todo relacionado con el inventario en tiempo real.</p></div>
+    <div class="ld-mod"><div class="ld-mod__icon"><i data-lucide="package"></i></div><h4>Inventario</h4><p>Artículos, unidades de medida, ubicaciones. Disponibilidad en tiempo real por bodega. Ajustes de stock con trazabilidad.</p></div>
+    <div class="ld-mod"><div class="ld-mod__icon"><i data-lucide="book-open"></i></div><h4>Contabilidad (GL)</h4><p>Plan de cuentas, asientos automáticos por contabilización, aging de cuentas por cobrar y reportes financieros.</p></div>
+    <div class="ld-mod"><div class="ld-mod__icon"><i data-lucide="shield"></i></div><h4>Seguridad</h4><p>Usuarios, roles y conjuntos de permisos. Directiva <code>*appHasPermission</code> para control granular en la UI.</p></div>
+    <div class="ld-mod"><div class="ld-mod__icon"><i data-lucide="settings"></i></div><h4>Administración</h4><p>Configuración multi-tenant, períodos fiscales, grupos de contabilización, configuración de impuestos (ITBIS).</p></div>
+  </div>
+</section>
+
+<!-- METRICS / ECHARTS -->
+<section style="background:var(--surface-sunken);padding:80px 0" id="metrics">
+  <div class="ld-section">
+    <div class="ld-sh">
+      <div class="ld-sh__eye">Métricas</div>
+      <h2>Dashboards financieros con Apache ECharts</h2>
+      <p>Aging de cuentas por cobrar, tendencias de ventas y KPIs críticos — todo en tiempo real, con temas claro y oscuro.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+      <div style="background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px">
+        <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--text-strong);margin-bottom:4px">Aging AR</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Cuentas por cobrar por antigüedad</div>
+        <div id="chartAging" style="height:220px"></div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px">
+        <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--text-strong);margin-bottom:4px">Ventas mensuales</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Facturado vs. cobrado (RD$)</div>
+        <div id="chartLine" style="height:220px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="ld-section">
+  <div class="ld-stats">
+    <div class="ld-stat"><div class="ld-stat__n"><em>6</em></div><div class="ld-stat__l">Módulos integrados</div></div>
+    <div class="ld-stat"><div class="ld-stat__n">99.9<em>%</em></div><div class="ld-stat__l">Uptime garantizado</div></div>
+    <div class="ld-stat"><div class="ld-stat__n"><em>RD$</em> 1.28M</div><div class="ld-stat__l">AR gestionado por empresa</div></div>
+    <div class="ld-stat"><div class="ld-stat__n">&lt; 200<em>ms</em></div><div class="ld-stat__l">Latencia API promedio</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ld-cta">
+  <h2>Empieza hoy. Conecta todo mañana.</h2>
+  <p>Solicita una demo y ve cómo Nexus Billing transforma la gestión de tu empresa.</p>
+  <div class="ld-cta__actions">
+    <button class="ld-hero__primary" onclick="window.location.href='../../ui_kits/erp/index.html'">
+      <i data-lucide="play" style="width:16px;height:16px"></i>
+      Ver demo en vivo
+    </button>
+    <button class="ld-hero__secondary">Contactar ventas</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ld-footer">
+  <div class="ld-footer__inner">
+    <div>
+      <div class="ld-footer__brand">
+        <img src="./logo-mark.svg" width="22" height="22" alt="Nexus">
+        <b>Nexus<span class="dim"> Billing</span></b>
+      </div>
+      <div class="ld-footer__tagline">ERP & Billing Platform para el mercado dominicano. Construido sobre DDD + Onion Architecture.</div>
+    </div>
+    <div class="ld-footer__col">
+      <h5>Producto</h5>
+      <ul>
+        <li><a href="#">Plataforma</a></li>
+        <li><a href="#">Módulos</a></li>
+        <li><a href="#">Integraciones</a></li>
+        <li><a href="#">Seguridad</a></li>
+      </ul>
+    </div>
+    <div class="ld-footer__col">
+      <h5>Desarrolladores</h5>
+      <ul>
+        <li><a href="#">API REST</a></li>
+        <li><a href="#">SignalR</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+    <div class="ld-footer__col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Soporte</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ld-footer__bottom">
+    <span class="ld-footer__copy">© 2026 Nexus Billing. Hecho en República Dominicana.</span>
+    <div class="ld-footer__legal">
+      <a href="#">Términos</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  let dark = true;
+  themeToggle.addEventListener('click', () => {
+    dark = !dark;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    themeToggle.innerHTML = dark
+      ? '<i data-lucide="sun" style="width:16px;height:16px;vertical-align:middle"></i>'
+      : '<i data-lucide="moon" style="width:16px;height:16px;vertical-align:middle"></i>';
+    lucide.createIcons();
+    renderCharts();
+  });
+
+  // Lucide
+  lucide.createIcons();
+
+  // ECharts — themed by current mode
+  function getColors() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return {
+      bg: 'transparent',
+      textColor: isDark ? '#8A95AB' : '#727E96',
+      axisLine: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(23,28,40,0.10)',
+      bar1: '#138A68', bar2: '#CF9412', bar3: '#C5810A', bar4: '#CE3F35', bar5: '#9A2A22',
+      emerald: '#138A68', slate: isDark ? '#2EA17E' : '#2C63D6',
+      areaTop: isDark ? 'rgba(19,138,104,0.45)' : 'rgba(19,138,104,0.30)',
+      areaBot: 'rgba(19,138,104,0.02)',
+    };
+  }
+
+  function renderCharts() {
+    const c = getColors();
+    // Aging bar chart
+    const agingEl = document.getElementById('chartAging');
+    const aging = echarts.init(agingEl, null, { renderer: 'svg' });
+    aging.setOption({
+      backgroundColor: c.bg,
+      grid: { top: 10, bottom: 30, left: 16, right: 16, containLabel: true },
+      tooltip: { trigger: 'axis', formatter: (p) => `${p[0].name}<br/>RD$ ${p[0].value.toLocaleString()}` },
+      xAxis: { data: ['Vigente','1–30d','31–60d','61–90d','90+d'], axisLabel: { color: c.textColor, fontSize: 11 }, axisLine: { lineStyle: { color: c.axisLine } }, splitLine: { show: false } },
+      yAxis: { axisLabel: { color: c.textColor, fontSize: 10, formatter: (v) => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : v >= 1e3 ? (v/1e3).toFixed(0)+'K' : v }, splitLine: { lineStyle: { color: c.axisLine } } },
+      series: [{ type: 'bar', barMaxWidth: 48, data: [
+        { value: 1196132, itemStyle: { color: c.bar1, borderRadius: [3,3,0,0] } },
+        { value: 412000,  itemStyle: { color: c.bar2, borderRadius: [3,3,0,0] } },
+        { value: 142300,  itemStyle: { color: c.bar3, borderRadius: [3,3,0,0] } },
+        { value: 58400,   itemStyle: { color: c.bar4, borderRadius: [3,3,0,0] } },
+        { value: 25700,   itemStyle: { color: c.bar5, borderRadius: [3,3,0,0] } },
+      ] }]
+    });
+
+    // Line chart
+    const lineEl = document.getElementById('chartLine');
+    const line = echarts.init(lineEl, null, { renderer: 'svg' });
+    const months = ['Ene','Feb','Mar','Abr','May','Jun'];
+    line.setOption({
+      backgroundColor: c.bg,
+      grid: { top: 10, bottom: 30, left: 16, right: 16, containLabel: true },
+      tooltip: { trigger: 'axis', formatter: (p) => `${p[0].name}<br/>${p.map(s => `${s.seriesName}: RD$ ${s.value.toLocaleString()}`).join('<br/>')}` },
+      legend: { right: 0, top: 0, textStyle: { color: c.textColor, fontSize: 11 }, icon: 'circle', itemWidth: 8 },
+      xAxis: { data: months, axisLabel: { color: c.textColor, fontSize: 11 }, axisLine: { lineStyle: { color: c.axisLine } }, splitLine: { show: false } },
+      yAxis: { axisLabel: { color: c.textColor, fontSize: 10, formatter: (v) => v >= 1e3 ? (v/1e3).toFixed(0)+'K' : v }, splitLine: { lineStyle: { color: c.axisLine } } },
+      series: [
+        { name: 'Facturado', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
+          data: [284000,312000,298000,401000,378000,421000],
+          lineStyle: { color: c.emerald, width: 2 },
+          itemStyle: { color: c.emerald },
+          areaStyle: { color: { type:'linear', x:0,y:0,x2:0,y2:1, colorStops: [{ offset:0, color: c.areaTop },{ offset:1, color: c.areaBot }] } } },
+        { name: 'Cobrado', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
+          data: [261000,290000,278000,368000,354000,389000],
+          lineStyle: { color: c.slate, width: 2, type: 'dashed' },
+          itemStyle: { color: c.slate } }
+      ]
+    });
+
+    window.addEventListener('resize', () => { aging.resize(); line.resize(); });
+  }
+
+  renderCharts();
+</script>
+</body>
+</html>

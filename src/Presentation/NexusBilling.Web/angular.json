@@ -33,6 +33,7 @@
           },
           "configurations": {
             "production": {
+              "allowedCommonJsDependencies": ["pdfmake/build/pdfmake", "pdfmake/build/vfs_fonts"],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

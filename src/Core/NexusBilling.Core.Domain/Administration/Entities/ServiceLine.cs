@@ -10,28 +10,28 @@ public class ServiceLine : Entity
     private ServiceLine() { }
 
     public TenantIdentifier TenantId { get; private set; }
-    public short DocumentType { get; private set; }
-    public string CustomerNo { get; private set; }
-    public string DocumentNo { get; private set; }
-    public int LineNo { get; private set; }
-    public short Type { get; private set; }
-    public string No { get; private set; }
+    public short DocumentType { get; set; }
+    public string CustomerNo { get; set; }
+    public string DocumentNo { get; set; }
+    public int LineNo { get; set; }
+    public short Type { get; set; }
+    public string No { get; set; }
     public string LocationCode { get; private set; }
     public string PostingGroup { get; private set; }
-    public string Description { get; private set; }
+    public string Description { get; set; }
     public string Description2 { get; private set; }
-    public string UnitOfMeasure { get; private set; }
-    public decimal Quantity { get; private set; }
-    public decimal OutstandingQuantity { get; private set; }
-    public decimal QtyToInvoice { get; private set; }
-    public decimal QtyToShip { get; private set; }
-    public decimal UnitPrice { get; private set; }
+    public string UnitOfMeasure { get; set; }
+    public decimal Quantity { get; set; }
+    public decimal OutstandingQuantity { get; set; }
+    public decimal QtyToInvoice { get; set; }
+    public decimal QtyToShip { get; set; }
+    public decimal UnitPrice { get; set; }
     public decimal UnitCostLcy { get; private set; }
-    public decimal Vat { get; private set; }
-    public decimal LineDiscount { get; private set; }
-    public decimal LineDiscountAmount { get; private set; }
-    public decimal Amount { get; private set; }
-    public decimal AmountIncludingVat { get; private set; }
+    public decimal Vat { get; set; }
+    public decimal LineDiscount { get; set; }
+    public decimal LineDiscountAmount { get; set; }
+    public decimal Amount { get; set; }
+    public decimal AmountIncludingVat { get; set; }
     public bool AllowInvoiceDisc { get; private set; }
     public decimal GrossWeight { get; private set; }
     public decimal NetWeight { get; private set; }
@@ -45,7 +45,7 @@ public class ServiceLine : Entity
     public string JobTaskNo { get; private set; }
     public short JobLineType { get; private set; }
     public string WorkTypeCode { get; private set; }
-    public decimal OutstandingAmount { get; private set; }
+    public decimal OutstandingAmount { get; set; }
     public decimal QtyShippedNotInvoiced { get; private set; }
     public decimal ShippedNotInvoiced { get; private set; }
     public decimal QuantityShipped { get; private set; }

@@ -55,7 +55,7 @@ interface PaletteItem { id: string; label: string; desc: string; icon: string; r
               <div class="erp-navgroup-wrap">
                 <button
                   class="erp-navitem erp-navitem--group"
-                  [class.active]="groupActive(entry.item)"
+                  [class.contains-active]="groupActive(entry.item)"
                   [class.open]="openGroups().has(entry.item.group)"
                   (click)="toggleGroup(entry.item.group)"
                 >
@@ -178,6 +178,7 @@ interface PaletteItem { id: string; label: string; desc: string; icon: string; r
     .erp-navitem--group.open .erp-navitem__chevron {
       transform: rotate(90deg);
     }
+    /* Group headers stay neutral when a child is active — only leaf items get .active */
 
     .erp-subnav {
       display: flex;
@@ -216,7 +217,7 @@ export class DashboardLayoutComponent {
     { initialValue: this.router.url }
   );
 
-  readonly openGroups = signal<Set<string>>(new Set(['Ventas', 'Inventario', 'Finanzas', 'Administración']));
+  readonly openGroups = signal<Set<string>>(new Set(['Ventas', 'Inventario', 'Compras', 'Servicio', 'Finanzas', 'Administración']));
 
   readonly pageTitle = computed(() => {
     const url = this.currentUrl();
@@ -231,6 +232,7 @@ export class DashboardLayoutComponent {
       '/gl':        'Mayor General',
       '/journal':   'Diario',
       '/settings':  'Configuración',
+      '/services':  'Órdenes de Servicio',
     };
     const base = '/' + (url.split('/')[1] || 'dashboard');
     return titles[base] || 'Nexus Billing';
@@ -263,6 +265,28 @@ export class DashboardLayoutComponent {
     {
       kind: 'group',
       item: {
+        group: 'Compras',
+        icon: 'truck',
+        children: [
+          { label: 'Proveedores', route: '/vendors', icon: 'users-2' },
+          { label: 'Órdenes',     route: '/purchases', icon: 'file-text' },
+          { label: 'Facturas',    route: '/purch-invoices', icon: 'receipt' },
+        ]
+      }
+    },
+    {
+      kind: 'group',
+      item: {
+        group: 'Servicio',
+        icon: 'wrench',
+        children: [
+          { label: 'Órdenes de Servicio', route: '/services', icon: 'clipboard-list' },
+        ]
+      }
+    },
+    {
+      kind: 'group',
+      item: {
         group: 'Finanzas',
         icon: 'landmark',
         children: [
@@ -289,6 +313,8 @@ export class DashboardLayoutComponent {
     { id: 'invoices',  label: 'Facturas',          desc: 'Facturas de venta',       icon: 'receipt',          route: '/invoices'  },
     { id: 'sales',     label: 'Órdenes de venta',  desc: 'Pedidos de ventas',       icon: 'file-text',        route: '/sales'     },
     { id: 'inventory', label: 'Artículos',         desc: 'Inventario y productos',  icon: 'package',          route: '/inventory' },
+    { id: 'vendors',   label: 'Proveedores',       desc: 'Gestión de suplidores',   icon: 'users-2',          route: '/vendors'   },
+    { id: 'services',  label: 'Órdenes Servicio',  desc: 'Órdenes de servicio',     icon: 'clipboard-list',   route: '/services'  },
     { id: 'settings',  label: 'Configuración',     desc: 'Ajustes del sistema',     icon: 'settings',         route: '/settings'  },
   ];
 

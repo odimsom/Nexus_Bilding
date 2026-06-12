@@ -1,6 +1,3 @@
-# Architecture rules hidden from repo
-architecture_rules.md
-
 # .NET Core
 bin/
 obj/

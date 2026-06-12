@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { InvoiceService } from '../../../data/invoice.service';
 import { Invoice, InvoiceLine } from '../../../domain/invoice.model';
+import { PdfService } from '../../../../../shared/services/pdf.service';
 
 @Component({
   selector: 'app-invoice-card',
@@ -36,9 +37,9 @@ import { Invoice, InvoiceLine } from '../../../domain/invoice.model';
           </div>
         </div>
         <div class="nx-page-actions">
-          <button class="nx-btn nx-btn--secondary nx-btn--sm">
+          <button class="nx-btn nx-btn--secondary nx-btn--sm" [disabled]="printing()" (click)="printPdf()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-            Imprimir
+            {{ printing() ? 'Generando…' : 'Imprimir' }}
           </button>
           <button class="nx-btn nx-btn--secondary nx-btn--sm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -214,7 +215,7 @@ import { Invoice, InvoiceLine } from '../../../domain/invoice.model';
             <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
               <button class="nx-btn nx-btn--secondary nx-btn--sm nx-btn--block">Ver Movimientos</button>
               <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block">Nota de Crédito</button>
-              <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block">Exportar PDF</button>
+              <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block" [disabled]="printing()" (click)="printPdf()">Exportar PDF</button>
             </div>
           </div>
         </div>
@@ -233,14 +234,57 @@ import { Invoice, InvoiceLine } from '../../../domain/invoice.model';
 export class InvoiceCardPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly svc = inject(InvoiceService);
+  private readonly pdfSvc = inject(PdfService);
 
   invoice = signal<Invoice | undefined>(undefined);
   lines = signal<InvoiceLine[]>([]);
+  printing = signal(false);
 
   ngOnInit(): void {
     const no = this.route.snapshot.paramMap.get('no') ?? '';
     this.invoice.set(this.svc.getByNo(no));
     this.lines.set(this.svc.getLinesForInvoice(no));
+  }
+
+  async printPdf(): Promise<void> {
+    const inv = this.invoice();
+    if (!inv || this.printing()) return;
+    this.printing.set(true);
+
+    try {
+      await this.pdfSvc.printInvoice({
+        no: inv.no,
+        orderNo: inv.orderNo,
+        customerName: inv.sellToCustomerName,
+        customerNo: inv.sellToCustomerNo,
+        billToName: inv.billToName,
+        externalDocumentNo: inv.externalDocumentNo,
+        salespersonCode: inv.salespersonCode,
+        postingDate: inv.postingDate,
+        dueDate: inv.dueDate,
+        paymentTerms: inv.paymentTermsCode ?? null,
+        paymentMethodCode: inv.paymentMethodCode ?? null,
+        currencyCode: inv.currencyCode,
+        status: inv.status,
+        lines: this.lines().map(l => ({
+          lineNo: l.lineNo,
+          type: l.type,
+          no: l.no,
+          description: l.description,
+          quantity: l.quantity,
+          unitPrice: l.unitPrice,
+          lineDiscountPct: l.lineDiscountPct,
+          amount: l.amount,
+          amountIncludingVat: l.amountIncludingVat,
+          unitOfMeasureCode: l.unitOfMeasureCode
+        })),
+        amount: inv.amount,
+        amountIncludingVat: inv.amountIncludingVat,
+        remainingAmount: inv.remainingAmount
+      });
+    } finally {
+      this.printing.set(false);
+    }
   }
 
   statusClass(s: string): string {

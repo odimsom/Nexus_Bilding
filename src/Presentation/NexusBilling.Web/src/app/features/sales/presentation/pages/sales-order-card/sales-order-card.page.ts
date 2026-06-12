@@ -1,6 +1,9 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { ApiService } from '../../../../../core/services/api.service';
+import { PdfService } from '../../../../../shared/services/pdf.service';
 import { InvoiceService } from '../../../data/invoice.service';
 import { SalesOrderDetail } from '../../../domain/invoice.model';
 
@@ -44,18 +47,18 @@ import { SalesOrderDetail } from '../../../domain/invoice.model';
           </div>
         </div>
         <div class="nx-page-actions">
-          <button class="nx-btn nx-btn--secondary nx-btn--sm" disabled>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            Editar
+          <button class="nx-btn nx-btn--secondary nx-btn--sm" [disabled]="printing()" (click)="printPdf()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            {{ printing() ? 'Generando…' : 'Imprimir' }}
           </button>
           @if (order()!.status === 'Open') {
-            <button class="nx-btn nx-btn--subtle nx-btn--sm" disabled>
+            <button class="nx-btn nx-btn--subtle nx-btn--sm" [disabled]="releasing()" (click)="releaseOrder()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              Liberar
+              {{ releasing() ? 'Liberando…' : 'Liberar' }}
             </button>
           }
           @if (order()!.status === 'Released') {
-            <button class="nx-btn nx-btn--primary nx-btn--sm" disabled>
+            <button class="nx-btn nx-btn--primary nx-btn--sm" disabled title="Publicación próximamente">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               Publicar
             </button>
@@ -280,9 +283,13 @@ import { SalesOrderDetail } from '../../../domain/invoice.model';
 export class SalesOrderCardPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly svc = inject(InvoiceService);
+  private readonly api = inject(ApiService);
+  private readonly pdfSvc = inject(PdfService);
 
   order = signal<SalesOrderDetail | null>(null);
   loading = signal(true);
+  releasing = signal(false);
+  printing = signal(false);
 
   async ngOnInit(): Promise<void> {
     const no = this.route.snapshot.paramMap.get('no') ?? '';
@@ -293,6 +300,59 @@ export class SalesOrderCardPage implements OnInit {
       this.order.set(null);
     } finally {
       this.loading.set(false);
+    }
+  }
+
+  async releaseOrder(): Promise<void> {
+    const ord = this.order();
+    if (!ord || this.releasing()) return;
+    this.releasing.set(true);
+    try {
+      await firstValueFrom(this.api.patch<{ no: string; status: string }>(`sales/orders/${encodeURIComponent(ord.no)}/release`));
+      const updated = await this.svc.getOrderDetail(ord.no);
+      this.order.set(updated);
+    } catch (err) {
+      console.error('Error liberando orden:', err);
+    } finally {
+      this.releasing.set(false);
+    }
+  }
+
+  async printPdf(): Promise<void> {
+    const ord = this.order();
+    if (!ord || this.printing()) return;
+    this.printing.set(true);
+    try {
+      await this.pdfSvc.printSalesOrder({
+        no: ord.no,
+        documentType: ord.documentType,
+        customerName: ord.sellToCustomerName,
+        customerNo: ord.sellToCustomerNo,
+        externalDocumentNo: ord.externalDocumentNo,
+        salespersonCode: ord.salespersonCode,
+        postingDate: ord.postingDate,
+        dueDate: ord.dueDate,
+        paymentTerms: ord.paymentTermsCode,
+        paymentMethodCode: ord.paymentMethodCode,
+        currencyCode: ord.currencyCode,
+        status: ord.status,
+        lines: ord.lines.map(l => ({
+          lineNo: l.lineNo,
+          no: l.no,
+          description: l.description,
+          quantity: l.quantity,
+          unitOfMeasure: l.unitOfMeasure,
+          unitPrice: l.unitPrice,
+          lineDiscount: l.lineDiscount,
+          amount: l.amount,
+          vat: l.vat,
+          amountIncludingVat: l.amountIncludingVat,
+        })),
+        amount: ord.amount,
+        amountIncludingVat: ord.amountIncludingVat,
+      });
+    } finally {
+      this.printing.set(false);
     }
   }
 

@@ -1,0 +1,24 @@
+<!-- @dsCard group="Type" viewport="700x180" name="Numeric & mono — JetBrains Mono" subtitle="Tabular figures for amounts, document numbers & codes" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background: var(--surface); padding: 24px; font-family: var(--font-sans); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); font-weight: 600; padding: 0 0 10px; border-bottom: 1px solid var(--border-default); }
+  th.r, td.r { text-align: right; }
+  td { padding: 9px 0; border-bottom: 1px solid var(--border-subtle); font-size: 13px; }
+  .doc { font-family: var(--font-mono); font-weight: 500; color: var(--text-strong); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .pos { color: var(--money-positive); }
+  .neg { color: var(--money-negative); }
+</style></head>
+<body>
+  <table>
+    <thead><tr><th>Document No.</th><th>Customer</th><th class="r">Amount</th><th class="r">Balance</th></tr></thead>
+    <tbody>
+      <tr><td class="doc">SI-2026-001847</td><td>Altagracia Comercial</td><td class="r num">12,400.00</td><td class="r num pos">+ 12,400.00</td></tr>
+      <tr><td class="doc">CM-2026-000219</td><td>Ferretería del Sur</td><td class="r num">1,905.40</td><td class="r num neg">− 1,905.40</td></tr>
+      <tr><td class="doc">SI-2026-001848</td><td>Distribuidora Caribe</td><td class="r num">208,750.00</td><td class="r num pos">+ 208,750.00</td></tr>
+    </tbody>
+  </table>
+</body></html>

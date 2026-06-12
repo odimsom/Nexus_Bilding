@@ -7,10 +7,12 @@ using NexusBilling.Core.Domain.Security.Repositories;
 using NexusBilling.Core.Domain.Inventory.Repositories;
 using NexusBilling.Core.Domain.Finance.Repositories;
 using NexusBilling.Core.Domain.Sales.Repositories;
+using NexusBilling.Core.Domain.Ecf.Repositories;
 using NexusBilling.Core.Domain.Purchasing.Repositories;
 using NexusBilling.Infrastructure.Persistence.Repositories.Base;
 using NexusBilling.Infrastructure.Persistence.Finance.Repositories;
 using NexusBilling.Infrastructure.Persistence.Sales.Repositories;
+using NexusBilling.Infrastructure.Persistence.Ecf.Repositories;
 using NexusBilling.Infrastructure.Persistence.Purchasing.Repositories;
 using NexusBilling.Infrastructure.Persistence.Inventory.Repositories;
 using NexusBilling.Infrastructure.Persistence.Administration.Repositories;
@@ -533,6 +535,12 @@ public static class ServiceRegistration
         services.AddScoped<ISalesHeaderArchiveRepository, SalesHeaderArchiveRepository>();
         services.AddScoped<ISalesInvoiceHeaderRepository, SalesInvoiceHeaderRepository>();
         services.AddScoped<ISalesInvoiceLineRepository, SalesInvoiceLineRepository>();
+
+        // ECF
+        services.AddScoped<IEcfCompanyConfigRepository, EcfCompanyConfigRepository>();
+        services.AddScoped<IEcfNcfSequenceRepository, EcfNcfSequenceRepository>();
+        services.AddScoped<IEcfDocumentRepository, EcfDocumentRepository>();
+
         services.AddScoped<ISalesLineArchiveRepository, SalesLineArchiveRepository>();
         services.AddScoped<ISalesLineDiscountRepository, SalesLineDiscountRepository>();
         services.AddScoped<ISalesPriceRepository, SalesPriceRepository>();

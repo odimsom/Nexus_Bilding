@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radii & elevation" subtitle="Restrained corners; soft slate-tinted shadows for floating UI" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background: var(--surface-sunken); padding: 26px; font-family: var(--font-sans); display:flex; gap: 30px; }
+  .group { display:flex; gap: 16px; align-items: center; }
+  .r { width: 58px; height: 58px; background: var(--surface); border: 1px solid var(--border-default); display:flex; align-items:flex-end; justify-content:center; padding-bottom: 6px; }
+  .e { width: 64px; height: 58px; background: var(--surface); border-radius: var(--radius-md); display:flex; align-items:flex-end; justify-content:center; padding-bottom: 6px; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+  .div { width:1px; background: var(--border-default); align-self: stretch; }
+</style></head>
+<body>
+  <div class="group">
+    <div class="r" style="border-radius:var(--radius-xs)"><span class="lbl">xs</span></div>
+    <div class="r" style="border-radius:var(--radius-sm)"><span class="lbl">sm</span></div>
+    <div class="r" style="border-radius:var(--radius-md)"><span class="lbl">md</span></div>
+    <div class="r" style="border-radius:var(--radius-lg)"><span class="lbl">lg</span></div>
+  </div>
+  <div class="div"></div>
+  <div class="group">
+    <div class="e" style="box-shadow:var(--shadow-sm)"><span class="lbl">sm</span></div>
+    <div class="e" style="box-shadow:var(--shadow-md)"><span class="lbl">md</span></div>
+    <div class="e" style="box-shadow:var(--shadow-lg)"><span class="lbl">lg</span></div>
+    <div class="e" style="box-shadow:var(--shadow-xl)"><span class="lbl">xl</span></div>
+  </div>
+</body></html>

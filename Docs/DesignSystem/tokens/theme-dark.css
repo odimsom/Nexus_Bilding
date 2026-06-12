@@ -1,0 +1,84 @@
+/* Nexus Billing — Dark theme
+ * Applied with [data-theme="dark"] on the <html> element.
+ * Only semantic aliases are overridden; the raw ramp values (--slate-*, --emerald-*)
+ * stay the same so components that reference the ramp directly still work.
+ * The dark canvas is a deep cool-slate (not pure black) — easier on the eyes
+ * for long sessions. Surfaces lift slightly above the canvas so cards read. */
+
+[data-theme="dark"] {
+  /* Surfaces — clear step between canvas, surface and sunken */
+  --canvas:            #0E1219;   /* app background — deep ink slate */
+  --surface:           #171E2E;   /* cards, panels, rows — distinct from canvas */
+  --surface-sunken:    #111620;   /* wells, table headers, slightly darker than canvas */
+  --surface-hover:     rgba(255,255,255,0.05);
+  --surface-selected:  rgba(19,138,104,0.20);  /* emerald tint, darker */
+  --surface-inverse:   #090C13;   /* sidebar — darkest, stands apart */
+
+  /* Text */
+  --text-strong:   #F2F5FA;
+  --text-body:     #C8D0E0;
+  --text-muted:    #8A95AB;
+  --text-faint:    #5E6A7F;
+  --text-on-brand: #FFFFFF;
+  --text-on-inverse: #C8D0E0;
+  --text-link:     var(--emerald-300);   /* lighter for dark bg contrast */
+
+  /* Borders — enough opacity so cards/inputs read clearly against surfaces */
+  --border-subtle:  rgba(255,255,255,0.10);
+  --border-default: rgba(255,255,255,0.16);
+  --border-strong:  rgba(255,255,255,0.28);
+  --border-inverse: rgba(255,255,255,0.08);
+  --hairline:       rgba(255,255,255,0.09);
+
+  /* Action (brighten slightly for dark-bg legibility) */
+  --action:          var(--emerald-500);   /* #138A68 */
+  --action-hover:    var(--emerald-400);   /* lighter on hover */
+  --action-press:    var(--emerald-600);
+  --action-tint:     rgba(19,138,104,0.16);
+  --action-ring:     rgba(47,161,126,0.42);
+
+  /* Focus */
+  --focus-ring:        var(--emerald-400);
+  --focus-ring-offset: #111520;   /* match canvas */
+
+  /* Status — dark-tinted bg + brightened fg for legibility */
+  --status-success-fg: var(--emerald-300);    --status-success-bg: #0D2318;
+  --status-info-fg:    #7EA6E8;               --status-info-bg:    #0E1C3A;
+  --status-warn-fg:    #E4B046;               --status-warn-bg:    #251A08;
+  --status-danger-fg:  #E8766A;               --status-danger-bg:  #2A1010;
+  --status-neutral-fg: var(--slate-400);      --status-neutral-bg: rgba(255,255,255,0.06);
+
+  /* Money */
+  --money-positive: var(--emerald-300);
+  --money-negative: #E8766A;
+  --money-zero:     var(--slate-600);
+
+  /* Shadows — black-based on dark bg */
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.28);
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.34);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.44);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.54);
+  --shadow-xl: 0 24px 64px rgba(0,0,0,0.64), 0 8px 20px rgba(0,0,0,0.38);
+  --shadow-inset: inset 0 1px 2px rgba(0,0,0,0.40);
+
+  /* Scrim */
+  --scrim: rgba(0,0,0,0.64);
+
+  /* Scrollbars */
+  scrollbar-color: var(--slate-700) transparent;
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-thumb {
+  background: var(--slate-700);
+  background-clip: content-box;
+}
+[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-600);
+  background-clip: content-box;
+}
+
+/* Invert the logo-mark SVG fill behaviour on dark (emerald + gold works on both) */
+[data-theme="dark"] ::selection {
+  background: var(--emerald-800);
+  color: var(--emerald-100);
+}

@@ -1,0 +1,142 @@
+<!-- @dsCard group="ERP App" viewport="1280x720" name="Nexus Billing — ERP web app" subtitle="Login → Dashboard → Customers → Customer Card (FactBox) → Sales Invoice" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus Billing — ERP</title>
+<link rel="icon" href="../../assets/logo-tile.svg">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="app.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="data.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="screens.jsx"></script>
+<script type="text/babel">
+  const NS = window.NexusBillingDesignSystem_f29fd0 || {};
+  const { Button, IconButton } = NS;
+  const Icon = window.NXIcon;
+  const { useState, useEffect } = React;
+  const D = window.NXDATA;
+
+  const LS = 'nx-erp-route';
+  const loadRoute = () => { try { return JSON.parse(localStorage.getItem(LS)) || { screen: 'login' }; } catch { return { screen: 'login' }; } };
+
+  function App() {
+    const [route, setRoute] = useState(loadRoute);
+    const go = (r) => setRoute(r);
+    useEffect(() => { localStorage.setItem(LS, JSON.stringify(route)); }, [route]);
+    useEffect(() => { const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 0); return () => clearTimeout(t); });
+
+    if (route.screen === 'login') {
+      return <window.NXLogin onSignIn={() => go({ screen: 'dashboard' })} />;
+    }
+
+    // Build crumbs, title, actions per screen
+    const labelOf = (s) => ({ dashboard: 'Dashboard', customers: 'Customers', invoices: 'Sales Invoices', items: 'Items', vendors: 'Vendors', porders: 'Purchase Orders', locations: 'Locations', gl: 'Chart of Accounts' }[s] || s);
+    let crumbs = [{ label: 'Home', onClick: () => go({ screen: 'dashboard' }) }];
+    let title = 'Dashboard', actions = null, content = null;
+
+    const newDocBtn = <Button variant="primary" size="sm" leftIcon={<Icon n="plus" />} onClick={() => go({ screen: 'invoice', no: 'SI-2026-001847' })}>New invoice</Button>;
+    const recordActions = (
+      <>
+        <Button variant="ghost" size="sm" leftIcon={<Icon n="printer" />}>Print</Button>
+        <Button variant="secondary" size="sm" leftIcon={<Icon n="pencil" />}>Edit</Button>
+        <Button variant="primary" size="sm" leftIcon={<Icon n="check" />}>Post</Button>
+      </>
+    );
+
+    switch (route.screen) {
+      case 'dashboard':
+        title = 'Dashboard'; actions = newDocBtn;
+        content = <window.NXDashboard go={go} />;
+        break;
+      case 'customers':
+        title = 'Clientes'; crumbs.push({ label: 'Ventas', onClick: () => go({ screen: 'customers' }) }, { label: 'Clientes' });
+        actions = <Button variant="primary" size="sm" leftIcon={<Icon n="plus" />}>Nuevo cliente</Button>;
+        content = <window.NXCustomerList go={go} />;
+        break;
+      case 'customer': {
+        const c = D.customers.find(x => x.no === route.no) || D.customers[0];
+        title = c.name; actions = recordActions;
+        crumbs.push({ label: 'Sales', onClick: () => go({ screen: 'customers' }) }, { label: 'Customers', onClick: () => go({ screen: 'customers' }) }, { label: c.name });
+        content = <window.NXCustomerCard no={route.no} go={go} />;
+        break;
+      }
+      case 'invoices':
+        title = 'Facturas de venta'; crumbs.push({ label: 'Ventas', onClick: () => go({ screen: 'invoices' }) }, { label: 'Facturas' });
+        actions = newDocBtn;
+        content = (
+          <div className="erp-stack">
+            <div className="erp-pagehead"><div style={{ flex: 1 }}><h1>Sales Invoices</h1><div className="erp-pagehead__meta">{D.invoices.length} documents</div></div></div>
+            {NS.Card ? <NS.Card padded={false}><InvoiceList /></NS.Card> : null}
+          </div>
+        );
+        break;
+      case 'invoice': {
+        title = route.no; actions = recordActions;
+        crumbs.push({ label: 'Sales', onClick: () => go({ screen: 'invoices' }) }, { label: 'Sales Invoices', onClick: () => go({ screen: 'invoices' }) }, { label: route.no });
+        content = <window.NXSalesInvoice no={route.no} go={go} />;
+        break;
+      }
+      case 'items':
+        title = 'Artículos'; crumbs.push({ label: 'Inventario', onClick: () => go({ screen: 'items' }) }, { label: 'Artículos' });
+        actions = <Button variant="primary" size="sm" leftIcon={<Icon n="plus" />}>Nuevo artículo</Button>;
+        content = <window.NXItemList go={go} />;
+        break;
+      case 'settings':
+        title = 'Configuración'; crumbs.push({ label: 'Configuración' });
+        actions = null;
+        content = <window.NXSettings go={go} />;
+        break;
+      default:
+        title = labelOf(route.screen); crumbs.push({ label: title });
+        content = <window.NXPlaceholder title={title} go={go} />;
+    }
+
+    function InvoiceList() {
+      const { DataTable, Badge } = NS;
+      return (
+        <DataTable
+          getRowId={(r) => r.no}
+          onRowClick={(r) => go({ screen: 'invoice', no: r.no })}
+          columns={[
+            { key: 'no', header: 'Document No.', variant: 'doc', width: '170px' },
+            { key: 'billTo', header: 'Bill-to' },
+            { key: 'type', header: 'Type', width: '120px' },
+            { key: 'postingDate', header: 'Posting date', width: '130px' },
+            { key: 'status', header: 'Status', width: '120px', render: (v) => <Badge status={D.statusTone[v]} dot>{D.statusLabel[v]}</Badge> },
+            { key: 'amount', header: 'Amount', variant: 'num', align: 'right', render: (v) => D.money(v) },
+          ]}
+          rows={D.invoices}
+        />
+      );
+    }
+
+    return (
+      <window.NXShell route={route} go={go} crumbs={crumbs} title={title} actions={actions}>
+        {content}
+      </window.NXShell>
+    );
+  }
+
+  // Wait for babel-compiled screen scripts to register on window
+  function boot() {
+    if (window.NXShell && window.NXDashboard && window.NXSettings) {
+      ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+      setTimeout(() => window.lucide && window.lucide.createIcons(), 30);
+    } else {
+      setTimeout(boot, 30);
+    }
+  }
+  boot();
+</script>
+</body>
+</html>

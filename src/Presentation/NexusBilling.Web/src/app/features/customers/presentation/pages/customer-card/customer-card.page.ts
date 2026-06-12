@@ -2,12 +2,16 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 import { CustomerService, CustomerFormData } from '../../../data/customer.service';
 import { Customer } from '../../../domain/customer.model';
-import { InvoiceService, CreateSalesOrderData, SalesOrderLine } from '../../../../sales/data/invoice.service';
-import { ItemService } from '../../../../inventory/data/item.service';
+import { InvoiceService, CreateSalesOrderData } from '../../../../sales/data/invoice.service';
+import { ItemService, ItemListItem } from '../../../../inventory/data/item.service';
+import { ApiService } from '../../../../../core/services/api.service';
 import { RncPipe } from '../../../../../shared/pipes/rnc.pipe';
 import { PhonePipe } from '../../../../../shared/pipes/phone.pipe';
+import { RncFormatDirective } from '../../../../../shared/directives/rnc-format.directive';
+import { PhoneFormatDirective } from '../../../../../shared/directives/phone-format.directive';
 
 interface OrderLine {
   itemNo: string;
@@ -16,12 +20,15 @@ interface OrderLine {
   unitPrice: number;
   lineDiscountPct: number;
   unitOfMeasure: string;
+  type: 'Item' | 'Service' | 'G/L Account';
+  suggestions: ItemListItem[];
+  showSuggestions: boolean;
 }
 
 @Component({
   selector: 'app-customer-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, RncPipe, PhonePipe],
+  imports: [CommonModule, RouterLink, FormsModule, RncPipe, PhonePipe, RncFormatDirective, PhoneFormatDirective],
   template: `
     @if (loading()) {
       <div class="nx-empty" style="min-height:300px;">
@@ -240,9 +247,9 @@ interface OrderLine {
               <div class="nx-field"><label class="nx-label">Ciudad</label><input class="nx-input" [(ngModel)]="form.city" /></div>
               <div class="nx-field"><label class="nx-label">País</label><input class="nx-input" [(ngModel)]="form.countryRegionCode" /></div>
               <div class="nx-field"><label class="nx-label">Contacto</label><input class="nx-input" [(ngModel)]="form.contact" /></div>
-              <div class="nx-field"><label class="nx-label">Teléfono</label><input class="nx-input" type="tel" [(ngModel)]="form.phoneNo" /></div>
+              <div class="nx-field"><label class="nx-label">Teléfono</label><input class="nx-input" type="tel" nxPhone [(ngModel)]="form.phoneNo" /></div>
               <div class="nx-field"><label class="nx-label">Correo Electrónico</label><input class="nx-input" type="email" [(ngModel)]="form.email" /></div>
-              <div class="nx-field"><label class="nx-label">RNC / Cédula</label><input class="nx-input" [(ngModel)]="form.vatRegistrationNo" /></div>
+              <div class="nx-field"><label class="nx-label">RNC / Cédula</label><input class="nx-input" nxRnc [(ngModel)]="form.vatRegistrationNo" /></div>
               <div class="nx-field"><label class="nx-label">Límite de Crédito (DOP)</label><input class="nx-input" type="number" [(ngModel)]="form.creditLimit" /></div>
               <div class="nx-field"><label class="nx-label">Condición de Pago</label>
                 <select class="nx-select" [(ngModel)]="form.paymentTermsCode">
@@ -285,54 +292,74 @@ interface OrderLine {
       <div class="modal-backdrop" (click)="closeOrder()">
         <div class="modal-box modal-box--wide" (click)="$event.stopPropagation()">
           <div class="modal-header">
-            <h2 class="nx-page-title" style="margin:0;">Nueva Factura — {{ customer()!.name }}</h2>
+            <div>
+              <div class="nx-eyebrow" style="margin-bottom:var(--nx-space-1);">{{ docTypeFullLabel(orderForm.documentType) }}</div>
+              <h2 class="nx-page-title" style="margin:0;font-size:var(--nx-text-xl);">
+                Para <span style="color:var(--nx-action);">{{ customer()!.name }}</span>
+              </h2>
+            </div>
             <button class="nx-iconbtn" (click)="closeOrder()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
           </div>
           <div class="modal-body">
             @if (orderError()) {
-              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ orderError() }}</div>
+              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-4);">
+                <strong>No se pudo crear el pedido.</strong>
+                <p style="margin:var(--nx-space-1) 0 0;font-size:var(--nx-text-sm);">{{ orderError() }}</p>
+              </div>
             }
             @if (orderSuccess()) {
-              <div class="nx-callout nx-callout--success" style="margin-bottom:var(--nx-space-3);">
-                ✓ Pedido creado: <strong>{{ orderSuccess() }}</strong>
-                &nbsp;<a [routerLink]="['/sales-orders']" class="nx-link">Ver pedidos</a>
+              <div class="nx-callout nx-callout--success" style="margin-bottom:var(--nx-space-4);">
+                <strong>Pedido creado correctamente.</strong>
+                <p style="margin:var(--nx-space-1) 0 0;font-size:var(--nx-text-sm);">
+                  No. <span style="font-family:var(--nx-font-mono);">{{ orderSuccess() }}</span>
+                  &mdash; <a [routerLink]="['/sales', orderSuccess()]" class="nx-link">Ver pedido</a>
+                </p>
               </div>
             }
             <!-- Header fields -->
             <div class="form-grid" style="margin-bottom:var(--nx-space-4);">
               <div class="nx-field">
-                <label class="nx-label">Tipo de Documento</label>
-                <select class="nx-select" [(ngModel)]="orderForm.documentType">
+                <label class="nx-label">Tipo de Documento <span style="color:var(--nx-red-500);">*</span></label>
+                <select class="nx-select" [(ngModel)]="orderForm.documentType" (ngModelChange)="onDocTypeChange()">
                   <option value="Order">Pedido de Venta</option>
                   <option value="Invoice">Factura Directa</option>
                   <option value="Quote">Cotización</option>
                 </select>
               </div>
               <div class="nx-field">
-                <label class="nx-label">Ref. Externa</label>
-                <input class="nx-input" [(ngModel)]="orderForm.externalDocumentNo" placeholder="P.O. del cliente" />
+                <label class="nx-label">No. del Documento</label>
+                <div style="display:flex;gap:var(--nx-space-2);">
+                  <input class="nx-input" style="font-family:var(--nx-font-mono);flex:1;" [value]="orderForm.documentNo || '(Autogenerado)'" disabled />
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" [disabled]="loadingNextNo()" (click)="refreshNextNo()" title="Obtener siguiente número de la secuencia">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  </button>
+                </div>
               </div>
               <div class="nx-field">
-                <label class="nx-label">Fecha Pedido</label>
+                <label class="nx-label">Ref. del cliente</label>
+                <input class="nx-input" [(ngModel)]="orderForm.externalDocumentNo" placeholder="No. de orden del cliente" />
+              </div>
+              <div class="nx-field">
+                <label class="nx-label">Fecha del Pedido <span style="color:var(--nx-red-500);">*</span></label>
                 <input class="nx-input" type="date" [(ngModel)]="orderForm.postingDate" />
               </div>
               <div class="nx-field">
-                <label class="nx-label">Fecha Vencimiento</label>
+                <label class="nx-label">Fecha de Vencimiento</label>
                 <input class="nx-input" type="date" [(ngModel)]="orderForm.dueDate" />
               </div>
               <div class="nx-field">
                 <label class="nx-label">Condición de Pago</label>
                 <select class="nx-select" [(ngModel)]="orderForm.paymentTermsCode">
-                  <option value="">— Seleccionar —</option>
+                  <option value="">Seleccionar…</option>
                   <option>CONTADO</option><option>15 DIAS</option><option>30 DIAS</option><option>45 DIAS</option><option>60 DIAS</option><option>90 DIAS</option>
                 </select>
               </div>
               <div class="nx-field">
                 <label class="nx-label">Método de Pago</label>
                 <select class="nx-select" [(ngModel)]="orderForm.paymentMethodCode">
-                  <option value="">— Seleccionar —</option>
+                  <option value="">Seleccionar…</option>
                   <option>EFECTIVO</option><option>TRANSFERENCIA</option><option>CHEQUE</option><option>TARJETA</option>
                 </select>
               </div>
@@ -341,72 +368,101 @@ interface OrderLine {
             <!-- Lines -->
             <div style="margin-bottom:var(--nx-space-3);">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--nx-space-2);">
-                <span style="font-weight:var(--nx-weight-semibold);font-size:var(--nx-text-sm);">Líneas del Pedido</span>
-                <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine()">+ Añadir Línea</button>
+                <span style="font-weight:var(--nx-weight-semibold);font-size:var(--nx-text-sm);">Líneas del Pedido <span style="color:var(--nx-red-500);">*</span></span>
+                <div style="display:flex;gap:var(--nx-space-2);">
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine('Item')">+ Artículo</button>
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine('Service')">+ Servicio</button>
+                </div>
               </div>
               <div style="overflow-x:auto;">
-                <table class="nx-table" style="min-width:700px;">
+                <table class="nx-table" style="min-width:760px;">
                   <thead>
                     <tr>
-                      <th style="min-width:120px;">No. Artículo</th>
+                      <th style="width:34px;">#</th>
+                      <th style="width:70px;">Tipo</th>
+                      <th style="min-width:130px;">No. / Ref.</th>
                       <th style="min-width:200px;">Descripción</th>
-                      <th>U/M</th>
-                      <th class="nx-th--num">Cant.</th>
-                      <th class="nx-th--num">Precio</th>
-                      <th class="nx-th--num">Desc.%</th>
-                      <th class="nx-th--num">Importe</th>
-                      <th></th>
+                      <th style="width:60px;">U/M</th>
+                      <th class="nx-th--num" style="width:70px;">Cant.</th>
+                      <th class="nx-th--num" style="width:100px;">Precio</th>
+                      <th class="nx-th--num" style="width:60px;">Desc.%</th>
+                      <th class="nx-th--num" style="width:110px;">Importe</th>
+                      <th style="width:36px;"></th>
                     </tr>
                   </thead>
                   <tbody>
                     @for (line of orderLines; track $index; let i = $index) {
                       <tr>
+                        <td style="color:var(--nx-text-faint);font-size:var(--nx-text-xs);font-family:var(--nx-font-mono);">{{ (i + 1) * 10000 }}</td>
                         <td>
-                          <input class="nx-input nx-input--sm" [(ngModel)]="line.itemNo" (change)="lookupItem(i)" placeholder="ART-0001" style="width:100%;" />
+                          <span class="nx-badge nx-badge--outline" style="font-size:10px;">{{ line.type === 'Item' ? 'Art.' : 'Serv.' }}</span>
+                        </td>
+                        <td style="position:relative;">
+                          <input
+                            class="nx-input nx-input--sm"
+                            style="width:100%;font-family:var(--nx-font-mono);"
+                            [(ngModel)]="line.itemNo"
+                            [placeholder]="line.type === 'Item' ? 'ART-00001' : 'SRV-001'"
+                            (focus)="onItemFocus(i)"
+                            (input)="onItemInput(i)"
+                            (blur)="closeSuggestionsDelayed(i)"
+                            autocomplete="off"
+                          />
+                          @if (line.showSuggestions && line.suggestions.length > 0) {
+                            <div class="item-dropdown">
+                              @for (s of line.suggestions; track s.no) {
+                                <button class="item-dropdown__item" (mousedown)="selectSuggestion(i, s)">
+                                  <span style="font-family:var(--nx-font-mono);font-size:var(--nx-text-xs);color:var(--nx-action);">{{ s.no }}</span>
+                                  <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ s.description }}</span>
+                                  <span style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);">{{ s.unitPrice | number:'1.2-2' }}</span>
+                                </button>
+                              }
+                            </div>
+                          }
                         </td>
                         <td>
-                          <input class="nx-input nx-input--sm" [(ngModel)]="line.description" style="width:100%;" />
+                          <input class="nx-input nx-input--sm" [(ngModel)]="line.description" placeholder="Descripción" style="width:100%;" />
                         </td>
                         <td>
-                          <input class="nx-input nx-input--sm" [(ngModel)]="line.unitOfMeasure" style="width:64px;" />
+                          <input class="nx-input nx-input--sm" [(ngModel)]="line.unitOfMeasure" style="width:54px;" placeholder="UND" />
                         </td>
                         <td>
-                          <input class="nx-input nx-input--sm nx-num" [(ngModel)]="line.quantity" type="number" min="0" style="width:72px;" />
+                          <input class="nx-input nx-input--sm nx-num" [(ngModel)]="line.quantity" type="number" min="0.001" step="0.001" style="width:64px;" />
                         </td>
                         <td>
-                          <input class="nx-input nx-input--sm nx-num" [(ngModel)]="line.unitPrice" type="number" min="0" style="width:100px;" />
+                          <input class="nx-input nx-input--sm nx-num" [(ngModel)]="line.unitPrice" type="number" min="0" step="0.01" style="width:94px;" />
                         </td>
                         <td>
-                          <input class="nx-input nx-input--sm nx-num" [(ngModel)]="line.lineDiscountPct" type="number" min="0" max="100" style="width:64px;" />
+                          <input class="nx-input nx-input--sm nx-num" [(ngModel)]="line.lineDiscountPct" type="number" min="0" max="100" style="width:54px;" />
                         </td>
                         <td class="nx-td--num">
                           <span class="nx-num">{{ lineAmount(line) | number:'1.2-2' }}</span>
                         </td>
                         <td>
-                          <button class="nx-iconbtn nx-iconbtn--sm" (click)="removeLine(i)" title="Eliminar línea" style="color:var(--nx-red-500);">
+                          <button class="nx-iconbtn nx-iconbtn--sm" (click)="removeLine(i)" title="Eliminar" style="color:var(--nx-red-500);">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
                           </button>
                         </td>
                       </tr>
                     }
                     @if (orderLines.length === 0) {
-                      <tr><td colspan="8" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-4);">Sin líneas — haz clic en "+ Añadir Línea"</td></tr>
+                      <tr><td colspan="10" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-5);">Agrega artículos o servicios con los botones de arriba</td></tr>
                     }
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="6" style="text-align:right;font-weight:var(--nx-weight-medium);color:var(--nx-text-muted);font-size:var(--nx-text-sm);">Subtotal:</td>
+                      <td colspan="8" style="text-align:right;font-weight:var(--nx-weight-medium);color:var(--nx-text-muted);font-size:var(--nx-text-sm);">Subtotal:</td>
                       <td class="nx-td--num nx-num">{{ orderSubtotal() | number:'1.2-2' }}</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td colspan="6" style="text-align:right;font-weight:var(--nx-weight-medium);color:var(--nx-text-muted);font-size:var(--nx-text-sm);">ITBIS (18%):</td>
+                      <td colspan="8" style="text-align:right;font-weight:var(--nx-weight-medium);color:var(--nx-text-muted);font-size:var(--nx-text-sm);">ITBIS (18%):</td>
                       <td class="nx-td--num nx-num">{{ orderItbis() | number:'1.2-2' }}</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td colspan="6" style="text-align:right;font-weight:var(--nx-weight-bold);">Total:</td>
-                      <td class="nx-td--num nx-num" style="font-weight:var(--nx-weight-bold);font-size:1.1rem;">{{ orderTotal() | number:'1.2-2' }}</td>
+                      <td colspan="8" style="text-align:right;font-weight:var(--nx-weight-bold);">Total c/ITBIS:</td>
+                      <td class="nx-td--num nx-num" style="font-weight:var(--nx-weight-bold);font-size:1.05rem;">{{ orderTotal() | number:'1.2-2' }}</td>
                       <td></td>
                     </tr>
                   </tfoot>
@@ -416,8 +472,8 @@ interface OrderLine {
           </div>
           <div class="modal-footer">
             <button class="nx-btn nx-btn--ghost" (click)="closeOrder()">Cancelar</button>
-            <button class="nx-btn nx-btn--primary" [disabled]="orderSaving() || orderLines.length === 0" (click)="saveOrder()">
-              @if (orderSaving()) { Guardando… } @else { Crear Pedido }
+            <button class="nx-btn nx-btn--primary" [disabled]="orderSaving()" (click)="saveOrder()">
+              @if (orderSaving()) { Guardando… } @else { Crear {{ docTypeShortLabel(orderForm.documentType) }} }
             </button>
           </div>
         </div>
@@ -443,6 +499,18 @@ interface OrderLine {
     .form-grid { display:grid;grid-template-columns:1fr 1fr;gap:var(--nx-space-4); }
     .nx-field { display:flex;flex-direction:column;gap:var(--nx-space-1); }
     .nx-input--sm { padding:4px 8px;font-size:var(--nx-text-sm); }
+    .nx-field__hint { font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-top:2px; }
+    .item-dropdown {
+      position:absolute;top:100%;left:0;right:0;z-index:200;
+      background:var(--nx-surface);border:1px solid var(--nx-border);border-radius:var(--nx-radius-md);
+      box-shadow:var(--nx-shadow-lg);max-height:200px;overflow-y:auto;
+    }
+    .item-dropdown__item {
+      display:flex;align-items:center;gap:var(--nx-space-2);
+      padding:6px 10px;width:100%;text-align:left;background:none;border:none;cursor:pointer;
+      font-size:var(--nx-text-sm);color:var(--nx-text-base);
+    }
+    .item-dropdown__item:hover { background:var(--nx-canvas-alt); }
     @media (max-width:900px) { .kpi-row { grid-template-columns:1fr 1fr; } }
     @media (max-width:600px) { .kpi-row { grid-template-columns:1fr; } .form-grid { grid-template-columns:1fr; } }
   `]
@@ -453,6 +521,7 @@ export class CustomerCardPage implements OnInit {
   private readonly svc = inject(CustomerService);
   private readonly invoiceSvc = inject(InvoiceService);
   private readonly itemSvc = inject(ItemService);
+  private readonly api = inject(ApiService);
 
   customer = signal<Customer | null>(null);
   loading = signal(true);
@@ -467,8 +536,20 @@ export class CustomerCardPage implements OnInit {
   orderSaving = signal(false);
   orderError = signal<string | null>(null);
   orderSuccess = signal<string | null>(null);
+  loadingNextNo = signal(false);
   orderLines: OrderLine[] = [];
-  orderForm = { documentType: 'Order', externalDocumentNo: '', postingDate: '', dueDate: '', paymentTermsCode: '', paymentMethodCode: '' };
+  orderForm = {
+    documentType: 'Order',
+    documentNo: '',
+    externalDocumentNo: '',
+    postingDate: '',
+    dueDate: '',
+    paymentTermsCode: '',
+    paymentMethodCode: '',
+  };
+
+  private previewNoForOrder = '';
+  private allItems: import('../../../../inventory/data/item.service').ItemListItem[] = [];
 
   utilizacion(): number {
     const c = this.customer();
@@ -547,64 +628,177 @@ export class CustomerCardPage implements OnInit {
     }
   }
 
+  docTypeFullLabel(t: string): string {
+    return { Order: 'Nuevo Pedido de Venta', Invoice: 'Nueva Factura Directa', Quote: 'Nueva Cotización' }[t] ?? 'Nuevo Documento';
+  }
+  docTypeShortLabel(t: string): string {
+    return { Order: 'Pedido', Invoice: 'Factura', Quote: 'Cotización' }[t] ?? 'Documento';
+  }
+
   openOrder(): void {
-    this.orderLines = [{ itemNo: '', description: '', quantity: 1, unitPrice: 0, lineDiscountPct: 0, unitOfMeasure: 'UND' }];
+    this.orderLines = [];
     this.orderError.set(null);
     this.orderSuccess.set(null);
+    this.orderForm.documentNo = '';
     this.showOrder.set(true);
+    this.loadAllItems();
+    this.refreshNextNo();
+  }
+
+  async onDocTypeChange(): Promise<void> {
+    this.orderForm.documentNo = '';
+    await this.refreshNextNo();
+  }
+
+  async refreshNextNo(): Promise<void> {
+    const seriesCode = this.seriesForDocType(this.orderForm.documentType);
+    this.loadingNextNo.set(true);
+    try {
+      const res = await firstValueFrom(this.api.get<{ code: string; nextNo: string }>(`administration/no-series/${seriesCode}/next`));
+      this.previewNoForOrder = res.nextNo;
+      this.orderForm.documentNo = res.nextNo;
+    } catch {
+      this.previewNoForOrder = '';
+      this.orderForm.documentNo = '';
+    } finally {
+      this.loadingNextNo.set(false);
+    }
+  }
+
+  private seriesForDocType(docType: string): string {
+    return { Order: 'PV', Quote: 'COT', Invoice: 'FAC' }[docType] ?? 'PV';
+  }
+
+  private async loadAllItems(): Promise<void> {
+    if (this.allItems.length > 0) return;
+    try {
+      await this.itemSvc.load({ pageSize: 500 });
+      this.allItems = this.itemSvc.items();
+    } catch { /* ignore */ }
   }
 
   closeOrder(): void { this.showOrder.set(false); }
 
-  addLine(): void {
-    this.orderLines = [...this.orderLines, { itemNo: '', description: '', quantity: 1, unitPrice: 0, lineDiscountPct: 0, unitOfMeasure: 'UND' }];
+  addLine(type: 'Item' | 'Service' = 'Item'): void {
+    this.orderLines = [...this.orderLines, {
+      itemNo: '', description: '', quantity: 1, unitPrice: 0,
+      lineDiscountPct: 0, unitOfMeasure: 'UND', type, suggestions: [], showSuggestions: false
+    }];
   }
 
   removeLine(i: number): void {
     this.orderLines = this.orderLines.filter((_, idx) => idx !== i);
   }
 
-  async lookupItem(i: number): Promise<void> {
+  onItemFocus(i: number): void {
     const line = this.orderLines[i];
-    if (!line.itemNo) return;
-    try {
-      const item = await this.itemSvc.getByNo(line.itemNo);
-      if (item) {
-        this.orderLines = this.orderLines.map((l, idx) => idx === i ? {
-          ...l, description: item.description, unitPrice: item.unitPrice, unitOfMeasure: item.baseUnitOfMeasure
-        } : l);
+    const q = line.itemNo.toLowerCase().trim();
+    if (!q) {
+      const suggestions = this.allItems.slice(0, 10);
+      this.orderLines[i] = { ...line, suggestions, showSuggestions: suggestions.length > 0 };
+    }
+  }
+
+  onItemInput(i: number): void {
+    const line = this.orderLines[i];
+    const q = line.itemNo.toLowerCase().trim();
+    if (!q) {
+      const suggestions = this.allItems.slice(0, 10);
+      this.orderLines[i] = { ...line, suggestions, showSuggestions: suggestions.length > 0 };
+      return;
+    }
+    const suggestions = this.allItems
+      .filter(it => it.no.toLowerCase().includes(q) || it.description.toLowerCase().includes(q))
+      .slice(0, 8);
+    this.orderLines[i] = { ...line, suggestions, showSuggestions: suggestions.length > 0 };
+  }
+
+  selectSuggestion(i: number, item: import('../../../../inventory/data/item.service').ItemListItem): void {
+    this.orderLines[i] = {
+      ...this.orderLines[i],
+      itemNo: item.no,
+      description: item.description,
+      unitPrice: item.unitPrice,
+      unitOfMeasure: item.baseUnitOfMeasure,
+      suggestions: [],
+      showSuggestions: false,
+    };
+  }
+
+  closeSuggestionsDelayed(i: number): void {
+    setTimeout(() => {
+      if (this.orderLines[i]) {
+        this.orderLines[i] = { ...this.orderLines[i], showSuggestions: false };
       }
-    } catch { /* ignore */ }
+    }, 200);
   }
 
   async saveOrder(): Promise<void> {
-    if (this.orderLines.length === 0) return;
-    this.orderSaving.set(true);
     this.orderError.set(null);
     this.orderSuccess.set(null);
+
+    // Frontend validation
+    if (!this.orderForm.postingDate) {
+      this.orderError.set('La fecha del pedido es obligatoria.');
+      return;
+    }
+    if (this.orderLines.length === 0) {
+      this.orderError.set('Debes agregar al menos una línea al pedido.');
+      return;
+    }
+    const emptyLine = this.orderLines.find(l => !l.description?.trim());
+    if (emptyLine) {
+      this.orderError.set('Todas las líneas deben tener una descripción.');
+      return;
+    }
+    const zeroQty = this.orderLines.find(l => !l.quantity || l.quantity <= 0);
+    if (zeroQty) {
+      this.orderError.set('Todas las líneas deben tener una cantidad mayor a cero.');
+      return;
+    }
+
+    this.orderSaving.set(true);
     try {
       const c = this.customer()!;
+      const seriesCode = this.seriesForDocType(this.orderForm.documentType);
+      const typedNo = this.orderForm.documentNo?.trim() || '';
+      // Use seriesCode when: field is empty OR user left the preview value unchanged
+      const useManual = typedNo && typedNo !== this.previewNoForOrder;
       const data: CreateSalesOrderData = {
         documentType: this.orderForm.documentType,
         sellToCustomerNo: c.no,
         sellToCustomerName: c.name,
         externalDocumentNo: this.orderForm.externalDocumentNo,
-        currencyCode: c.currencyCode,
+        currencyCode: c.currencyCode || '',
         paymentTermsCode: this.orderForm.paymentTermsCode,
         paymentMethodCode: this.orderForm.paymentMethodCode,
         salespersonCode: c.salespersonCode,
-        postingDate: this.orderForm.postingDate || new Date().toISOString().slice(0, 10),
+        postingDate: this.orderForm.postingDate,
         dueDate: this.orderForm.dueDate || null,
-        seriesCode: this.orderForm.documentType === 'Order' ? 'PV' : this.orderForm.documentType === 'Quote' ? 'COT' : 'FAC',
+        seriesCode: useManual ? null : seriesCode,
+        manualNo: useManual ? typedNo : null,
         lines: this.orderLines.map(l => ({
-          itemNo: l.itemNo, description: l.description, quantity: l.quantity,
-          unitPrice: l.unitPrice, lineDiscountPct: l.lineDiscountPct, unitOfMeasure: l.unitOfMeasure
-        }))
+          itemNo: l.itemNo,
+          description: l.description,
+          quantity: l.quantity,
+          unitPrice: l.unitPrice,
+          lineDiscountPct: l.lineDiscountPct,
+          unitOfMeasure: l.unitOfMeasure,
+          lineType: l.type,
+        })),
       };
       const no = await this.invoiceSvc.createOrder(data);
       this.orderSuccess.set(no);
+      this.orderLines = [];
     } catch (e: any) {
-      this.orderError.set(e?.error?.error?.message ?? 'Error al crear el pedido.');
+      const msg: string = e?.error?.error?.message ?? '';
+      if (msg.toLowerCase().includes('serie') || msg.toLowerCase().includes('sequence')) {
+        this.orderError.set('No hay una secuencia de numeración configurada para este tipo de documento. Ve a Configuración > Secuencias para crearla.');
+      } else if (msg) {
+        this.orderError.set(msg);
+      } else {
+        this.orderError.set('Ocurrió un error al guardar el pedido. Intenta de nuevo.');
+      }
     } finally {
       this.orderSaving.set(false);
     }

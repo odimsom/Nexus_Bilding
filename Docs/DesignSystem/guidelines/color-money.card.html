@@ -1,0 +1,32 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Money & data-viz" subtitle="Positive/negative figures + categorical chart scale" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background: var(--surface); padding: 22px; font-family: var(--font-sans); display:flex; gap: 28px; align-items: center; }
+  .money { display:flex; flex-direction: column; gap: 8px; min-width: 200px; }
+  .money .ln { display:flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px; }
+  .money .ln span:first-child { font-size: 13px; color: var(--text-muted); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 15px; }
+  .viz { display:flex; flex-direction: column; gap: 10px; flex: 1; }
+  .bars { display:flex; gap: 8px; align-items: flex-end; height: 64px; }
+  .bar { flex:1; border-radius: var(--radius-xs) var(--radius-xs) 0 0; }
+  .lbl { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+</style></head>
+<body>
+  <div class="money">
+    <div class="ln"><span>Net revenue</span><span class="num" style="color:var(--money-positive)">+ 48,230.00</span></div>
+    <div class="ln"><span>Adjustments</span><span class="num" style="color:var(--money-negative)">− 1,905.40</span></div>
+    <div class="ln"><span>Suspense</span><span class="num" style="color:var(--money-zero)">0.00</span></div>
+  </div>
+  <div class="viz">
+    <div class="bars">
+      <div class="bar" style="height:80%; background:var(--viz-1)"></div>
+      <div class="bar" style="height:55%; background:var(--viz-2)"></div>
+      <div class="bar" style="height:70%; background:var(--viz-3)"></div>
+      <div class="bar" style="height:40%; background:var(--viz-4)"></div>
+      <div class="bar" style="height:62%; background:var(--viz-5)"></div>
+      <div class="bar" style="height:30%; background:var(--viz-6)"></div>
+    </div>
+    <div class="lbl">--viz-1 … --viz-6 · categorical</div>
+  </div>
+</body></html>

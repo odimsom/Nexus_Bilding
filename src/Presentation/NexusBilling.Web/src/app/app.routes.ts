@@ -54,6 +54,21 @@ export const routes: Routes = [
             m => m.CustomerCardPage
           )
       },
+      /* ── COMPRAS ────────────────────────────────────────── */
+      {
+        path: 'vendors',
+        loadComponent: () =>
+          import('./features/purchasing/presentation/pages/vendor-list/vendor-list.page').then(
+            m => m.VendorListPage
+          )
+      },
+      {
+        path: 'purchases',
+        loadComponent: () =>
+          import('./features/purchasing/presentation/pages/purchase-order-list/purchase-order-list.page').then(
+            m => m.PurchaseOrderListPage
+          )
+      },
       {
         path: 'sales',
         loadComponent: () =>
@@ -95,6 +110,21 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/inventory/presentation/pages/item-card/item-card.page').then(
             m => m.ItemCardPage
+          )
+      },
+      /* ── SERVICIO ───────────────────────────────────────── */
+      {
+        path: 'services',
+        loadComponent: () =>
+          import('./features/services/presentation/pages/service-order-list/service-order-list.page').then(
+            m => m.ServiceOrderListPage
+          )
+      },
+      {
+        path: 'services/:no',
+        loadComponent: () =>
+          import('./features/services/presentation/pages/service-order-card/service-order-card.page').then(
+            m => m.ServiceOrderCardPage
           )
       },
       /* ── CONFIGURACIÓN ─────────────────────────────────── */

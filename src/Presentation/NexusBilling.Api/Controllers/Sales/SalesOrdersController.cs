@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NexusBilling.Api.Common;
 using NexusBilling.Core.Application.Sales.Commands;
 using NexusBilling.Core.Application.Sales.Queries;
@@ -13,7 +14,8 @@ public record SalesOrderLineRequest(
     decimal Quantity,
     decimal UnitPrice,
     decimal LineDiscountPct,
-    string UnitOfMeasure);
+    string UnitOfMeasure,
+    string LineType = "Item");
 
 public record CreateSalesOrderRequest(
     string DocumentType,
@@ -67,7 +69,7 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
         var lines = req.Lines.Select(l => new SalesOrderLineInput(
-            l.ItemNo, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure))
+            l.ItemNo, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure, l.LineType))
             .ToList();
 
         var cmd = new CreateSalesOrderCommand(
@@ -87,6 +89,17 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
         {
             return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
         }
+        catch (DbUpdateException dbEx)
+        {
+            var inner = dbEx.InnerException?.Message ?? dbEx.Message;
+            if (inner.Contains("duplicate") || inner.Contains("unique") || inner.Contains("23505"))
+                return Conflict(ApiResponse<object?>.Fail("CONFLICT", "El número de documento ya existe."));
+            return BadRequest(ApiResponse<object?>.Fail("DB_ERROR", "Error al guardar el documento. Verifica los datos e intenta de nuevo."));
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, ApiResponse<object?>.Fail("INTERNAL_ERROR", "Error interno del servidor. Intenta de nuevo."));
+        }
     }
 
     [HttpGet("{no}")]
@@ -100,6 +113,37 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
         return order is not null
             ? Ok(ApiResponse<SalesOrderDetailDto>.Ok(order))
             : NotFound(ApiResponse<object?>.NotFound($"La orden {no} no fue encontrada."));
+    }
+
+    [HttpPatch("{no}/release")]
+    public async Task<IActionResult> Release(string no, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        var found = await mediator.Send(new ReleaseSalesOrderCommand(tenantId, no), cancellationToken);
+        return found
+            ? Ok(ApiResponse<object>.Ok(new { no, status = "Released" }))
+            : NotFound(ApiResponse<object?>.NotFound($"La orden {no} no fue encontrada."));
+    }
+
+    [HttpPost("{no}/post")]
+    public async Task<IActionResult> Post(string no, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        try
+        {
+            var result = await mediator.Send(new PostSalesOrderCommand(tenantId, no), cancellationToken);
+            return Ok(ApiResponse<object>.Ok(result));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
     }
 
     private Guid GetTenantId()

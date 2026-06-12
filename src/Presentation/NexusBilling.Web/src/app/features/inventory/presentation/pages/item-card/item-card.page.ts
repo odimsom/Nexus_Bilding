@@ -292,12 +292,12 @@ import { Item } from '../../../domain/item.model';
       </div>
     }
 
-    <!-- ── AJUSTE DE INVENTARIO ──────────────────────────────────── -->
+    <!-- ── AJUSTE DE INVENTARIO (EXCEPCIONAL) ──────────────────────────────────── -->
     @if (showAdjust()) {
       <div class="modal-backdrop" (click)="closeAdjust()">
-        <div class="modal-box" style="max-width:440px;" (click)="$event.stopPropagation()">
+        <div class="modal-box" style="max-width:480px;" (click)="$event.stopPropagation()">
           <div class="modal-header">
-            <h2 class="nx-page-title" style="margin:0;">Ajustar Inventario</h2>
+            <h2 class="nx-page-title" style="margin:0;">Ajuste Excepcional de Inventario</h2>
             <button class="nx-iconbtn" (click)="closeAdjust()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
@@ -306,32 +306,41 @@ import { Item } from '../../../domain/item.model';
             @if (adjustError()) {
               <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ adjustError() }}</div>
             }
+            <div class="nx-callout nx-callout--warn" style="margin-bottom:var(--nx-space-4);">
+              <strong>Aviso de proceso:</strong> Las entradas normales de stock deben realizarse a través de un <strong>Pedido de Compra</strong>. Usa esta opción únicamente para ajustes físicos, mermas o adquisiciones atípicas.
+            </div>
             <div class="nx-callout nx-callout--info" style="margin-bottom:var(--nx-space-4);">
               Existencia actual: <strong>{{ item()!.inventory ?? 0 }} {{ item()!.baseUnitOfMeasure }}</strong>
             </div>
             <div class="form-grid" style="grid-template-columns:1fr;">
               <div class="nx-field">
-                <label class="nx-label">Cantidad *</label>
+                <label class="nx-label">Cantidad a Ajustar *</label>
                 <input class="nx-input nx-num" type="number" [(ngModel)]="adjustForm.quantity"
                   placeholder="Positivo para entrada, negativo para salida" />
-                <span style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);">
-                  Resultado: {{ (item()!.inventory ?? 0) + (adjustForm.quantity || 0) }} {{ item()!.baseUnitOfMeasure }}
+                <span style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-top:4px;">
+                  Resultado final en stock: <strong>{{ (item()!.inventory ?? 0) + (adjustForm.quantity || 0) }}</strong> {{ item()!.baseUnitOfMeasure }}
                 </span>
               </div>
               <div class="nx-field">
-                <label class="nx-label">No. Documento</label>
-                <input class="nx-input" [(ngModel)]="adjustForm.documentNo" placeholder="AJ-001 (opcional)" />
+                <label class="nx-label">No. Documento Origen (Secuencia Automática)</label>
+                <input class="nx-input" [value]="adjustForm.documentNo || '(Se generará en el diario)'" disabled style="font-family:var(--nx-font-mono);" />
               </div>
               <div class="nx-field">
-                <label class="nx-label">Descripción / Motivo</label>
-                <input class="nx-input" [(ngModel)]="adjustForm.description" placeholder="Conteo físico, merma, etc." />
+                <label class="nx-label">Motivo del Ajuste *</label>
+                <select class="nx-select" [(ngModel)]="adjustForm.description">
+                  <option value="">Selecciona el motivo…</option>
+                  <option value="Ajuste por Conteo Físico">Ajuste por Conteo Físico</option>
+                  <option value="Merma o Daño">Merma o Daño</option>
+                  <option value="Entrada Atípica / Promocional">Entrada Atípica / Promocional</option>
+                  <option value="Consumo Interno">Consumo Interno (No facturable)</option>
+                </select>
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button class="nx-btn nx-btn--ghost" (click)="closeAdjust()">Cancelar</button>
-            <button class="nx-btn nx-btn--primary" [disabled]="adjustSaving()" (click)="saveAdjust()">
-              @if (adjustSaving()) { Procesando… } @else { Confirmar Ajuste }
+            <button class="nx-btn nx-btn--primary" [disabled]="adjustSaving() || !adjustForm.description" (click)="saveAdjust()">
+              @if (adjustSaving()) { Registrando… } @else { Confirmar Ajuste }
             </button>
           </div>
         </div>

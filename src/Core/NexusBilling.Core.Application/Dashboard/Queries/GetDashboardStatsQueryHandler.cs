@@ -37,6 +37,18 @@ public sealed class GetDashboardStatsQueryHandler(
                 o.AmountIncludingVat))
             .ToList();
 
-        return new DashboardStatsDto(customerCount, itemCount, openOrders, totalThisMonth, totalAllTime, recent);
+        // Last 12 months of sales grouped by month
+        var twelveMonthsAgo = now.AddMonths(-11);
+        var monthStart12    = new DateTime(twelveMonthsAgo.Year, twelveMonthsAgo.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+        var monthlySales = allOrders
+            .Where(o => o.PostingDate >= monthStart12)
+            .GroupBy(o => new { o.PostingDate.Year, o.PostingDate.Month })
+            .Select(g => new MonthlyTotalDto(
+                $"{g.Key.Year}-{g.Key.Month:D2}",
+                g.Sum(o => o.AmountIncludingVat)))
+            .OrderBy(m => m.Month)
+            .ToList();
+
+        return new DashboardStatsDto(customerCount, itemCount, openOrders, totalThisMonth, totalAllTime, recent, monthlySales);
     }
 }

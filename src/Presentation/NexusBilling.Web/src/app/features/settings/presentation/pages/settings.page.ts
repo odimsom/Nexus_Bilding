@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NoSeriesService, NoSeriesItem } from '../../data/no-series.service';
 import { UserService, AppUser } from '../../../../features/security/data/user.service';
 
-type SettingsTab = 'company' | 'ncf' | 'payment' | 'users' | 'posting' | 'sequences';
+type SettingsTab = 'company' | 'ncf' | 'payment' | 'users' | 'posting' | 'sequences' | 'ecf';
 
 interface NcfSeries {
   type: string;
@@ -195,6 +195,72 @@ interface NcfSeries {
 
         <div class="nx-callout nx-callout--info" style="margin-top:var(--nx-space-4);">
           <strong>Nota DGII:</strong> Los NCF deben solicitarse en la Oficina Virtual de la DGII (dgii.gov.do). Las secuencias con menos de 100 disponibles requieren renovación inmediata.
+        </div>
+      </div>
+    }
+
+    <!-- ── ECF ─────────────────────────────────────────────────── -->
+    @if (activeTab() === 'ecf') {
+      <div style="max-width:680px;">
+        <div class="nx-card" style="margin-bottom:var(--nx-space-4);">
+          <div class="nx-card__head">
+            <div class="nx-card__title">Configuración DGII (e-CF)</div>
+            <div class="nx-card__actions">
+              <button class="nx-btn nx-btn--primary nx-btn--sm">Guardar Cambios</button>
+            </div>
+          </div>
+          <div class="nx-card__body" style="display:flex;flex-direction:column;gap:var(--nx-space-4);">
+            <div class="nx-callout nx-callout--info">
+              Para emitir comprobantes fiscales electrónicos, tu empresa debe estar registrada como emisor ante la DGII y poseer un certificado digital (.p12).
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--nx-space-4);">
+              <label class="nx-field">
+                <span class="nx-label">RNC de la Empresa</span>
+                <input type="text" class="nx-input" [(ngModel)]="ecfForm.rnc" placeholder="101-23456-7" />
+              </label>
+              <label class="nx-field">
+                <span class="nx-label">Nombre del Representante</span>
+                <input type="text" class="nx-input" [(ngModel)]="ecfForm.representativeName" placeholder="Nombre completo" />
+              </label>
+            </div>
+
+            <label class="nx-field">
+              <span class="nx-label">Entorno de la DGII</span>
+              <select class="nx-select" [(ngModel)]="ecfForm.environment">
+                <option [value]="0">Ambiente de Pruebas (Habilitación)</option>
+                <option [value]="1">Ambiente de Producción</option>
+              </select>
+            </label>
+
+            <div class="nx-card" style="background:var(--nx-slate-50);border-style:dashed;">
+              <div class="nx-card__body">
+                <div style="font-weight:var(--nx-weight-semibold);margin-bottom:var(--nx-space-1);">Certificado Digital (.p12)</div>
+                <p style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-bottom:var(--nx-space-3);">
+                  El certificado se utiliza para la firma electrónica de los XML. Se guarda de forma cifrada en el servidor.
+                </p>
+                
+                <div style="display:flex;gap:var(--nx-space-4);align-items:flex-end;">
+                  <label class="nx-field" style="flex:1;">
+                    <span class="nx-label">Archivo de certificado</span>
+                    <div style="display:flex;gap:var(--nx-space-2);">
+                      <input type="text" class="nx-input" readonly [value]="ecfForm.p12Path || 'No seleccionado'" />
+                      <button class="nx-btn nx-btn--secondary">Seleccionar</button>
+                    </div>
+                  </label>
+                  <label class="nx-field" style="width:200px;">
+                    <span class="nx-label">Contraseña del P12</span>
+                    <input type="password" class="nx-input" [(ngModel)]="ecfForm.p12Password" placeholder="••••••••" />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <label style="display:flex;align-items:center;gap:var(--nx-space-2);cursor:pointer;margin-top:var(--nx-space-2);">
+              <input type="checkbox" [(ngModel)]="ecfForm.isActive" />
+              <span style="font-size:var(--nx-text-sm);">Facturación Electrónica Activa</span>
+            </label>
+          </div>
         </div>
       </div>
     }
@@ -649,11 +715,22 @@ export class SettingsPage implements OnInit {
   readonly tabs: { id: SettingsTab; label: string }[] = [
     { id: 'company',   label: 'Empresa' },
     { id: 'ncf',       label: 'Secuencias NCF' },
+    { id: 'ecf',       label: 'Facturación Electrónica' },
     { id: 'payment',   label: 'Pago' },
     { id: 'posting',   label: 'Contabilización' },
     { id: 'users',     label: 'Usuarios' },
     { id: 'sequences', label: 'Secuencias' },
   ];
+
+  // ── ECF form state ──────────────────────────────────────────────
+  ecfForm = {
+    rnc: '101-23456-7',
+    representativeName: 'Francisco Castro',
+    environment: 0,
+    p12Path: 'certificados/nexus_billing.p12',
+    p12Password: '',
+    isActive: true
+  };
 
   // ── NoSeries form state ─────────────────────────────────────────
   readonly showSeriesModal = signal(false);

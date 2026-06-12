@@ -10,11 +10,11 @@ public class ServiceHeader : Entity
     private ServiceHeader() { }
 
     public TenantIdentifier TenantId { get; private set; }
-    public short DocumentType { get; private set; }
-    public string CustomerNo { get; private set; }
-    public string No { get; private set; }
-    public string BillToCustomerNo { get; private set; }
-    public string BillToName { get; private set; }
+    public short DocumentType { get; set; }
+    public string CustomerNo { get; set; }
+    public string No { get; set; }
+    public string BillToCustomerNo { get; set; }
+    public string BillToName { get; set; }
     public string BillToName2 { get; private set; }
     public string BillToAddress { get; private set; }
     public string BillToAddress2 { get; private set; }
@@ -28,11 +28,11 @@ public class ServiceHeader : Entity
     public string ShipToAddress2 { get; private set; }
     public string ShipToCity { get; private set; }
     public string ShipToContact { get; private set; }
-    public DateTime? OrderDate { get; private set; }
-    public DateTime? PostingDate { get; private set; }
-    public string PostingDescription { get; private set; }
-    public string PaymentTermsCode { get; private set; }
-    public DateTime? DueDate { get; private set; }
+    public DateTime? OrderDate { get; set; }
+    public DateTime? PostingDate { get; set; }
+    public string PostingDescription { get; set; }
+    public string PaymentTermsCode { get; set; }
+    public DateTime? DueDate { get; set; }
     public decimal PaymentDiscount { get; private set; }
     public DateTime? PmtDiscountDate { get; private set; }
     public string ShipmentMethodCode { get; private set; }
@@ -40,14 +40,14 @@ public class ServiceHeader : Entity
     public string ShortcutDimension1Code { get; private set; }
     public string ShortcutDimension2Code { get; private set; }
     public string CustomerPostingGroup { get; private set; }
-    public string CurrencyCode { get; private set; }
+    public string CurrencyCode { get; set; }
     public decimal CurrencyFactor { get; private set; }
     public string CustomerPriceGroup { get; private set; }
     public bool PricesIncludingVat { get; private set; }
     public string InvoiceDiscCode { get; private set; }
     public string CustomerDiscGroup { get; private set; }
     public string LanguageCode { get; private set; }
-    public string SalespersonCode { get; private set; }
+    public string SalespersonCode { get; set; }
     public int NoPrinted { get; private set; }
     public short AppliesToDocType { get; private set; }
     public string AppliesToDocNo { get; private set; }
@@ -63,7 +63,7 @@ public class ServiceHeader : Entity
     public string TransactionType { get; private set; }
     public string TransportMethod { get; private set; }
     public string VatCountryRegionCode { get; private set; }
-    public string Name { get; private set; }
+    public string Name { get; set; }
     public string Name2 { get; private set; }
     public string Address { get; private set; }
     public string Address2 { get; private set; }
@@ -84,7 +84,7 @@ public class ServiceHeader : Entity
     public DateTime? DocumentDate { get; private set; }
     public string Area { get; private set; }
     public string TransactionSpecification { get; private set; }
-    public string PaymentMethodCode { get; private set; }
+    public string PaymentMethodCode { get; set; }
     public string ShippingAgentCode { get; private set; }
     public string NoSeries { get; private set; }
     public string PostingNoSeries { get; private set; }
@@ -95,7 +95,7 @@ public class ServiceHeader : Entity
     public short Reserve { get; private set; }
     public string AppliesToId { get; private set; }
     public decimal VatBaseDiscount { get; private set; }
-    public short Status { get; private set; }
+    public short Status { get; set; }
     public short InvoiceDiscountCalculation { get; private set; }
     public decimal InvoiceDiscountValue { get; private set; }
     public short ReleaseStatus { get; private set; }
@@ -106,7 +106,7 @@ public class ServiceHeader : Entity
     public short ShippingAdvice { get; private set; }
     public string ShippingTime { get; private set; }
     public string ShippingAgentServiceCode { get; private set; }
-    public string Description { get; private set; }
+    public string Description { get; set; }
     public string ServiceOrderType { get; private set; }
     public bool LinkServiceToServiceItem { get; private set; }
     public short Priority { get; private set; }
@@ -120,14 +120,14 @@ public class ServiceHeader : Entity
     public decimal ServiceTimeHours { get; private set; }
     public DateTime? ResponseDate { get; private set; }
     public string ResponseTime { get; private set; }
-    public DateTime? StartingDate { get; private set; }
+    public DateTime? StartingDate { get; set; }
     public string StartingTime { get; private set; }
-    public DateTime? FinishingDate { get; private set; }
+    public DateTime? FinishingDate { get; set; }
     public string FinishingTime { get; private set; }
     public short NotifyCustomer { get; private set; }
     public decimal MaxLaborUnitPrice { get; private set; }
     public short WarningStatus { get; private set; }
-    public string ContractNo { get; private set; }
+    public string ContractNo { get; set; }
     public string ShipToFaxNo { get; private set; }
     public string ShipToEMail { get; private set; }
     public string ShipToPhone { get; private set; }

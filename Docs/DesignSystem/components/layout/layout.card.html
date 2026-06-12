@@ -1,0 +1,87 @@
+<!-- @dsCard group="Components" viewport="700x480" name="Layout — Collapsible & field visibility" subtitle="Card collapse, FactBox sections, KeyValue secondary fields" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin:0; background: var(--canvas); padding: 22px; }
+  .layout { display: grid; grid-template-columns: 1fr 290px; gap: 18px; align-items: start; }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .sec { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Card, Collapsible, KeyValue, FactBox, Button, Badge } = window.NexusBillingDesignSystem_f29fd0;
+
+    function Demo() {
+      return (
+        <div className="layout">
+          <div className="stack">
+            <div className="sec">Collapsible Card — click header to collapse</div>
+
+            <Card title="General" collapsible collapseKey="demo-general">
+              <KeyValue ruled collapseKey="demo-kv-1" items={[
+                { key: 'No.', value: 'C-001847', mono: true },
+                { key: 'Name', value: 'Altagracia Comercial, S.R.L.' },
+                { key: 'RNC', value: '1-31-12345-6', mono: true },
+                { key: 'Contact', value: 'María Altagracia' },
+                { key: 'City', value: 'Santo Domingo' },
+                { key: 'Address', value: '27 Calle El Conde', secondary: true },
+                { key: 'Country', value: 'Dominican Republic', secondary: true },
+                { key: 'Phone', value: '+1 809 555 1234', secondary: true, mono: true },
+              ]} />
+            </Card>
+
+            <Card title="Credit & posting" collapsible collapseKey="demo-credit" defaultOpen={false}>
+              <KeyValue ruled collapseKey="demo-kv-2" items={[
+                { key: 'Credit limit (LCY)', value: 'RD$ 250,000.00', mono: true },
+                { key: 'Payment terms', value: 'NET-30' },
+                { key: 'Gen. posting group', value: 'DOMESTIC', secondary: true, mono: true },
+                { key: 'Tax area code', value: 'DOM-ITBIS', secondary: true, mono: true },
+                { key: 'Customer price group', value: 'WHOLESALE', secondary: true, mono: true },
+              ]} />
+            </Card>
+
+            <div className="sec">Standalone Collapsible</div>
+            <Collapsible label="Shipping address" collapseKey="demo-ship" defaultOpen={false}>
+              <div style={{padding:'12px 16px'}}>
+                <KeyValue items={[
+                  { key: 'Ship-to name', value: 'Altagracia Comercial' },
+                  { key: 'Address', value: 'Av. 27 de Febrero #35' },
+                  { key: 'City', value: 'Santo Domingo' },
+                ]} />
+              </div>
+            </Collapsible>
+          </div>
+
+          <FactBox eyebrow="Customer" title="Altagracia Comercial"
+            sections={[
+              { label: 'Statistics', content: (
+                <KeyValue items={[
+                  { key: 'Balance', value: 'RD$ 84,120.00', mono: true },
+                  { key: 'Overdue', value: 'RD$ 12,400.00', mono: true },
+                  { key: 'Credit limit', value: 'RD$ 250,000.00', mono: true },
+                ]} />
+              )},
+              { label: 'Related', defaultOpen: false, content: (
+                <ul className="nx-linklist">
+                  <li><a className="nx-link" href="#">Posted invoices (28)</a></li>
+                  <li><a className="nx-link" href="#">Customer ledger</a></li>
+                </ul>
+              )},
+            ]}
+          />
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

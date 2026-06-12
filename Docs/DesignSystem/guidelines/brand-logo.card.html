@@ -1,0 +1,60 @@
+<!-- @dsCard group="Brand" viewport="700x300" name="Logo & wordmark" subtitle="Primary mark, wordmark lockup, tile and monochrome" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface); padding: 28px; }
+  .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: stretch; }
+  .panel { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; gap: 16px; }
+  .panel.dark { background: var(--surface-inverse); border-color: transparent; }
+  /* Wordmark lockup */
+  .lockup { display: flex; align-items: center; gap: 12px; }
+  .lockup img { display: block; }
+  .wm { display: flex; flex-direction: column; line-height: 1; }
+  .wm b { font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: var(--text-strong); white-space: nowrap; }
+  .wm b .light { font-weight: 500; color: var(--text-muted); }
+  .wm small { font-family: var(--font-sans); font-weight: 600; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emerald-600); margin-top: 5px; }
+  .dark .wm b { color: #fff; }
+  .dark .wm b .light { color: var(--slate-400); }
+  .dark .wm small { color: var(--emerald-300); }
+  .tiles { display: flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .mono-row { display: flex; gap: 18px; align-items: center; color: var(--slate-700); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="panel">
+      <div class="lockup">
+        <img src="../assets/logo-mark.svg" width="44" height="44" alt="">
+        <div class="wm">
+          <b>Nexus<span class="light"> Billing</span></b>
+          <small>ERP &amp; Billing Platform</small>
+        </div>
+      </div>
+    </div>
+    <div class="panel dark">
+      <div class="lockup">
+        <img src="../assets/logo-mark.svg" width="44" height="44" alt="">
+        <div class="wm">
+          <b>Nexus<span class="light"> Billing</span></b>
+          <small>ERP &amp; Billing Platform</small>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="grid-column: 1 / -1;">
+      <div class="tiles" style="flex:1">
+        <img src="../assets/logo-tile.svg" width="56" height="56" alt="App tile">
+        <img src="../assets/logo-tile.svg" width="40" height="40" alt="App tile">
+        <img src="../assets/logo-tile.svg" width="28" height="28" alt="App tile">
+      </div>
+      <div class="mono-row" style="flex:1; justify-content:flex-end;">
+        <img src="../assets/logo-mono.svg" width="34" height="34" alt="Monochrome" style="color: var(--slate-800)">
+        <img src="../assets/logo-mono.svg" width="34" height="34" alt="Monochrome" style="color: var(--emerald-600)">
+        <img src="../assets/logo-mono.svg" width="34" height="34" alt="Monochrome" style="color: var(--slate-300)">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

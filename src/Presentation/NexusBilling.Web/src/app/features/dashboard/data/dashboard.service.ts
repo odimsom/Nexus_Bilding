@@ -2,6 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service';
 
+export interface MonthlyTotal { month: string; total: number; }
+
 export interface DashboardStats {
   totalCustomers: number;
   totalItems: number;
@@ -9,6 +11,7 @@ export interface DashboardStats {
   totalSalesThisMonth: number;
   totalSalesAllTime: number;
   recentOrders: RecentOrder[];
+  monthlySales: MonthlyTotal[];
 }
 
 export interface RecentOrder {

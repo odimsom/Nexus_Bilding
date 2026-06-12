@@ -10,6 +10,7 @@ export interface SalesOrderLine {
   unitPrice: number;
   lineDiscountPct: number;
   unitOfMeasure: string;
+  lineType?: string;
 }
 
 export interface CreateSalesOrderData {

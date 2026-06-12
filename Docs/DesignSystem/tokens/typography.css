@@ -1,0 +1,51 @@
+/* Nexus Billing — Typography
+ * Three families, each with a job. Sizes tuned for a dense data app:
+ * the UI base is 14px (not 16) so tables and forms stay compact while
+ * remaining legible; display sizes carry weight and tight tracking. */
+:root {
+  /* Families */
+  --font-display: 'Space Grotesk', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-sans:    'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type scale (rem against 16px root) */
+  --text-2xs: 0.6875rem;  /* 11 — micro labels, table tags */
+  --text-xs:  0.75rem;    /* 12 — captions, metadata, badges */
+  --text-sm:  0.8125rem;  /* 13 — secondary cells, helper text */
+  --text-md:  0.875rem;   /* 14 — UI base: body, inputs, table cells */
+  --text-lg:  1rem;       /* 16 — emphasized body, list titles */
+  --text-xl:  1.1875rem;  /* 19 — card titles, section heads */
+  --text-2xl: 1.5rem;     /* 24 — page titles */
+  --text-3xl: 1.9375rem;  /* 31 — display, key KPI figures */
+  --text-4xl: 2.5rem;     /* 40 — hero / login */
+  --text-5xl: 3.25rem;    /* 52 — marketing display */
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+  --weight-black:   800;
+
+  /* Line heights */
+  --leading-none:    1;
+  --leading-tight:   1.18;
+  --leading-snug:    1.35;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  /* Letter spacing */
+  --tracking-tighter: -0.02em;  /* display */
+  --tracking-tight:   -0.01em;  /* titles */
+  --tracking-normal:  0;
+  --tracking-wide:    0.02em;
+  --tracking-caps:    0.06em;   /* eyebrows, overline labels */
+
+  /* Numeric: tabular figures for all ledger/amount contexts */
+  --numeric-tabular: 'tnum' 1, 'lnum' 1; /* @kind other */
+}
+
+/* Opt-in helpers consumers can apply directly */
+.nx-display { font-family: var(--font-display); font-weight: var(--weight-bold); letter-spacing: var(--tracking-tighter); line-height: var(--leading-tight); }
+.nx-eyebrow { font-family: var(--font-sans); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted); }
+.nx-num     { font-family: var(--font-mono); font-feature-settings: var(--numeric-tabular); font-variant-numeric: tabular-nums; }

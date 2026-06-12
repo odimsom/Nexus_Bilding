@@ -1,0 +1,83 @@
+/* Nexus Billing ERP — application shell (kit-local layout).
+ * Uses design-system tokens; layout chrome here is product-specific, not a
+ * reusable primitive. Reusable primitives come from styles.css. */
+
+.erp { height: 100vh; display: grid; grid-template-columns: var(--sidebar-w) 1fr; background: var(--canvas); color: var(--text-body); overflow: hidden; }
+
+/* ---------- Sidebar ---------- */
+.erp-side { background: var(--surface-inverse); color: var(--text-on-inverse); display: flex; flex-direction: column; min-height: 0; }
+.erp-brand { display: flex; align-items: center; gap: 10px; padding: 0 16px; height: var(--topbar-h); flex: none; border-bottom: 1px solid var(--border-inverse); }
+.erp-brand b { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: -0.02em; color: #fff; }
+.erp-brand b .l { font-weight: 500; color: var(--slate-400); }
+.erp-nav { padding: 10px 10px; overflow-y: auto; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 2px; }
+.erp-navgroup { font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate-500); padding: 14px 10px 6px; }
+.erp-navitem { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-sm); color: var(--slate-300); font-size: 13.5px; font-weight: 500; cursor: pointer; transition: var(--transition-colors); border: none; background: none; width: 100%; text-align: left; }
+.erp-navitem svg { width: 17px; height: 17px; flex: none; opacity: 0.85; }
+.erp-navitem:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.erp-navitem.active { background: var(--action); color: #fff; }
+.erp-navitem.active svg { opacity: 1; }
+.erp-navitem .count { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--slate-400); }
+.erp-navitem.active .count { color: rgba(255,255,255,0.8); }
+.erp-side__foot { flex: none; padding: 10px; border-top: 1px solid var(--border-inverse); display: flex; align-items: center; gap: 10px; }
+.erp-side__foot .nm { font-size: 12.5px; font-weight: 600; color: #fff; line-height: 1.2; }
+.erp-side__foot .rl { font-size: 11px; color: var(--slate-400); }
+
+/* ---------- Main column ---------- */
+.erp-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.erp-top { height: var(--topbar-h); flex: none; background: var(--surface); border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 16px; padding: 0 18px; }
+.erp-search { display: flex; align-items: center; gap: 8px; background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); height: 32px; padding: 0 10px; width: 280px; color: var(--text-muted); }
+.erp-search svg { width: 15px; height: 15px; }
+.erp-search input { border: none; background: none; outline: none; font-size: 13px; width: 100%; color: var(--text-strong); }
+.erp-search kbd { font-family: var(--font-mono); font-size: 10px; background: var(--surface); border: 1px solid var(--border-default); border-radius: 3px; padding: 1px 5px; color: var(--text-faint); }
+.erp-top__right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+
+.erp-cmd { height: var(--commandbar-h); flex: none; background: var(--surface); border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 12px; padding: 0 18px; }
+.erp-cmd__title { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--text-strong); letter-spacing: -0.01em; }
+.erp-cmd__sep { width: 1px; height: 20px; background: var(--border-default); }
+.erp-cmd__actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+.erp-body { flex: 1; min-height: 0; overflow-y: auto; padding: 22px; }
+.erp-body__inner { max-width: var(--content-max); margin: 0 auto; }
+
+/* Record layout: content + factbox rail */
+.erp-record { display: grid; grid-template-columns: 1fr var(--factbox-w); gap: 20px; align-items: start; }
+@media (max-width: 1100px) { .erp-record { grid-template-columns: 1fr; } }
+
+/* Section grids */
+.erp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.erp-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.erp-stack { display: flex; flex-direction: column; gap: 18px; }
+
+/* Page title block */
+.erp-pagehead { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 4px; }
+.erp-pagehead h1 { font-size: 24px; }
+.erp-pagehead__meta { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
+
+/* Toolbar above tables */
+.erp-toolbar { display: flex; align-items: center; gap: 10px; padding: 12px; border-bottom: 1px solid var(--border-subtle); flex-wrap: wrap; }
+.erp-toolbar .spacer { margin-left: auto; }
+
+/* Simple aging bar chart */
+.erp-bars { display: flex; align-items: flex-end; gap: 14px; height: 150px; padding-top: 10px; }
+.erp-bars .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
+.erp-bars .bar { width: 100%; max-width: 54px; border-radius: var(--radius-xs) var(--radius-xs) 0 0; transition: height var(--dur-base) var(--ease-standard); }
+.erp-bars .cap { font-size: 11px; color: var(--text-muted); }
+.erp-bars .val { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--text-strong); }
+
+/* Document layout */
+.erp-doc { background: var(--surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: clip; }
+.erp-doc__head { padding: 20px 22px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.erp-doc__totals { display: flex; justify-content: flex-end; padding: 16px 22px; }
+.erp-doc__totals .box { width: 280px; display: flex; flex-direction: column; gap: 6px; }
+.erp-doc__totals .ln { display: flex; justify-content: space-between; font-size: 14px; }
+.erp-doc__totals .ln.grand { border-top: 1px solid var(--border-default); padding-top: 8px; margin-top: 4px; font-weight: 700; font-size: 16px; color: var(--text-strong); }
+.erp-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Login */
+.erp-login { height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr; background: var(--surface); }
+.erp-login__aside { background: var(--surface-inverse); color: #fff; padding: 56px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.erp-login__form { display: flex; align-items: center; justify-content: center; padding: 40px; }
+.erp-login__form-inner { width: 100%; max-width: 360px; display: flex; flex-direction: column; gap: 18px; }
+@media (max-width: 860px) { .erp-login { grid-template-columns: 1fr; } .erp-login__aside { display: none; } }
+
+.erp-clickable { cursor: pointer; }

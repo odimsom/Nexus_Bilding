@@ -1,6 +1,8 @@
 using NexusBilling.Api;
 using NexusBilling.Infrastructure.Persistence;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApiServices(builder.Configuration);

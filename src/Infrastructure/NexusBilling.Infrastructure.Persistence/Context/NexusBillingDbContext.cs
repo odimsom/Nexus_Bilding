@@ -6,6 +6,7 @@ using NexusBilling.Core.Domain.Inventory.Entities;
 using NexusBilling.Core.Domain.Finance.Entities;
 using NexusBilling.Core.Domain.Sales.Entities;
 using NexusBilling.Core.Domain.Purchasing.Entities;
+using NexusBilling.Core.Domain.Ecf.Entities;
 using System.Reflection;
 using NexusBilling.Core.Domain.Resources.Entities;
 
@@ -62,6 +63,11 @@ public class NexusBillingDbContext : DbContext
 
     // Administration
     public DbSet<Tenant> Tenants => Set<Tenant>();
+
+    // ECF
+    public DbSet<EcfCompanyConfig> EcfCompanyConfigs => Set<EcfCompanyConfig>();
+    public DbSet<EcfNcfSequence> EcfNcfSequences => Set<EcfNcfSequence>();
+    public DbSet<EcfDocument> EcfDocuments => Set<EcfDocument>();
 
     public DbSet<AccSchedChartSetupLine> AccSchedChartSetupLines => Set<AccSchedChartSetupLine>();
     public DbSet<AccSchedKpiWebSrvLine> AccSchedKpiWebSrvLines => Set<AccSchedKpiWebSrvLine>();

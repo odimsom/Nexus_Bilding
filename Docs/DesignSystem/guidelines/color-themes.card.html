@@ -1,0 +1,82 @@
+<!-- @dsCard group="Colors" viewport="700x280" name="Light vs Dark theme" subtitle="Semantic surface + text + border tokens across both themes" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background: var(--slate-150); padding: 16px; font-family: var(--font-sans); display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .panel { border-radius: var(--radius-md); overflow:hidden; border:1px solid transparent; }
+  .panel--light { background: #F4F6F9; border-color: var(--border-subtle); }
+  .panel--dark  { background: #111520; border-color: rgba(255,255,255,0.06); }
+  .head { padding: 10px 14px; border-bottom: 1px solid; display:flex; align-items:center; gap:10px; }
+  .panel--light .head { background:#fff; border-color: var(--slate-150); }
+  .panel--dark  .head { background:#1A2035; border-color: rgba(255,255,255,0.06); }
+  .logo { width:22px; height:22px; }
+  .wordmark { font-family: var(--font-display); font-weight:700; font-size:14px; letter-spacing:-0.02em; }
+  .panel--light .wordmark { color: var(--slate-900); }
+  .panel--dark  .wordmark { color: #F2F5FA; }
+  .light-w { font-weight:500; }
+  .panel--light .light-w { color: var(--slate-400); }
+  .panel--dark  .light-w { color: #5E6A7F; }
+  .swatches { display:grid; grid-template-columns: repeat(4,1fr); gap:1px; }
+  .sw { height:44px; display:flex; align-items:flex-end; padding:5px 8px; }
+  .sw span { font-family:var(--font-mono); font-size:9.5px; }
+  .badges { display:flex; gap:6px; flex-wrap:wrap; padding:10px 14px; border-top:1px solid; }
+  .panel--light .badges { border-color: var(--slate-150); }
+  .panel--dark  .badges { border-color: rgba(255,255,255,0.06); }
+  .badge { display:inline-flex; align-items:center; gap:5px; height:22px; padding:0 9px; font-size:11px; font-weight:600; border-radius:4px; }
+  .dot { width:5px; height:5px; border-radius:50%; background:currentColor; }
+  .label { font-size:10.5px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:8px 14px 4px; }
+  .panel--light .label { color: var(--slate-400); }
+  .panel--dark  .label  { color: #5E6A7F; }
+</style>
+</head>
+<body>
+  <!-- LIGHT PANEL -->
+  <div class="panel panel--light">
+    <div class="head">
+      <img src="../assets/logo-mark.svg" class="logo" alt="">
+      <span class="wordmark">Nexus<span class="light-w"> Billing</span></span>
+    </div>
+    <div class="label">Surfaces</div>
+    <div class="swatches">
+      <div class="sw" style="background:#F4F6F9"><span style="color:#727E96">canvas</span></div>
+      <div class="sw" style="background:#fff;border:1px solid #E2E6EE"><span style="color:#727E96">surface</span></div>
+      <div class="sw" style="background:#ECEFF4"><span style="color:#727E96">sunken</span></div>
+      <div class="sw" style="background:#171C28"><span style="color:#fff">inverse</span></div>
+    </div>
+    <div class="label">Status</div>
+    <div class="badges">
+      <span class="badge" style="background:#E7F4EF;color:#0A5A45"><span class="dot"></span>Posted</span>
+      <span class="badge" style="background:#E7EEFB;color:#1E47A0"><span class="dot"></span>Open</span>
+      <span class="badge" style="background:#FBEFD3;color:#8E5C06"><span class="dot"></span>Pending</span>
+      <span class="badge" style="background:#FBE8E6;color:#9A2A22"><span class="dot"></span>Overdue</span>
+      <span class="badge" style="background:#ECEFF4;color:#545F76"><span class="dot"></span>Draft</span>
+    </div>
+  </div>
+
+  <!-- DARK PANEL -->
+  <div class="panel panel--dark">
+    <div class="head">
+      <img src="../assets/logo-mark.svg" class="logo" alt="">
+      <span class="wordmark">Nexus<span class="light-w"> Billing</span></span>
+    </div>
+    <div class="label">Surfaces</div>
+    <div class="swatches">
+      <div class="sw" style="background:#111520"><span style="color:#5E6A7F">canvas</span></div>
+      <div class="sw" style="background:#1A2035"><span style="color:#5E6A7F">surface</span></div>
+      <div class="sw" style="background:#141827"><span style="color:#5E6A7F">sunken</span></div>
+      <div class="sw" style="background:#0B0E17"><span style="color:#5E6A7F">inverse</span></div>
+    </div>
+    <div class="label">Status</div>
+    <div class="badges">
+      <span class="badge" style="background:#0D2318;color:#5FB99A"><span class="dot"></span>Posted</span>
+      <span class="badge" style="background:#0E1C3A;color:#7EA6E8"><span class="dot"></span>Open</span>
+      <span class="badge" style="background:#251A08;color:#E4B046"><span class="dot"></span>Pending</span>
+      <span class="badge" style="background:#2A1010;color:#E8766A"><span class="dot"></span>Overdue</span>
+      <span class="badge" style="background:rgba(255,255,255,0.06);color:#8A95AB"><span class="dot"></span>Draft</span>
+    </div>
+  </div>
+</body>
+</html>

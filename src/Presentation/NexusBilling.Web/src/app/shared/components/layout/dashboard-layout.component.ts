@@ -5,8 +5,10 @@ import { filter, map, startWith } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 
-interface NavItem { label: string; route: string; icon: string; badge?: number; }
-interface NavSection { group?: string; items: NavItem[]; }
+interface NavLeaf  { label: string; route: string; icon: string; }
+interface NavGroup { group: string; icon: string; children: NavLeaf[]; }
+type NavEntry = { kind: 'leaf'; item: NavLeaf } | { kind: 'group'; item: NavGroup };
+
 interface PaletteItem { id: string; label: string; desc: string; icon: string; route: string; }
 
 @Component({
@@ -21,7 +23,7 @@ interface PaletteItem { id: string; label: string; desc: string; icon: string; r
 
         <!-- Brand -->
         <div class="erp-brand" (click)="navigate('/dashboard')" style="cursor:pointer;">
-          <img src="/assets/logo-mark.svg" width="26" height="26" alt="Nexus Billing" />
+          <img src="/logo-mark.svg" width="26" height="26" alt="Nexus Billing" />
           <b>Nexus<span class="l"> Billing</span></b>
         </div>
 
@@ -36,22 +38,46 @@ interface PaletteItem { id: string; label: string; desc: string; icon: string; r
 
         <!-- Nav -->
         <div class="erp-nav">
-          @for (sec of navSections; track $index) {
-            @if (sec.group) {
-              <div class="erp-navgroup">{{ sec.group }}</div>
-            }
-            @for (item of sec.items; track item.route) {
-              <button
-                class="erp-navitem"
-                [class.active]="isActive(item.route)"
-                (click)="navigate(item.route)"
-              >
-                <i [attr.data-lucide]="item.icon" style="width:16px;height:16px;flex:none;"></i>
-                <span>{{ item.label }}</span>
-                @if (item.badge) {
-                  <span class="count">{{ item.badge }}</span>
+
+          <!-- Dashboard (solo ítem) -->
+          <button
+            class="erp-navitem"
+            [class.active]="isActive('/dashboard')"
+            (click)="navigate('/dashboard')"
+          >
+            <i data-lucide="layout-dashboard" style="width:16px;height:16px;flex:none;"></i>
+            <span>Dashboard</span>
+          </button>
+
+          @for (entry of navEntries; track $index) {
+            @if (entry.kind === 'group') {
+              <!-- Dropdown group -->
+              <div class="erp-navgroup-wrap">
+                <button
+                  class="erp-navitem erp-navitem--group"
+                  [class.active]="groupActive(entry.item)"
+                  [class.open]="openGroups().has(entry.item.group)"
+                  (click)="toggleGroup(entry.item.group)"
+                >
+                  <i [attr.data-lucide]="entry.item.icon" style="width:16px;height:16px;flex:none;"></i>
+                  <span>{{ entry.item.group }}</span>
+                  <i data-lucide="chevron-right" class="erp-navitem__chevron" style="width:14px;height:14px;margin-left:auto;flex:none;"></i>
+                </button>
+                @if (openGroups().has(entry.item.group)) {
+                  <div class="erp-subnav">
+                    @for (child of entry.item.children; track child.route) {
+                      <button
+                        class="erp-navitem erp-navitem--child"
+                        [class.active]="isActive(child.route)"
+                        (click)="navigate(child.route)"
+                      >
+                        <i [attr.data-lucide]="child.icon" style="width:14px;height:14px;flex:none;"></i>
+                        <span>{{ child.label }}</span>
+                      </button>
+                    }
+                  </div>
                 }
-              </button>
+              </div>
             }
           }
         </div>
@@ -100,13 +126,7 @@ interface PaletteItem { id: string; label: string; desc: string; icon: string; r
           </div>
         </header>
 
-        <!-- Command bar -->
-        <div class="erp-cmd">
-          <span class="erp-cmd__title">{{ pageTitle() }}</span>
-          <div class="erp-cmd__actions"></div>
-        </div>
-
-        <!-- Content -->
+        <!-- Content (sin erp-cmd redundante) -->
         <div class="erp-body">
           <div class="erp-body__inner">
             <router-outlet></router-outlet>
@@ -147,7 +167,33 @@ interface PaletteItem { id: string; label: string; desc: string; icon: string; r
       }
     </div>
   `,
-  styles: [`:host { display: contents; }`]
+  styles: [`
+    :host { display: contents; }
+
+    .erp-navgroup-wrap { display: flex; flex-direction: column; }
+
+    .erp-navitem--group .erp-navitem__chevron {
+      transition: transform 140ms ease;
+    }
+    .erp-navitem--group.open .erp-navitem__chevron {
+      transform: rotate(90deg);
+    }
+
+    .erp-subnav {
+      display: flex;
+      flex-direction: column;
+      padding-left: 12px;
+      border-left: 1px solid var(--nx-border);
+      margin-left: 20px;
+      margin-bottom: 2px;
+    }
+
+    .erp-navitem--child {
+      font-size: 13px;
+      padding: 5px 10px;
+      gap: 8px;
+    }
+  `]
 })
 export class DashboardLayoutComponent {
   private readonly authService = inject(AuthService);
@@ -170,6 +216,8 @@ export class DashboardLayoutComponent {
     { initialValue: this.router.url }
   );
 
+  readonly openGroups = signal<Set<string>>(new Set(['Ventas', 'Inventario', 'Finanzas', 'Administración']));
+
   readonly pageTitle = computed(() => {
     const url = this.currentUrl();
     const titles: Record<string, string> = {
@@ -188,36 +236,50 @@ export class DashboardLayoutComponent {
     return titles[base] || 'Nexus Billing';
   });
 
-  readonly navSections: NavSection[] = [
+  readonly navEntries: NavEntry[] = [
     {
-      items: [{ label: 'Dashboard', route: '/dashboard', icon: 'layout-dashboard' }]
+      kind: 'group',
+      item: {
+        group: 'Ventas',
+        icon: 'shopping-cart',
+        children: [
+          { label: 'Clientes',  route: '/customers', icon: 'users' },
+          { label: 'Cotizaciones', route: '/quotes', icon: 'file-clock' },
+          { label: 'Órdenes',   route: '/sales',     icon: 'file-text' },
+          { label: 'Facturas',  route: '/invoices',  icon: 'receipt' },
+        ]
+      }
     },
     {
-      group: 'Ventas',
-      items: [
-        { label: 'Clientes',  route: '/customers', icon: 'users' },
-        { label: 'Órdenes',   route: '/sales',     icon: 'file-text' },
-        { label: 'Facturas',  route: '/invoices',  icon: 'receipt', badge: 3 },
-      ]
+      kind: 'group',
+      item: {
+        group: 'Inventario',
+        icon: 'package',
+        children: [
+          { label: 'Artículos', route: '/inventory', icon: 'boxes' },
+        ]
+      }
     },
     {
-      group: 'Inventario',
-      items: [
-        { label: 'Artículos', route: '/inventory', icon: 'package' },
-      ]
+      kind: 'group',
+      item: {
+        group: 'Finanzas',
+        icon: 'landmark',
+        children: [
+          { label: 'Mayor General', route: '/gl',      icon: 'bar-chart-2' },
+          { label: 'Diario',        route: '/journal', icon: 'book-open' },
+        ]
+      }
     },
     {
-      group: 'Finanzas',
-      items: [
-        { label: 'Mayor General', route: '/gl',      icon: 'bar-chart-2' },
-        { label: 'Diario',        route: '/journal', icon: 'book-open' },
-      ]
-    },
-    {
-      group: 'Administración',
-      items: [
-        { label: 'Configuración', route: '/settings', icon: 'settings' },
-      ]
+      kind: 'group',
+      item: {
+        group: 'Administración',
+        icon: 'settings-2',
+        children: [
+          { label: 'Configuración', route: '/settings', icon: 'settings' },
+        ]
+      }
     }
   ];
 
@@ -249,15 +311,39 @@ export class DashboardLayoutComponent {
       setTimeout(() => (window as any).lucide?.createIcons?.(), 0);
     });
 
+    // Auto-expand group that contains the current route on load
+    effect(() => {
+      const url = this.currentUrl();
+      for (const entry of this.navEntries) {
+        if (entry.kind === 'group') {
+          const match = entry.item.children.some(c => url.startsWith(c.route));
+          if (match) {
+            this.openGroups.update(s => { const n = new Set(s); n.add(entry.item.group); return n; });
+          }
+        }
+      }
+    }, { allowSignalWrites: true });
+
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         this.paletteOpen.update(v => !v);
       }
-      if (e.key === 'Escape') {
-        this.paletteOpen.set(false);
-      }
+      if (e.key === 'Escape') this.paletteOpen.set(false);
     });
+  }
+
+  toggleGroup(group: string): void {
+    this.openGroups.update(s => {
+      const n = new Set(s);
+      n.has(group) ? n.delete(group) : n.add(group);
+      return n;
+    });
+  }
+
+  groupActive(item: NavGroup): boolean {
+    const url = this.currentUrl();
+    return item.children.some(c => url.startsWith(c.route));
   }
 
   isActive(route: string): boolean {
@@ -266,9 +352,7 @@ export class DashboardLayoutComponent {
     return url.startsWith(route);
   }
 
-  navigate(route: string): void {
-    this.router.navigate([route]);
-  }
+  navigate(route: string): void { this.router.navigate([route]); }
 
   toggleTheme(): void {
     this.theme.update(t => t === 'dark' ? 'light' : 'dark');

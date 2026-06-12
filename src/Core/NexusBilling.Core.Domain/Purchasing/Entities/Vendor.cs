@@ -17,7 +17,7 @@ public class Vendor : Entity
         Address = string.Empty;
         City = string.Empty;
         Contact = string.Empty;
-        TenantId = TenantIdentifier.Create(Guid.Empty);
+        TenantId = null!;
     }
 
     private Vendor(TenantIdentifier tenantId, string no, string name, string address, string city, string contact)

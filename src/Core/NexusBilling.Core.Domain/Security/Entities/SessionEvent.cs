@@ -43,7 +43,8 @@ public class SessionEvent : Entity
             SessionUniqueId = sessionUniqueId,
             Comment = comment,
             DatabaseName = "nexus_db",
-            ServerInstanceId = 1
+            ServerInstanceId = 1,
+            ClientComputerName = "web-client"
         };
         return OperationResult<SessionEvent, DomainError>.Ok(entity);
     }

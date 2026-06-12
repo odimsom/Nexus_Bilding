@@ -15,7 +15,7 @@ public record TenantIdentifier
         {
             throw new ArgumentException("TenantIdentifier cannot be empty.", nameof(value));
         }
-        return TenantIdentifier.Create(value);
+        return new TenantIdentifier(value);
     }
 
     public static implicit operator Guid(TenantIdentifier tenantId) => tenantId.Value;

@@ -1,246 +1,297 @@
-import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject, signal, computed, effect } from '@angular/core';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map, startWith } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 
-interface NavSection {
-  label: string;
-  items: NavItem[];
-}
-
-interface NavItem {
-  label: string;
-  route: string;
-  icon: string;       // Lucide icon name
-  badge?: number;
-}
+interface NavItem { label: string; route: string; icon: string; badge?: number; }
+interface NavSection { group?: string; items: NavItem[]; }
+interface PaletteItem { id: string; label: string; desc: string; icon: string; route: string; }
 
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, FormsModule],
   template: `
-    <div class="nx-shell" [attr.data-theme]="theme()">
+    <div class="erp">
 
-      <!-- ── SIDEBAR ──────────────────────────────────────────── -->
-      <aside class="nx-sidebar" [class.is-collapsed]="sidebarCollapsed()">
+      <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+      <nav class="erp-side">
 
         <!-- Brand -->
-        <div class="nx-sidebar__brand">
-          <svg class="nx-sidebar__logo" viewBox="0 0 28 28" fill="none">
-            <rect width="28" height="28" rx="6" fill="#138A68"/>
-            <path d="M8 20V8h4l4 8 4-8h4v12h-3v-7.5l-3.5 7.5h-3L11 12.5V20H8z" fill="white"/>
-          </svg>
-          <span class="nx-sidebar__name">NexusBilling</span>
+        <div class="erp-brand" (click)="navigate('/dashboard')" style="cursor:pointer;">
+          <img src="/assets/logo-mark.svg" width="26" height="26" alt="Nexus Billing" />
+          <b>Nexus<span class="l"> Billing</span></b>
+        </div>
+
+        <!-- Search trigger -->
+        <div style="padding:8px 10px;">
+          <button class="palette-btn" (click)="openPalette()">
+            <i data-lucide="search" style="width:14px;height:14px;"></i>
+            <span>Buscar…</span>
+            <kbd>⌘K</kbd>
+          </button>
         </div>
 
         <!-- Nav -->
-        <nav class="nx-sidebar__nav">
-          @for (section of navSections; track section.label) {
-            <span class="nx-sidebar__section-label">{{ section.label }}</span>
-            @for (item of section.items; track item.route) {
-              <a
-                [routerLink]="item.route"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }"
-                class="nx-navitem"
-                [attr.title]="sidebarCollapsed() ? item.label : null"
+        <div class="erp-nav">
+          @for (sec of navSections; track $index) {
+            @if (sec.group) {
+              <div class="erp-navgroup">{{ sec.group }}</div>
+            }
+            @for (item of sec.items; track item.route) {
+              <button
+                class="erp-navitem"
+                [class.active]="isActive(item.route)"
+                (click)="navigate(item.route)"
               >
-                <!-- Inline SVG icons via data attribute for Lucide compatibility -->
-                <svg class="nx-navitem__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <use [attr.href]="'#icon-' + item.icon"></use>
-                </svg>
-                <span class="nx-navitem__label">{{ item.label }}</span>
+                <i [attr.data-lucide]="item.icon" style="width:16px;height:16px;flex:none;"></i>
+                <span>{{ item.label }}</span>
                 @if (item.badge) {
-                  <span class="nx-navitem__badge">{{ item.badge }}</span>
+                  <span class="count">{{ item.badge }}</span>
                 }
-              </a>
+              </button>
             }
           }
-        </nav>
+        </div>
 
-        <!-- Footer -->
-        <div class="nx-sidebar__foot">
-          <button
-            class="nx-navitem"
-            style="width:100%; background:none; border:none; cursor:pointer; color: rgba(255,255,255,0.5);"
-            (click)="logout()"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;flex:none;">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-              <polyline points="16 17 21 12 16 7"/>
-              <line x1="21" y1="12" x2="9" y2="12"/>
-            </svg>
-            <span class="nx-navitem__label">Cerrar sesión</span>
+        <!-- User footer -->
+        <div class="erp-side__foot">
+          <div class="nx-avatar nx-avatar--circle nx-avatar--sm" style="flex:none;">
+            {{ user()?.username?.charAt(0)?.toUpperCase() ?? '?' }}
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div class="nm">{{ user()?.username }}</div>
+            <div class="rl">Administrador</div>
+          </div>
+          <button class="nx-iconbtn nx-iconbtn--sm" (click)="logout()" title="Cerrar sesión">
+            <i data-lucide="log-out" style="width:15px;height:15px;"></i>
           </button>
         </div>
-      </aside>
+      </nav>
 
-      <!-- ── MAIN ──────────────────────────────────────────────── -->
-      <main class="nx-main">
+      <!-- ── MAIN ────────────────────────────────────────────────── -->
+      <div class="erp-main">
 
-        <!-- Top bar -->
-        <header class="nx-topbar">
-          <!-- Collapse toggle -->
-          <button
-            class="nx-iconbtn nx-iconbtn--sm"
-            (click)="toggleSidebar()"
-            [attr.aria-label]="sidebarCollapsed() ? 'Expandir menú' : 'Colapsar menú'"
-            style="color: var(--nx-text-muted);"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;">
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-          </button>
-
-          <!-- Search -->
-          <div class="nx-topbar__search">
-            <div class="nx-inputgroup">
-              <span class="nx-adorn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-                </svg>
-              </span>
-              <input
-                id="topbar-search"
-                type="search"
-                class="nx-input"
-                placeholder="Buscar clientes, facturas, artículos…"
-                style="padding-left: 36px;"
-              />
-            </div>
-          </div>
-
-          <div class="nx-topbar__actions">
-            <!-- Theme toggle -->
+        <!-- Topbar -->
+        <header class="erp-top">
+          <nav class="nx-crumbs" style="flex:1;min-width:0;">
+            <span class="nx-crumb" style="cursor:pointer;" (click)="navigate('/dashboard')">Inicio</span>
+            @if (pageTitle() !== 'Dashboard') {
+              <span class="nx-crumbs__sep">›</span>
+              <span class="nx-crumb--current">{{ pageTitle() }}</span>
+            }
+          </nav>
+          <div class="erp-top__right">
             <button
               class="nx-iconbtn"
               (click)="toggleTheme()"
               [attr.aria-label]="theme() === 'dark' ? 'Modo claro' : 'Modo oscuro'"
             >
-              @if (theme() === 'dark') {
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;">
-                  <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-                </svg>
-              } @else {
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-              }
+              <i [attr.data-lucide]="theme() === 'dark' ? 'sun' : 'moon'" style="width:17px;height:17px;"></i>
             </button>
-
-            <!-- Notifications -->
-            <button class="nx-iconbtn" aria-label="Notificaciones" style="position:relative;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;">
-                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-              </svg>
+            <button class="nx-iconbtn" aria-label="Notificaciones">
+              <i data-lucide="bell" style="width:17px;height:17px;"></i>
             </button>
-
-            <!-- User avatar -->
-            @if (user()) {
-              <div class="nx-avatar nx-avatar--circle" style="cursor:default;" [attr.title]="user()?.username">
-                {{ user()?.username?.charAt(0)?.toUpperCase() }}
-              </div>
-            }
+            <button class="nx-iconbtn" aria-label="Ayuda">
+              <i data-lucide="circle-help" style="width:17px;height:17px;"></i>
+            </button>
           </div>
         </header>
 
-        <!-- Content -->
-        <section class="nx-content">
-          <router-outlet></router-outlet>
-        </section>
+        <!-- Command bar -->
+        <div class="erp-cmd">
+          <span class="erp-cmd__title">{{ pageTitle() }}</span>
+          <div class="erp-cmd__actions"></div>
+        </div>
 
-      </main>
+        <!-- Content -->
+        <div class="erp-body">
+          <div class="erp-body__inner">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── COMMAND PALETTE ─────────────────────────────────────── -->
+      @if (paletteOpen()) {
+        <div class="cmd-scrim" (click)="closePalette()">
+          <div class="cmd-palette" (click)="$event.stopPropagation()">
+            <div class="cmd-search">
+              <i data-lucide="search" style="width:16px;height:16px;color:var(--slate-400);flex:none;"></i>
+              <input
+                type="text"
+                placeholder="Buscar vistas, clientes, facturas…"
+                [(ngModel)]="paletteQuery"
+                (keydown)="onPaletteKey($event)"
+                autofocus
+              />
+            </div>
+            <div class="cmd-list">
+              @for (item of filteredPaletteItems(); track item.id) {
+                <button class="cmd-item" (click)="selectPaletteItem(item)">
+                  <i [attr.data-lucide]="item.icon" style="width:16px;height:16px;color:var(--text-muted);flex:none;"></i>
+                  <div>
+                    <div class="cmd-item__label">{{ item.label }}</div>
+                    <div class="cmd-item__desc">{{ item.desc }}</div>
+                  </div>
+                </button>
+              }
+              @if (filteredPaletteItems().length === 0) {
+                <div class="cmd-empty">Sin resultados para "{{ paletteQuery }}"</div>
+              }
+            </div>
+          </div>
+        </div>
+      }
     </div>
   `,
-  styles: [`
-    /* Shell reset */
-    :host { display: contents; }
-
-    /* Ensure full viewport fill */
-    .nx-shell { height: 100vh; width: 100vw; overflow: hidden; }
-
-    /* Nav icon sizing (inline SVGs) */
-    .nx-navitem__icon { width: 18px; height: 18px; flex: none; opacity: 0.7; }
-    .nx-navitem:hover .nx-navitem__icon,
-    .nx-navitem.active .nx-navitem__icon { opacity: 1; }
-
-    /* Search input width */
-    .nx-topbar__search { flex: 0 1 360px; }
-
-    /* Hide section labels when collapsed */
-    .nx-sidebar.is-collapsed .nx-sidebar__section-label,
-    .nx-sidebar.is-collapsed .nx-navitem__label,
-    .nx-sidebar.is-collapsed .nx-navitem__badge,
-    .nx-sidebar.is-collapsed .nx-sidebar__name { display: none; }
-  `]
+  styles: [`:host { display: contents; }`]
 })
 export class DashboardLayoutComponent {
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   readonly user = this.authService.user;
-  readonly sidebarCollapsed = signal(false);
-  readonly theme = signal<'light' | 'dark'>('light');
+  readonly paletteOpen = signal(false);
+  paletteQuery = '';
+
+  readonly theme = signal<'light' | 'dark'>(
+    localStorage.getItem('nx-theme') === 'dark' ? 'dark' : 'light'
+  );
+
+  readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      map(e => (e as NavigationEnd).url),
+      startWith(this.router.url)
+    ),
+    { initialValue: this.router.url }
+  );
+
+  readonly pageTitle = computed(() => {
+    const url = this.currentUrl();
+    const titles: Record<string, string> = {
+      '/dashboard': 'Dashboard',
+      '/customers': 'Clientes',
+      '/invoices':  'Facturas',
+      '/sales':     'Órdenes de venta',
+      '/inventory': 'Artículos',
+      '/vendors':   'Proveedores',
+      '/purchases': 'Compras',
+      '/gl':        'Mayor General',
+      '/journal':   'Diario',
+      '/settings':  'Configuración',
+    };
+    const base = '/' + (url.split('/')[1] || 'dashboard');
+    return titles[base] || 'Nexus Billing';
+  });
 
   readonly navSections: NavSection[] = [
     {
-      label: 'Principal',
+      items: [{ label: 'Dashboard', route: '/dashboard', icon: 'layout-dashboard' }]
+    },
+    {
+      group: 'Ventas',
       items: [
-        { label: 'Dashboard',   route: '/dashboard', icon: 'layout-dashboard' },
+        { label: 'Clientes',  route: '/customers', icon: 'users' },
+        { label: 'Órdenes',   route: '/sales',     icon: 'file-text' },
+        { label: 'Facturas',  route: '/invoices',  icon: 'receipt', badge: 3 },
       ]
     },
     {
-      label: 'Ventas',
+      group: 'Inventario',
       items: [
-        { label: 'Clientes',    route: '/customers', icon: 'users' },
-        { label: 'Órdenes',     route: '/sales',     icon: 'file-text' },
-        { label: 'Facturas',    route: '/invoices',  icon: 'receipt', badge: 3 },
+        { label: 'Artículos', route: '/inventory', icon: 'package' },
       ]
     },
     {
-      label: 'Inventario',
+      group: 'Finanzas',
       items: [
-        { label: 'Artículos',   route: '/inventory', icon: 'package' },
-        { label: 'Ubicaciones', route: '/locations', icon: 'map-pin' },
+        { label: 'Mayor General', route: '/gl',      icon: 'bar-chart-2' },
+        { label: 'Diario',        route: '/journal', icon: 'book-open' },
       ]
     },
     {
-      label: 'Compras',
-      items: [
-        { label: 'Proveedores', route: '/vendors',   icon: 'truck' },
-        { label: 'Órdenes',     route: '/purchases', icon: 'shopping-cart' },
-      ]
-    },
-    {
-      label: 'Finanzas',
-      items: [
-        { label: 'Mayor General', route: '/gl',       icon: 'bar-chart-2' },
-        { label: 'Diario',        route: '/journal',  icon: 'book-open' },
-      ]
-    },
-    {
-      label: 'Administración',
+      group: 'Administración',
       items: [
         { label: 'Configuración', route: '/settings', icon: 'settings' },
       ]
     }
   ];
 
-  toggleSidebar(): void {
-    this.sidebarCollapsed.update(v => !v);
+  private readonly allPaletteItems: PaletteItem[] = [
+    { id: 'dashboard', label: 'Dashboard',        desc: 'Vista general y KPIs',    icon: 'layout-dashboard', route: '/dashboard' },
+    { id: 'customers', label: 'Clientes',          desc: 'Gestión de clientes',     icon: 'users',            route: '/customers' },
+    { id: 'invoices',  label: 'Facturas',          desc: 'Facturas de venta',       icon: 'receipt',          route: '/invoices'  },
+    { id: 'sales',     label: 'Órdenes de venta',  desc: 'Pedidos de ventas',       icon: 'file-text',        route: '/sales'     },
+    { id: 'inventory', label: 'Artículos',         desc: 'Inventario y productos',  icon: 'package',          route: '/inventory' },
+    { id: 'settings',  label: 'Configuración',     desc: 'Ajustes del sistema',     icon: 'settings',         route: '/settings'  },
+  ];
+
+  readonly filteredPaletteItems = computed(() => {
+    const q = this.paletteQuery.toLowerCase().trim();
+    if (!q) return this.allPaletteItems;
+    return this.allPaletteItems.filter(
+      i => i.label.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q)
+    );
+  });
+
+  constructor() {
+    const saved = localStorage.getItem('nx-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    effect(() => {
+      this.currentUrl();
+      setTimeout(() => (window as any).lucide?.createIcons?.(), 0);
+    });
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        this.paletteOpen.update(v => !v);
+      }
+      if (e.key === 'Escape') {
+        this.paletteOpen.set(false);
+      }
+    });
+  }
+
+  isActive(route: string): boolean {
+    const url = this.currentUrl();
+    if (route === '/dashboard') return url === '/dashboard' || url === '/';
+    return url.startsWith(route);
+  }
+
+  navigate(route: string): void {
+    this.router.navigate([route]);
   }
 
   toggleTheme(): void {
     this.theme.update(t => t === 'dark' ? 'light' : 'dark');
-    document.documentElement.setAttribute(
-      'data-theme',
-      this.theme() === 'dark' ? 'dark' : ''
-    );
+    const isDark = this.theme() === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : '');
+    localStorage.setItem('nx-theme', isDark ? 'dark' : 'light');
   }
 
-  logout(): void {
-    this.authService.logout();
+  openPalette(): void { this.paletteOpen.set(true); }
+
+  closePalette(): void {
+    this.paletteOpen.set(false);
+    this.paletteQuery = '';
   }
+
+  selectPaletteItem(item: PaletteItem): void {
+    this.router.navigate([item.route]);
+    this.closePalette();
+  }
+
+  onPaletteKey(e: KeyboardEvent): void {
+    if (e.key === 'Escape') this.closePalette();
+  }
+
+  logout(): void { this.authService.logout(); }
 }

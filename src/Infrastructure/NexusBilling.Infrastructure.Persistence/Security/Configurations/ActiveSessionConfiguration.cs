@@ -23,5 +23,8 @@ public class ActiveSessionConfiguration : IEntityTypeConfiguration<ActiveSession
         builder.Property(x => x.LoginDatetime).HasColumnName("login_datetime");
         builder.Property(x => x.DatabaseName).HasColumnName("database_name");
         builder.Property(x => x.SessionUniqueId).HasColumnName("session_unique_id");
+        builder.Property(x => x.RefreshToken).HasColumnName("refresh_token").IsRequired();
+        builder.Property(x => x.ExpiresAt).HasColumnName("expires_at").IsRequired();
+        builder.Property(x => x.LastActivity).HasColumnName("last_activity").IsRequired();
     }
 }

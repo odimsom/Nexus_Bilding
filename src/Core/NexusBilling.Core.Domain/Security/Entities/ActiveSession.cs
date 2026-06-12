@@ -50,6 +50,7 @@ public class ActiveSession : Entity
             LoginDatetime = DateTime.UtcNow,
             ServerInstanceName = "NexusBilling-Core",
             ServerComputerName = Environment.MachineName,
+            ClientComputerName = "web-client",
             DatabaseName = "nexus_db"
         };
         return OperationResult<ActiveSession, DomainError>.Ok(entity);

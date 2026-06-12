@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using NexusBilling.Core.Domain.Administration.Entities;
 using NexusBilling.Core.Domain.Security.Entities;
 using NexusBilling.Core.Domain.Inventory.Entities;
@@ -662,6 +663,13 @@ public class NexusBillingDbContext : DbContext
     public DbSet<WorkflowTableRelationValue> WorkflowTableRelationValues => Set<WorkflowTableRelationValue>();
     public DbSet<WorkflowUserGroup> WorkflowUserGroups => Set<WorkflowUserGroup>();
     public DbSet<WorkflowUserGroupMember> WorkflowUserGroupMembers => Set<WorkflowUserGroupMember>();
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.ConfigureWarnings(w =>
+            w.Ignore(RelationalEventId.PendingModelChangesWarning));
+        base.OnConfiguring(optionsBuilder);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

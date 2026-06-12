@@ -15,19 +15,33 @@ public class SalesHeader : Entity
         DocumentType = string.Empty;
         No = string.Empty;
         SellToCustomerNo = string.Empty;
+        SellToCustomerName = string.Empty;
         BillToName = string.Empty;
-        TenantId = TenantIdentifier.Create(Guid.Empty);
+        CurrencyCode = string.Empty;
+        PaymentTermsCode = string.Empty;
+        PaymentMethodCode = string.Empty;
+        SalespersonCode = string.Empty;
+        ExternalDocumentNo = string.Empty;
+        Status = "Open";
+        TenantId = null!;
     }
 
-    private SalesHeader(TenantIdentifier tenantId, string documentType, string no, string sellToCustomerNo, string billToName, DateTime postingDate)
+    private SalesHeader(TenantIdentifier tenantId, string documentType, string no, string sellToCustomerNo, string sellToCustomerName, string billToName, DateTime postingDate)
     {
         Id = Guid.NewGuid();
         TenantId = tenantId;
         DocumentType = documentType;
         No = no;
         SellToCustomerNo = sellToCustomerNo;
+        SellToCustomerName = sellToCustomerName;
         BillToName = billToName;
         PostingDate = postingDate;
+        CurrencyCode = string.Empty;
+        PaymentTermsCode = string.Empty;
+        PaymentMethodCode = string.Empty;
+        SalespersonCode = string.Empty;
+        ExternalDocumentNo = string.Empty;
+        Status = "Open";
         CreatedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;
     }
@@ -36,8 +50,18 @@ public class SalesHeader : Entity
     public string DocumentType { get; private set; }
     public string No { get; private set; }
     public string SellToCustomerNo { get; private set; }
+    public string SellToCustomerName { get; set; } = string.Empty;
     public string BillToName { get; private set; }
     public DateTime PostingDate { get; private set; }
+    public DateTime? DueDate { get; set; }
+    public decimal Amount { get; set; }
+    public decimal AmountIncludingVat { get; set; }
+    public string CurrencyCode { get; set; }
+    public string PaymentTermsCode { get; set; }
+    public string PaymentMethodCode { get; set; }
+    public string SalespersonCode { get; set; }
+    public string ExternalDocumentNo { get; set; }
+    public string Status { get; set; }
 
     public IReadOnlyCollection<object> DomainEvents => _domainEvents.AsReadOnly();
 
@@ -46,6 +70,7 @@ public class SalesHeader : Entity
         string documentType,
         string no,
         string sellToCustomerNo,
+        string sellToCustomerName,
         string billToName,
         DateTime postingDate)
     {
@@ -58,8 +83,11 @@ public class SalesHeader : Entity
         if (string.IsNullOrWhiteSpace(sellToCustomerNo))
             return OperationResult<SalesHeader, DomainError>.Fail(DomainError.Validation("sales_header.customer_no_required", "El número de cliente es obligatorio."));
 
-        return OperationResult<SalesHeader, DomainError>.Ok(new SalesHeader(tenantId, documentType.Trim(), no.Trim(), sellToCustomerNo.Trim(), billToName.Trim(), postingDate));
+        return OperationResult<SalesHeader, DomainError>.Ok(new SalesHeader(tenantId, documentType.Trim(), no.Trim(), sellToCustomerNo.Trim(), sellToCustomerName.Trim(), billToName.Trim(), postingDate));
     }
+
+    public void Release() { Status = "Released"; UpdatedAt = DateTime.UtcNow; }
+    public void Close()   { Status = "Closed";   UpdatedAt = DateTime.UtcNow; }
 
     public void ClearDomainEvents() => _domainEvents.Clear();
     private void AddDomainEvent(object @event) => _domainEvents.Add(@event);

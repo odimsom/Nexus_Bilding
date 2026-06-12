@@ -1,30 +1,21 @@
-/**
- * Item — frontend model
- * Maps: NexusBilling.Core.Domain.Inventory.Entities.Item
- *
- * Key fields: No, Description, BaseUnitOfMeasure, UnitPrice, UnitCost, Blocked
- * Extended with inventory quantities from ItemLedgerEntry aggregations
- */
 export interface Item {
   no: string;
   description: string;
-  description2?: string;
+  description2: string;
   baseUnitOfMeasure: string;
   unitPrice: number;
   unitCost: number;
   blocked: boolean;
-  type?: string;               // Inventory | Service | Non-Inventory
-  inventoryPostingGroup?: string;
-  genProdPostingGroup?: string;
-  vatProdPostingGroup?: string;
-  itemCategoryCode?: string;
-  vendor?: string;
-  vendorItemNo?: string;
-  inventory?: number;          // current stock quantity (from ItemLedgerEntry sum)
-  qtyOnSalesOrder?: number;
-  qtyOnPurchOrder?: number;
-  standardCost?: number;
-  lastDirectCost?: number;
+  inventory: number;
+  type: string;
+  itemCategoryCode: string;
+  inventoryPostingGroup: string;
+  genProdPostingGroup: string;
+  vatProdPostingGroup: string;
+  vendorNo: string;
+  vendorItemNo: string;
+  standardCost: number;
+  lastDirectCost: number;
 }
 
 export interface ItemFilter {

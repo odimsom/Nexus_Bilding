@@ -14,7 +14,7 @@ public class GLAccount : Entity
     {
         No = string.Empty;
         Name = string.Empty;
-        TenantId = TenantIdentifier.Create(Guid.Empty);
+        TenantId = null!;
     }
 
     private GLAccount(TenantIdentifier tenantId, string no, string name, short accountType, short incomeBalance)

@@ -16,7 +16,7 @@ public class PurchaseHeader : Entity
         No = string.Empty;
         BuyFromVendorNo = string.Empty;
         PayToName = string.Empty;
-        TenantId = TenantIdentifier.Create(Guid.Empty);
+        TenantId = null!;
     }
 
     private PurchaseHeader(TenantIdentifier tenantId, string documentType, string no, string buyFromVendorNo, string payToName, DateTime postingDate)

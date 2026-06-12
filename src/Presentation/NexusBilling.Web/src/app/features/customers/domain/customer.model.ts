@@ -1,10 +1,3 @@
-/**
- * Customer — frontend model
- * Maps: NexusBilling.Core.Domain.Sales.Entities.Customer
- *
- * Fields: No, Name, Address, City, Contact, Blocked
- * Extended with UI-relevant fields from Customer EF Configuration
- */
 export interface Customer {
   no: string;
   name: string;
@@ -12,17 +5,18 @@ export interface Customer {
   city: string;
   contact: string;
   blocked: boolean;
-  phoneNo?: string;
-  email?: string;
-  creditLimit?: number;
-  balance?: number;
-  balanceDue?: number;
-  customerPostingGroup?: string;
-  paymentTermsCode?: string;
-  salespersonCode?: string;
-  currencyCode?: string;
-  countryRegionCode?: string;
-  vatRegistrationNo?: string;
+  phoneNo: string;
+  email: string;
+  creditLimit: number;
+  balance: number;
+  balanceDue: number;
+  vatRegistrationNo: string;
+  paymentTermsCode: string;
+  paymentMethodCode: string;
+  salespersonCode: string;
+  currencyCode: string;
+  customerPostingGroup: string;
+  countryRegionCode: string;
 }
 
 export interface CustomerFilter {

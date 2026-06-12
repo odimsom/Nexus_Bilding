@@ -10,20 +10,31 @@ public class NoSeries : Entity
     private NoSeries() { }
 
     public TenantIdentifier TenantId { get; private set; }
-    public string Code { get; private set; }
-    public string Description { get; private set; }
-    public bool DefaultNos { get; private set; }
-    public bool ManualNos { get; private set; }
-    public bool DateOrder { get; private set; }
+    public string Code { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public bool DefaultNos { get; set; }
+    public bool ManualNos { get; set; }
+    public bool DateOrder { get; set; }
 
-    public static OperationResult<NoSeries, DomainError> Create(TenantIdentifier tenantId)
+    public static OperationResult<NoSeries, DomainError> Create(TenantIdentifier tenantId, string code, string description)
     {
         if (tenantId == null || tenantId.Value == Guid.Empty)
             return OperationResult<NoSeries, DomainError>.Fail(DomainError.Validation("administration.tenant_required", "El TenantIdentifier es obligatorio."));
 
-        var entity = new NoSeries()
+        if (string.IsNullOrWhiteSpace(code))
+            return OperationResult<NoSeries, DomainError>.Fail(DomainError.Validation("no_series.code_required", "El código es obligatorio."));
+
+        var entity = new NoSeries
         {
-            TenantId = tenantId
+            Id = Guid.NewGuid(),
+            TenantId = tenantId,
+            Code = code.Trim().ToUpperInvariant(),
+            Description = description.Trim(),
+            DefaultNos = true,
+            ManualNos = false,
+            DateOrder = false,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         };
         return OperationResult<NoSeries, DomainError>.Ok(entity);
     }

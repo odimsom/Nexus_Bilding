@@ -16,7 +16,7 @@ public class Location : Entity
         Name = string.Empty;
         Address = string.Empty;
         City = string.Empty;
-        TenantId = TenantIdentifier.Create(Guid.Empty);
+        TenantId = null!;
     }
 
     private Location(TenantIdentifier tenantId, string code, string name, string address, string city)

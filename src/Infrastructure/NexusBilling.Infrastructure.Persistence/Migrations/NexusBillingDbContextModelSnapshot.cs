@@ -31448,14 +31448,47 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
+                    b.Property<string>("Description2")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description2");
+
+                    b.Property<string>("GenProdPostingGroup")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("gen_prod_posting_group");
+
+                    b.Property<string>("InventoryPostingGroup")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("inventory_posting_group");
+
+                    b.Property<string>("ItemCategoryCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("item_category_code");
+
+                    b.Property<decimal>("LastDirectCost")
+                        .HasColumnType("numeric")
+                        .HasColumnName("last_direct_cost");
+
                     b.Property<string>("No")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("no");
 
+                    b.Property<decimal>("StandardCost")
+                        .HasColumnType("numeric")
+                        .HasColumnName("standard_cost");
+
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
                         .HasColumnName("tenant_id");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("type");
 
                     b.Property<decimal>("UnitCost")
                         .HasColumnType("numeric")
@@ -31467,6 +31500,21 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("VatProdPostingGroup")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("vat_prod_posting_group");
+
+                    b.Property<string>("VendorItemNo")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("vendor_item_no");
+
+                    b.Property<string>("VendorNo")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("vendor_no");
 
                     b.HasKey("Id");
 
@@ -56034,6 +56082,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("address");
 
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("balance");
+
+                    b.Property<decimal>("BalanceDue")
+                        .HasColumnType("numeric")
+                        .HasColumnName("balance_due");
+
                     b.Property<bool>("Blocked")
                         .HasColumnType("boolean")
                         .HasColumnName("blocked");
@@ -56048,8 +56104,32 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("contact");
 
+                    b.Property<string>("CountryRegionCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("country_region_code");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("CreditLimit")
+                        .HasColumnType("numeric")
+                        .HasColumnName("credit_limit");
+
+                    b.Property<string>("CurrencyCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("currency_code");
+
+                    b.Property<string>("CustomerPostingGroup")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("customer_posting_group");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("email");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -56061,12 +56141,37 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("no");
 
+                    b.Property<string>("PaymentMethodCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("payment_method_code");
+
+                    b.Property<string>("PaymentTermsCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("payment_terms_code");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("phone_no");
+
+                    b.Property<string>("SalespersonCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("salesperson_code");
+
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("VatRegistrationNo")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("vat_registration_no");
 
                     b.HasKey("Id");
 
@@ -58935,6 +59040,18 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<decimal>("Amount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("numeric")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("amount");
+
+                    b.Property<decimal>("AmountIncludingVat")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("numeric")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("amount_including_vat");
+
                     b.Property<string>("BillToName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -58943,24 +59060,77 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("CurrencyCode")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("currency_code");
+
                     b.Property<string>("DocumentType")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("document_type");
+
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("due_date");
+
+                    b.Property<string>("ExternalDocumentNo")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("external_document_no");
 
                     b.Property<string>("No")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("no");
 
+                    b.Property<string>("PaymentMethodCode")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("payment_method_code");
+
+                    b.Property<string>("PaymentTermsCode")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("payment_terms_code");
+
                     b.Property<DateTime>("PostingDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("posting_date");
+
+                    b.Property<string>("SalespersonCode")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("salesperson_code");
+
+                    b.Property<string>("SellToCustomerName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("sell_to_customer_name");
 
                     b.Property<string>("SellToCustomerNo")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("sell_to_customer_no");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("Open")
+                        .HasColumnName("status");
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
@@ -63958,9 +64128,22 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("database_name");
 
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("expires_at");
+
+                    b.Property<DateTime>("LastActivity")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("last_activity");
+
                     b.Property<DateTime?>("LoginDatetime")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("login_datetime");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("refresh_token");
 
                     b.Property<string>("ServerComputerName")
                         .IsRequired()

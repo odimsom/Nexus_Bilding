@@ -14,7 +14,7 @@ public class ItemUnitOfMeasure : Entity
     {
         ItemNo = string.Empty;
         Code = string.Empty;
-        TenantId = TenantIdentifier.Create(Guid.Empty);
+        TenantId = null!;
     }
 
     private ItemUnitOfMeasure(TenantIdentifier tenantId, string itemNo, string code, decimal qtyPerUnitOfMeasure)

@@ -3,6 +3,14 @@ import { LoginPage } from './features/auth/presentation/pages/login/login.page';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./features/landing/presentation/pages/landing.page').then(
+        m => m.LandingPage
+      )
+  },
   { path: 'login', component: LoginPage },
   {
     path: '',
@@ -73,6 +81,14 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/inventory/presentation/pages/item-card/item-card.page').then(
             m => m.ItemCardPage
+          )
+      },
+      /* ── CONFIGURACIÓN ─────────────────────────────────── */
+      {
+        path: 'settings',
+        loadComponent: () =>
+          import('./features/settings/presentation/pages/settings.page').then(
+            m => m.SettingsPage
           )
       },
       /* ── RUTA CATCH-ALL dentro del shell ────────────────── */

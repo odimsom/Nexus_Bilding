@@ -6,11 +6,13 @@ namespace NexusBilling.Core.Domain.Security.Entities;
 
 public class User : Entity
 {
-    public string Username { get; private set; } = string.Empty;
-    public string Email { get; private set; } = string.Empty;
-    public string PasswordHash { get; private set; } = string.Empty;
-    public bool IsActive { get; private set; } = true;
-    public TenantIdentifier? TenantId { get; private set; }
+    public string Username { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string PasswordHash { get; set; } = string.Empty;
+    public bool IsActive { get; set; } = true;
+    public TenantIdentifier? TenantId { get; set; }
+    public string FullName { get; set; } = string.Empty;
+    public string EmployeeNo { get; set; } = string.Empty;
 
     private User() { }
 
@@ -18,7 +20,9 @@ public class User : Entity
         string username,
         string email,
         string passwordHash,
-        TenantIdentifier tenantId)
+        TenantIdentifier tenantId,
+        string fullName = "",
+        string employeeNo = "")
     {
         if (string.IsNullOrWhiteSpace(username))
             return OperationResult<User, DomainError>.Fail(
@@ -38,7 +42,9 @@ public class User : Entity
             Email = email,
             PasswordHash = passwordHash,
             TenantId = tenantId,
-            IsActive = true
+            IsActive = true,
+            FullName = fullName,
+            EmployeeNo = employeeNo
         };
 
         return OperationResult<User, DomainError>.Ok(user);
@@ -58,4 +64,11 @@ public class User : Entity
 
     public void Deactivate() => IsActive = false;
     public void Activate() => IsActive = true;
+    public void UpdateProfile(string fullName, string email, string employeeNo)
+    {
+        FullName = fullName;
+        Email = email;
+        EmployeeNo = employeeNo;
+        UpdatedAt = DateTime.UtcNow;
+    }
 }

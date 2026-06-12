@@ -16,5 +16,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.PasswordHash).HasColumnName("password_hash");
         builder.Property(x => x.IsActive).HasColumnName("is_active");
         builder.Property(x => x.TenantId).HasConversion(v => v.Value, v => TenantIdentifier.Create(v)).HasColumnName("tenant_id").IsRequired();
+        builder.Property(x => x.FullName).HasColumnName("full_name").HasDefaultValue(string.Empty);
+        builder.Property(x => x.EmployeeNo).HasColumnName("employee_no").HasDefaultValue(string.Empty);
     }
 }

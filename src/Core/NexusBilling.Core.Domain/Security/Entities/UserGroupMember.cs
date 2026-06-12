@@ -9,20 +9,11 @@ public class UserGroupMember : Entity
 {
     private UserGroupMember() { }
 
-    public TenantIdentifier TenantId { get; private set; }
-    public string UserGroupCode { get; private set; }
-    public Guid UserSecurityId { get; private set; }
-    public string CompanyName { get; private set; }
+    public TenantIdentifier TenantId { get; set; }
+    public string UserGroupCode { get; set; } = string.Empty;
+    public Guid UserSecurityId { get; set; }
+    public string CompanyName { get; set; } = string.Empty;
 
-    public static OperationResult<UserGroupMember, DomainError> Create(TenantIdentifier tenantId)
-    {
-        if (tenantId == null || tenantId.Value == Guid.Empty)
-            return OperationResult<UserGroupMember, DomainError>.Fail(DomainError.Validation("security.tenant_required", "El TenantIdentifier es obligatorio."));
-
-        var entity = new UserGroupMember()
-        {
-            TenantId = tenantId
-        };
-        return OperationResult<UserGroupMember, DomainError>.Ok(entity);
-    }
+    public static UserGroupMember Create(TenantIdentifier tenantId, string groupCode, Guid userSecurityId)
+        => new() { TenantId = tenantId, UserGroupCode = groupCode, UserSecurityId = userSecurityId, CompanyName = string.Empty };
 }

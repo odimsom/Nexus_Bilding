@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NoSeriesService, NoSeriesItem } from '../../data/no-series.service';
+import { UserService, AppUser } from '../../../../features/security/data/user.service';
 
 type SettingsTab = 'company' | 'ncf' | 'payment' | 'users' | 'posting' | 'sequences';
 
@@ -264,57 +265,145 @@ interface NcfSeries {
       <div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--nx-space-4);">
           <div>
-            <h2 style="font-size:var(--nx-text-base);font-weight:var(--nx-weight-semibold);">Usuarios y Roles</h2>
-            <p style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">Gestiona los usuarios del sistema y sus permisos de acceso.</p>
+            <div style="font-weight:var(--nx-weight-semibold);">Usuarios del Sistema</div>
+            <div style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">Gestiona quién tiene acceso y a qué grupo/rol pertenece.</div>
           </div>
-          <button class="nx-btn nx-btn--primary nx-btn--sm">+ Invitar Usuario</button>
+          <button class="nx-btn nx-btn--primary nx-btn--sm" (click)="openNewUser()">+ Nuevo Usuario</button>
         </div>
 
-        <div class="nx-card" style="overflow:hidden;">
-          <div style="overflow-x:auto;">
-            <table class="nx-table" aria-label="Usuarios">
-              <thead>
-                <tr>
-                  <th>Usuario</th>
-                  <th>Email</th>
-                  <th>Rol</th>
-                  <th>Último acceso</th>
-                  <th>Estado</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (u of users; track u.email) {
-                  <tr>
-                    <td>
-                      <div style="display:flex;align-items:center;gap:var(--nx-space-2);">
-                        <div class="nx-avatar nx-avatar--sm nx-avatar--circle" style="background:var(--nx-indigo-100);color:var(--nx-indigo-800);">
-                          {{ u.name.charAt(0) }}
-                        </div>
-                        <span style="font-weight:var(--nx-weight-medium);">{{ u.name }}</span>
-                      </div>
-                    </td>
-                    <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ u.email }}</td>
-                    <td>
-                      <span class="nx-badge nx-badge--outline">{{ u.role }}</span>
-                    </td>
-                    <td style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">{{ u.lastAccess }}</td>
-                    <td>
-                      @if (u.active) {
-                        <span class="nx-badge nx-badge--success"><span class="nx-badge__dot"></span>Activo</span>
-                      } @else {
-                        <span class="nx-badge nx-badge--danger"><span class="nx-badge__dot"></span>Suspendido</span>
-                      }
-                    </td>
-                    <td>
-                      <button class="nx-btn nx-btn--ghost nx-btn--sm">Editar</button>
-                    </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
+        @if (userSvc.loading()) {
+          <div class="nx-empty"><div class="nx-spinner"></div></div>
+        } @else if (userSvc.users().length === 0) {
+          <div class="nx-empty">
+            <p class="nx-empty__title">Sin usuarios</p>
+            <p class="nx-empty__text">Crea el primer usuario del sistema.</p>
           </div>
-        </div>
+        } @else {
+          <div class="nx-card" style="overflow:hidden;">
+            <div style="overflow-x:auto;">
+              <table class="nx-table" aria-label="Usuarios">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Empleado</th>
+                    <th>Grupo/Rol</th>
+                    <th>Estado</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (u of userSvc.users(); track u.id) {
+                    <tr>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:var(--nx-space-2);">
+                          <div style="width:32px;height:32px;border-radius:50%;background:var(--nx-indigo-100);color:var(--nx-indigo-800);display:flex;align-items:center;justify-content:center;font-weight:var(--nx-weight-bold);font-size:var(--nx-text-sm);">
+                            {{ (u.fullName || u.username).charAt(0).toUpperCase() }}
+                          </div>
+                          <div>
+                            <div style="font-weight:var(--nx-weight-medium);">{{ u.fullName || u.username }}</div>
+                            <div style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);">{{ u.username }}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ u.email }}</td>
+                      <td style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">{{ u.employeeNo || '—' }}</td>
+                      <td>
+                        @if (u.groupName) {
+                          <span class="nx-badge nx-badge--outline">{{ u.groupName }}</span>
+                        } @else {
+                          <span style="color:var(--nx-text-faint);">Sin grupo</span>
+                        }
+                      </td>
+                      <td>
+                        @if (u.isActive) {
+                          <span class="nx-badge nx-badge--success"><span class="nx-badge__dot"></span>Activo</span>
+                        } @else {
+                          <span class="nx-badge nx-badge--danger"><span class="nx-badge__dot"></span>Suspendido</span>
+                        }
+                      </td>
+                      <td style="display:flex;gap:var(--nx-space-2);">
+                        <button class="nx-btn nx-btn--ghost nx-btn--sm" (click)="editUser(u)">Editar</button>
+                        @if (u.isActive) {
+                          <button class="nx-btn nx-btn--ghost nx-btn--sm" style="color:var(--nx-red-500);" (click)="toggleUserActive(u.id, false)">Suspender</button>
+                        } @else {
+                          <button class="nx-btn nx-btn--ghost nx-btn--sm" style="color:var(--nx-green-600);" (click)="toggleUserActive(u.id, true)">Activar</button>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="nx-callout nx-callout--info" style="margin-top:var(--nx-space-3);">
+            Los grupos definen el nivel de acceso base. Próximamente: permisos adicionales por módulo.
+          </div>
+        }
+
+        <!-- User modal -->
+        @if (showUserModal()) {
+          <div class="modal-backdrop" (click)="closeUserModal()">
+            <div class="modal-box" (click)="$event.stopPropagation()" style="max-width:520px;">
+              <div class="modal-header">
+                <h2 class="nx-page-title" style="margin:0;">{{ editingUserId ? 'Editar Usuario' : 'Nuevo Usuario' }}</h2>
+                <button class="nx-iconbtn" (click)="closeUserModal()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+              </div>
+              <div class="modal-body">
+                @if (userError()) {
+                  <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ userError() }}</div>
+                }
+                <div class="form-grid">
+                  @if (!editingUserId) {
+                    <div class="nx-field">
+                      <label class="nx-label">Usuario (login) *</label>
+                      <input class="nx-input" [(ngModel)]="userForm.username" placeholder="juan.perez" />
+                    </div>
+                    <div class="nx-field">
+                      <label class="nx-label">Contraseña *</label>
+                      <input class="nx-input" type="password" [(ngModel)]="userForm.password" placeholder="Mínimo 6 caracteres" />
+                    </div>
+                  } @else {
+                    <div class="nx-field" style="grid-column:1/-1;">
+                      <label class="nx-label">Nueva Contraseña</label>
+                      <input class="nx-input" type="password" [(ngModel)]="userForm.newPassword" placeholder="Dejar vacío para no cambiar" />
+                    </div>
+                  }
+                  <div class="nx-field">
+                    <label class="nx-label">Nombre Completo</label>
+                    <input class="nx-input" [(ngModel)]="userForm.fullName" placeholder="Juan Pérez" />
+                  </div>
+                  <div class="nx-field">
+                    <label class="nx-label">Email *</label>
+                    <input class="nx-input" type="email" [(ngModel)]="userForm.email" placeholder="juan@empresa.com" />
+                  </div>
+                  <div class="nx-field">
+                    <label class="nx-label">No. Empleado</label>
+                    <input class="nx-input" [(ngModel)]="userForm.employeeNo" placeholder="EMP-001 (opcional)" />
+                  </div>
+                  <div class="nx-field">
+                    <label class="nx-label">Grupo / Rol</label>
+                    <select class="nx-input" [(ngModel)]="userForm.groupCode">
+                      <option value="">Sin grupo</option>
+                      @for (g of userSvc.groups(); track g.code) {
+                        <option [value]="g.code">{{ g.name }}</option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="nx-btn nx-btn--ghost" (click)="closeUserModal()">Cancelar</button>
+                <button class="nx-btn nx-btn--primary" [disabled]="userSaving()" (click)="saveUser()">
+                  @if (userSaving()) { Guardando… } @else { Guardar }
+                </button>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     }
 
@@ -575,8 +664,74 @@ export class SettingsPage implements OnInit {
     startingNo: string; endingNo: string; incrementByNo: number;
   } = { code: '', description: '', defaultNos: true, manualNos: false, startingNo: '', endingNo: '', incrementByNo: 1 };
 
+  readonly userSvc = inject(UserService);
+
+  // ── User modal state ────────────────────────────────────────────
+  readonly showUserModal = signal(false);
+  readonly userSaving    = signal(false);
+  readonly userError     = signal('');
+  editingUserId: string | null = null;
+
+  userForm: {
+    username: string; password: string; newPassword: string;
+    fullName: string; email: string; employeeNo: string; groupCode: string;
+  } = { username: '', password: '', newPassword: '', fullName: '', email: '', employeeNo: '', groupCode: '' };
+
   async ngOnInit(): Promise<void> {
-    await this.noSeriesSvc.load();
+    await Promise.all([
+      this.noSeriesSvc.load(),
+      this.userSvc.loadUsers(),
+      this.userSvc.loadGroups(),
+    ]);
+  }
+
+  openNewUser(): void {
+    this.editingUserId = null;
+    this.userForm = { username: '', password: '', newPassword: '', fullName: '', email: '', employeeNo: '', groupCode: '' };
+    this.userError.set('');
+    this.showUserModal.set(true);
+  }
+
+  editUser(u: AppUser): void {
+    this.editingUserId = u.id;
+    this.userForm = { username: u.username, password: '', newPassword: '', fullName: u.fullName, email: u.email, employeeNo: u.employeeNo, groupCode: u.groupCode };
+    this.userError.set('');
+    this.showUserModal.set(true);
+  }
+
+  closeUserModal(): void { this.showUserModal.set(false); }
+
+  async saveUser(): Promise<void> {
+    if (!this.userForm.email.trim()) { this.userError.set('El email es obligatorio.'); return; }
+    if (!this.editingUserId && !this.userForm.username.trim()) { this.userError.set('El usuario es obligatorio.'); return; }
+    if (!this.editingUserId && !this.userForm.password) { this.userError.set('La contraseña es obligatoria.'); return; }
+    this.userSaving.set(true);
+    this.userError.set('');
+    try {
+      if (this.editingUserId) {
+        await this.userSvc.update(this.editingUserId, {
+          fullName: this.userForm.fullName, email: this.userForm.email,
+          employeeNo: this.userForm.employeeNo, groupCode: this.userForm.groupCode,
+          newPassword: this.userForm.newPassword || undefined
+        });
+      } else {
+        await this.userSvc.create({
+          username: this.userForm.username, email: this.userForm.email,
+          password: this.userForm.password, fullName: this.userForm.fullName,
+          employeeNo: this.userForm.employeeNo, groupCode: this.userForm.groupCode
+        });
+      }
+      this.showUserModal.set(false);
+    } catch (e: any) {
+      this.userError.set(e?.message ?? 'Error al guardar el usuario.');
+    } finally {
+      this.userSaving.set(false);
+    }
+  }
+
+  async toggleUserActive(id: string, active: boolean): Promise<void> {
+    if (active) await this.userSvc.activate(id);
+    else await this.userSvc.deactivate(id);
   }
 
   openNewSeries(): void {
@@ -669,13 +824,6 @@ export class SettingsPage implements OnInit {
     { code: 'CHEQUE',        desc: 'Cheque' },
     { code: 'TARJETA',       desc: 'Tarjeta de crédito/débito' },
     { code: 'WIRE',          desc: 'Wire transfer (USD)' },
-  ];
-
-  readonly users = [
-    { name: 'Administrador', email: 'admin@nexusbilling.do', role: 'Admin', lastAccess: 'Hoy, 9:45 AM', active: true },
-    { name: 'María Ventas', email: 'mventas@empresa.com', role: 'Ventas', lastAccess: 'Ayer, 4:20 PM', active: true },
-    { name: 'Carlos Almacén', email: 'calmacen@empresa.com', role: 'Inventario', lastAccess: 'Hace 3 días', active: true },
-    { name: 'Ana Contable', email: 'acontable@empresa.com', role: 'Finanzas', lastAccess: 'Hace 1 semana', active: false },
   ];
 
   available(s: NcfSeries): number {

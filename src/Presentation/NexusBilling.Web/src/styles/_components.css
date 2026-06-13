@@ -244,6 +244,11 @@ textarea.nx-input {
 .nx-inputgroup--trail .nx-input { padding-right: 34px; }
 .nx-inputgroup--trail .nx-adorn { left: auto; right: 11px; }
 
+/* Input with inline SVG icon (no nx-adorn wrapper needed) */
+.nx-input-icon { position: relative; display: flex; align-items: center; }
+.nx-input-icon > svg { position: absolute; left: 11px; width: 16px; height: 16px; color: var(--nx-text-faint); pointer-events: none; flex: none; }
+.nx-input-icon .nx-input { padding-left: 34px; }
+
 
 /* ================================================================
  * SELECT
@@ -607,6 +612,27 @@ textarea.nx-input {
 .nx-banner--warn .nx-banner__icon { color: var(--nx-status-warn-fg); }
 .nx-banner--danger { background: var(--nx-status-danger-bg); border-color: color-mix(in srgb, var(--nx-status-danger-fg) 24%, transparent); }
 .nx-banner--danger .nx-banner__icon { color: var(--nx-status-danger-fg); }
+
+
+/* ================================================================
+ * CALLOUT — simple inline status message (no child elements)
+ * Usage: <div class="nx-callout nx-callout--danger">Texto del error.</div>
+ * Variants: --info | --success | --warn | --danger
+ * ================================================================ */
+.nx-callout {
+  padding: var(--nx-space-3) var(--nx-space-4);
+  border: var(--nx-border-w) solid transparent;
+  border-radius: var(--nx-radius-md);
+  font-size: var(--nx-text-sm);
+  line-height: var(--nx-leading-snug);
+  background: var(--nx-status-info-bg);
+  border-color: color-mix(in srgb, var(--nx-status-info-fg) 22%, transparent);
+  color: var(--nx-status-info-fg);
+}
+.nx-callout--info    { background: var(--nx-status-info-bg);    border-color: color-mix(in srgb, var(--nx-status-info-fg)    22%, transparent); color: var(--nx-status-info-fg); }
+.nx-callout--success { background: var(--nx-status-success-bg); border-color: color-mix(in srgb, var(--nx-status-success-fg) 22%, transparent); color: var(--nx-status-success-fg); }
+.nx-callout--warn    { background: var(--nx-status-warn-bg);    border-color: color-mix(in srgb, var(--nx-status-warn-fg)    26%, transparent); color: var(--nx-status-warn-fg); }
+.nx-callout--danger  { background: var(--nx-status-danger-bg);  border-color: color-mix(in srgb, var(--nx-status-danger-fg)  24%, transparent); color: var(--nx-status-danger-fg); }
 
 
 /* ================================================================

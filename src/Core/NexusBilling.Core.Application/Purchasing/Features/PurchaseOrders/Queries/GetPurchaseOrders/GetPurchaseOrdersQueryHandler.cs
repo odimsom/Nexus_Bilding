@@ -21,10 +21,10 @@ public sealed class GetPurchaseOrdersQueryHandler(IPurchaseHeaderRepository orde
             o.BuyFromVendorNo,
             o.PayToName,
             o.PostingDate,
-            "Open", // Status placeholder
-            0,      // Amount placeholder
-            0,      // AmountIncludingVat placeholder
-            "DOP")).ToList();
+            o.Status,
+            o.Amount,
+            o.AmountIncludingVat,
+            o.CurrencyCode)).ToList();
 
         return (dtos, total);
     }

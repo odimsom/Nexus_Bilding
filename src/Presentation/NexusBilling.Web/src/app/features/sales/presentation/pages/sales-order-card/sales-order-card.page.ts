@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../../../../../core/services/api.service';
 import { PdfService } from '../../../../../shared/services/pdf.service';
@@ -58,9 +58,9 @@ import { SalesOrderDetail } from '../../../domain/invoice.model';
             </button>
           }
           @if (order()!.status === 'Released') {
-            <button class="nx-btn nx-btn--primary nx-btn--sm" disabled title="Publicación próximamente">
+            <button class="nx-btn nx-btn--primary nx-btn--sm" [disabled]="posting()" (click)="postOrder()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Publicar
+              {{ posting() ? 'Publicando…' : 'Publicar' }}
             </button>
           }
         </div>
@@ -282,6 +282,7 @@ import { SalesOrderDetail } from '../../../domain/invoice.model';
 })
 export class SalesOrderCardPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly svc = inject(InvoiceService);
   private readonly api = inject(ApiService);
   private readonly pdfSvc = inject(PdfService);
@@ -289,6 +290,7 @@ export class SalesOrderCardPage implements OnInit {
   order = signal<SalesOrderDetail | null>(null);
   loading = signal(true);
   releasing = signal(false);
+  posting = signal(false);
   printing = signal(false);
 
   async ngOnInit(): Promise<void> {
@@ -300,6 +302,20 @@ export class SalesOrderCardPage implements OnInit {
       this.order.set(null);
     } finally {
       this.loading.set(false);
+    }
+  }
+
+  async postOrder(): Promise<void> {
+    const ord = this.order();
+    if (!ord || this.posting()) return;
+    this.posting.set(true);
+    try {
+      await firstValueFrom(this.api.post<any>(`sales/orders/${encodeURIComponent(ord.no)}/post`, {}));
+      this.router.navigate(['/invoices']);
+    } catch (err: any) {
+      alert(err?.error?.error?.message ?? 'Error al publicar la orden.');
+    } finally {
+      this.posting.set(false);
     }
   }
 

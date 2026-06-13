@@ -101,7 +101,7 @@ public class PurchaseOrdersController(IMediator mediator) : ControllerBase
         var cmd = new CreatePurchaseOrderCommand(
             tenantId,
             null,
-            "PURCH_ORD", // Default series
+            "PC", // Serie de pedidos de compra
             req.BuyFromVendorNo,
             req.PayToName ?? "",
             req.PostingDate ?? DateTime.UtcNow,

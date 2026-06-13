@@ -14,8 +14,16 @@ public sealed class GetSalesInvoicesQueryHandler(ISalesInvoiceHeaderRepository r
             i.Id.ToString(),
             i.No,
             i.SellToCustomerNo,
-            i.BillToName,
+            i.SellToCustomerName ?? string.Empty,
+            i.BillToName ?? string.Empty,
             i.PostingDate ?? DateTime.MinValue,
+            i.DueDate,
+            i.ExternalDocumentNo ?? string.Empty,
+            i.CurrencyCode ?? string.Empty,
+            i.PaymentTermsCode ?? string.Empty,
+            i.PaymentMethodCode ?? string.Empty,
+            i.SalespersonCode ?? string.Empty,
+            i.Amount,
             i.AmountIncludingVat)).ToList();
 
         return new GetSalesInvoicesResult(dtos, total);

@@ -1,92 +1,91 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 import { PurchaseInvoiceService } from '../../../data/purchase-invoice.service';
 
 @Component({
   selector: 'app-purchase-invoice-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterLink, DatePipe, CurrencyPipe],
   template: `
-    <div class="h-full flex flex-col p-6 animate-fade-in">
-      <div class="flex justify-between items-center mb-6">
-        <div>
-          <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
-            Facturas de Compra
-          </h1>
-          <p class="text-neutral-400 mt-1">Historial de facturas recibidas de proveedores.</p>
-        </div>
-      </div>
+    <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
+      <a routerLink="/dashboard">Dashboard</a>
+      <span class="nx-crumbs__sep">›</span>
+      <span class="nx-crumb--current">Facturas de Compra</span>
+    </nav>
 
-      <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden flex-1 flex flex-col shadow-xl">
-        <div class="p-4 border-b border-neutral-800 flex justify-between items-center bg-neutral-900/50">
-          <div class="relative w-72">
-            <i class="fi fi-rr-search absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500"></i>
-            <input type="text" placeholder="Buscar facturas..." 
-                   class="w-full bg-neutral-950 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all text-neutral-200">
-          </div>
-          <div class="text-sm text-neutral-400">
-            {{ service.totalItems() }} facturas en total
-          </div>
-        </div>
-
-        <div class="flex-1 overflow-auto">
-          <table class="w-full text-left text-sm whitespace-nowrap">
-            <thead class="bg-neutral-950/50 text-neutral-400 sticky top-0 z-10 backdrop-blur-sm">
-              <tr>
-                <th class="px-6 py-4 font-medium">Nº Factura</th>
-                <th class="px-6 py-4 font-medium">Proveedor</th>
-                <th class="px-6 py-4 font-medium">Nombre Proveedor</th>
-                <th class="px-6 py-4 font-medium">Fecha Emisión</th>
-                <th class="px-6 py-4 font-medium">Estado</th>
-                <th class="px-6 py-4 font-medium text-right">Importe Total</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-neutral-800/50">
-              <tr *ngIf="service.loading()">
-                <td colspan="6" class="px-6 py-8 text-center text-neutral-500">
-                  <i class="fi fi-rr-spinner animate-spin text-2xl mb-2 inline-block"></i>
-                  <p>Cargando facturas...</p>
-                </td>
-              </tr>
-              
-              <tr *ngIf="!service.loading() && service.items().length === 0">
-                <td colspan="6" class="px-6 py-12 text-center text-neutral-500">
-                  <i class="fi fi-rr-document text-4xl mb-3 inline-block opacity-50"></i>
-                  <p class="text-lg">No hay facturas registradas</p>
-                  <p class="text-sm mt-1">Las órdenes de compra registradas aparecerán aquí.</p>
-                </td>
-              </tr>
-
-              <tr *ngFor="let item of service.items()" 
-                  [routerLink]="['/purchase-invoices', item.no]"
-                  class="hover:bg-neutral-800/30 cursor-pointer transition-colors group">
-                <td class="px-6 py-4 font-medium text-teal-400 group-hover:text-teal-300">
-                  {{ item.no }}
-                </td>
-                <td class="px-6 py-4 text-neutral-300">{{ item.buyFromVendorNo }}</td>
-                <td class="px-6 py-4 text-neutral-300">{{ item.payToName }}</td>
-                <td class="px-6 py-4 text-neutral-400">{{ item.postingDate | date:'dd/MM/yyyy' }}</td>
-                <td class="px-6 py-4">
-                  <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-xs font-medium">
-                    Registrada
-                  </span>
-                </td>
-                <td class="px-6 py-4 text-right font-medium text-neutral-200">
-                  {{ item.amountIncludingVat | currency }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="nx-page-header" style="margin-bottom:var(--nx-space-5);">
+      <div>
+        <h1 class="nx-page-title">Facturas de Compra</h1>
+        <p class="nx-page-subtitle">Historial de facturas recibidas de proveedores</p>
       </div>
     </div>
-  `
+
+    @if (svc.loading()) {
+      <div class="nx-empty"><div class="nx-spinner"></div></div>
+    } @else if (svc.error()) {
+      <div class="nx-callout nx-callout--danger">{{ svc.error() }}</div>
+    } @else {
+      <div class="nx-card">
+        <div class="nx-card__head" style="gap:var(--nx-space-4);flex-wrap:wrap;">
+          <div class="nx-input-icon" style="max-width:320px;flex:1;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input class="nx-input" placeholder="Buscar facturas…" />
+          </div>
+          <div style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">
+            {{ svc.totalItems() }} facturas en total
+          </div>
+        </div>
+
+        @if (svc.items().length === 0) {
+          <div class="nx-empty" style="padding:var(--nx-space-8);">
+            <div class="nx-empty__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <p class="nx-empty__title">No hay facturas registradas</p>
+            <p class="nx-empty__text">Las facturas de compra contabilizadas aparecerán aquí.</p>
+          </div>
+        } @else {
+          <div style="overflow-x:auto;">
+            <table class="nx-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">No. Factura</th>
+                  <th style="width:120px;">Proveedor</th>
+                  <th>Nombre Proveedor</th>
+                  <th>Fecha</th>
+                  <th>Estado</th>
+                  <th style="text-align:right;">Importe Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (inv of svc.items(); track inv.no) {
+                  <tr style="cursor:pointer;" [routerLink]="['/purchase-invoices', inv.no]">
+                    <td class="nx-td--doc"><a class="nx-link">{{ inv.no }}</a></td>
+                    <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ inv.buyFromVendorNo }}</td>
+                    <td style="font-weight:var(--nx-weight-medium);">{{ inv.payToName }}</td>
+                    <td>{{ inv.postingDate | date:'dd/MM/yyyy' }}</td>
+                    <td><span class="nx-badge nx-badge--info">Registrada</span></td>
+                    <td class="nx-td--num">{{ inv.amountIncludingVat | currency:'DOP':'symbol':'1.2-2' }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+    }
+  `,
+  styles: [`
+    :host { display: block; }
+    .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:4rem auto; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+  `]
 })
 export class PurchaseInvoiceListPage implements OnInit {
-  service = inject(PurchaseInvoiceService);
+  readonly svc = inject(PurchaseInvoiceService);
 
-  ngOnInit() {
-    this.service.load();
+  async ngOnInit() {
+    await this.svc.load();
   }
 }

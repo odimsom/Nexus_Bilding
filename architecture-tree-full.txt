@@ -1,0 +1,3342 @@
+Nexus_Bilding/
+├── README.md
+├── .gitignore
+├── src
+│   ├── Core
+│   │   ├── NexusBilling.Core.Domain
+│   │   │   ├── Administration
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── Tenant.cs
+│   │   │   │   │   ├── AccSchedChartSetupLine.cs
+│   │   │   │   │   ├── AccSchedKpiWebSrvLine.cs
+│   │   │   │   │   ├── AccSchedKpiWebSrvSetup.cs
+│   │   │   │   │   ├── AccScheduleLine.cs
+│   │   │   │   │   ├── AccScheduleName.cs
+│   │   │   │   │   ├── AccountSchedulesChartSetup.cs
+│   │   │   │   │   ├── ColumnLayout.cs
+│   │   │   │   │   ├── ColumnLayoutName.cs
+│   │   │   │   │   ├── AnalysisColumn.cs
+│   │   │   │   │   ├── AnalysisColumnTemplate.cs
+│   │   │   │   │   ├── AnalysisLine.cs
+│   │   │   │   │   ├── AnalysisLineTemplate.cs
+│   │   │   │   │   ├── AnalysisReportChartSetup.cs
+│   │   │   │   │   ├── AnalysisReportName.cs
+│   │   │   │   │   ├── AnalysisSelectedDimension.cs
+│   │   │   │   │   ├── AnalysisType.cs
+│   │   │   │   │   ├── AnalysisView.cs
+│   │   │   │   │   ├── AnalysisViewEntry.cs
+│   │   │   │   │   ├── AnalysisViewFilter.cs
+│   │   │   │   │   ├── ApplicationAreaSetup.cs
+│   │   │   │   │   ├── Chart.cs
+│   │   │   │   │   ├── ChartDefinition.cs
+│   │   │   │   │   ├── CommentLine.cs
+│   │   │   │   │   ├── CompanyInformation.cs
+│   │   │   │   │   ├── CountryRegion.cs
+│   │   │   │   │   ├── DocumentService.cs
+│   │   │   │   │   ├── ExcelBuffer.cs
+│   │   │   │   │   ├── ExtendedTextHeader.cs
+│   │   │   │   │   ├── ExtendedTextLine.cs
+│   │   │   │   │   ├── Language.cs
+│   │   │   │   │   ├── LastUsedChart.cs
+│   │   │   │   │   ├── NoSeriesRelationship.cs
+│   │   │   │   │   ├── OnlineMapParameterSetup.cs
+│   │   │   │   │   ├── OnlineMapSetup.cs
+│   │   │   │   │   ├── PostCode.cs
+│   │   │   │   │   ├── PrinterSelection.cs
+│   │   │   │   │   ├── ReasonCode.cs
+│   │   │   │   │   ├── ResponsibilityCenter.cs
+│   │   │   │   │   ├── RestrictedRecord.cs
+│   │   │   │   │   ├── ScheduledTask.cs
+│   │   │   │   │   ├── ShipmentMethod.cs
+│   │   │   │   │   ├── ShipmentMethodTranslation.cs
+│   │   │   │   │   ├── SourceCode.cs
+│   │   │   │   │   ├── SourceCodeSetup.cs
+│   │   │   │   │   ├── StandardText.cs
+│   │   │   │   │   ├── Territory.cs
+│   │   │   │   │   ├── UnitOfMeasure.cs
+│   │   │   │   │   ├── UnitOfMeasureTranslation.cs
+│   │   │   │   │   ├── AssistedCompanySetupStatus.cs
+│   │   │   │   │   ├── AssistedSetup.cs
+│   │   │   │   │   ├── AssistedSetupIcons.cs
+│   │   │   │   │   ├── AssistedSetupLog.cs
+│   │   │   │   │   ├── ConfigFieldMapping.cs
+│   │   │   │   │   ├── ConfigMediaBuffer.cs
+│   │   │   │   │   ├── ConfigPackage.cs
+│   │   │   │   │   ├── ConfigPackageData.cs
+│   │   │   │   │   ├── ConfigPackageError.cs
+│   │   │   │   │   ├── ConfigPackageField.cs
+│   │   │   │   │   ├── ConfigPackageFilter.cs
+│   │   │   │   │   ├── ConfigPackageRecord.cs
+│   │   │   │   │   ├── ConfigPackageTable.cs
+│   │   │   │   │   ├── ConfigQuestion.cs
+│   │   │   │   │   ├── ConfigQuestionArea.cs
+│   │   │   │   │   ├── ConfigQuestionnaire.cs
+│   │   │   │   │   ├── ConfigSetup.cs
+│   │   │   │   │   ├── ConfigTableProcessingRule.cs
+│   │   │   │   │   ├── ConfigTemplateHeader.cs
+│   │   │   │   │   ├── ConfigTemplateLine.cs
+│   │   │   │   │   ├── DataMigrationSetup.cs
+│   │   │   │   │   ├── BankAccount.cs
+│   │   │   │   │   ├── BankAccountLedgerEntry.cs
+│   │   │   │   │   ├── BankAccountPostingGroup.cs
+│   │   │   │   │   ├── BankClearingStandard.cs
+│   │   │   │   │   ├── BankDataConvServiceSetup.cs
+│   │   │   │   │   ├── BankDataConversionPmtType.cs
+│   │   │   │   │   ├── BankExportImportSetup.cs
+│   │   │   │   │   ├── BankPmtApplRule.cs
+│   │   │   │   │   ├── CheckLedgerEntry.cs
+│   │   │   │   │   ├── PaymentJnlExportErrorText.cs
+│   │   │   │   │   ├── PaymentRegistrationSetup.cs
+│   │   │   │   │   ├── BookingMgrSetup.cs
+│   │   │   │   │   ├── GenericChartSetup.cs
+│   │   │   │   │   ├── BusinessRelation.cs
+│   │   │   │   │   ├── CloseOpportunityCode.cs
+│   │   │   │   │   ├── Contact.cs
+│   │   │   │   │   ├── ContactBusinessRelation.cs
+│   │   │   │   │   ├── ContactIndustryGroup.cs
+│   │   │   │   │   ├── ContactJobResponsibility.cs
+│   │   │   │   │   ├── DuplicateSearchStringSetup.cs
+│   │   │   │   │   ├── IndustryGroup.cs
+│   │   │   │   │   ├── InteractionLogEntry.cs
+│   │   │   │   │   ├── InteractionTemplate.cs
+│   │   │   │   │   ├── InteractionTemplateSetup.cs
+│   │   │   │   │   ├── InteractionTmplLanguage.cs
+│   │   │   │   │   ├── JobResponsibility.cs
+│   │   │   │   │   ├── MarketingSetup.cs
+│   │   │   │   │   ├── Opportunity.cs
+│   │   │   │   │   ├── RelationshipMgmtCue.cs
+│   │   │   │   │   ├── SalesCycle.cs
+│   │   │   │   │   ├── SalesCycleStage.cs
+│   │   │   │   │   ├── Salutation.cs
+│   │   │   │   │   ├── SalutationFormula.cs
+│   │   │   │   │   ├── SegmentInteractionLanguage.cs
+│   │   │   │   │   ├── ToDo.cs
+│   │   │   │   │   ├── ToDoInteractionLanguage.cs
+│   │   │   │   │   ├── DocExchServiceSetup.cs
+│   │   │   │   │   ├── DocumentSendingProfile.cs
+│   │   │   │   │   ├── ElectronicDocumentFormat.cs
+│   │   │   │   │   ├── IncomingDocument.cs
+│   │   │   │   │   ├── IncomingDocumentAttachment.cs
+│   │   │   │   │   ├── IncomingDocumentsSetup.cs
+│   │   │   │   │   ├── OcrServiceSetup.cs
+│   │   │   │   │   ├── PostedDocsWithNoIncBuf.cs
+│   │   │   │   │   ├── TransformationRule.cs
+│   │   │   │   │   ├── DeferralTemplate.cs
+│   │   │   │   │   ├── DefaultDimension.cs
+│   │   │   │   │   ├── DefaultDimensionPriority.cs
+│   │   │   │   │   ├── Dimension.cs
+│   │   │   │   │   ├── DimensionCombination.cs
+│   │   │   │   │   ├── DimensionSetEntry.cs
+│   │   │   │   │   ├── DimensionSetTreeNode.cs
+│   │   │   │   │   ├── DimensionTranslation.cs
+│   │   │   │   │   ├── DimensionValue.cs
+│   │   │   │   │   ├── DimensionValueCombination.cs
+│   │   │   │   │   ├── DimensionsFieldMap.cs
+│   │   │   │   │   ├── DimensionsTemplate.cs
+│   │   │   │   │   ├── SelectedDimension.cs
+│   │   │   │   │   ├── SmtpMailSetup.cs
+│   │   │   │   │   ├── Insurance.cs
+│   │   │   │   │   ├── InsuranceJournalBatch.cs
+│   │   │   │   │   ├── InsuranceJournalTemplate.cs
+│   │   │   │   │   ├── InsuranceType.cs
+│   │   │   │   │   ├── IntrastatJnlBatch.cs
+│   │   │   │   │   ├── IntrastatJnlLine.cs
+│   │   │   │   │   ├── IntrastatJnlTemplate.cs
+│   │   │   │   │   ├── TariffNumber.cs
+│   │   │   │   │   ├── TransactionType.cs
+│   │   │   │   │   ├── AddIn.cs
+│   │   │   │   │   ├── AdministrationCue.cs
+│   │   │   │   │   ├── AzureAdAppSetup.cs
+│   │   │   │   │   ├── AzureAdMgtSetup.cs
+│   │   │   │   │   ├── ChangeLogEntry.cs
+│   │   │   │   │   ├── ChangeLogSetup.cs
+│   │   │   │   │   ├── ChangeLogSetupField.cs
+│   │   │   │   │   ├── ChangeLogSetupTable.cs
+│   │   │   │   │   ├── CueSetup.cs
+│   │   │   │   │   ├── ErrorMessage.cs
+│   │   │   │   │   ├── ExchangeServiceSetup.cs
+│   │   │   │   │   ├── Media.cs
+│   │   │   │   │   ├── MediaRepository.cs
+│   │   │   │   │   ├── MediaSet.cs
+│   │   │   │   │   ├── ObjectMetadata.cs
+│   │   │   │   │   ├── ObjectOptions.cs
+│   │   │   │   │   ├── OfficeAddIn.cs
+│   │   │   │   │   ├── OfficeAddInSetup.cs
+│   │   │   │   │   ├── RecordLink.cs
+│   │   │   │   │   ├── SbOwnerCue.cs
+│   │   │   │   │   ├── SocialListeningSetup.cs
+│   │   │   │   │   ├── TeamMemberCue.cs
+│   │   │   │   │   ├── TenantMedia.cs
+│   │   │   │   │   ├── TenantMediaSet.cs
+│   │   │   │   │   ├── TenantMediaThumbnails.cs
+│   │   │   │   │   ├── TenantPermission.cs
+│   │   │   │   │   ├── TenantPermissionSet.cs
+│   │   │   │   │   ├── TenantWebService.cs
+│   │   │   │   │   ├── TenantWebServiceColumns.cs
+│   │   │   │   │   ├── TenantWebServiceOdata.cs
+│   │   │   │   │   ├── TokenCache.cs
+│   │   │   │   │   ├── WebService.cs
+│   │   │   │   │   ├── WebhookSubscription.cs
+│   │   │   │   │   ├── TransferHeader.cs
+│   │   │   │   │   ├── TransferLine.cs
+│   │   │   │   │   ├── TransferReceiptHeader.cs
+│   │   │   │   │   ├── TransferReceiptLine.cs
+│   │   │   │   │   ├── TransferShipmentHeader.cs
+│   │   │   │   │   ├── TransferShipmentLine.cs
+│   │   │   │   │   ├── Maintenance.cs
+│   │   │   │   │   ├── MaintenanceLedgerEntry.cs
+│   │   │   │   │   ├── MaintenanceRegistration.cs
+│   │   │   │   │   ├── NavAppInstalledApp.cs
+│   │   │   │   │   ├── NavAppTenantAddIn.cs
+│   │   │   │   │   ├── MyNotifications.cs
+│   │   │   │   │   ├── NotificationEntry.cs
+│   │   │   │   │   ├── NotificationSchedule.cs
+│   │   │   │   │   ├── NotificationSetup.cs
+│   │   │   │   │   ├── SentNotificationEntry.cs
+│   │   │   │   │   ├── O365DeviceSetupInstructions.cs
+│   │   │   │   │   ├── O365EmailSetup.cs
+│   │   │   │   │   ├── O365GettingStartedPageData.cs
+│   │   │   │   │   ├── O365SalesCue.cs
+│   │   │   │   │   ├── O365SalesInitialSetup.cs
+│   │   │   │   │   ├── OutlookSynchSetupDetail.cs
+│   │   │   │   │   ├── OutlookSynchUserSetup.cs
+│   │   │   │   │   ├── AdditionalFeeSetup.cs
+│   │   │   │   │   ├── FinanceChargeMemoHeader.cs
+│   │   │   │   │   ├── FinanceChargeMemoLine.cs
+│   │   │   │   │   ├── FinanceChargeTerms.cs
+│   │   │   │   │   ├── IssuedFinChargeMemoHeader.cs
+│   │   │   │   │   ├── IssuedFinChargeMemoLine.cs
+│   │   │   │   │   ├── ReminderTerms.cs
+│   │   │   │   │   ├── CustomReportLayout.cs
+│   │   │   │   │   ├── CustomReportSelection.cs
+│   │   │   │   │   ├── ReportInbox.cs
+│   │   │   │   │   ├── ReportLayoutSelection.cs
+│   │   │   │   │   ├── ReportSelections.cs
+│   │   │   │   │   ├── ContractChangeLog.cs
+│   │   │   │   │   ├── ContractGainLossEntry.cs
+│   │   │   │   │   ├── ContractGroup.cs
+│   │   │   │   │   ├── FaultArea.cs
+│   │   │   │   │   ├── FaultCode.cs
+│   │   │   │   │   ├── FaultReasonCode.cs
+│   │   │   │   │   ├── FaultResolCodRelationship.cs
+│   │   │   │   │   ├── FiledContractLine.cs
+│   │   │   │   │   ├── FiledServiceContractHeader.cs
+│   │   │   │   │   ├── Loaner.cs
+│   │   │   │   │   ├── RepairStatus.cs
+│   │   │   │   │   ├── ResolutionCode.cs
+│   │   │   │   │   ├── ResourceLocation.cs
+│   │   │   │   │   ├── ServPriceGroupSetup.cs
+│   │   │   │   │   ├── ServiceCommentLine.cs
+│   │   │   │   │   ├── ServiceContractAccountGroup.cs
+│   │   │   │   │   ├── ServiceContractHeader.cs
+│   │   │   │   │   ├── ServiceContractLine.cs
+│   │   │   │   │   ├── ServiceCost.cs
+│   │   │   │   │   ├── ServiceCue.cs
+│   │   │   │   │   ├── ServiceDocumentLog.cs
+│   │   │   │   │   ├── ServiceDocumentRegister.cs
+│   │   │   │   │   ├── ServiceEmailQueue.cs
+│   │   │   │   │   ├── ServiceInvoiceHeader.cs
+│   │   │   │   │   ├── ServiceInvoiceLine.cs
+│   │   │   │   │   ├── ServiceItem.cs
+│   │   │   │   │   ├── ServiceItemComponent.cs
+│   │   │   │   │   ├── ServiceItemGroup.cs
+│   │   │   │   │   ├── ServiceItemLine.cs
+│   │   │   │   │   ├── ServiceItemLog.cs
+│   │   │   │   │   ├── ServiceLedgerEntry.cs
+│   │   │   │   │   ├── ServiceMgtSetup.cs
+│   │   │   │   │   ├── ServiceOrderAllocation.cs
+│   │   │   │   │   ├── ServiceOrderType.cs
+│   │   │   │   │   ├── ServicePriceGroup.cs
+│   │   │   │   │   ├── ServiceRegister.cs
+│   │   │   │   │   ├── ServiceShipmentHeader.cs
+│   │   │   │   │   ├── ServiceShipmentItemLine.cs
+│   │   │   │   │   ├── ServiceShipmentLine.cs
+│   │   │   │   │   ├── ServiceStatusPrioritySetup.cs
+│   │   │   │   │   ├── ServiceZone.cs
+│   │   │   │   │   ├── SkillCode.cs
+│   │   │   │   │   ├── SymptomCode.cs
+│   │   │   │   │   ├── TroubleshootingHeader.cs
+│   │   │   │   │   ├── TroubleshootingSetup.cs
+│   │   │   │   │   ├── WarrantyLedgerEntry.cs
+│   │   │   │   │   ├── NoSeries.cs
+│   │   │   │   │   ├── NoSeriesLine.cs
+│   │   │   │   │   ├── ServiceHeader.cs
+│   │   │   │   │   ├── ServiceLine.cs
+│   │   │   │   ├── ValueObjects
+│   │   │   │   ├── Events
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── ITenantRepository.cs
+│   │   │   │   │   ├── IAccSchedChartSetupLineRepository.cs
+│   │   │   │   │   ├── IAccSchedKpiWebSrvLineRepository.cs
+│   │   │   │   │   ├── IAccSchedKpiWebSrvSetupRepository.cs
+│   │   │   │   │   ├── IAccScheduleLineRepository.cs
+│   │   │   │   │   ├── IAccScheduleNameRepository.cs
+│   │   │   │   │   ├── IAccountSchedulesChartSetupRepository.cs
+│   │   │   │   │   ├── IColumnLayoutRepository.cs
+│   │   │   │   │   ├── IColumnLayoutNameRepository.cs
+│   │   │   │   │   ├── IAnalysisColumnRepository.cs
+│   │   │   │   │   ├── IAnalysisColumnTemplateRepository.cs
+│   │   │   │   │   ├── IAnalysisLineRepository.cs
+│   │   │   │   │   ├── IAnalysisLineTemplateRepository.cs
+│   │   │   │   │   ├── IAnalysisReportChartSetupRepository.cs
+│   │   │   │   │   ├── IAnalysisReportNameRepository.cs
+│   │   │   │   │   ├── IAnalysisSelectedDimensionRepository.cs
+│   │   │   │   │   ├── IAnalysisTypeRepository.cs
+│   │   │   │   │   ├── IAnalysisViewRepository.cs
+│   │   │   │   │   ├── IAnalysisViewEntryRepository.cs
+│   │   │   │   │   ├── IAnalysisViewFilterRepository.cs
+│   │   │   │   │   ├── IApplicationAreaSetupRepository.cs
+│   │   │   │   │   ├── IChartRepository.cs
+│   │   │   │   │   ├── IChartDefinitionRepository.cs
+│   │   │   │   │   ├── ICommentLineRepository.cs
+│   │   │   │   │   ├── ICompanyInformationRepository.cs
+│   │   │   │   │   ├── ICountryRegionRepository.cs
+│   │   │   │   │   ├── IDocumentServiceRepository.cs
+│   │   │   │   │   ├── IExcelBufferRepository.cs
+│   │   │   │   │   ├── IExtendedTextHeaderRepository.cs
+│   │   │   │   │   ├── IExtendedTextLineRepository.cs
+│   │   │   │   │   ├── ILanguageRepository.cs
+│   │   │   │   │   ├── ILastUsedChartRepository.cs
+│   │   │   │   │   ├── INoSeriesRelationshipRepository.cs
+│   │   │   │   │   ├── IOnlineMapParameterSetupRepository.cs
+│   │   │   │   │   ├── IOnlineMapSetupRepository.cs
+│   │   │   │   │   ├── IPostCodeRepository.cs
+│   │   │   │   │   ├── IPrinterSelectionRepository.cs
+│   │   │   │   │   ├── IReasonCodeRepository.cs
+│   │   │   │   │   ├── IResponsibilityCenterRepository.cs
+│   │   │   │   │   ├── IRestrictedRecordRepository.cs
+│   │   │   │   │   ├── IScheduledTaskRepository.cs
+│   │   │   │   │   ├── IShipmentMethodRepository.cs
+│   │   │   │   │   ├── IShipmentMethodTranslationRepository.cs
+│   │   │   │   │   ├── ISourceCodeRepository.cs
+│   │   │   │   │   ├── ISourceCodeSetupRepository.cs
+│   │   │   │   │   ├── IStandardTextRepository.cs
+│   │   │   │   │   ├── ITerritoryRepository.cs
+│   │   │   │   │   ├── IUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── IUnitOfMeasureTranslationRepository.cs
+│   │   │   │   │   ├── IAssistedCompanySetupStatusRepository.cs
+│   │   │   │   │   ├── IAssistedSetupRepository.cs
+│   │   │   │   │   ├── IAssistedSetupIconsRepository.cs
+│   │   │   │   │   ├── IAssistedSetupLogRepository.cs
+│   │   │   │   │   ├── IConfigFieldMappingRepository.cs
+│   │   │   │   │   ├── IConfigMediaBufferRepository.cs
+│   │   │   │   │   ├── IConfigPackageRepository.cs
+│   │   │   │   │   ├── IConfigPackageDataRepository.cs
+│   │   │   │   │   ├── IConfigPackageErrorRepository.cs
+│   │   │   │   │   ├── IConfigPackageFieldRepository.cs
+│   │   │   │   │   ├── IConfigPackageFilterRepository.cs
+│   │   │   │   │   ├── IConfigPackageRecordRepository.cs
+│   │   │   │   │   ├── IConfigPackageTableRepository.cs
+│   │   │   │   │   ├── IConfigQuestionRepository.cs
+│   │   │   │   │   ├── IConfigQuestionAreaRepository.cs
+│   │   │   │   │   ├── IConfigQuestionnaireRepository.cs
+│   │   │   │   │   ├── IConfigSetupRepository.cs
+│   │   │   │   │   ├── IConfigTableProcessingRuleRepository.cs
+│   │   │   │   │   ├── IConfigTemplateHeaderRepository.cs
+│   │   │   │   │   ├── IConfigTemplateLineRepository.cs
+│   │   │   │   │   ├── IDataMigrationSetupRepository.cs
+│   │   │   │   │   ├── IBankAccountRepository.cs
+│   │   │   │   │   ├── IBankAccountLedgerEntryRepository.cs
+│   │   │   │   │   ├── IBankAccountPostingGroupRepository.cs
+│   │   │   │   │   ├── IBankClearingStandardRepository.cs
+│   │   │   │   │   ├── IBankDataConvServiceSetupRepository.cs
+│   │   │   │   │   ├── IBankDataConversionPmtTypeRepository.cs
+│   │   │   │   │   ├── IBankExportImportSetupRepository.cs
+│   │   │   │   │   ├── IBankPmtApplRuleRepository.cs
+│   │   │   │   │   ├── ICheckLedgerEntryRepository.cs
+│   │   │   │   │   ├── IPaymentJnlExportErrorTextRepository.cs
+│   │   │   │   │   ├── IPaymentRegistrationSetupRepository.cs
+│   │   │   │   │   ├── IBookingMgrSetupRepository.cs
+│   │   │   │   │   ├── IGenericChartSetupRepository.cs
+│   │   │   │   │   ├── IBusinessRelationRepository.cs
+│   │   │   │   │   ├── ICloseOpportunityCodeRepository.cs
+│   │   │   │   │   ├── IContactRepository.cs
+│   │   │   │   │   ├── IContactBusinessRelationRepository.cs
+│   │   │   │   │   ├── IContactIndustryGroupRepository.cs
+│   │   │   │   │   ├── IContactJobResponsibilityRepository.cs
+│   │   │   │   │   ├── IDuplicateSearchStringSetupRepository.cs
+│   │   │   │   │   ├── IIndustryGroupRepository.cs
+│   │   │   │   │   ├── IInteractionLogEntryRepository.cs
+│   │   │   │   │   ├── IInteractionTemplateRepository.cs
+│   │   │   │   │   ├── IInteractionTemplateSetupRepository.cs
+│   │   │   │   │   ├── IInteractionTmplLanguageRepository.cs
+│   │   │   │   │   ├── IJobResponsibilityRepository.cs
+│   │   │   │   │   ├── IMarketingSetupRepository.cs
+│   │   │   │   │   ├── IOpportunityRepository.cs
+│   │   │   │   │   ├── IRelationshipMgmtCueRepository.cs
+│   │   │   │   │   ├── ISalesCycleRepository.cs
+│   │   │   │   │   ├── ISalesCycleStageRepository.cs
+│   │   │   │   │   ├── ISalutationRepository.cs
+│   │   │   │   │   ├── ISalutationFormulaRepository.cs
+│   │   │   │   │   ├── ISegmentInteractionLanguageRepository.cs
+│   │   │   │   │   ├── IToDoRepository.cs
+│   │   │   │   │   ├── IToDoInteractionLanguageRepository.cs
+│   │   │   │   │   ├── IDocExchServiceSetupRepository.cs
+│   │   │   │   │   ├── IDocumentSendingProfileRepository.cs
+│   │   │   │   │   ├── IElectronicDocumentFormatRepository.cs
+│   │   │   │   │   ├── IIncomingDocumentRepository.cs
+│   │   │   │   │   ├── IIncomingDocumentAttachmentRepository.cs
+│   │   │   │   │   ├── IIncomingDocumentsSetupRepository.cs
+│   │   │   │   │   ├── IOcrServiceSetupRepository.cs
+│   │   │   │   │   ├── IPostedDocsWithNoIncBufRepository.cs
+│   │   │   │   │   ├── ITransformationRuleRepository.cs
+│   │   │   │   │   ├── IDeferralTemplateRepository.cs
+│   │   │   │   │   ├── IDefaultDimensionRepository.cs
+│   │   │   │   │   ├── IDefaultDimensionPriorityRepository.cs
+│   │   │   │   │   ├── IDimensionRepository.cs
+│   │   │   │   │   ├── IDimensionCombinationRepository.cs
+│   │   │   │   │   ├── IDimensionSetEntryRepository.cs
+│   │   │   │   │   ├── IDimensionSetTreeNodeRepository.cs
+│   │   │   │   │   ├── IDimensionTranslationRepository.cs
+│   │   │   │   │   ├── IDimensionValueRepository.cs
+│   │   │   │   │   ├── IDimensionValueCombinationRepository.cs
+│   │   │   │   │   ├── IDimensionsFieldMapRepository.cs
+│   │   │   │   │   ├── IDimensionsTemplateRepository.cs
+│   │   │   │   │   ├── ISelectedDimensionRepository.cs
+│   │   │   │   │   ├── ISmtpMailSetupRepository.cs
+│   │   │   │   │   ├── IInsuranceRepository.cs
+│   │   │   │   │   ├── IInsuranceJournalBatchRepository.cs
+│   │   │   │   │   ├── IInsuranceJournalTemplateRepository.cs
+│   │   │   │   │   ├── IInsuranceTypeRepository.cs
+│   │   │   │   │   ├── IIntrastatJnlBatchRepository.cs
+│   │   │   │   │   ├── IIntrastatJnlLineRepository.cs
+│   │   │   │   │   ├── IIntrastatJnlTemplateRepository.cs
+│   │   │   │   │   ├── ITariffNumberRepository.cs
+│   │   │   │   │   ├── ITransactionTypeRepository.cs
+│   │   │   │   │   ├── IAddInRepository.cs
+│   │   │   │   │   ├── IAdministrationCueRepository.cs
+│   │   │   │   │   ├── IAzureAdAppSetupRepository.cs
+│   │   │   │   │   ├── IAzureAdMgtSetupRepository.cs
+│   │   │   │   │   ├── IChangeLogEntryRepository.cs
+│   │   │   │   │   ├── IChangeLogSetupRepository.cs
+│   │   │   │   │   ├── IChangeLogSetupFieldRepository.cs
+│   │   │   │   │   ├── IChangeLogSetupTableRepository.cs
+│   │   │   │   │   ├── ICueSetupRepository.cs
+│   │   │   │   │   ├── IErrorMessageRepository.cs
+│   │   │   │   │   ├── IExchangeServiceSetupRepository.cs
+│   │   │   │   │   ├── IMediaRepository.cs
+│   │   │   │   │   ├── IMediaRepositoryRepository.cs
+│   │   │   │   │   ├── IMediaSetRepository.cs
+│   │   │   │   │   ├── IObjectMetadataRepository.cs
+│   │   │   │   │   ├── IObjectOptionsRepository.cs
+│   │   │   │   │   ├── IOfficeAddInRepository.cs
+│   │   │   │   │   ├── IOfficeAddInSetupRepository.cs
+│   │   │   │   │   ├── IRecordLinkRepository.cs
+│   │   │   │   │   ├── ISbOwnerCueRepository.cs
+│   │   │   │   │   ├── ISocialListeningSetupRepository.cs
+│   │   │   │   │   ├── ITeamMemberCueRepository.cs
+│   │   │   │   │   ├── ITenantMediaRepository.cs
+│   │   │   │   │   ├── ITenantMediaSetRepository.cs
+│   │   │   │   │   ├── ITenantMediaThumbnailsRepository.cs
+│   │   │   │   │   ├── ITenantPermissionRepository.cs
+│   │   │   │   │   ├── ITenantPermissionSetRepository.cs
+│   │   │   │   │   ├── ITenantWebServiceRepository.cs
+│   │   │   │   │   ├── ITenantWebServiceColumnsRepository.cs
+│   │   │   │   │   ├── ITenantWebServiceOdataRepository.cs
+│   │   │   │   │   ├── ITokenCacheRepository.cs
+│   │   │   │   │   ├── IWebServiceRepository.cs
+│   │   │   │   │   ├── IWebhookSubscriptionRepository.cs
+│   │   │   │   │   ├── ITransferHeaderRepository.cs
+│   │   │   │   │   ├── ITransferLineRepository.cs
+│   │   │   │   │   ├── ITransferReceiptHeaderRepository.cs
+│   │   │   │   │   ├── ITransferReceiptLineRepository.cs
+│   │   │   │   │   ├── ITransferShipmentHeaderRepository.cs
+│   │   │   │   │   ├── ITransferShipmentLineRepository.cs
+│   │   │   │   │   ├── IMaintenanceRepository.cs
+│   │   │   │   │   ├── IMaintenanceLedgerEntryRepository.cs
+│   │   │   │   │   ├── IMaintenanceRegistrationRepository.cs
+│   │   │   │   │   ├── INavAppInstalledAppRepository.cs
+│   │   │   │   │   ├── INavAppTenantAddInRepository.cs
+│   │   │   │   │   ├── IMyNotificationsRepository.cs
+│   │   │   │   │   ├── INotificationEntryRepository.cs
+│   │   │   │   │   ├── INotificationScheduleRepository.cs
+│   │   │   │   │   ├── INotificationSetupRepository.cs
+│   │   │   │   │   ├── ISentNotificationEntryRepository.cs
+│   │   │   │   │   ├── IO365DeviceSetupInstructionsRepository.cs
+│   │   │   │   │   ├── IO365EmailSetupRepository.cs
+│   │   │   │   │   ├── IO365GettingStartedPageDataRepository.cs
+│   │   │   │   │   ├── IO365SalesCueRepository.cs
+│   │   │   │   │   ├── IO365SalesInitialSetupRepository.cs
+│   │   │   │   │   ├── IOutlookSynchSetupDetailRepository.cs
+│   │   │   │   │   ├── IOutlookSynchUserSetupRepository.cs
+│   │   │   │   │   ├── IAdditionalFeeSetupRepository.cs
+│   │   │   │   │   ├── IFinanceChargeMemoHeaderRepository.cs
+│   │   │   │   │   ├── IFinanceChargeMemoLineRepository.cs
+│   │   │   │   │   ├── IFinanceChargeTermsRepository.cs
+│   │   │   │   │   ├── IIssuedFinChargeMemoHeaderRepository.cs
+│   │   │   │   │   ├── IIssuedFinChargeMemoLineRepository.cs
+│   │   │   │   │   ├── IReminderTermsRepository.cs
+│   │   │   │   │   ├── ICustomReportLayoutRepository.cs
+│   │   │   │   │   ├── ICustomReportSelectionRepository.cs
+│   │   │   │   │   ├── IReportInboxRepository.cs
+│   │   │   │   │   ├── IReportLayoutSelectionRepository.cs
+│   │   │   │   │   ├── IReportSelectionsRepository.cs
+│   │   │   │   │   ├── IContractChangeLogRepository.cs
+│   │   │   │   │   ├── IContractGainLossEntryRepository.cs
+│   │   │   │   │   ├── IContractGroupRepository.cs
+│   │   │   │   │   ├── IFaultAreaRepository.cs
+│   │   │   │   │   ├── IFaultCodeRepository.cs
+│   │   │   │   │   ├── IFaultReasonCodeRepository.cs
+│   │   │   │   │   ├── IFaultResolCodRelationshipRepository.cs
+│   │   │   │   │   ├── IFiledContractLineRepository.cs
+│   │   │   │   │   ├── IFiledServiceContractHeaderRepository.cs
+│   │   │   │   │   ├── ILoanerRepository.cs
+│   │   │   │   │   ├── IRepairStatusRepository.cs
+│   │   │   │   │   ├── IResolutionCodeRepository.cs
+│   │   │   │   │   ├── IResourceLocationRepository.cs
+│   │   │   │   │   ├── IServPriceGroupSetupRepository.cs
+│   │   │   │   │   ├── IServiceCommentLineRepository.cs
+│   │   │   │   │   ├── IServiceContractAccountGroupRepository.cs
+│   │   │   │   │   ├── IServiceContractHeaderRepository.cs
+│   │   │   │   │   ├── IServiceContractLineRepository.cs
+│   │   │   │   │   ├── IServiceCostRepository.cs
+│   │   │   │   │   ├── IServiceCueRepository.cs
+│   │   │   │   │   ├── IServiceDocumentLogRepository.cs
+│   │   │   │   │   ├── IServiceDocumentRegisterRepository.cs
+│   │   │   │   │   ├── IServiceEmailQueueRepository.cs
+│   │   │   │   │   ├── IServiceInvoiceHeaderRepository.cs
+│   │   │   │   │   ├── IServiceInvoiceLineRepository.cs
+│   │   │   │   │   ├── IServiceItemRepository.cs
+│   │   │   │   │   ├── IServiceItemComponentRepository.cs
+│   │   │   │   │   ├── IServiceItemGroupRepository.cs
+│   │   │   │   │   ├── IServiceItemLineRepository.cs
+│   │   │   │   │   ├── IServiceItemLogRepository.cs
+│   │   │   │   │   ├── IServiceLedgerEntryRepository.cs
+│   │   │   │   │   ├── IServiceMgtSetupRepository.cs
+│   │   │   │   │   ├── IServiceOrderAllocationRepository.cs
+│   │   │   │   │   ├── IServiceOrderTypeRepository.cs
+│   │   │   │   │   ├── IServicePriceGroupRepository.cs
+│   │   │   │   │   ├── IServiceRegisterRepository.cs
+│   │   │   │   │   ├── IServiceShipmentHeaderRepository.cs
+│   │   │   │   │   ├── IServiceShipmentItemLineRepository.cs
+│   │   │   │   │   ├── IServiceShipmentLineRepository.cs
+│   │   │   │   │   ├── IServiceStatusPrioritySetupRepository.cs
+│   │   │   │   │   ├── IServiceZoneRepository.cs
+│   │   │   │   │   ├── ISkillCodeRepository.cs
+│   │   │   │   │   ├── ISymptomCodeRepository.cs
+│   │   │   │   │   ├── ITroubleshootingHeaderRepository.cs
+│   │   │   │   │   ├── ITroubleshootingSetupRepository.cs
+│   │   │   │   │   ├── IWarrantyLedgerEntryRepository.cs
+│   │   │   │   │   ├── INoSeriesRepository.cs
+│   │   │   │   │   ├── INoSeriesLineRepository.cs
+│   │   │   │   │   ├── IServiceHeaderRepository.cs
+│   │   │   │   │   ├── IServiceLineRepository.cs
+│   │   │   │   ├── Setup.cs
+│   │   │   ├── Security
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── ActivitiesCue.cs
+│   │   │   │   │   ├── ApprovalCommentLine.cs
+│   │   │   │   │   ├── ApprovalEntry.cs
+│   │   │   │   │   ├── PostedApprovalCommentLine.cs
+│   │   │   │   │   ├── PostedApprovalEntry.cs
+│   │   │   │   │   ├── AccessControl.cs
+│   │   │   │   │   ├── PageDataPersonalization.cs
+│   │   │   │   │   ├── PageDocumentation.cs
+│   │   │   │   │   ├── Permission.cs
+│   │   │   │   │   ├── PermissionSet.cs
+│   │   │   │   │   ├── Plan.cs
+│   │   │   │   │   ├── PlanPermissionSet.cs
+│   │   │   │   │   ├── ServerInstance.cs
+│   │   │   │   │   ├── UserDefaultStyleSheet.cs
+│   │   │   │   │   ├── UserGroup.cs
+│   │   │   │   │   ├── UserGroupAccessControl.cs
+│   │   │   │   │   ├── UserGroupPermissionSet.cs
+│   │   │   │   │   ├── UserGroupPlan.cs
+│   │   │   │   │   ├── UserLogin.cs
+│   │   │   │   │   ├── UserMetadata.cs
+│   │   │   │   │   ├── UserPersonalization.cs
+│   │   │   │   │   ├── UserPlan.cs
+│   │   │   │   │   ├── UserPreference.cs
+│   │   │   │   │   ├── UserProperty.cs
+│   │   │   │   │   ├── UserSecurityStatus.cs
+│   │   │   │   │   ├── UserSetup.cs
+│   │   │   │   │   ├── UserTimeRegister.cs
+│   │   │   │   │   ├── DynamicRequestPageEntity.cs
+│   │   │   │   │   ├── DynamicRequestPageField.cs
+│   │   │   │   │   ├── WfEventResponseCombination.cs
+│   │   │   │   │   ├── Workflow.cs
+│   │   │   │   │   ├── WorkflowCategory.cs
+│   │   │   │   │   ├── WorkflowEvent.cs
+│   │   │   │   │   ├── WorkflowResponse.cs
+│   │   │   │   │   ├── WorkflowRule.cs
+│   │   │   │   │   ├── WorkflowStep.cs
+│   │   │   │   │   ├── WorkflowStepArgument.cs
+│   │   │   │   │   ├── WorkflowStepArgumentArchive.cs
+│   │   │   │   │   ├── WorkflowStepInstance.cs
+│   │   │   │   │   ├── WorkflowStepInstanceArchive.cs
+│   │   │   │   │   ├── WorkflowTableRelation.cs
+│   │   │   │   │   ├── WorkflowTableRelationValue.cs
+│   │   │   │   │   ├── WorkflowUserGroup.cs
+│   │   │   │   │   ├── WorkflowUserGroupMember.cs
+│   │   │   │   │   ├── ActiveSession.cs
+│   │   │   │   │   ├── SessionEvent.cs
+│   │   │   │   │   ├── User.cs
+│   │   │   │   │   ├── UserGroupMember.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── IActivitiesCueRepository.cs
+│   │   │   │   │   ├── IApprovalCommentLineRepository.cs
+│   │   │   │   │   ├── IApprovalEntryRepository.cs
+│   │   │   │   │   ├── IPostedApprovalCommentLineRepository.cs
+│   │   │   │   │   ├── IPostedApprovalEntryRepository.cs
+│   │   │   │   │   ├── IAccessControlRepository.cs
+│   │   │   │   │   ├── IActiveSessionRepository.cs
+│   │   │   │   │   ├── IPageDataPersonalizationRepository.cs
+│   │   │   │   │   ├── IPageDocumentationRepository.cs
+│   │   │   │   │   ├── IPermissionRepository.cs
+│   │   │   │   │   ├── IPermissionSetRepository.cs
+│   │   │   │   │   ├── IPlanRepository.cs
+│   │   │   │   │   ├── IPlanPermissionSetRepository.cs
+│   │   │   │   │   ├── IServerInstanceRepository.cs
+│   │   │   │   │   ├── ISessionEventRepository.cs
+│   │   │   │   │   ├── IUserDefaultStyleSheetRepository.cs
+│   │   │   │   │   ├── IUserGroupAccessControlRepository.cs
+│   │   │   │   │   ├── IUserGroupPermissionSetRepository.cs
+│   │   │   │   │   ├── IUserGroupPlanRepository.cs
+│   │   │   │   │   ├── IUserLoginRepository.cs
+│   │   │   │   │   ├── IUserMetadataRepository.cs
+│   │   │   │   │   ├── IUserPersonalizationRepository.cs
+│   │   │   │   │   ├── IUserPlanRepository.cs
+│   │   │   │   │   ├── IUserPreferenceRepository.cs
+│   │   │   │   │   ├── IUserPropertyRepository.cs
+│   │   │   │   │   ├── IUserSecurityStatusRepository.cs
+│   │   │   │   │   ├── IUserSetupRepository.cs
+│   │   │   │   │   ├── IUserTimeRegisterRepository.cs
+│   │   │   │   │   ├── IDynamicRequestPageEntityRepository.cs
+│   │   │   │   │   ├── IDynamicRequestPageFieldRepository.cs
+│   │   │   │   │   ├── IWfEventResponseCombinationRepository.cs
+│   │   │   │   │   ├── IWorkflowRepository.cs
+│   │   │   │   │   ├── IWorkflowCategoryRepository.cs
+│   │   │   │   │   ├── IWorkflowEventRepository.cs
+│   │   │   │   │   ├── IWorkflowResponseRepository.cs
+│   │   │   │   │   ├── IWorkflowRuleRepository.cs
+│   │   │   │   │   ├── IWorkflowStepRepository.cs
+│   │   │   │   │   ├── IWorkflowStepArgumentRepository.cs
+│   │   │   │   │   ├── IWorkflowStepArgumentArchiveRepository.cs
+│   │   │   │   │   ├── IWorkflowStepInstanceRepository.cs
+│   │   │   │   │   ├── IWorkflowStepInstanceArchiveRepository.cs
+│   │   │   │   │   ├── IWorkflowTableRelationRepository.cs
+│   │   │   │   │   ├── IWorkflowTableRelationValueRepository.cs
+│   │   │   │   │   ├── IWorkflowUserGroupRepository.cs
+│   │   │   │   │   ├── IWorkflowUserGroupMemberRepository.cs
+│   │   │   │   │   ├── IUserRepository.cs
+│   │   │   │   │   ├── IUserGroupRepository.cs
+│   │   │   │   │   ├── IUserGroupMemberRepository.cs
+│   │   │   ├── Inventory
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── BaseCalendar.cs
+│   │   │   │   │   ├── BaseCalendarChange.cs
+│   │   │   │   │   ├── CapacityLedgerEntry.cs
+│   │   │   │   │   ├── CapacityUnitOfMeasure.cs
+│   │   │   │   │   ├── MachineCenter.cs
+│   │   │   │   │   ├── ProdOrderRoutingLine.cs
+│   │   │   │   │   ├── RoutingHeader.cs
+│   │   │   │   │   ├── RoutingLine.cs
+│   │   │   │   │   ├── Scrap.cs
+│   │   │   │   │   ├── Stop.cs
+│   │   │   │   │   ├── WorkCenter.cs
+│   │   │   │   │   ├── WorkCenterGroup.cs
+│   │   │   │   │   ├── WorkShift.cs
+│   │   │   │   │   ├── AssemblyHeader.cs
+│   │   │   │   │   ├── AssemblyLine.cs
+│   │   │   │   │   ├── AssemblySetup.cs
+│   │   │   │   │   ├── AvgCostAdjmtEntryPoint.cs
+│   │   │   │   │   ├── BomComponent.cs
+│   │   │   │   │   ├── GLItemLedgerRelation.cs
+│   │   │   │   │   ├── InventoryAdjmtEntryOrder.cs
+│   │   │   │   │   ├── InventoryCommentLine.cs
+│   │   │   │   │   ├── InventoryPeriod.cs
+│   │   │   │   │   ├── InventoryPostingGroup.cs
+│   │   │   │   │   ├── InventoryPostingSetup.cs
+│   │   │   │   │   ├── InventorySetup.cs
+│   │   │   │   │   ├── ItemAnalysisView.cs
+│   │   │   │   │   ├── ItemAnalysisViewEntry.cs
+│   │   │   │   │   ├── ItemApplicationEntry.cs
+│   │   │   │   │   ├── ItemApplicationEntryHistory.cs
+│   │   │   │   │   ├── ItemAttribute.cs
+│   │   │   │   │   ├── ItemAttributeValue.cs
+│   │   │   │   │   ├── ItemAttributeValueMapping.cs
+│   │   │   │   │   ├── ItemBudgetName.cs
+│   │   │   │   │   ├── ItemCategory.cs
+│   │   │   │   │   ├── ItemCharge.cs
+│   │   │   │   │   ├── ItemChargeAssignmentPurch.cs
+│   │   │   │   │   ├── ItemCrossReference.cs
+│   │   │   │   │   ├── ItemDiscountGroup.cs
+│   │   │   │   │   ├── ItemEntryRelation.cs
+│   │   │   │   │   ├── ItemJournalBatch.cs
+│   │   │   │   │   ├── ItemJournalLine.cs
+│   │   │   │   │   ├── ItemJournalTemplate.cs
+│   │   │   │   │   ├── ItemRegister.cs
+│   │   │   │   │   ├── ItemTrackingCode.cs
+│   │   │   │   │   ├── ItemTranslation.cs
+│   │   │   │   │   ├── ItemVariant.cs
+│   │   │   │   │   ├── ItemVendor.cs
+│   │   │   │   │   ├── LotNoInformation.cs
+│   │   │   │   │   ├── Manufacturer.cs
+│   │   │   │   │   ├── MyItem.cs
+│   │   │   │   │   ├── NonstockItemSetup.cs
+│   │   │   │   │   ├── PhysInventoryLedgerEntry.cs
+│   │   │   │   │   ├── PhysInvtCountingPeriod.cs
+│   │   │   │   │   ├── PostValueEntryToGL.cs
+│   │   │   │   │   ├── PostedAssemblyHeader.cs
+│   │   │   │   │   ├── PostedAssemblyLine.cs
+│   │   │   │   │   ├── ProductGroup.cs
+│   │   │   │   │   ├── ReservationEntry.cs
+│   │   │   │   │   ├── StandardCostWorksheetName.cs
+│   │   │   │   │   ├── StandardItemJournal.cs
+│   │   │   │   │   ├── StandardItemJournalLine.cs
+│   │   │   │   │   ├── StockkeepingUnit.cs
+│   │   │   │   │   ├── TrackingSpecification.cs
+│   │   │   │   │   ├── ValueEntry.cs
+│   │   │   │   │   ├── ValueEntryRelation.cs
+│   │   │   │   │   ├── ManufacturingCue.cs
+│   │   │   │   │   ├── ManufacturingSetup.cs
+│   │   │   │   │   ├── ManufacturingUserTemplate.cs
+│   │   │   │   │   ├── ProdOrderCommentLine.cs
+│   │   │   │   │   ├── ProdOrderLine.cs
+│   │   │   │   │   ├── ProductionBomHeader.cs
+│   │   │   │   │   ├── ProductionBomLine.cs
+│   │   │   │   │   ├── ProductionOrder.cs
+│   │   │   │   │   ├── ActionMessageEntry.cs
+│   │   │   │   │   ├── PlanningAssignment.cs
+│   │   │   │   │   ├── PlanningErrorLog.cs
+│   │   │   │   │   ├── ProductionForecastName.cs
+│   │   │   │   │   ├── UntrackedPlanningElement.cs
+│   │   │   │   │   ├── AdcsUser.cs
+│   │   │   │   │   ├── Bin.cs
+│   │   │   │   │   ├── BinContent.cs
+│   │   │   │   │   ├── BinCreationWkshName.cs
+│   │   │   │   │   ├── BinCreationWkshTemplate.cs
+│   │   │   │   │   ├── BinTemplate.cs
+│   │   │   │   │   ├── BinType.cs
+│   │   │   │   │   ├── ItemIdentifier.cs
+│   │   │   │   │   ├── PostedInvtPickHeader.cs
+│   │   │   │   │   ├── PostedInvtPickLine.cs
+│   │   │   │   │   ├── SpecialEquipment.cs
+│   │   │   │   │   ├── WarehouseActivityHeader.cs
+│   │   │   │   │   ├── WarehouseActivityLine.cs
+│   │   │   │   │   ├── WarehouseBasicCue.cs
+│   │   │   │   │   ├── WarehouseClass.cs
+│   │   │   │   │   ├── WarehouseCommentLine.cs
+│   │   │   │   │   ├── WarehouseEmployee.cs
+│   │   │   │   │   ├── WarehouseEntry.cs
+│   │   │   │   │   ├── WarehouseJournalBatch.cs
+│   │   │   │   │   ├── WarehouseJournalTemplate.cs
+│   │   │   │   │   ├── WarehouseRegister.cs
+│   │   │   │   │   ├── WarehouseRequest.cs
+│   │   │   │   │   ├── WarehouseSetup.cs
+│   │   │   │   │   ├── WarehouseShipmentHeader.cs
+│   │   │   │   │   ├── WarehouseWmsCue.cs
+│   │   │   │   │   ├── WarehouseWorkerWmsCue.cs
+│   │   │   │   │   ├── WhseWorksheetName.cs
+│   │   │   │   │   ├── WhseWorksheetTemplate.cs
+│   │   │   │   │   ├── Zone.cs
+│   │   │   │   │   ├── ItemUnitOfMeasure.cs
+│   │   │   │   │   ├── Location.cs
+│   │   │   │   │   ├── Item.cs
+│   │   │   │   │   ├── ItemLedgerEntry.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── IItemUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── ILocationRepository.cs
+│   │   │   │   │   ├── IBaseCalendarRepository.cs
+│   │   │   │   │   ├── IBaseCalendarChangeRepository.cs
+│   │   │   │   │   ├── ICapacityLedgerEntryRepository.cs
+│   │   │   │   │   ├── ICapacityUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── IMachineCenterRepository.cs
+│   │   │   │   │   ├── IProdOrderRoutingLineRepository.cs
+│   │   │   │   │   ├── IRoutingHeaderRepository.cs
+│   │   │   │   │   ├── IRoutingLineRepository.cs
+│   │   │   │   │   ├── IScrapRepository.cs
+│   │   │   │   │   ├── IStopRepository.cs
+│   │   │   │   │   ├── IWorkCenterRepository.cs
+│   │   │   │   │   ├── IWorkCenterGroupRepository.cs
+│   │   │   │   │   ├── IWorkShiftRepository.cs
+│   │   │   │   │   ├── IAssemblyHeaderRepository.cs
+│   │   │   │   │   ├── IAssemblyLineRepository.cs
+│   │   │   │   │   ├── IAssemblySetupRepository.cs
+│   │   │   │   │   ├── IAvgCostAdjmtEntryPointRepository.cs
+│   │   │   │   │   ├── IBomComponentRepository.cs
+│   │   │   │   │   ├── IGLItemLedgerRelationRepository.cs
+│   │   │   │   │   ├── IInventoryAdjmtEntryOrderRepository.cs
+│   │   │   │   │   ├── IInventoryCommentLineRepository.cs
+│   │   │   │   │   ├── IInventoryPeriodRepository.cs
+│   │   │   │   │   ├── IInventoryPostingGroupRepository.cs
+│   │   │   │   │   ├── IInventoryPostingSetupRepository.cs
+│   │   │   │   │   ├── IInventorySetupRepository.cs
+│   │   │   │   │   ├── IItemAnalysisViewRepository.cs
+│   │   │   │   │   ├── IItemAnalysisViewEntryRepository.cs
+│   │   │   │   │   ├── IItemApplicationEntryRepository.cs
+│   │   │   │   │   ├── IItemApplicationEntryHistoryRepository.cs
+│   │   │   │   │   ├── IItemAttributeRepository.cs
+│   │   │   │   │   ├── IItemAttributeValueRepository.cs
+│   │   │   │   │   ├── IItemAttributeValueMappingRepository.cs
+│   │   │   │   │   ├── IItemBudgetNameRepository.cs
+│   │   │   │   │   ├── IItemCategoryRepository.cs
+│   │   │   │   │   ├── IItemChargeRepository.cs
+│   │   │   │   │   ├── IItemChargeAssignmentPurchRepository.cs
+│   │   │   │   │   ├── IItemCrossReferenceRepository.cs
+│   │   │   │   │   ├── IItemDiscountGroupRepository.cs
+│   │   │   │   │   ├── IItemEntryRelationRepository.cs
+│   │   │   │   │   ├── IItemJournalBatchRepository.cs
+│   │   │   │   │   ├── IItemJournalLineRepository.cs
+│   │   │   │   │   ├── IItemJournalTemplateRepository.cs
+│   │   │   │   │   ├── IItemRegisterRepository.cs
+│   │   │   │   │   ├── IItemTrackingCodeRepository.cs
+│   │   │   │   │   ├── IItemTranslationRepository.cs
+│   │   │   │   │   ├── IItemVariantRepository.cs
+│   │   │   │   │   ├── IItemVendorRepository.cs
+│   │   │   │   │   ├── ILotNoInformationRepository.cs
+│   │   │   │   │   ├── IManufacturerRepository.cs
+│   │   │   │   │   ├── IMyItemRepository.cs
+│   │   │   │   │   ├── INonstockItemSetupRepository.cs
+│   │   │   │   │   ├── IPhysInventoryLedgerEntryRepository.cs
+│   │   │   │   │   ├── IPhysInvtCountingPeriodRepository.cs
+│   │   │   │   │   ├── IPostValueEntryToGLRepository.cs
+│   │   │   │   │   ├── IPostedAssemblyHeaderRepository.cs
+│   │   │   │   │   ├── IPostedAssemblyLineRepository.cs
+│   │   │   │   │   ├── IProductGroupRepository.cs
+│   │   │   │   │   ├── IReservationEntryRepository.cs
+│   │   │   │   │   ├── IStandardCostWorksheetNameRepository.cs
+│   │   │   │   │   ├── IStandardItemJournalRepository.cs
+│   │   │   │   │   ├── IStandardItemJournalLineRepository.cs
+│   │   │   │   │   ├── IStockkeepingUnitRepository.cs
+│   │   │   │   │   ├── ITrackingSpecificationRepository.cs
+│   │   │   │   │   ├── IValueEntryRepository.cs
+│   │   │   │   │   ├── IValueEntryRelationRepository.cs
+│   │   │   │   │   ├── IManufacturingCueRepository.cs
+│   │   │   │   │   ├── IManufacturingSetupRepository.cs
+│   │   │   │   │   ├── IManufacturingUserTemplateRepository.cs
+│   │   │   │   │   ├── IProdOrderCommentLineRepository.cs
+│   │   │   │   │   ├── IProdOrderLineRepository.cs
+│   │   │   │   │   ├── IProductionBomHeaderRepository.cs
+│   │   │   │   │   ├── IProductionBomLineRepository.cs
+│   │   │   │   │   ├── IProductionOrderRepository.cs
+│   │   │   │   │   ├── IActionMessageEntryRepository.cs
+│   │   │   │   │   ├── IPlanningAssignmentRepository.cs
+│   │   │   │   │   ├── IPlanningErrorLogRepository.cs
+│   │   │   │   │   ├── IProductionForecastNameRepository.cs
+│   │   │   │   │   ├── IUntrackedPlanningElementRepository.cs
+│   │   │   │   │   ├── IAdcsUserRepository.cs
+│   │   │   │   │   ├── IBinRepository.cs
+│   │   │   │   │   ├── IBinContentRepository.cs
+│   │   │   │   │   ├── IBinCreationWkshNameRepository.cs
+│   │   │   │   │   ├── IBinCreationWkshTemplateRepository.cs
+│   │   │   │   │   ├── IBinTemplateRepository.cs
+│   │   │   │   │   ├── IBinTypeRepository.cs
+│   │   │   │   │   ├── IItemIdentifierRepository.cs
+│   │   │   │   │   ├── IPostedInvtPickHeaderRepository.cs
+│   │   │   │   │   ├── IPostedInvtPickLineRepository.cs
+│   │   │   │   │   ├── ISpecialEquipmentRepository.cs
+│   │   │   │   │   ├── IWarehouseActivityHeaderRepository.cs
+│   │   │   │   │   ├── IWarehouseActivityLineRepository.cs
+│   │   │   │   │   ├── IWarehouseBasicCueRepository.cs
+│   │   │   │   │   ├── IWarehouseClassRepository.cs
+│   │   │   │   │   ├── IWarehouseCommentLineRepository.cs
+│   │   │   │   │   ├── IWarehouseEmployeeRepository.cs
+│   │   │   │   │   ├── IWarehouseEntryRepository.cs
+│   │   │   │   │   ├── IWarehouseJournalBatchRepository.cs
+│   │   │   │   │   ├── IWarehouseJournalTemplateRepository.cs
+│   │   │   │   │   ├── IWarehouseRegisterRepository.cs
+│   │   │   │   │   ├── IWarehouseRequestRepository.cs
+│   │   │   │   │   ├── IWarehouseSetupRepository.cs
+│   │   │   │   │   ├── IWarehouseShipmentHeaderRepository.cs
+│   │   │   │   │   ├── IWarehouseWmsCueRepository.cs
+│   │   │   │   │   ├── IWarehouseWorkerWmsCueRepository.cs
+│   │   │   │   │   ├── IWhseWorksheetNameRepository.cs
+│   │   │   │   │   ├── IWhseWorksheetTemplateRepository.cs
+│   │   │   │   │   ├── IZoneRepository.cs
+│   │   │   │   │   ├── IItemRepository.cs
+│   │   │   │   │   ├── IItemLedgerEntryRepository.cs
+│   │   │   ├── Common
+│   │   │   │   ├── Result
+│   │   │   │   │   ├── OperationResult.cs
+│   │   │   │   │   ├── Unit.cs
+│   │   │   │   ├── Errors
+│   │   │   │   │   ├── DomainError.cs
+│   │   │   │   ├── Entity.cs
+│   │   │   │   ├── ValueObject.cs
+│   │   │   │   ├── TenantIdentifier.cs
+│   │   │   ├── NexusBilling.Core.Domain.csproj
+│   │   │   ├── Interfaces
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── Base
+│   │   │   │   │   │   ├── IUnitOfWork.cs
+│   │   │   │   │   │   ├── IGenericRepository.cs
+│   │   │   ├── Finance
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── BusinessChartUserSetup.cs
+│   │   │   │   │   ├── BusinessUnit.cs
+│   │   │   │   │   ├── GLAccountCategory.cs
+│   │   │   │   │   ├── GLBudgetName.cs
+│   │   │   │   │   ├── GLEntry.cs
+│   │   │   │   │   ├── GLRegister.cs
+│   │   │   │   │   ├── GenBusinessPostingGroup.cs
+│   │   │   │   │   ├── GenJournalBatch.cs
+│   │   │   │   │   ├── GenJournalLine.cs
+│   │   │   │   │   ├── GenJournalTemplate.cs
+│   │   │   │   │   ├── GenProductPostingGroup.cs
+│   │   │   │   │   ├── GeneralLedgerSetup.cs
+│   │   │   │   │   ├── GeneralPostingSetup.cs
+│   │   │   │   │   ├── MyAccount.cs
+│   │   │   │   │   ├── RoundingMethod.cs
+│   │   │   │   │   ├── StandardGeneralJournal.cs
+│   │   │   │   │   ├── StandardGeneralJournalLine.cs
+│   │   │   │   │   ├── TrialBalanceSetup.cs
+│   │   │   │   │   ├── AccountingPeriod.cs
+│   │   │   │   │   ├── CashFlowAccount.cs
+│   │   │   │   │   ├── CashFlowChartSetup.cs
+│   │   │   │   │   ├── CashFlowReportSelection.cs
+│   │   │   │   │   ├── CashFlowSetup.cs
+│   │   │   │   │   ├── CashFlowWorksheetLine.cs
+│   │   │   │   │   ├── CostAccountingSetup.cs
+│   │   │   │   │   ├── CostJournalBatch.cs
+│   │   │   │   │   ├── CostJournalTemplate.cs
+│   │   │   │   │   ├── CurrExchRateUpdateSetup.cs
+│   │   │   │   │   ├── Currency.cs
+│   │   │   │   │   ├── CurrencyAmount.cs
+│   │   │   │   │   ├── CurrencyExchangeRate.cs
+│   │   │   │   │   ├── CurrencyForFinChargeTerms.cs
+│   │   │   │   │   ├── CurrencyForReminderLevel.cs
+│   │   │   │   │   ├── ExchRateAdjmtReg.cs
+│   │   │   │   │   ├── DepreciationBook.cs
+│   │   │   │   │   ├── FaClass.cs
+│   │   │   │   │   ├── FaDateType.cs
+│   │   │   │   │   ├── FaDepreciationBook.cs
+│   │   │   │   │   ├── FaJournalBatch.cs
+│   │   │   │   │   ├── FaJournalLine.cs
+│   │   │   │   │   ├── FaJournalSetup.cs
+│   │   │   │   │   ├── FaJournalTemplate.cs
+│   │   │   │   │   ├── FaLedgerEntry.cs
+│   │   │   │   │   ├── FaLocation.cs
+│   │   │   │   │   ├── FaMatrixPostingType.cs
+│   │   │   │   │   ├── FaPostingGroup.cs
+│   │   │   │   │   ├── FaPostingType.cs
+│   │   │   │   │   ├── FaPostingTypeSetup.cs
+│   │   │   │   │   ├── FaReclassJournalBatch.cs
+│   │   │   │   │   ├── FaReclassJournalLine.cs
+│   │   │   │   │   ├── FaReclassJournalTemplate.cs
+│   │   │   │   │   ├── FaRegister.cs
+│   │   │   │   │   ├── FaSetup.cs
+│   │   │   │   │   ├── FaSubclass.cs
+│   │   │   │   │   ├── FixedAsset.cs
+│   │   │   │   │   ├── MainAssetComponent.cs
+│   │   │   │   │   ├── TaxArea.cs
+│   │   │   │   │   ├── TaxAreaLine.cs
+│   │   │   │   │   ├── TaxDetail.cs
+│   │   │   │   │   ├── TaxGroup.cs
+│   │   │   │   │   ├── TaxJurisdiction.cs
+│   │   │   │   │   ├── TaxSetup.cs
+│   │   │   │   │   ├── GLEntryVatEntryLink.cs
+│   │   │   │   │   ├── VatBusinessPostingGroup.cs
+│   │   │   │   │   ├── VatEntry.cs
+│   │   │   │   │   ├── VatPostingSetup.cs
+│   │   │   │   │   ├── VatProductPostingGroup.cs
+│   │   │   │   │   ├── VatRateChangeSetup.cs
+│   │   │   │   │   ├── VatRegistrationLog.cs
+│   │   │   │   │   ├── VatReportSetup.cs
+│   │   │   │   │   ├── VatStatementName.cs
+│   │   │   │   │   ├── VatStatementTemplate.cs
+│   │   │   │   │   ├── GLAccount.cs
+│   │   │   │   ├── ValueObjects
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── IAccountingPeriodRepository.cs
+│   │   │   │   │   ├── IBusinessChartUserSetupRepository.cs
+│   │   │   │   │   ├── IBusinessUnitRepository.cs
+│   │   │   │   │   ├── IGLAccountCategoryRepository.cs
+│   │   │   │   │   ├── IGLBudgetNameRepository.cs
+│   │   │   │   │   ├── IGLRegisterRepository.cs
+│   │   │   │   │   ├── IGenBusinessPostingGroupRepository.cs
+│   │   │   │   │   ├── IGenJournalBatchRepository.cs
+│   │   │   │   │   ├── IGenJournalTemplateRepository.cs
+│   │   │   │   │   ├── IGenProductPostingGroupRepository.cs
+│   │   │   │   │   ├── IGeneralLedgerSetupRepository.cs
+│   │   │   │   │   ├── IGeneralPostingSetupRepository.cs
+│   │   │   │   │   ├── IMyAccountRepository.cs
+│   │   │   │   │   ├── IRoundingMethodRepository.cs
+│   │   │   │   │   ├── IStandardGeneralJournalRepository.cs
+│   │   │   │   │   ├── IStandardGeneralJournalLineRepository.cs
+│   │   │   │   │   ├── ITrialBalanceSetupRepository.cs
+│   │   │   │   │   ├── ICashFlowAccountRepository.cs
+│   │   │   │   │   ├── ICashFlowChartSetupRepository.cs
+│   │   │   │   │   ├── ICashFlowReportSelectionRepository.cs
+│   │   │   │   │   ├── ICashFlowSetupRepository.cs
+│   │   │   │   │   ├── ICashFlowWorksheetLineRepository.cs
+│   │   │   │   │   ├── ICostAccountingSetupRepository.cs
+│   │   │   │   │   ├── ICostJournalBatchRepository.cs
+│   │   │   │   │   ├── ICostJournalTemplateRepository.cs
+│   │   │   │   │   ├── ICurrExchRateUpdateSetupRepository.cs
+│   │   │   │   │   ├── ICurrencyRepository.cs
+│   │   │   │   │   ├── ICurrencyAmountRepository.cs
+│   │   │   │   │   ├── ICurrencyExchangeRateRepository.cs
+│   │   │   │   │   ├── ICurrencyForFinChargeTermsRepository.cs
+│   │   │   │   │   ├── ICurrencyForReminderLevelRepository.cs
+│   │   │   │   │   ├── IExchRateAdjmtRegRepository.cs
+│   │   │   │   │   ├── IDepreciationBookRepository.cs
+│   │   │   │   │   ├── IFaClassRepository.cs
+│   │   │   │   │   ├── IFaDateTypeRepository.cs
+│   │   │   │   │   ├── IFaDepreciationBookRepository.cs
+│   │   │   │   │   ├── IFaJournalBatchRepository.cs
+│   │   │   │   │   ├── IFaJournalLineRepository.cs
+│   │   │   │   │   ├── IFaJournalSetupRepository.cs
+│   │   │   │   │   ├── IFaJournalTemplateRepository.cs
+│   │   │   │   │   ├── IFaLedgerEntryRepository.cs
+│   │   │   │   │   ├── IFaLocationRepository.cs
+│   │   │   │   │   ├── IFaMatrixPostingTypeRepository.cs
+│   │   │   │   │   ├── IFaPostingGroupRepository.cs
+│   │   │   │   │   ├── IFaPostingTypeRepository.cs
+│   │   │   │   │   ├── IFaPostingTypeSetupRepository.cs
+│   │   │   │   │   ├── IFaReclassJournalBatchRepository.cs
+│   │   │   │   │   ├── IFaReclassJournalLineRepository.cs
+│   │   │   │   │   ├── IFaReclassJournalTemplateRepository.cs
+│   │   │   │   │   ├── IFaRegisterRepository.cs
+│   │   │   │   │   ├── IFaSetupRepository.cs
+│   │   │   │   │   ├── IFaSubclassRepository.cs
+│   │   │   │   │   ├── IFixedAssetRepository.cs
+│   │   │   │   │   ├── IMainAssetComponentRepository.cs
+│   │   │   │   │   ├── ITaxAreaRepository.cs
+│   │   │   │   │   ├── ITaxAreaLineRepository.cs
+│   │   │   │   │   ├── ITaxDetailRepository.cs
+│   │   │   │   │   ├── ITaxGroupRepository.cs
+│   │   │   │   │   ├── ITaxJurisdictionRepository.cs
+│   │   │   │   │   ├── ITaxSetupRepository.cs
+│   │   │   │   │   ├── IGLEntryVatEntryLinkRepository.cs
+│   │   │   │   │   ├── IVatBusinessPostingGroupRepository.cs
+│   │   │   │   │   ├── IVatEntryRepository.cs
+│   │   │   │   │   ├── IVatPostingSetupRepository.cs
+│   │   │   │   │   ├── IVatProductPostingGroupRepository.cs
+│   │   │   │   │   ├── IVatRateChangeSetupRepository.cs
+│   │   │   │   │   ├── IVatRegistrationLogRepository.cs
+│   │   │   │   │   ├── IVatReportSetupRepository.cs
+│   │   │   │   │   ├── IVatStatementNameRepository.cs
+│   │   │   │   │   ├── IVatStatementTemplateRepository.cs
+│   │   │   │   │   ├── IGLAccountRepository.cs
+│   │   │   │   │   ├── IGLEntryRepository.cs
+│   │   │   │   │   ├── IGenJournalLineRepository.cs
+│   │   │   │   ├── Errors
+│   │   │   │   │   ├── FinanceErrors.cs
+│   │   │   ├── Sales
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── CrmConnectionSetup.cs
+│   │   │   │   │   ├── CustInvoiceDisc.cs
+│   │   │   │   │   ├── CustomerDiscountGroup.cs
+│   │   │   │   │   ├── CustomerPostingGroup.cs
+│   │   │   │   │   ├── CustomerPriceGroup.cs
+│   │   │   │   │   ├── CustomerTemplate.cs
+│   │   │   │   │   ├── DetailedCustLedgEntry.cs
+│   │   │   │   │   ├── MyCustomer.cs
+│   │   │   │   │   ├── OrderPromisingSetup.cs
+│   │   │   │   │   ├── PaymentServiceSetup.cs
+│   │   │   │   │   ├── ReturnReceiptHeader.cs
+│   │   │   │   │   ├── ReturnReceiptLine.cs
+│   │   │   │   │   ├── SalesByCustGrpChartSetup.cs
+│   │   │   │   │   ├── SalesCommentLine.cs
+│   │   │   │   │   ├── SalesCommentLineArchive.cs
+│   │   │   │   │   ├── SalesCrMemoHeader.cs
+│   │   │   │   │   ├── SalesCrMemoLine.cs
+│   │   │   │   │   ├── SalesCue.cs
+│   │   │   │   │   ├── SalesDocumentIcon.cs
+│   │   │   │   │   ├── SalesHeaderArchive.cs
+│   │   │   │   │   ├── SalesLineArchive.cs
+│   │   │   │   │   ├── SalesLineDiscount.cs
+│   │   │   │   │   ├── SalesPrice.cs
+│   │   │   │   │   ├── SalesPriceWorksheet.cs
+│   │   │   │   │   ├── SalesReceivablesSetup.cs
+│   │   │   │   │   ├── SalesShipmentHeader.cs
+│   │   │   │   │   ├── SalesShipmentLine.cs
+│   │   │   │   │   ├── ShipToAddress.cs
+│   │   │   │   │   ├── ShippingAgent.cs
+│   │   │   │   │   ├── ShippingAgentServices.cs
+│   │   │   │   │   ├── StandardCustomerSalesCode.cs
+│   │   │   │   │   ├── StandardSalesCode.cs
+│   │   │   │   │   ├── StandardSalesLine.cs
+│   │   │   │   │   ├── TrailingSalesOrdersSetup.cs
+│   │   │   │   │   ├── CancelledDocument.cs
+│   │   │   │   │   ├── CertificateOfSupply.cs
+│   │   │   │   │   ├── FinanceCue.cs
+│   │   │   │   │   ├── PaymentMethod.cs
+│   │   │   │   │   ├── PaymentTermTranslation.cs
+│   │   │   │   │   ├── PaymentTerms.cs
+│   │   │   │   │   ├── ReturnReason.cs
+│   │   │   │   │   ├── SalespersonPurchaser.cs
+│   │   │   │   │   ├── Customer.cs
+│   │   │   │   │   ├── SalesHeader.cs
+│   │   │   │   │   ├── SalesLine.cs
+│   │   │   │   │   ├── SalesInvoiceHeader.cs
+│   │   │   │   │   ├── SalesInvoiceLine.cs
+│   │   │   │   │   ├── CustLedgerEntry.cs
+│   │   │   │   ├── ValueObjects
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── ISalesLineRepository.cs
+│   │   │   │   │   ├── ICustLedgerEntryRepository.cs
+│   │   │   │   │   ├── ICrmConnectionSetupRepository.cs
+│   │   │   │   │   ├── ICustInvoiceDiscRepository.cs
+│   │   │   │   │   ├── ICustomerDiscountGroupRepository.cs
+│   │   │   │   │   ├── ICustomerPostingGroupRepository.cs
+│   │   │   │   │   ├── ICustomerPriceGroupRepository.cs
+│   │   │   │   │   ├── ICustomerTemplateRepository.cs
+│   │   │   │   │   ├── IDetailedCustLedgEntryRepository.cs
+│   │   │   │   │   ├── IMyCustomerRepository.cs
+│   │   │   │   │   ├── IOrderPromisingSetupRepository.cs
+│   │   │   │   │   ├── IPaymentServiceSetupRepository.cs
+│   │   │   │   │   ├── IReturnReceiptHeaderRepository.cs
+│   │   │   │   │   ├── IReturnReceiptLineRepository.cs
+│   │   │   │   │   ├── ISalesByCustGrpChartSetupRepository.cs
+│   │   │   │   │   ├── ISalesCommentLineRepository.cs
+│   │   │   │   │   ├── ISalesCommentLineArchiveRepository.cs
+│   │   │   │   │   ├── ISalesCrMemoHeaderRepository.cs
+│   │   │   │   │   ├── ISalesCrMemoLineRepository.cs
+│   │   │   │   │   ├── ISalesCueRepository.cs
+│   │   │   │   │   ├── ISalesDocumentIconRepository.cs
+│   │   │   │   │   ├── ISalesHeaderArchiveRepository.cs
+│   │   │   │   │   ├── ISalesLineArchiveRepository.cs
+│   │   │   │   │   ├── ISalesLineDiscountRepository.cs
+│   │   │   │   │   ├── ISalesPriceRepository.cs
+│   │   │   │   │   ├── ISalesPriceWorksheetRepository.cs
+│   │   │   │   │   ├── ISalesReceivablesSetupRepository.cs
+│   │   │   │   │   ├── ISalesShipmentHeaderRepository.cs
+│   │   │   │   │   ├── ISalesShipmentLineRepository.cs
+│   │   │   │   │   ├── IShipToAddressRepository.cs
+│   │   │   │   │   ├── IShippingAgentRepository.cs
+│   │   │   │   │   ├── IShippingAgentServicesRepository.cs
+│   │   │   │   │   ├── IStandardCustomerSalesCodeRepository.cs
+│   │   │   │   │   ├── IStandardSalesCodeRepository.cs
+│   │   │   │   │   ├── IStandardSalesLineRepository.cs
+│   │   │   │   │   ├── ITrailingSalesOrdersSetupRepository.cs
+│   │   │   │   │   ├── ICancelledDocumentRepository.cs
+│   │   │   │   │   ├── ICertificateOfSupplyRepository.cs
+│   │   │   │   │   ├── IFinanceCueRepository.cs
+│   │   │   │   │   ├── IPaymentMethodRepository.cs
+│   │   │   │   │   ├── IPaymentTermTranslationRepository.cs
+│   │   │   │   │   ├── IPaymentTermsRepository.cs
+│   │   │   │   │   ├── IReturnReasonRepository.cs
+│   │   │   │   │   ├── ISalespersonPurchaserRepository.cs
+│   │   │   │   │   ├── ICustomerRepository.cs
+│   │   │   │   │   ├── ISalesHeaderRepository.cs
+│   │   │   │   │   ├── ISalesInvoiceHeaderRepository.cs
+│   │   │   │   │   ├── ISalesInvoiceLineRepository.cs
+│   │   │   ├── Purchasing
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── PurchaseLine.cs
+│   │   │   │   │   ├── VendorLedgerEntry.cs
+│   │   │   │   │   ├── HandledIcInboxPurchHeader.cs
+│   │   │   │   │   ├── HandledIcInboxPurchLine.cs
+│   │   │   │   │   ├── HandledIcInboxSalesHeader.cs
+│   │   │   │   │   ├── HandledIcInboxSalesLine.cs
+│   │   │   │   │   ├── HandledIcInboxTrans.cs
+│   │   │   │   │   ├── HandledIcOutboxPurchHdr.cs
+│   │   │   │   │   ├── HandledIcOutboxPurchLine.cs
+│   │   │   │   │   ├── HandledIcOutboxSalesHeader.cs
+│   │   │   │   │   ├── HandledIcOutboxSalesLine.cs
+│   │   │   │   │   ├── HandledIcOutboxTrans.cs
+│   │   │   │   │   ├── IcDimension.cs
+│   │   │   │   │   ├── IcDimensionValue.cs
+│   │   │   │   │   ├── IcDocumentDimension.cs
+│   │   │   │   │   ├── IcGLAccount.cs
+│   │   │   │   │   ├── IcInboxPurchaseHeader.cs
+│   │   │   │   │   ├── IcInboxPurchaseLine.cs
+│   │   │   │   │   ├── IcInboxSalesHeader.cs
+│   │   │   │   │   ├── IcInboxSalesLine.cs
+│   │   │   │   │   ├── IcInboxTransaction.cs
+│   │   │   │   │   ├── IcOutboxPurchaseHeader.cs
+│   │   │   │   │   ├── IcOutboxPurchaseLine.cs
+│   │   │   │   │   ├── IcOutboxSalesHeader.cs
+│   │   │   │   │   ├── IcOutboxSalesLine.cs
+│   │   │   │   │   ├── IcOutboxTransaction.cs
+│   │   │   │   │   ├── IcPartner.cs
+│   │   │   │   │   ├── DetailedVendorLedgEntry.cs
+│   │   │   │   │   ├── MyVendor.cs
+│   │   │   │   │   ├── PurchCommentLine.cs
+│   │   │   │   │   ├── PurchCommentLineArchive.cs
+│   │   │   │   │   ├── PurchCrMemoHdr.cs
+│   │   │   │   │   ├── PurchCrMemoLine.cs
+│   │   │   │   │   ├── PurchInvHeader.cs
+│   │   │   │   │   ├── PurchInvLine.cs
+│   │   │   │   │   ├── PurchRcptHeader.cs
+│   │   │   │   │   ├── PurchRcptLine.cs
+│   │   │   │   │   ├── PurchaseHeaderArchive.cs
+│   │   │   │   │   ├── PurchaseLineArchive.cs
+│   │   │   │   │   ├── PurchasePrice.cs
+│   │   │   │   │   ├── PurchasesPayablesSetup.cs
+│   │   │   │   │   ├── ReqWkshTemplate.cs
+│   │   │   │   │   ├── RequisitionLine.cs
+│   │   │   │   │   ├── RequisitionWkshName.cs
+│   │   │   │   │   ├── ReturnShipmentHeader.cs
+│   │   │   │   │   ├── ReturnShipmentLine.cs
+│   │   │   │   │   ├── StandardPurchaseCode.cs
+│   │   │   │   │   ├── StandardPurchaseLine.cs
+│   │   │   │   │   ├── StandardVendorPurchaseCode.cs
+│   │   │   │   │   ├── VendorBankAccount.cs
+│   │   │   │   │   ├── VendorInvoiceDisc.cs
+│   │   │   │   │   ├── VendorPostingGroup.cs
+│   │   │   │   │   ├── PurchaseHeader.cs
+│   │   │   │   │   ├── Vendor.cs
+│   │   │   │   ├── ValueObjects
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── IVendorLedgerEntryRepository.cs
+│   │   │   │   │   ├── IPurchaseHeaderRepository.cs
+│   │   │   │   │   ├── IVendorRepository.cs
+│   │   │   │   │   ├── IHandledIcInboxPurchHeaderRepository.cs
+│   │   │   │   │   ├── IHandledIcInboxPurchLineRepository.cs
+│   │   │   │   │   ├── IHandledIcInboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── IHandledIcInboxSalesLineRepository.cs
+│   │   │   │   │   ├── IHandledIcInboxTransRepository.cs
+│   │   │   │   │   ├── IHandledIcOutboxPurchHdrRepository.cs
+│   │   │   │   │   ├── IHandledIcOutboxPurchLineRepository.cs
+│   │   │   │   │   ├── IHandledIcOutboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── IHandledIcOutboxSalesLineRepository.cs
+│   │   │   │   │   ├── IHandledIcOutboxTransRepository.cs
+│   │   │   │   │   ├── IIcDimensionRepository.cs
+│   │   │   │   │   ├── IIcDimensionValueRepository.cs
+│   │   │   │   │   ├── IIcDocumentDimensionRepository.cs
+│   │   │   │   │   ├── IIcGLAccountRepository.cs
+│   │   │   │   │   ├── IIcInboxPurchaseHeaderRepository.cs
+│   │   │   │   │   ├── IIcInboxPurchaseLineRepository.cs
+│   │   │   │   │   ├── IIcInboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── IIcInboxSalesLineRepository.cs
+│   │   │   │   │   ├── IIcInboxTransactionRepository.cs
+│   │   │   │   │   ├── IIcOutboxPurchaseHeaderRepository.cs
+│   │   │   │   │   ├── IIcOutboxPurchaseLineRepository.cs
+│   │   │   │   │   ├── IIcOutboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── IIcOutboxSalesLineRepository.cs
+│   │   │   │   │   ├── IIcOutboxTransactionRepository.cs
+│   │   │   │   │   ├── IIcPartnerRepository.cs
+│   │   │   │   │   ├── IDetailedVendorLedgEntryRepository.cs
+│   │   │   │   │   ├── IMyVendorRepository.cs
+│   │   │   │   │   ├── IPurchCommentLineRepository.cs
+│   │   │   │   │   ├── IPurchCommentLineArchiveRepository.cs
+│   │   │   │   │   ├── IPurchCrMemoHdrRepository.cs
+│   │   │   │   │   ├── IPurchCrMemoLineRepository.cs
+│   │   │   │   │   ├── IPurchRcptHeaderRepository.cs
+│   │   │   │   │   ├── IPurchRcptLineRepository.cs
+│   │   │   │   │   ├── IPurchaseHeaderArchiveRepository.cs
+│   │   │   │   │   ├── IPurchaseLineArchiveRepository.cs
+│   │   │   │   │   ├── IPurchasePriceRepository.cs
+│   │   │   │   │   ├── IPurchasesPayablesSetupRepository.cs
+│   │   │   │   │   ├── IReqWkshTemplateRepository.cs
+│   │   │   │   │   ├── IRequisitionLineRepository.cs
+│   │   │   │   │   ├── IRequisitionWkshNameRepository.cs
+│   │   │   │   │   ├── IReturnShipmentHeaderRepository.cs
+│   │   │   │   │   ├── IReturnShipmentLineRepository.cs
+│   │   │   │   │   ├── IStandardPurchaseCodeRepository.cs
+│   │   │   │   │   ├── IStandardPurchaseLineRepository.cs
+│   │   │   │   │   ├── IStandardVendorPurchaseCodeRepository.cs
+│   │   │   │   │   ├── IVendorBankAccountRepository.cs
+│   │   │   │   │   ├── IVendorInvoiceDiscRepository.cs
+│   │   │   │   │   ├── IVendorPostingGroupRepository.cs
+│   │   │   │   │   ├── IPurchInvHeaderRepository.cs
+│   │   │   │   │   ├── IPurchInvLineRepository.cs
+│   │   │   │   │   ├── IPurchaseLineRepository.cs
+│   │   │   ├── Resources
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── CauseOfAbsence.cs
+│   │   │   │   │   ├── Employee.cs
+│   │   │   │   │   ├── EmployeeAbsence.cs
+│   │   │   │   │   ├── EmployeeQualification.cs
+│   │   │   │   │   ├── EmployeeRelative.cs
+│   │   │   │   │   ├── EmploymentContract.cs
+│   │   │   │   │   ├── GroundsForTermination.cs
+│   │   │   │   │   ├── HumanResourceCommentLine.cs
+│   │   │   │   │   ├── HumanResourceUnitOfMeasure.cs
+│   │   │   │   │   ├── HumanResourcesSetup.cs
+│   │   │   │   │   ├── PayrollSetup.cs
+│   │   │   │   │   ├── Relative.cs
+│   │   │   │   │   ├── Job.cs
+│   │   │   │   │   ├── JobCue.cs
+│   │   │   │   │   ├── JobEntryNo.cs
+│   │   │   │   │   ├── JobJournalBatch.cs
+│   │   │   │   │   ├── JobJournalLine.cs
+│   │   │   │   │   ├── JobJournalTemplate.cs
+│   │   │   │   │   ├── JobLedgerEntry.cs
+│   │   │   │   │   ├── JobPlanningLine.cs
+│   │   │   │   │   ├── JobPlanningLineInvoice.cs
+│   │   │   │   │   ├── JobPostingGroup.cs
+│   │   │   │   │   ├── JobQueueCategory.cs
+│   │   │   │   │   ├── JobQueueEntry.cs
+│   │   │   │   │   ├── JobQueueLogEntry.cs
+│   │   │   │   │   ├── JobRegister.cs
+│   │   │   │   │   ├── JobTask.cs
+│   │   │   │   │   ├── JobTaskDimension.cs
+│   │   │   │   │   ├── JobUsageLink.cs
+│   │   │   │   │   ├── JobWipMethod.cs
+│   │   │   │   │   ├── JobsSetup.cs
+│   │   │   │   │   ├── ResJournalBatch.cs
+│   │   │   │   │   ├── ResJournalLine.cs
+│   │   │   │   │   ├── ResJournalTemplate.cs
+│   │   │   │   │   ├── ResLedgerEntry.cs
+│   │   │   │   │   ├── Resource.cs
+│   │   │   │   │   ├── ResourceCost.cs
+│   │   │   │   │   ├── ResourceGroup.cs
+│   │   │   │   │   ├── ResourcePrice.cs
+│   │   │   │   │   ├── ResourceRegister.cs
+│   │   │   │   │   ├── ResourceUnitOfMeasure.cs
+│   │   │   │   │   ├── ResourcesSetup.cs
+│   │   │   │   │   ├── TimeSheetChartSetup.cs
+│   │   │   │   │   ├── WorkType.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── ICauseOfAbsenceRepository.cs
+│   │   │   │   │   ├── IEmployeeRepository.cs
+│   │   │   │   │   ├── IEmployeeAbsenceRepository.cs
+│   │   │   │   │   ├── IEmployeeQualificationRepository.cs
+│   │   │   │   │   ├── IEmployeeRelativeRepository.cs
+│   │   │   │   │   ├── IEmploymentContractRepository.cs
+│   │   │   │   │   ├── IGroundsForTerminationRepository.cs
+│   │   │   │   │   ├── IHumanResourceCommentLineRepository.cs
+│   │   │   │   │   ├── IHumanResourceUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── IHumanResourcesSetupRepository.cs
+│   │   │   │   │   ├── IPayrollSetupRepository.cs
+│   │   │   │   │   ├── IRelativeRepository.cs
+│   │   │   │   │   ├── IJobRepository.cs
+│   │   │   │   │   ├── IJobCueRepository.cs
+│   │   │   │   │   ├── IJobEntryNoRepository.cs
+│   │   │   │   │   ├── IJobJournalBatchRepository.cs
+│   │   │   │   │   ├── IJobJournalLineRepository.cs
+│   │   │   │   │   ├── IJobJournalTemplateRepository.cs
+│   │   │   │   │   ├── IJobLedgerEntryRepository.cs
+│   │   │   │   │   ├── IJobPlanningLineRepository.cs
+│   │   │   │   │   ├── IJobPlanningLineInvoiceRepository.cs
+│   │   │   │   │   ├── IJobPostingGroupRepository.cs
+│   │   │   │   │   ├── IJobQueueCategoryRepository.cs
+│   │   │   │   │   ├── IJobQueueEntryRepository.cs
+│   │   │   │   │   ├── IJobQueueLogEntryRepository.cs
+│   │   │   │   │   ├── IJobRegisterRepository.cs
+│   │   │   │   │   ├── IJobTaskRepository.cs
+│   │   │   │   │   ├── IJobTaskDimensionRepository.cs
+│   │   │   │   │   ├── IJobUsageLinkRepository.cs
+│   │   │   │   │   ├── IJobWipMethodRepository.cs
+│   │   │   │   │   ├── IJobsSetupRepository.cs
+│   │   │   │   │   ├── IResJournalBatchRepository.cs
+│   │   │   │   │   ├── IResJournalLineRepository.cs
+│   │   │   │   │   ├── IResJournalTemplateRepository.cs
+│   │   │   │   │   ├── IResLedgerEntryRepository.cs
+│   │   │   │   │   ├── IResourceRepository.cs
+│   │   │   │   │   ├── IResourceCostRepository.cs
+│   │   │   │   │   ├── IResourceGroupRepository.cs
+│   │   │   │   │   ├── IResourcePriceRepository.cs
+│   │   │   │   │   ├── IResourceRegisterRepository.cs
+│   │   │   │   │   ├── IResourceUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── IResourcesSetupRepository.cs
+│   │   │   │   │   ├── ITimeSheetChartSetupRepository.cs
+│   │   │   │   │   ├── IWorkTypeRepository.cs
+│   │   │   ├── Ecf
+│   │   │   │   ├── Entities
+│   │   │   │   │   ├── EcfCompanyConfig.cs
+│   │   │   │   │   ├── EcfNcfSequence.cs
+│   │   │   │   │   ├── EcfDocument.cs
+│   │   │   │   ├── Enums
+│   │   │   │   │   ├── EcfEnvironment.cs
+│   │   │   │   │   ├── EcfDocumentStatus.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── IEcfRepositories.cs
+│   │   ├── NexusBilling.Core.Application
+│   │   │   ├── Common
+│   │   │   │   ├── Interfaces
+│   │   │   │   │   ├── INotificationService.cs
+│   │   │   │   ├── Mappings
+│   │   │   ├── Administration
+│   │   │   │   ├── DTOs
+│   │   │   │   ├── Validators
+│   │   │   │   ├── Services
+│   │   │   │   │   ├── NoSeriesService.cs
+│   │   │   │   ├── Features
+│   │   │   │   │   ├── NoSeries
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── UpsertNoSeries
+│   │   │   │   │   │   │   │   ├── UpsertNoSeriesCommand.cs
+│   │   │   │   │   │   │   │   ├── UpsertNoSeriesCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetNoSeries
+│   │   │   │   │   │   │   │   ├── GetNoSeriesQuery.cs
+│   │   │   │   │   │   │   │   ├── GetNoSeriesQueryHandler.cs
+│   │   │   │   │   ├── ServiceOrders
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── CreateServiceOrder
+│   │   │   │   │   │   │   │   ├── CreateServiceOrderCommand.cs
+│   │   │   │   │   │   │   │   ├── CreateServiceOrderCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetServiceOrderByNo
+│   │   │   │   │   │   │   │   ├── GetServiceOrderByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetServiceOrderByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetServiceOrders
+│   │   │   │   │   │   │   │   ├── GetServiceOrdersQuery.cs
+│   │   │   │   │   │   │   │   ├── GetServiceOrdersQueryHandler.cs
+│   │   │   ├── Security
+│   │   │   │   ├── DTOs
+│   │   │   │   │   ├── TokenResponse.cs
+│   │   │   │   │   ├── CurrentUserDto.cs
+│   │   │   │   │   ├── UserSetupDto.cs
+│   │   │   │   ├── Validators
+│   │   │   │   ├── Contracts
+│   │   │   │   │   ├── IJwtTokenService.cs
+│   │   │   │   │   ├── IPasswordHasher.cs
+│   │   │   │   ├── Mappings
+│   │   │   │   │   ├── SecurityMappingProfile.cs
+│   │   │   │   ├── Features
+│   │   │   │   │   ├── Users
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── CreateUser
+│   │   │   │   │   │   │   │   ├── CreateUserCommand.cs
+│   │   │   │   │   │   │   │   ├── CreateUserCommandHandler.cs
+│   │   │   │   │   │   │   ├── Login
+│   │   │   │   │   │   │   │   ├── LoginCommand.cs
+│   │   │   │   │   │   │   │   ├── LoginCommandHandler.cs
+│   │   │   │   │   │   │   ├── Logout
+│   │   │   │   │   │   │   │   ├── LogoutCommand.cs
+│   │   │   │   │   │   │   ├── RefreshToken
+│   │   │   │   │   │   │   │   ├── RefreshTokenCommand.cs
+│   │   │   │   │   │   │   ├── UpdateUser
+│   │   │   │   │   │   │   │   ├── UpdateUserCommand.cs
+│   │   │   │   │   │   │   │   ├── UpdateUserCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetActiveSessions
+│   │   │   │   │   │   │   │   ├── GetActiveSessionsQuery.cs
+│   │   │   │   │   │   │   ├── GetCurrentUser
+│   │   │   │   │   │   │   │   ├── GetCurrentUserQuery.cs
+│   │   │   │   │   │   │   │   ├── GetCurrentUserQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetUserGroups
+│   │   │   │   │   │   │   │   ├── GetUserGroupsQuery.cs
+│   │   │   │   │   │   │   │   ├── GetUserGroupsQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetUserSetup
+│   │   │   │   │   │   │   │   ├── GetUserSetupQuery.cs
+│   │   │   │   │   │   │   ├── GetUsers
+│   │   │   │   │   │   │   │   ├── GetUsersQuery.cs
+│   │   │   │   │   │   │   │   ├── GetUsersQueryHandler.cs
+│   │   │   ├── Inventory
+│   │   │   │   ├── DTOs
+│   │   │   │   │   ├── ItemDto.cs
+│   │   │   │   ├── Validators
+│   │   │   │   ├── Features
+│   │   │   │   │   ├── Items
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── AdjustInventory
+│   │   │   │   │   │   │   │   ├── AdjustInventoryCommand.cs
+│   │   │   │   │   │   │   │   ├── AdjustInventoryCommandHandler.cs
+│   │   │   │   │   │   │   ├── SetItemBlocked
+│   │   │   │   │   │   │   │   ├── SetItemBlockedCommand.cs
+│   │   │   │   │   │   │   │   ├── SetItemBlockedCommandHandler.cs
+│   │   │   │   │   │   │   ├── UpsertItem
+│   │   │   │   │   │   │   │   ├── UpsertItemCommand.cs
+│   │   │   │   │   │   │   │   ├── UpsertItemCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetItemByNo
+│   │   │   │   │   │   │   │   ├── GetItemByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetItemByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetItemLedgerEntries
+│   │   │   │   │   │   │   │   ├── GetItemLedgerEntriesQuery.cs
+│   │   │   │   │   │   │   │   ├── GetItemLedgerEntriesQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetItems
+│   │   │   │   │   │   │   │   ├── GetItemsQuery.cs
+│   │   │   │   │   │   │   │   ├── GetItemsQueryHandler.cs
+│   │   │   │   │   ├── Bins
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetBins
+│   │   │   │   │   │   │   │   ├── GetBinsQuery.cs
+│   │   │   │   │   │   │   │   ├── GetBinsQueryHandler.cs
+│   │   │   │   │   ├── Locations
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── UpsertLocation
+│   │   │   │   │   │   │   │   ├── UpsertLocationCommand.cs
+│   │   │   │   │   │   │   │   ├── UpsertLocationCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetLocationByCode
+│   │   │   │   │   │   │   │   ├── GetLocationByCodeQuery.cs
+│   │   │   │   │   │   │   │   ├── GetLocationByCodeQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetLocations
+│   │   │   │   │   │   │   │   ├── GetLocationsQuery.cs
+│   │   │   │   │   │   │   │   ├── GetLocationsQueryHandler.cs
+│   │   │   ├── Finance
+│   │   │   │   ├── Commands
+│   │   │   │   ├── Queries
+│   │   │   │   ├── DTOs
+│   │   │   │   │   ├── GLAccountDto.cs
+│   │   │   │   │   ├── GLEntryDto.cs
+│   │   │   │   │   ├── GenJournalLineDto.cs
+│   │   │   │   ├── Validators
+│   │   │   │   ├── Features
+│   │   │   │   │   ├── GLAccounts
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetGLAccountByNo
+│   │   │   │   │   │   │   │   ├── GetGLAccountByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetGLAccountByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetGLAccounts
+│   │   │   │   │   │   │   │   ├── GetGLAccountsQuery.cs
+│   │   │   │   │   │   │   │   ├── GetGLAccountsQueryHandler.cs
+│   │   │   │   │   ├── GLEntries
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetGLEntries
+│   │   │   │   │   │   │   │   ├── GetGLEntriesQuery.cs
+│   │   │   │   │   │   │   │   ├── GetGLEntriesQueryHandler.cs
+│   │   │   │   │   ├── GenJournalLines
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── CreateGenJournalLine
+│   │   │   │   │   │   │   │   ├── CreateGenJournalLineCommand.cs
+│   │   │   │   │   │   │   │   ├── CreateGenJournalLineCommandHandler.cs
+│   │   │   │   │   │   │   ├── DeleteGenJournalLine
+│   │   │   │   │   │   │   │   ├── DeleteGenJournalLineCommand.cs
+│   │   │   │   │   │   │   │   ├── DeleteGenJournalLineCommandHandler.cs
+│   │   │   │   │   │   │   ├── PostGenJournalLine
+│   │   │   │   │   │   │   │   ├── PostGenJournalLineCommand.cs
+│   │   │   │   │   │   │   │   ├── PostGenJournalLineCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetGenJournalLines
+│   │   │   │   │   │   │   │   ├── GetGenJournalLinesQuery.cs
+│   │   │   │   │   │   │   │   ├── GetGenJournalLinesQueryHandler.cs
+│   │   │   ├── Sales
+│   │   │   │   ├── DTOs
+│   │   │   │   │   ├── CustomerDto.cs
+│   │   │   │   ├── Validators
+│   │   │   │   ├── Features
+│   │   │   │   │   ├── Customers
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── SetCustomerBlocked
+│   │   │   │   │   │   │   │   ├── SetCustomerBlockedCommand.cs
+│   │   │   │   │   │   │   │   ├── SetCustomerBlockedCommandHandler.cs
+│   │   │   │   │   │   │   ├── UpsertCustomer
+│   │   │   │   │   │   │   │   ├── UpsertCustomerCommand.cs
+│   │   │   │   │   │   │   │   ├── UpsertCustomerCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetCustomerByNo
+│   │   │   │   │   │   │   │   ├── GetCustomerByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetCustomerByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetCustomers
+│   │   │   │   │   │   │   │   ├── GetCustomersQuery.cs
+│   │   │   │   │   │   │   │   ├── GetCustomersQueryHandler.cs
+│   │   │   │   │   ├── SalesInvoices
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetSalesInvoiceByNo
+│   │   │   │   │   │   │   │   ├── GetSalesInvoiceByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetSalesInvoiceByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetSalesInvoices
+│   │   │   │   │   │   │   │   ├── GetSalesInvoicesQuery.cs
+│   │   │   │   │   │   │   │   ├── GetSalesInvoicesQueryHandler.cs
+│   │   │   │   │   ├── SalesOrders
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── CreateSalesOrder
+│   │   │   │   │   │   │   │   ├── CreateSalesOrderCommand.cs
+│   │   │   │   │   │   │   │   ├── CreateSalesOrderCommandHandler.cs
+│   │   │   │   │   │   │   ├── PostSalesOrder
+│   │   │   │   │   │   │   │   ├── PostSalesOrderCommand.cs
+│   │   │   │   │   │   │   │   ├── PostSalesOrderCommandHandler.cs
+│   │   │   │   │   │   │   ├── ReleaseSalesOrder
+│   │   │   │   │   │   │   │   ├── ReleaseSalesOrderCommand.cs
+│   │   │   │   │   │   │   │   ├── ReleaseSalesOrderCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetSalesOrderByNo
+│   │   │   │   │   │   │   │   ├── GetSalesOrderByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetSalesOrderByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetSalesOrders
+│   │   │   │   │   │   │   │   ├── GetSalesOrdersQuery.cs
+│   │   │   │   │   │   │   │   ├── GetSalesOrdersQueryHandler.cs
+│   │   │   ├── Purchasing
+│   │   │   │   ├── Queries
+│   │   │   │   │   ├── DTOs
+│   │   │   │   ├── DTOs
+│   │   │   │   ├── Validators
+│   │   │   │   ├── Features
+│   │   │   │   │   ├── PurchaseInvoices
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetPurchaseInvoiceByNo
+│   │   │   │   │   │   │   │   ├── GetPurchaseInvoiceByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetPurchaseInvoiceByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetPurchaseInvoices
+│   │   │   │   │   │   │   │   ├── GetPurchaseInvoicesQuery.cs
+│   │   │   │   │   │   │   │   ├── GetPurchaseInvoicesQueryHandler.cs
+│   │   │   │   │   ├── PurchaseOrders
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── CreatePurchaseOrder
+│   │   │   │   │   │   │   │   ├── CreatePurchaseOrderCommand.cs
+│   │   │   │   │   │   │   │   ├── CreatePurchaseOrderCommandHandler.cs
+│   │   │   │   │   │   │   ├── PostPurchaseOrder
+│   │   │   │   │   │   │   │   ├── PostPurchaseOrderCommand.cs
+│   │   │   │   │   │   │   │   ├── PostPurchaseOrderCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetPurchaseOrderByNo
+│   │   │   │   │   │   │   │   ├── GetPurchaseOrderByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetPurchaseOrderByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetPurchaseOrders
+│   │   │   │   │   │   │   │   ├── GetPurchaseOrdersQuery.cs
+│   │   │   │   │   │   │   │   ├── GetPurchaseOrdersQueryHandler.cs
+│   │   │   │   │   ├── Vendors
+│   │   │   │   │   │   ├── Commands
+│   │   │   │   │   │   │   ├── CreateVendor
+│   │   │   │   │   │   │   │   ├── CreateVendorCommand.cs
+│   │   │   │   │   │   │   │   ├── CreateVendorCommandHandler.cs
+│   │   │   │   │   │   │   ├── SetVendorBlocked
+│   │   │   │   │   │   │   │   ├── SetVendorBlockedCommand.cs
+│   │   │   │   │   │   │   │   ├── SetVendorBlockedCommandHandler.cs
+│   │   │   │   │   │   │   ├── UpsertVendor
+│   │   │   │   │   │   │   │   ├── UpsertVendorCommand.cs
+│   │   │   │   │   │   │   │   ├── UpsertVendorCommandHandler.cs
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetVendorByNo
+│   │   │   │   │   │   │   │   ├── GetVendorByNoQuery.cs
+│   │   │   │   │   │   │   │   ├── GetVendorByNoQueryHandler.cs
+│   │   │   │   │   │   │   ├── GetVendors
+│   │   │   │   │   │   │   │   ├── GetVendorsQuery.cs
+│   │   │   │   │   │   │   │   ├── GetVendorsQueryHandler.cs
+│   │   │   ├── Ecf
+│   │   │   │   ├── Interfaces
+│   │   │   │   │   ├── IEcfService.cs
+│   │   │   │   ├── Services
+│   │   │   │   │   ├── EcfService.cs
+│   │   │   ├── Dashboard
+│   │   │   │   ├── Features
+│   │   │   │   │   ├── DashboardStats
+│   │   │   │   │   │   ├── Queries
+│   │   │   │   │   │   │   ├── GetDashboardStats
+│   │   │   │   │   │   │   │   ├── GetDashboardStatsQuery.cs
+│   │   │   │   │   │   │   │   ├── GetDashboardStatsQueryHandler.cs
+│   │   │   ├── NexusBilling.Core.Application.csproj
+│   │   │   ├── ServiceRegistration.cs
+│   ├── Infrastructure
+│   │   ├── NexusBilling.Infrastructure.Persistence
+│   │   │   ├── Administration
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── TenantConfiguration.cs
+│   │   │   │   │   ├── AccSchedChartSetupLineConfiguration.cs
+│   │   │   │   │   ├── AccSchedKpiWebSrvLineConfiguration.cs
+│   │   │   │   │   ├── AccSchedKpiWebSrvSetupConfiguration.cs
+│   │   │   │   │   ├── AccScheduleLineConfiguration.cs
+│   │   │   │   │   ├── AccScheduleNameConfiguration.cs
+│   │   │   │   │   ├── AccountSchedulesChartSetupConfiguration.cs
+│   │   │   │   │   ├── ColumnLayoutConfiguration.cs
+│   │   │   │   │   ├── ColumnLayoutNameConfiguration.cs
+│   │   │   │   │   ├── AnalysisColumnConfiguration.cs
+│   │   │   │   │   ├── AnalysisColumnTemplateConfiguration.cs
+│   │   │   │   │   ├── AnalysisLineConfiguration.cs
+│   │   │   │   │   ├── AnalysisLineTemplateConfiguration.cs
+│   │   │   │   │   ├── AnalysisReportChartSetupConfiguration.cs
+│   │   │   │   │   ├── AnalysisReportNameConfiguration.cs
+│   │   │   │   │   ├── AnalysisSelectedDimensionConfiguration.cs
+│   │   │   │   │   ├── AnalysisTypeConfiguration.cs
+│   │   │   │   │   ├── AnalysisViewConfiguration.cs
+│   │   │   │   │   ├── AnalysisViewEntryConfiguration.cs
+│   │   │   │   │   ├── AnalysisViewFilterConfiguration.cs
+│   │   │   │   │   ├── ApplicationAreaSetupConfiguration.cs
+│   │   │   │   │   ├── ChartConfiguration.cs
+│   │   │   │   │   ├── ChartDefinitionConfiguration.cs
+│   │   │   │   │   ├── CommentLineConfiguration.cs
+│   │   │   │   │   ├── CompanyInformationConfiguration.cs
+│   │   │   │   │   ├── CountryRegionConfiguration.cs
+│   │   │   │   │   ├── DocumentServiceConfiguration.cs
+│   │   │   │   │   ├── ExcelBufferConfiguration.cs
+│   │   │   │   │   ├── ExtendedTextHeaderConfiguration.cs
+│   │   │   │   │   ├── ExtendedTextLineConfiguration.cs
+│   │   │   │   │   ├── LanguageConfiguration.cs
+│   │   │   │   │   ├── LastUsedChartConfiguration.cs
+│   │   │   │   │   ├── NoSeriesConfiguration.cs
+│   │   │   │   │   ├── NoSeriesLineConfiguration.cs
+│   │   │   │   │   ├── NoSeriesRelationshipConfiguration.cs
+│   │   │   │   │   ├── OnlineMapParameterSetupConfiguration.cs
+│   │   │   │   │   ├── OnlineMapSetupConfiguration.cs
+│   │   │   │   │   ├── PostCodeConfiguration.cs
+│   │   │   │   │   ├── PrinterSelectionConfiguration.cs
+│   │   │   │   │   ├── ReasonCodeConfiguration.cs
+│   │   │   │   │   ├── ResponsibilityCenterConfiguration.cs
+│   │   │   │   │   ├── RestrictedRecordConfiguration.cs
+│   │   │   │   │   ├── ScheduledTaskConfiguration.cs
+│   │   │   │   │   ├── ShipmentMethodConfiguration.cs
+│   │   │   │   │   ├── ShipmentMethodTranslationConfiguration.cs
+│   │   │   │   │   ├── SourceCodeConfiguration.cs
+│   │   │   │   │   ├── SourceCodeSetupConfiguration.cs
+│   │   │   │   │   ├── StandardTextConfiguration.cs
+│   │   │   │   │   ├── TerritoryConfiguration.cs
+│   │   │   │   │   ├── UnitOfMeasureConfiguration.cs
+│   │   │   │   │   ├── UnitOfMeasureTranslationConfiguration.cs
+│   │   │   │   │   ├── AssistedCompanySetupStatusConfiguration.cs
+│   │   │   │   │   ├── AssistedSetupConfiguration.cs
+│   │   │   │   │   ├── AssistedSetupIconsConfiguration.cs
+│   │   │   │   │   ├── AssistedSetupLogConfiguration.cs
+│   │   │   │   │   ├── ConfigFieldMappingConfiguration.cs
+│   │   │   │   │   ├── ConfigMediaBufferConfiguration.cs
+│   │   │   │   │   ├── ConfigPackageConfiguration.cs
+│   │   │   │   │   ├── ConfigPackageDataConfiguration.cs
+│   │   │   │   │   ├── ConfigPackageErrorConfiguration.cs
+│   │   │   │   │   ├── ConfigPackageFieldConfiguration.cs
+│   │   │   │   │   ├── ConfigPackageFilterConfiguration.cs
+│   │   │   │   │   ├── ConfigPackageRecordConfiguration.cs
+│   │   │   │   │   ├── ConfigPackageTableConfiguration.cs
+│   │   │   │   │   ├── ConfigQuestionConfiguration.cs
+│   │   │   │   │   ├── ConfigQuestionAreaConfiguration.cs
+│   │   │   │   │   ├── ConfigQuestionnaireConfiguration.cs
+│   │   │   │   │   ├── ConfigSetupConfiguration.cs
+│   │   │   │   │   ├── ConfigTableProcessingRuleConfiguration.cs
+│   │   │   │   │   ├── ConfigTemplateHeaderConfiguration.cs
+│   │   │   │   │   ├── ConfigTemplateLineConfiguration.cs
+│   │   │   │   │   ├── DataMigrationSetupConfiguration.cs
+│   │   │   │   │   ├── BankAccountConfiguration.cs
+│   │   │   │   │   ├── BankAccountLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── BankAccountPostingGroupConfiguration.cs
+│   │   │   │   │   ├── BankClearingStandardConfiguration.cs
+│   │   │   │   │   ├── BankDataConvServiceSetupConfiguration.cs
+│   │   │   │   │   ├── BankDataConversionPmtTypeConfiguration.cs
+│   │   │   │   │   ├── BankExportImportSetupConfiguration.cs
+│   │   │   │   │   ├── BankPmtApplRuleConfiguration.cs
+│   │   │   │   │   ├── CheckLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── PaymentJnlExportErrorTextConfiguration.cs
+│   │   │   │   │   ├── PaymentRegistrationSetupConfiguration.cs
+│   │   │   │   │   ├── BookingMgrSetupConfiguration.cs
+│   │   │   │   │   ├── GenericChartSetupConfiguration.cs
+│   │   │   │   │   ├── BusinessRelationConfiguration.cs
+│   │   │   │   │   ├── CloseOpportunityCodeConfiguration.cs
+│   │   │   │   │   ├── ContactConfiguration.cs
+│   │   │   │   │   ├── ContactBusinessRelationConfiguration.cs
+│   │   │   │   │   ├── ContactIndustryGroupConfiguration.cs
+│   │   │   │   │   ├── ContactJobResponsibilityConfiguration.cs
+│   │   │   │   │   ├── DuplicateSearchStringSetupConfiguration.cs
+│   │   │   │   │   ├── IndustryGroupConfiguration.cs
+│   │   │   │   │   ├── InteractionLogEntryConfiguration.cs
+│   │   │   │   │   ├── InteractionTemplateConfiguration.cs
+│   │   │   │   │   ├── InteractionTemplateSetupConfiguration.cs
+│   │   │   │   │   ├── InteractionTmplLanguageConfiguration.cs
+│   │   │   │   │   ├── JobResponsibilityConfiguration.cs
+│   │   │   │   │   ├── MarketingSetupConfiguration.cs
+│   │   │   │   │   ├── OpportunityConfiguration.cs
+│   │   │   │   │   ├── RelationshipMgmtCueConfiguration.cs
+│   │   │   │   │   ├── SalesCycleConfiguration.cs
+│   │   │   │   │   ├── SalesCycleStageConfiguration.cs
+│   │   │   │   │   ├── SalutationConfiguration.cs
+│   │   │   │   │   ├── SalutationFormulaConfiguration.cs
+│   │   │   │   │   ├── SegmentInteractionLanguageConfiguration.cs
+│   │   │   │   │   ├── ToDoConfiguration.cs
+│   │   │   │   │   ├── ToDoInteractionLanguageConfiguration.cs
+│   │   │   │   │   ├── DocExchServiceSetupConfiguration.cs
+│   │   │   │   │   ├── DocumentSendingProfileConfiguration.cs
+│   │   │   │   │   ├── ElectronicDocumentFormatConfiguration.cs
+│   │   │   │   │   ├── IncomingDocumentConfiguration.cs
+│   │   │   │   │   ├── IncomingDocumentAttachmentConfiguration.cs
+│   │   │   │   │   ├── IncomingDocumentsSetupConfiguration.cs
+│   │   │   │   │   ├── OcrServiceSetupConfiguration.cs
+│   │   │   │   │   ├── PostedDocsWithNoIncBufConfiguration.cs
+│   │   │   │   │   ├── TransformationRuleConfiguration.cs
+│   │   │   │   │   ├── DeferralTemplateConfiguration.cs
+│   │   │   │   │   ├── DefaultDimensionConfiguration.cs
+│   │   │   │   │   ├── DefaultDimensionPriorityConfiguration.cs
+│   │   │   │   │   ├── DimensionConfiguration.cs
+│   │   │   │   │   ├── DimensionCombinationConfiguration.cs
+│   │   │   │   │   ├── DimensionSetEntryConfiguration.cs
+│   │   │   │   │   ├── DimensionSetTreeNodeConfiguration.cs
+│   │   │   │   │   ├── DimensionTranslationConfiguration.cs
+│   │   │   │   │   ├── DimensionValueConfiguration.cs
+│   │   │   │   │   ├── DimensionValueCombinationConfiguration.cs
+│   │   │   │   │   ├── DimensionsFieldMapConfiguration.cs
+│   │   │   │   │   ├── DimensionsTemplateConfiguration.cs
+│   │   │   │   │   ├── SelectedDimensionConfiguration.cs
+│   │   │   │   │   ├── SmtpMailSetupConfiguration.cs
+│   │   │   │   │   ├── InsuranceConfiguration.cs
+│   │   │   │   │   ├── InsuranceJournalBatchConfiguration.cs
+│   │   │   │   │   ├── InsuranceJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── InsuranceTypeConfiguration.cs
+│   │   │   │   │   ├── IntrastatJnlBatchConfiguration.cs
+│   │   │   │   │   ├── IntrastatJnlLineConfiguration.cs
+│   │   │   │   │   ├── IntrastatJnlTemplateConfiguration.cs
+│   │   │   │   │   ├── TariffNumberConfiguration.cs
+│   │   │   │   │   ├── TransactionTypeConfiguration.cs
+│   │   │   │   │   ├── AddInConfiguration.cs
+│   │   │   │   │   ├── AdministrationCueConfiguration.cs
+│   │   │   │   │   ├── AzureAdAppSetupConfiguration.cs
+│   │   │   │   │   ├── AzureAdMgtSetupConfiguration.cs
+│   │   │   │   │   ├── ChangeLogEntryConfiguration.cs
+│   │   │   │   │   ├── ChangeLogSetupConfiguration.cs
+│   │   │   │   │   ├── ChangeLogSetupFieldConfiguration.cs
+│   │   │   │   │   ├── ChangeLogSetupTableConfiguration.cs
+│   │   │   │   │   ├── CueSetupConfiguration.cs
+│   │   │   │   │   ├── ErrorMessageConfiguration.cs
+│   │   │   │   │   ├── ExchangeServiceSetupConfiguration.cs
+│   │   │   │   │   ├── MediaConfiguration.cs
+│   │   │   │   │   ├── MediaRepositoryConfiguration.cs
+│   │   │   │   │   ├── MediaSetConfiguration.cs
+│   │   │   │   │   ├── ObjectMetadataConfiguration.cs
+│   │   │   │   │   ├── ObjectOptionsConfiguration.cs
+│   │   │   │   │   ├── OfficeAddInConfiguration.cs
+│   │   │   │   │   ├── OfficeAddInSetupConfiguration.cs
+│   │   │   │   │   ├── RecordLinkConfiguration.cs
+│   │   │   │   │   ├── SbOwnerCueConfiguration.cs
+│   │   │   │   │   ├── SocialListeningSetupConfiguration.cs
+│   │   │   │   │   ├── TeamMemberCueConfiguration.cs
+│   │   │   │   │   ├── TenantMediaConfiguration.cs
+│   │   │   │   │   ├── TenantMediaSetConfiguration.cs
+│   │   │   │   │   ├── TenantMediaThumbnailsConfiguration.cs
+│   │   │   │   │   ├── TenantPermissionConfiguration.cs
+│   │   │   │   │   ├── TenantPermissionSetConfiguration.cs
+│   │   │   │   │   ├── TenantWebServiceConfiguration.cs
+│   │   │   │   │   ├── TenantWebServiceColumnsConfiguration.cs
+│   │   │   │   │   ├── TenantWebServiceOdataConfiguration.cs
+│   │   │   │   │   ├── TokenCacheConfiguration.cs
+│   │   │   │   │   ├── WebServiceConfiguration.cs
+│   │   │   │   │   ├── WebhookSubscriptionConfiguration.cs
+│   │   │   │   │   ├── TransferHeaderConfiguration.cs
+│   │   │   │   │   ├── TransferLineConfiguration.cs
+│   │   │   │   │   ├── TransferReceiptHeaderConfiguration.cs
+│   │   │   │   │   ├── TransferReceiptLineConfiguration.cs
+│   │   │   │   │   ├── TransferShipmentHeaderConfiguration.cs
+│   │   │   │   │   ├── TransferShipmentLineConfiguration.cs
+│   │   │   │   │   ├── MaintenanceConfiguration.cs
+│   │   │   │   │   ├── MaintenanceLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── MaintenanceRegistrationConfiguration.cs
+│   │   │   │   │   ├── NavAppInstalledAppConfiguration.cs
+│   │   │   │   │   ├── NavAppTenantAddInConfiguration.cs
+│   │   │   │   │   ├── MyNotificationsConfiguration.cs
+│   │   │   │   │   ├── NotificationEntryConfiguration.cs
+│   │   │   │   │   ├── NotificationScheduleConfiguration.cs
+│   │   │   │   │   ├── NotificationSetupConfiguration.cs
+│   │   │   │   │   ├── SentNotificationEntryConfiguration.cs
+│   │   │   │   │   ├── O365DeviceSetupInstructionsConfiguration.cs
+│   │   │   │   │   ├── O365EmailSetupConfiguration.cs
+│   │   │   │   │   ├── O365GettingStartedPageDataConfiguration.cs
+│   │   │   │   │   ├── O365SalesCueConfiguration.cs
+│   │   │   │   │   ├── O365SalesInitialSetupConfiguration.cs
+│   │   │   │   │   ├── OutlookSynchSetupDetailConfiguration.cs
+│   │   │   │   │   ├── OutlookSynchUserSetupConfiguration.cs
+│   │   │   │   │   ├── AdditionalFeeSetupConfiguration.cs
+│   │   │   │   │   ├── FinanceChargeMemoHeaderConfiguration.cs
+│   │   │   │   │   ├── FinanceChargeMemoLineConfiguration.cs
+│   │   │   │   │   ├── FinanceChargeTermsConfiguration.cs
+│   │   │   │   │   ├── IssuedFinChargeMemoHeaderConfiguration.cs
+│   │   │   │   │   ├── IssuedFinChargeMemoLineConfiguration.cs
+│   │   │   │   │   ├── ReminderTermsConfiguration.cs
+│   │   │   │   │   ├── CustomReportLayoutConfiguration.cs
+│   │   │   │   │   ├── CustomReportSelectionConfiguration.cs
+│   │   │   │   │   ├── ReportInboxConfiguration.cs
+│   │   │   │   │   ├── ReportLayoutSelectionConfiguration.cs
+│   │   │   │   │   ├── ReportSelectionsConfiguration.cs
+│   │   │   │   │   ├── ContractChangeLogConfiguration.cs
+│   │   │   │   │   ├── ContractGainLossEntryConfiguration.cs
+│   │   │   │   │   ├── ContractGroupConfiguration.cs
+│   │   │   │   │   ├── FaultAreaConfiguration.cs
+│   │   │   │   │   ├── FaultCodeConfiguration.cs
+│   │   │   │   │   ├── FaultReasonCodeConfiguration.cs
+│   │   │   │   │   ├── FaultResolCodRelationshipConfiguration.cs
+│   │   │   │   │   ├── FiledContractLineConfiguration.cs
+│   │   │   │   │   ├── FiledServiceContractHeaderConfiguration.cs
+│   │   │   │   │   ├── LoanerConfiguration.cs
+│   │   │   │   │   ├── RepairStatusConfiguration.cs
+│   │   │   │   │   ├── ResolutionCodeConfiguration.cs
+│   │   │   │   │   ├── ResourceLocationConfiguration.cs
+│   │   │   │   │   ├── ServPriceGroupSetupConfiguration.cs
+│   │   │   │   │   ├── ServiceCommentLineConfiguration.cs
+│   │   │   │   │   ├── ServiceContractAccountGroupConfiguration.cs
+│   │   │   │   │   ├── ServiceContractHeaderConfiguration.cs
+│   │   │   │   │   ├── ServiceContractLineConfiguration.cs
+│   │   │   │   │   ├── ServiceCostConfiguration.cs
+│   │   │   │   │   ├── ServiceCueConfiguration.cs
+│   │   │   │   │   ├── ServiceDocumentLogConfiguration.cs
+│   │   │   │   │   ├── ServiceDocumentRegisterConfiguration.cs
+│   │   │   │   │   ├── ServiceEmailQueueConfiguration.cs
+│   │   │   │   │   ├── ServiceHeaderConfiguration.cs
+│   │   │   │   │   ├── ServiceInvoiceHeaderConfiguration.cs
+│   │   │   │   │   ├── ServiceInvoiceLineConfiguration.cs
+│   │   │   │   │   ├── ServiceItemConfiguration.cs
+│   │   │   │   │   ├── ServiceItemComponentConfiguration.cs
+│   │   │   │   │   ├── ServiceItemGroupConfiguration.cs
+│   │   │   │   │   ├── ServiceItemLineConfiguration.cs
+│   │   │   │   │   ├── ServiceItemLogConfiguration.cs
+│   │   │   │   │   ├── ServiceLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── ServiceLineConfiguration.cs
+│   │   │   │   │   ├── ServiceMgtSetupConfiguration.cs
+│   │   │   │   │   ├── ServiceOrderAllocationConfiguration.cs
+│   │   │   │   │   ├── ServiceOrderTypeConfiguration.cs
+│   │   │   │   │   ├── ServicePriceGroupConfiguration.cs
+│   │   │   │   │   ├── ServiceRegisterConfiguration.cs
+│   │   │   │   │   ├── ServiceShipmentHeaderConfiguration.cs
+│   │   │   │   │   ├── ServiceShipmentItemLineConfiguration.cs
+│   │   │   │   │   ├── ServiceShipmentLineConfiguration.cs
+│   │   │   │   │   ├── ServiceStatusPrioritySetupConfiguration.cs
+│   │   │   │   │   ├── ServiceZoneConfiguration.cs
+│   │   │   │   │   ├── SkillCodeConfiguration.cs
+│   │   │   │   │   ├── SymptomCodeConfiguration.cs
+│   │   │   │   │   ├── TroubleshootingHeaderConfiguration.cs
+│   │   │   │   │   ├── TroubleshootingSetupConfiguration.cs
+│   │   │   │   │   ├── WarrantyLedgerEntryConfiguration.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── TenantRepository.cs
+│   │   │   │   │   ├── AccSchedChartSetupLineRepository.cs
+│   │   │   │   │   ├── AccSchedKpiWebSrvLineRepository.cs
+│   │   │   │   │   ├── AccSchedKpiWebSrvSetupRepository.cs
+│   │   │   │   │   ├── AccScheduleLineRepository.cs
+│   │   │   │   │   ├── AccScheduleNameRepository.cs
+│   │   │   │   │   ├── AccountSchedulesChartSetupRepository.cs
+│   │   │   │   │   ├── ColumnLayoutRepository.cs
+│   │   │   │   │   ├── ColumnLayoutNameRepository.cs
+│   │   │   │   │   ├── AnalysisColumnRepository.cs
+│   │   │   │   │   ├── AnalysisColumnTemplateRepository.cs
+│   │   │   │   │   ├── AnalysisLineRepository.cs
+│   │   │   │   │   ├── AnalysisLineTemplateRepository.cs
+│   │   │   │   │   ├── AnalysisReportChartSetupRepository.cs
+│   │   │   │   │   ├── AnalysisReportNameRepository.cs
+│   │   │   │   │   ├── AnalysisSelectedDimensionRepository.cs
+│   │   │   │   │   ├── AnalysisTypeRepository.cs
+│   │   │   │   │   ├── AnalysisViewRepository.cs
+│   │   │   │   │   ├── AnalysisViewEntryRepository.cs
+│   │   │   │   │   ├── AnalysisViewFilterRepository.cs
+│   │   │   │   │   ├── ApplicationAreaSetupRepository.cs
+│   │   │   │   │   ├── ChartRepository.cs
+│   │   │   │   │   ├── ChartDefinitionRepository.cs
+│   │   │   │   │   ├── CommentLineRepository.cs
+│   │   │   │   │   ├── CompanyInformationRepository.cs
+│   │   │   │   │   ├── CountryRegionRepository.cs
+│   │   │   │   │   ├── DocumentServiceRepository.cs
+│   │   │   │   │   ├── ExcelBufferRepository.cs
+│   │   │   │   │   ├── ExtendedTextHeaderRepository.cs
+│   │   │   │   │   ├── ExtendedTextLineRepository.cs
+│   │   │   │   │   ├── LanguageRepository.cs
+│   │   │   │   │   ├── LastUsedChartRepository.cs
+│   │   │   │   │   ├── NoSeriesRelationshipRepository.cs
+│   │   │   │   │   ├── OnlineMapParameterSetupRepository.cs
+│   │   │   │   │   ├── OnlineMapSetupRepository.cs
+│   │   │   │   │   ├── PostCodeRepository.cs
+│   │   │   │   │   ├── PrinterSelectionRepository.cs
+│   │   │   │   │   ├── ReasonCodeRepository.cs
+│   │   │   │   │   ├── ResponsibilityCenterRepository.cs
+│   │   │   │   │   ├── RestrictedRecordRepository.cs
+│   │   │   │   │   ├── ScheduledTaskRepository.cs
+│   │   │   │   │   ├── ShipmentMethodRepository.cs
+│   │   │   │   │   ├── ShipmentMethodTranslationRepository.cs
+│   │   │   │   │   ├── SourceCodeRepository.cs
+│   │   │   │   │   ├── SourceCodeSetupRepository.cs
+│   │   │   │   │   ├── StandardTextRepository.cs
+│   │   │   │   │   ├── TerritoryRepository.cs
+│   │   │   │   │   ├── UnitOfMeasureRepository.cs
+│   │   │   │   │   ├── UnitOfMeasureTranslationRepository.cs
+│   │   │   │   │   ├── AssistedCompanySetupStatusRepository.cs
+│   │   │   │   │   ├── AssistedSetupRepository.cs
+│   │   │   │   │   ├── AssistedSetupIconsRepository.cs
+│   │   │   │   │   ├── AssistedSetupLogRepository.cs
+│   │   │   │   │   ├── ConfigFieldMappingRepository.cs
+│   │   │   │   │   ├── ConfigMediaBufferRepository.cs
+│   │   │   │   │   ├── ConfigPackageRepository.cs
+│   │   │   │   │   ├── ConfigPackageDataRepository.cs
+│   │   │   │   │   ├── ConfigPackageErrorRepository.cs
+│   │   │   │   │   ├── ConfigPackageFieldRepository.cs
+│   │   │   │   │   ├── ConfigPackageFilterRepository.cs
+│   │   │   │   │   ├── ConfigPackageRecordRepository.cs
+│   │   │   │   │   ├── ConfigPackageTableRepository.cs
+│   │   │   │   │   ├── ConfigQuestionRepository.cs
+│   │   │   │   │   ├── ConfigQuestionAreaRepository.cs
+│   │   │   │   │   ├── ConfigQuestionnaireRepository.cs
+│   │   │   │   │   ├── ConfigSetupRepository.cs
+│   │   │   │   │   ├── ConfigTableProcessingRuleRepository.cs
+│   │   │   │   │   ├── ConfigTemplateHeaderRepository.cs
+│   │   │   │   │   ├── ConfigTemplateLineRepository.cs
+│   │   │   │   │   ├── DataMigrationSetupRepository.cs
+│   │   │   │   │   ├── BankAccountRepository.cs
+│   │   │   │   │   ├── BankAccountLedgerEntryRepository.cs
+│   │   │   │   │   ├── BankAccountPostingGroupRepository.cs
+│   │   │   │   │   ├── BankClearingStandardRepository.cs
+│   │   │   │   │   ├── BankDataConvServiceSetupRepository.cs
+│   │   │   │   │   ├── BankDataConversionPmtTypeRepository.cs
+│   │   │   │   │   ├── BankExportImportSetupRepository.cs
+│   │   │   │   │   ├── BankPmtApplRuleRepository.cs
+│   │   │   │   │   ├── CheckLedgerEntryRepository.cs
+│   │   │   │   │   ├── PaymentJnlExportErrorTextRepository.cs
+│   │   │   │   │   ├── PaymentRegistrationSetupRepository.cs
+│   │   │   │   │   ├── BookingMgrSetupRepository.cs
+│   │   │   │   │   ├── GenericChartSetupRepository.cs
+│   │   │   │   │   ├── BusinessRelationRepository.cs
+│   │   │   │   │   ├── CloseOpportunityCodeRepository.cs
+│   │   │   │   │   ├── ContactRepository.cs
+│   │   │   │   │   ├── ContactBusinessRelationRepository.cs
+│   │   │   │   │   ├── ContactIndustryGroupRepository.cs
+│   │   │   │   │   ├── ContactJobResponsibilityRepository.cs
+│   │   │   │   │   ├── DuplicateSearchStringSetupRepository.cs
+│   │   │   │   │   ├── IndustryGroupRepository.cs
+│   │   │   │   │   ├── InteractionLogEntryRepository.cs
+│   │   │   │   │   ├── InteractionTemplateRepository.cs
+│   │   │   │   │   ├── InteractionTemplateSetupRepository.cs
+│   │   │   │   │   ├── InteractionTmplLanguageRepository.cs
+│   │   │   │   │   ├── JobResponsibilityRepository.cs
+│   │   │   │   │   ├── MarketingSetupRepository.cs
+│   │   │   │   │   ├── OpportunityRepository.cs
+│   │   │   │   │   ├── RelationshipMgmtCueRepository.cs
+│   │   │   │   │   ├── SalesCycleRepository.cs
+│   │   │   │   │   ├── SalesCycleStageRepository.cs
+│   │   │   │   │   ├── SalutationRepository.cs
+│   │   │   │   │   ├── SalutationFormulaRepository.cs
+│   │   │   │   │   ├── SegmentInteractionLanguageRepository.cs
+│   │   │   │   │   ├── ToDoRepository.cs
+│   │   │   │   │   ├── ToDoInteractionLanguageRepository.cs
+│   │   │   │   │   ├── DocExchServiceSetupRepository.cs
+│   │   │   │   │   ├── DocumentSendingProfileRepository.cs
+│   │   │   │   │   ├── ElectronicDocumentFormatRepository.cs
+│   │   │   │   │   ├── IncomingDocumentRepository.cs
+│   │   │   │   │   ├── IncomingDocumentAttachmentRepository.cs
+│   │   │   │   │   ├── IncomingDocumentsSetupRepository.cs
+│   │   │   │   │   ├── OcrServiceSetupRepository.cs
+│   │   │   │   │   ├── PostedDocsWithNoIncBufRepository.cs
+│   │   │   │   │   ├── TransformationRuleRepository.cs
+│   │   │   │   │   ├── DeferralTemplateRepository.cs
+│   │   │   │   │   ├── DefaultDimensionRepository.cs
+│   │   │   │   │   ├── DefaultDimensionPriorityRepository.cs
+│   │   │   │   │   ├── DimensionRepository.cs
+│   │   │   │   │   ├── DimensionCombinationRepository.cs
+│   │   │   │   │   ├── DimensionSetEntryRepository.cs
+│   │   │   │   │   ├── DimensionSetTreeNodeRepository.cs
+│   │   │   │   │   ├── DimensionTranslationRepository.cs
+│   │   │   │   │   ├── DimensionValueRepository.cs
+│   │   │   │   │   ├── DimensionValueCombinationRepository.cs
+│   │   │   │   │   ├── DimensionsFieldMapRepository.cs
+│   │   │   │   │   ├── DimensionsTemplateRepository.cs
+│   │   │   │   │   ├── SelectedDimensionRepository.cs
+│   │   │   │   │   ├── SmtpMailSetupRepository.cs
+│   │   │   │   │   ├── InsuranceRepository.cs
+│   │   │   │   │   ├── InsuranceJournalBatchRepository.cs
+│   │   │   │   │   ├── InsuranceJournalTemplateRepository.cs
+│   │   │   │   │   ├── InsuranceTypeRepository.cs
+│   │   │   │   │   ├── IntrastatJnlBatchRepository.cs
+│   │   │   │   │   ├── IntrastatJnlLineRepository.cs
+│   │   │   │   │   ├── IntrastatJnlTemplateRepository.cs
+│   │   │   │   │   ├── TariffNumberRepository.cs
+│   │   │   │   │   ├── TransactionTypeRepository.cs
+│   │   │   │   │   ├── AddInRepository.cs
+│   │   │   │   │   ├── AdministrationCueRepository.cs
+│   │   │   │   │   ├── AzureAdAppSetupRepository.cs
+│   │   │   │   │   ├── AzureAdMgtSetupRepository.cs
+│   │   │   │   │   ├── ChangeLogEntryRepository.cs
+│   │   │   │   │   ├── ChangeLogSetupRepository.cs
+│   │   │   │   │   ├── ChangeLogSetupFieldRepository.cs
+│   │   │   │   │   ├── ChangeLogSetupTableRepository.cs
+│   │   │   │   │   ├── CueSetupRepository.cs
+│   │   │   │   │   ├── ErrorMessageRepository.cs
+│   │   │   │   │   ├── ExchangeServiceSetupRepository.cs
+│   │   │   │   │   ├── MediaRepository.cs
+│   │   │   │   │   ├── MediaRepositoryRepository.cs
+│   │   │   │   │   ├── MediaSetRepository.cs
+│   │   │   │   │   ├── ObjectMetadataRepository.cs
+│   │   │   │   │   ├── ObjectOptionsRepository.cs
+│   │   │   │   │   ├── OfficeAddInRepository.cs
+│   │   │   │   │   ├── OfficeAddInSetupRepository.cs
+│   │   │   │   │   ├── RecordLinkRepository.cs
+│   │   │   │   │   ├── SbOwnerCueRepository.cs
+│   │   │   │   │   ├── SocialListeningSetupRepository.cs
+│   │   │   │   │   ├── TeamMemberCueRepository.cs
+│   │   │   │   │   ├── TenantMediaRepository.cs
+│   │   │   │   │   ├── TenantMediaSetRepository.cs
+│   │   │   │   │   ├── TenantMediaThumbnailsRepository.cs
+│   │   │   │   │   ├── TenantPermissionRepository.cs
+│   │   │   │   │   ├── TenantPermissionSetRepository.cs
+│   │   │   │   │   ├── TenantWebServiceRepository.cs
+│   │   │   │   │   ├── TenantWebServiceColumnsRepository.cs
+│   │   │   │   │   ├── TenantWebServiceOdataRepository.cs
+│   │   │   │   │   ├── TokenCacheRepository.cs
+│   │   │   │   │   ├── WebServiceRepository.cs
+│   │   │   │   │   ├── WebhookSubscriptionRepository.cs
+│   │   │   │   │   ├── TransferHeaderRepository.cs
+│   │   │   │   │   ├── TransferLineRepository.cs
+│   │   │   │   │   ├── TransferReceiptHeaderRepository.cs
+│   │   │   │   │   ├── TransferReceiptLineRepository.cs
+│   │   │   │   │   ├── TransferShipmentHeaderRepository.cs
+│   │   │   │   │   ├── TransferShipmentLineRepository.cs
+│   │   │   │   │   ├── MaintenanceRepository.cs
+│   │   │   │   │   ├── MaintenanceLedgerEntryRepository.cs
+│   │   │   │   │   ├── MaintenanceRegistrationRepository.cs
+│   │   │   │   │   ├── NavAppInstalledAppRepository.cs
+│   │   │   │   │   ├── NavAppTenantAddInRepository.cs
+│   │   │   │   │   ├── MyNotificationsRepository.cs
+│   │   │   │   │   ├── NotificationEntryRepository.cs
+│   │   │   │   │   ├── NotificationScheduleRepository.cs
+│   │   │   │   │   ├── NotificationSetupRepository.cs
+│   │   │   │   │   ├── SentNotificationEntryRepository.cs
+│   │   │   │   │   ├── O365DeviceSetupInstructionsRepository.cs
+│   │   │   │   │   ├── O365EmailSetupRepository.cs
+│   │   │   │   │   ├── O365GettingStartedPageDataRepository.cs
+│   │   │   │   │   ├── O365SalesCueRepository.cs
+│   │   │   │   │   ├── O365SalesInitialSetupRepository.cs
+│   │   │   │   │   ├── OutlookSynchSetupDetailRepository.cs
+│   │   │   │   │   ├── OutlookSynchUserSetupRepository.cs
+│   │   │   │   │   ├── AdditionalFeeSetupRepository.cs
+│   │   │   │   │   ├── FinanceChargeMemoHeaderRepository.cs
+│   │   │   │   │   ├── FinanceChargeMemoLineRepository.cs
+│   │   │   │   │   ├── FinanceChargeTermsRepository.cs
+│   │   │   │   │   ├── IssuedFinChargeMemoHeaderRepository.cs
+│   │   │   │   │   ├── IssuedFinChargeMemoLineRepository.cs
+│   │   │   │   │   ├── ReminderTermsRepository.cs
+│   │   │   │   │   ├── CustomReportLayoutRepository.cs
+│   │   │   │   │   ├── CustomReportSelectionRepository.cs
+│   │   │   │   │   ├── ReportInboxRepository.cs
+│   │   │   │   │   ├── ReportLayoutSelectionRepository.cs
+│   │   │   │   │   ├── ReportSelectionsRepository.cs
+│   │   │   │   │   ├── ContractChangeLogRepository.cs
+│   │   │   │   │   ├── ContractGainLossEntryRepository.cs
+│   │   │   │   │   ├── ContractGroupRepository.cs
+│   │   │   │   │   ├── FaultAreaRepository.cs
+│   │   │   │   │   ├── FaultCodeRepository.cs
+│   │   │   │   │   ├── FaultReasonCodeRepository.cs
+│   │   │   │   │   ├── FaultResolCodRelationshipRepository.cs
+│   │   │   │   │   ├── FiledContractLineRepository.cs
+│   │   │   │   │   ├── FiledServiceContractHeaderRepository.cs
+│   │   │   │   │   ├── LoanerRepository.cs
+│   │   │   │   │   ├── RepairStatusRepository.cs
+│   │   │   │   │   ├── ResolutionCodeRepository.cs
+│   │   │   │   │   ├── ResourceLocationRepository.cs
+│   │   │   │   │   ├── ServPriceGroupSetupRepository.cs
+│   │   │   │   │   ├── ServiceCommentLineRepository.cs
+│   │   │   │   │   ├── ServiceContractAccountGroupRepository.cs
+│   │   │   │   │   ├── ServiceContractHeaderRepository.cs
+│   │   │   │   │   ├── ServiceContractLineRepository.cs
+│   │   │   │   │   ├── ServiceCostRepository.cs
+│   │   │   │   │   ├── ServiceCueRepository.cs
+│   │   │   │   │   ├── ServiceDocumentLogRepository.cs
+│   │   │   │   │   ├── ServiceDocumentRegisterRepository.cs
+│   │   │   │   │   ├── ServiceEmailQueueRepository.cs
+│   │   │   │   │   ├── ServiceInvoiceHeaderRepository.cs
+│   │   │   │   │   ├── ServiceInvoiceLineRepository.cs
+│   │   │   │   │   ├── ServiceItemRepository.cs
+│   │   │   │   │   ├── ServiceItemComponentRepository.cs
+│   │   │   │   │   ├── ServiceItemGroupRepository.cs
+│   │   │   │   │   ├── ServiceItemLineRepository.cs
+│   │   │   │   │   ├── ServiceItemLogRepository.cs
+│   │   │   │   │   ├── ServiceLedgerEntryRepository.cs
+│   │   │   │   │   ├── ServiceMgtSetupRepository.cs
+│   │   │   │   │   ├── ServiceOrderAllocationRepository.cs
+│   │   │   │   │   ├── ServiceOrderTypeRepository.cs
+│   │   │   │   │   ├── ServicePriceGroupRepository.cs
+│   │   │   │   │   ├── ServiceRegisterRepository.cs
+│   │   │   │   │   ├── ServiceShipmentHeaderRepository.cs
+│   │   │   │   │   ├── ServiceShipmentItemLineRepository.cs
+│   │   │   │   │   ├── ServiceShipmentLineRepository.cs
+│   │   │   │   │   ├── ServiceStatusPrioritySetupRepository.cs
+│   │   │   │   │   ├── ServiceZoneRepository.cs
+│   │   │   │   │   ├── SkillCodeRepository.cs
+│   │   │   │   │   ├── SymptomCodeRepository.cs
+│   │   │   │   │   ├── TroubleshootingHeaderRepository.cs
+│   │   │   │   │   ├── TroubleshootingSetupRepository.cs
+│   │   │   │   │   ├── WarrantyLedgerEntryRepository.cs
+│   │   │   │   │   ├── NoSeriesRepository.cs
+│   │   │   │   │   ├── NoSeriesLineRepository.cs
+│   │   │   │   │   ├── ServiceLineRepository.cs
+│   │   │   │   │   ├── ServiceHeaderRepository.cs
+│   │   │   │   ├── Setup.cs
+│   │   │   ├── Security
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── ActivitiesCueConfiguration.cs
+│   │   │   │   │   ├── ApprovalCommentLineConfiguration.cs
+│   │   │   │   │   ├── ApprovalEntryConfiguration.cs
+│   │   │   │   │   ├── PostedApprovalCommentLineConfiguration.cs
+│   │   │   │   │   ├── PostedApprovalEntryConfiguration.cs
+│   │   │   │   │   ├── AccessControlConfiguration.cs
+│   │   │   │   │   ├── PageDataPersonalizationConfiguration.cs
+│   │   │   │   │   ├── PageDocumentationConfiguration.cs
+│   │   │   │   │   ├── PermissionConfiguration.cs
+│   │   │   │   │   ├── PermissionSetConfiguration.cs
+│   │   │   │   │   ├── PlanConfiguration.cs
+│   │   │   │   │   ├── PlanPermissionSetConfiguration.cs
+│   │   │   │   │   ├── ServerInstanceConfiguration.cs
+│   │   │   │   │   ├── SessionEventConfiguration.cs
+│   │   │   │   │   ├── UserDefaultStyleSheetConfiguration.cs
+│   │   │   │   │   ├── UserGroupConfiguration.cs
+│   │   │   │   │   ├── UserGroupAccessControlConfiguration.cs
+│   │   │   │   │   ├── UserGroupMemberConfiguration.cs
+│   │   │   │   │   ├── UserGroupPermissionSetConfiguration.cs
+│   │   │   │   │   ├── UserGroupPlanConfiguration.cs
+│   │   │   │   │   ├── UserLoginConfiguration.cs
+│   │   │   │   │   ├── UserMetadataConfiguration.cs
+│   │   │   │   │   ├── UserPersonalizationConfiguration.cs
+│   │   │   │   │   ├── UserPlanConfiguration.cs
+│   │   │   │   │   ├── UserPreferenceConfiguration.cs
+│   │   │   │   │   ├── UserPropertyConfiguration.cs
+│   │   │   │   │   ├── UserSecurityStatusConfiguration.cs
+│   │   │   │   │   ├── UserSetupConfiguration.cs
+│   │   │   │   │   ├── UserTimeRegisterConfiguration.cs
+│   │   │   │   │   ├── DynamicRequestPageEntityConfiguration.cs
+│   │   │   │   │   ├── DynamicRequestPageFieldConfiguration.cs
+│   │   │   │   │   ├── WfEventResponseCombinationConfiguration.cs
+│   │   │   │   │   ├── WorkflowConfiguration.cs
+│   │   │   │   │   ├── WorkflowCategoryConfiguration.cs
+│   │   │   │   │   ├── WorkflowEventConfiguration.cs
+│   │   │   │   │   ├── WorkflowResponseConfiguration.cs
+│   │   │   │   │   ├── WorkflowRuleConfiguration.cs
+│   │   │   │   │   ├── WorkflowStepConfiguration.cs
+│   │   │   │   │   ├── WorkflowStepArgumentConfiguration.cs
+│   │   │   │   │   ├── WorkflowStepArgumentArchiveConfiguration.cs
+│   │   │   │   │   ├── WorkflowStepInstanceConfiguration.cs
+│   │   │   │   │   ├── WorkflowStepInstanceArchiveConfiguration.cs
+│   │   │   │   │   ├── WorkflowTableRelationConfiguration.cs
+│   │   │   │   │   ├── WorkflowTableRelationValueConfiguration.cs
+│   │   │   │   │   ├── WorkflowUserGroupConfiguration.cs
+│   │   │   │   │   ├── WorkflowUserGroupMemberConfiguration.cs
+│   │   │   │   │   ├── ActiveSessionConfiguration.cs
+│   │   │   │   │   ├── UserConfiguration.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── ActivitiesCueRepository.cs
+│   │   │   │   │   ├── ApprovalCommentLineRepository.cs
+│   │   │   │   │   ├── ApprovalEntryRepository.cs
+│   │   │   │   │   ├── PostedApprovalCommentLineRepository.cs
+│   │   │   │   │   ├── PostedApprovalEntryRepository.cs
+│   │   │   │   │   ├── AccessControlRepository.cs
+│   │   │   │   │   ├── ActiveSessionRepository.cs
+│   │   │   │   │   ├── PageDataPersonalizationRepository.cs
+│   │   │   │   │   ├── PageDocumentationRepository.cs
+│   │   │   │   │   ├── PermissionRepository.cs
+│   │   │   │   │   ├── PermissionSetRepository.cs
+│   │   │   │   │   ├── PlanRepository.cs
+│   │   │   │   │   ├── PlanPermissionSetRepository.cs
+│   │   │   │   │   ├── ServerInstanceRepository.cs
+│   │   │   │   │   ├── SessionEventRepository.cs
+│   │   │   │   │   ├── UserDefaultStyleSheetRepository.cs
+│   │   │   │   │   ├── UserGroupAccessControlRepository.cs
+│   │   │   │   │   ├── UserGroupPermissionSetRepository.cs
+│   │   │   │   │   ├── UserGroupPlanRepository.cs
+│   │   │   │   │   ├── UserLoginRepository.cs
+│   │   │   │   │   ├── UserMetadataRepository.cs
+│   │   │   │   │   ├── UserPersonalizationRepository.cs
+│   │   │   │   │   ├── UserPlanRepository.cs
+│   │   │   │   │   ├── UserPreferenceRepository.cs
+│   │   │   │   │   ├── UserPropertyRepository.cs
+│   │   │   │   │   ├── UserSecurityStatusRepository.cs
+│   │   │   │   │   ├── UserSetupRepository.cs
+│   │   │   │   │   ├── UserTimeRegisterRepository.cs
+│   │   │   │   │   ├── DynamicRequestPageEntityRepository.cs
+│   │   │   │   │   ├── DynamicRequestPageFieldRepository.cs
+│   │   │   │   │   ├── WfEventResponseCombinationRepository.cs
+│   │   │   │   │   ├── WorkflowRepository.cs
+│   │   │   │   │   ├── WorkflowCategoryRepository.cs
+│   │   │   │   │   ├── WorkflowEventRepository.cs
+│   │   │   │   │   ├── WorkflowResponseRepository.cs
+│   │   │   │   │   ├── WorkflowRuleRepository.cs
+│   │   │   │   │   ├── WorkflowStepRepository.cs
+│   │   │   │   │   ├── WorkflowStepArgumentRepository.cs
+│   │   │   │   │   ├── WorkflowStepArgumentArchiveRepository.cs
+│   │   │   │   │   ├── WorkflowStepInstanceRepository.cs
+│   │   │   │   │   ├── WorkflowStepInstanceArchiveRepository.cs
+│   │   │   │   │   ├── WorkflowTableRelationRepository.cs
+│   │   │   │   │   ├── WorkflowTableRelationValueRepository.cs
+│   │   │   │   │   ├── WorkflowUserGroupRepository.cs
+│   │   │   │   │   ├── WorkflowUserGroupMemberRepository.cs
+│   │   │   │   │   ├── UserGroupMemberRepository.cs
+│   │   │   │   │   ├── UserRepository.cs
+│   │   │   │   │   ├── UserGroupRepository.cs
+│   │   │   ├── Inventory
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── ItemUnitOfMeasureConfiguration.cs
+│   │   │   │   │   ├── LocationConfiguration.cs
+│   │   │   │   │   ├── ItemLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── BaseCalendarConfiguration.cs
+│   │   │   │   │   ├── BaseCalendarChangeConfiguration.cs
+│   │   │   │   │   ├── CapacityLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── CapacityUnitOfMeasureConfiguration.cs
+│   │   │   │   │   ├── MachineCenterConfiguration.cs
+│   │   │   │   │   ├── ProdOrderRoutingLineConfiguration.cs
+│   │   │   │   │   ├── RoutingHeaderConfiguration.cs
+│   │   │   │   │   ├── RoutingLineConfiguration.cs
+│   │   │   │   │   ├── ScrapConfiguration.cs
+│   │   │   │   │   ├── StopConfiguration.cs
+│   │   │   │   │   ├── WorkCenterConfiguration.cs
+│   │   │   │   │   ├── WorkCenterGroupConfiguration.cs
+│   │   │   │   │   ├── WorkShiftConfiguration.cs
+│   │   │   │   │   ├── AssemblyHeaderConfiguration.cs
+│   │   │   │   │   ├── AssemblyLineConfiguration.cs
+│   │   │   │   │   ├── AssemblySetupConfiguration.cs
+│   │   │   │   │   ├── AvgCostAdjmtEntryPointConfiguration.cs
+│   │   │   │   │   ├── BomComponentConfiguration.cs
+│   │   │   │   │   ├── GLItemLedgerRelationConfiguration.cs
+│   │   │   │   │   ├── InventoryAdjmtEntryOrderConfiguration.cs
+│   │   │   │   │   ├── InventoryCommentLineConfiguration.cs
+│   │   │   │   │   ├── InventoryPeriodConfiguration.cs
+│   │   │   │   │   ├── InventoryPostingGroupConfiguration.cs
+│   │   │   │   │   ├── InventoryPostingSetupConfiguration.cs
+│   │   │   │   │   ├── InventorySetupConfiguration.cs
+│   │   │   │   │   ├── ItemAnalysisViewConfiguration.cs
+│   │   │   │   │   ├── ItemAnalysisViewEntryConfiguration.cs
+│   │   │   │   │   ├── ItemApplicationEntryConfiguration.cs
+│   │   │   │   │   ├── ItemApplicationEntryHistoryConfiguration.cs
+│   │   │   │   │   ├── ItemAttributeConfiguration.cs
+│   │   │   │   │   ├── ItemAttributeValueConfiguration.cs
+│   │   │   │   │   ├── ItemAttributeValueMappingConfiguration.cs
+│   │   │   │   │   ├── ItemBudgetNameConfiguration.cs
+│   │   │   │   │   ├── ItemCategoryConfiguration.cs
+│   │   │   │   │   ├── ItemChargeConfiguration.cs
+│   │   │   │   │   ├── ItemChargeAssignmentPurchConfiguration.cs
+│   │   │   │   │   ├── ItemCrossReferenceConfiguration.cs
+│   │   │   │   │   ├── ItemDiscountGroupConfiguration.cs
+│   │   │   │   │   ├── ItemEntryRelationConfiguration.cs
+│   │   │   │   │   ├── ItemJournalBatchConfiguration.cs
+│   │   │   │   │   ├── ItemJournalLineConfiguration.cs
+│   │   │   │   │   ├── ItemJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── ItemRegisterConfiguration.cs
+│   │   │   │   │   ├── ItemTrackingCodeConfiguration.cs
+│   │   │   │   │   ├── ItemTranslationConfiguration.cs
+│   │   │   │   │   ├── ItemVariantConfiguration.cs
+│   │   │   │   │   ├── ItemVendorConfiguration.cs
+│   │   │   │   │   ├── LotNoInformationConfiguration.cs
+│   │   │   │   │   ├── ManufacturerConfiguration.cs
+│   │   │   │   │   ├── MyItemConfiguration.cs
+│   │   │   │   │   ├── NonstockItemSetupConfiguration.cs
+│   │   │   │   │   ├── PhysInventoryLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── PhysInvtCountingPeriodConfiguration.cs
+│   │   │   │   │   ├── PostValueEntryToGLConfiguration.cs
+│   │   │   │   │   ├── PostedAssemblyHeaderConfiguration.cs
+│   │   │   │   │   ├── PostedAssemblyLineConfiguration.cs
+│   │   │   │   │   ├── ProductGroupConfiguration.cs
+│   │   │   │   │   ├── ReservationEntryConfiguration.cs
+│   │   │   │   │   ├── StandardCostWorksheetNameConfiguration.cs
+│   │   │   │   │   ├── StandardItemJournalConfiguration.cs
+│   │   │   │   │   ├── StandardItemJournalLineConfiguration.cs
+│   │   │   │   │   ├── StockkeepingUnitConfiguration.cs
+│   │   │   │   │   ├── TrackingSpecificationConfiguration.cs
+│   │   │   │   │   ├── ValueEntryConfiguration.cs
+│   │   │   │   │   ├── ValueEntryRelationConfiguration.cs
+│   │   │   │   │   ├── ManufacturingCueConfiguration.cs
+│   │   │   │   │   ├── ManufacturingSetupConfiguration.cs
+│   │   │   │   │   ├── ManufacturingUserTemplateConfiguration.cs
+│   │   │   │   │   ├── ProdOrderCommentLineConfiguration.cs
+│   │   │   │   │   ├── ProdOrderLineConfiguration.cs
+│   │   │   │   │   ├── ProductionBomHeaderConfiguration.cs
+│   │   │   │   │   ├── ProductionBomLineConfiguration.cs
+│   │   │   │   │   ├── ProductionOrderConfiguration.cs
+│   │   │   │   │   ├── ActionMessageEntryConfiguration.cs
+│   │   │   │   │   ├── PlanningAssignmentConfiguration.cs
+│   │   │   │   │   ├── PlanningErrorLogConfiguration.cs
+│   │   │   │   │   ├── ProductionForecastNameConfiguration.cs
+│   │   │   │   │   ├── UntrackedPlanningElementConfiguration.cs
+│   │   │   │   │   ├── AdcsUserConfiguration.cs
+│   │   │   │   │   ├── BinConfiguration.cs
+│   │   │   │   │   ├── BinContentConfiguration.cs
+│   │   │   │   │   ├── BinCreationWkshNameConfiguration.cs
+│   │   │   │   │   ├── BinCreationWkshTemplateConfiguration.cs
+│   │   │   │   │   ├── BinTemplateConfiguration.cs
+│   │   │   │   │   ├── BinTypeConfiguration.cs
+│   │   │   │   │   ├── ItemIdentifierConfiguration.cs
+│   │   │   │   │   ├── PostedInvtPickHeaderConfiguration.cs
+│   │   │   │   │   ├── PostedInvtPickLineConfiguration.cs
+│   │   │   │   │   ├── SpecialEquipmentConfiguration.cs
+│   │   │   │   │   ├── WarehouseActivityHeaderConfiguration.cs
+│   │   │   │   │   ├── WarehouseActivityLineConfiguration.cs
+│   │   │   │   │   ├── WarehouseBasicCueConfiguration.cs
+│   │   │   │   │   ├── WarehouseClassConfiguration.cs
+│   │   │   │   │   ├── WarehouseCommentLineConfiguration.cs
+│   │   │   │   │   ├── WarehouseEmployeeConfiguration.cs
+│   │   │   │   │   ├── WarehouseEntryConfiguration.cs
+│   │   │   │   │   ├── WarehouseJournalBatchConfiguration.cs
+│   │   │   │   │   ├── WarehouseJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── WarehouseRegisterConfiguration.cs
+│   │   │   │   │   ├── WarehouseRequestConfiguration.cs
+│   │   │   │   │   ├── WarehouseSetupConfiguration.cs
+│   │   │   │   │   ├── WarehouseShipmentHeaderConfiguration.cs
+│   │   │   │   │   ├── WarehouseWmsCueConfiguration.cs
+│   │   │   │   │   ├── WarehouseWorkerWmsCueConfiguration.cs
+│   │   │   │   │   ├── WhseWorksheetNameConfiguration.cs
+│   │   │   │   │   ├── WhseWorksheetTemplateConfiguration.cs
+│   │   │   │   │   ├── ZoneConfiguration.cs
+│   │   │   │   │   ├── ItemConfiguration.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── ItemUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── LocationRepository.cs
+│   │   │   │   │   ├── BaseCalendarRepository.cs
+│   │   │   │   │   ├── BaseCalendarChangeRepository.cs
+│   │   │   │   │   ├── CapacityLedgerEntryRepository.cs
+│   │   │   │   │   ├── CapacityUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── MachineCenterRepository.cs
+│   │   │   │   │   ├── ProdOrderRoutingLineRepository.cs
+│   │   │   │   │   ├── RoutingHeaderRepository.cs
+│   │   │   │   │   ├── RoutingLineRepository.cs
+│   │   │   │   │   ├── ScrapRepository.cs
+│   │   │   │   │   ├── StopRepository.cs
+│   │   │   │   │   ├── WorkCenterRepository.cs
+│   │   │   │   │   ├── WorkCenterGroupRepository.cs
+│   │   │   │   │   ├── WorkShiftRepository.cs
+│   │   │   │   │   ├── AssemblyHeaderRepository.cs
+│   │   │   │   │   ├── AssemblyLineRepository.cs
+│   │   │   │   │   ├── AssemblySetupRepository.cs
+│   │   │   │   │   ├── AvgCostAdjmtEntryPointRepository.cs
+│   │   │   │   │   ├── BomComponentRepository.cs
+│   │   │   │   │   ├── GLItemLedgerRelationRepository.cs
+│   │   │   │   │   ├── InventoryAdjmtEntryOrderRepository.cs
+│   │   │   │   │   ├── InventoryCommentLineRepository.cs
+│   │   │   │   │   ├── InventoryPeriodRepository.cs
+│   │   │   │   │   ├── InventoryPostingGroupRepository.cs
+│   │   │   │   │   ├── InventoryPostingSetupRepository.cs
+│   │   │   │   │   ├── InventorySetupRepository.cs
+│   │   │   │   │   ├── ItemAnalysisViewRepository.cs
+│   │   │   │   │   ├── ItemAnalysisViewEntryRepository.cs
+│   │   │   │   │   ├── ItemApplicationEntryRepository.cs
+│   │   │   │   │   ├── ItemApplicationEntryHistoryRepository.cs
+│   │   │   │   │   ├── ItemAttributeRepository.cs
+│   │   │   │   │   ├── ItemAttributeValueRepository.cs
+│   │   │   │   │   ├── ItemAttributeValueMappingRepository.cs
+│   │   │   │   │   ├── ItemBudgetNameRepository.cs
+│   │   │   │   │   ├── ItemCategoryRepository.cs
+│   │   │   │   │   ├── ItemChargeRepository.cs
+│   │   │   │   │   ├── ItemChargeAssignmentPurchRepository.cs
+│   │   │   │   │   ├── ItemCrossReferenceRepository.cs
+│   │   │   │   │   ├── ItemDiscountGroupRepository.cs
+│   │   │   │   │   ├── ItemEntryRelationRepository.cs
+│   │   │   │   │   ├── ItemJournalBatchRepository.cs
+│   │   │   │   │   ├── ItemJournalLineRepository.cs
+│   │   │   │   │   ├── ItemJournalTemplateRepository.cs
+│   │   │   │   │   ├── ItemRegisterRepository.cs
+│   │   │   │   │   ├── ItemTrackingCodeRepository.cs
+│   │   │   │   │   ├── ItemTranslationRepository.cs
+│   │   │   │   │   ├── ItemVariantRepository.cs
+│   │   │   │   │   ├── ItemVendorRepository.cs
+│   │   │   │   │   ├── LotNoInformationRepository.cs
+│   │   │   │   │   ├── ManufacturerRepository.cs
+│   │   │   │   │   ├── MyItemRepository.cs
+│   │   │   │   │   ├── NonstockItemSetupRepository.cs
+│   │   │   │   │   ├── PhysInventoryLedgerEntryRepository.cs
+│   │   │   │   │   ├── PhysInvtCountingPeriodRepository.cs
+│   │   │   │   │   ├── PostValueEntryToGLRepository.cs
+│   │   │   │   │   ├── PostedAssemblyHeaderRepository.cs
+│   │   │   │   │   ├── PostedAssemblyLineRepository.cs
+│   │   │   │   │   ├── ProductGroupRepository.cs
+│   │   │   │   │   ├── ReservationEntryRepository.cs
+│   │   │   │   │   ├── StandardCostWorksheetNameRepository.cs
+│   │   │   │   │   ├── StandardItemJournalRepository.cs
+│   │   │   │   │   ├── StandardItemJournalLineRepository.cs
+│   │   │   │   │   ├── StockkeepingUnitRepository.cs
+│   │   │   │   │   ├── TrackingSpecificationRepository.cs
+│   │   │   │   │   ├── ValueEntryRepository.cs
+│   │   │   │   │   ├── ValueEntryRelationRepository.cs
+│   │   │   │   │   ├── ManufacturingCueRepository.cs
+│   │   │   │   │   ├── ManufacturingSetupRepository.cs
+│   │   │   │   │   ├── ManufacturingUserTemplateRepository.cs
+│   │   │   │   │   ├── ProdOrderCommentLineRepository.cs
+│   │   │   │   │   ├── ProdOrderLineRepository.cs
+│   │   │   │   │   ├── ProductionBomHeaderRepository.cs
+│   │   │   │   │   ├── ProductionBomLineRepository.cs
+│   │   │   │   │   ├── ProductionOrderRepository.cs
+│   │   │   │   │   ├── ActionMessageEntryRepository.cs
+│   │   │   │   │   ├── PlanningAssignmentRepository.cs
+│   │   │   │   │   ├── PlanningErrorLogRepository.cs
+│   │   │   │   │   ├── ProductionForecastNameRepository.cs
+│   │   │   │   │   ├── UntrackedPlanningElementRepository.cs
+│   │   │   │   │   ├── AdcsUserRepository.cs
+│   │   │   │   │   ├── BinRepository.cs
+│   │   │   │   │   ├── BinContentRepository.cs
+│   │   │   │   │   ├── BinCreationWkshNameRepository.cs
+│   │   │   │   │   ├── BinCreationWkshTemplateRepository.cs
+│   │   │   │   │   ├── BinTemplateRepository.cs
+│   │   │   │   │   ├── BinTypeRepository.cs
+│   │   │   │   │   ├── ItemIdentifierRepository.cs
+│   │   │   │   │   ├── PostedInvtPickHeaderRepository.cs
+│   │   │   │   │   ├── PostedInvtPickLineRepository.cs
+│   │   │   │   │   ├── SpecialEquipmentRepository.cs
+│   │   │   │   │   ├── WarehouseActivityHeaderRepository.cs
+│   │   │   │   │   ├── WarehouseActivityLineRepository.cs
+│   │   │   │   │   ├── WarehouseBasicCueRepository.cs
+│   │   │   │   │   ├── WarehouseClassRepository.cs
+│   │   │   │   │   ├── WarehouseCommentLineRepository.cs
+│   │   │   │   │   ├── WarehouseEmployeeRepository.cs
+│   │   │   │   │   ├── WarehouseEntryRepository.cs
+│   │   │   │   │   ├── WarehouseJournalBatchRepository.cs
+│   │   │   │   │   ├── WarehouseJournalTemplateRepository.cs
+│   │   │   │   │   ├── WarehouseRegisterRepository.cs
+│   │   │   │   │   ├── WarehouseRequestRepository.cs
+│   │   │   │   │   ├── WarehouseSetupRepository.cs
+│   │   │   │   │   ├── WarehouseShipmentHeaderRepository.cs
+│   │   │   │   │   ├── WarehouseWmsCueRepository.cs
+│   │   │   │   │   ├── WarehouseWorkerWmsCueRepository.cs
+│   │   │   │   │   ├── WhseWorksheetNameRepository.cs
+│   │   │   │   │   ├── WhseWorksheetTemplateRepository.cs
+│   │   │   │   │   ├── ZoneRepository.cs
+│   │   │   │   │   ├── ItemRepository.cs
+│   │   │   │   │   ├── ItemLedgerEntryRepository.cs
+│   │   │   ├── Repositories
+│   │   │   │   ├── Base
+│   │   │   │   │   ├── UnitOfWork.cs
+│   │   │   │   │   ├── GenericRepository.cs
+│   │   │   ├── NexusBilling.Infrastructure.Persistence.csproj
+│   │   │   ├── Finance
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── GLAccountConfiguration.cs
+│   │   │   │   │   ├── AccountingPeriodConfiguration.cs
+│   │   │   │   │   ├── BusinessChartUserSetupConfiguration.cs
+│   │   │   │   │   ├── BusinessUnitConfiguration.cs
+│   │   │   │   │   ├── GLAccountCategoryConfiguration.cs
+│   │   │   │   │   ├── GLBudgetNameConfiguration.cs
+│   │   │   │   │   ├── GLEntryConfiguration.cs
+│   │   │   │   │   ├── GLRegisterConfiguration.cs
+│   │   │   │   │   ├── GenBusinessPostingGroupConfiguration.cs
+│   │   │   │   │   ├── GenJournalBatchConfiguration.cs
+│   │   │   │   │   ├── GenJournalLineConfiguration.cs
+│   │   │   │   │   ├── GenJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── GenProductPostingGroupConfiguration.cs
+│   │   │   │   │   ├── GeneralLedgerSetupConfiguration.cs
+│   │   │   │   │   ├── GeneralPostingSetupConfiguration.cs
+│   │   │   │   │   ├── MyAccountConfiguration.cs
+│   │   │   │   │   ├── RoundingMethodConfiguration.cs
+│   │   │   │   │   ├── StandardGeneralJournalConfiguration.cs
+│   │   │   │   │   ├── StandardGeneralJournalLineConfiguration.cs
+│   │   │   │   │   ├── TrialBalanceSetupConfiguration.cs
+│   │   │   │   │   ├── CashFlowAccountConfiguration.cs
+│   │   │   │   │   ├── CashFlowChartSetupConfiguration.cs
+│   │   │   │   │   ├── CashFlowReportSelectionConfiguration.cs
+│   │   │   │   │   ├── CashFlowSetupConfiguration.cs
+│   │   │   │   │   ├── CashFlowWorksheetLineConfiguration.cs
+│   │   │   │   │   ├── CostAccountingSetupConfiguration.cs
+│   │   │   │   │   ├── CostJournalBatchConfiguration.cs
+│   │   │   │   │   ├── CostJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── CurrExchRateUpdateSetupConfiguration.cs
+│   │   │   │   │   ├── CurrencyConfiguration.cs
+│   │   │   │   │   ├── CurrencyAmountConfiguration.cs
+│   │   │   │   │   ├── CurrencyExchangeRateConfiguration.cs
+│   │   │   │   │   ├── CurrencyForFinChargeTermsConfiguration.cs
+│   │   │   │   │   ├── CurrencyForReminderLevelConfiguration.cs
+│   │   │   │   │   ├── ExchRateAdjmtRegConfiguration.cs
+│   │   │   │   │   ├── DepreciationBookConfiguration.cs
+│   │   │   │   │   ├── FaClassConfiguration.cs
+│   │   │   │   │   ├── FaDateTypeConfiguration.cs
+│   │   │   │   │   ├── FaDepreciationBookConfiguration.cs
+│   │   │   │   │   ├── FaJournalBatchConfiguration.cs
+│   │   │   │   │   ├── FaJournalLineConfiguration.cs
+│   │   │   │   │   ├── FaJournalSetupConfiguration.cs
+│   │   │   │   │   ├── FaJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── FaLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── FaLocationConfiguration.cs
+│   │   │   │   │   ├── FaMatrixPostingTypeConfiguration.cs
+│   │   │   │   │   ├── FaPostingGroupConfiguration.cs
+│   │   │   │   │   ├── FaPostingTypeConfiguration.cs
+│   │   │   │   │   ├── FaPostingTypeSetupConfiguration.cs
+│   │   │   │   │   ├── FaReclassJournalBatchConfiguration.cs
+│   │   │   │   │   ├── FaReclassJournalLineConfiguration.cs
+│   │   │   │   │   ├── FaReclassJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── FaRegisterConfiguration.cs
+│   │   │   │   │   ├── FaSetupConfiguration.cs
+│   │   │   │   │   ├── FaSubclassConfiguration.cs
+│   │   │   │   │   ├── FixedAssetConfiguration.cs
+│   │   │   │   │   ├── MainAssetComponentConfiguration.cs
+│   │   │   │   │   ├── TaxAreaConfiguration.cs
+│   │   │   │   │   ├── TaxAreaLineConfiguration.cs
+│   │   │   │   │   ├── TaxDetailConfiguration.cs
+│   │   │   │   │   ├── TaxGroupConfiguration.cs
+│   │   │   │   │   ├── TaxJurisdictionConfiguration.cs
+│   │   │   │   │   ├── TaxSetupConfiguration.cs
+│   │   │   │   │   ├── GLEntryVatEntryLinkConfiguration.cs
+│   │   │   │   │   ├── VatBusinessPostingGroupConfiguration.cs
+│   │   │   │   │   ├── VatEntryConfiguration.cs
+│   │   │   │   │   ├── VatPostingSetupConfiguration.cs
+│   │   │   │   │   ├── VatProductPostingGroupConfiguration.cs
+│   │   │   │   │   ├── VatRateChangeSetupConfiguration.cs
+│   │   │   │   │   ├── VatRegistrationLogConfiguration.cs
+│   │   │   │   │   ├── VatReportSetupConfiguration.cs
+│   │   │   │   │   ├── VatStatementNameConfiguration.cs
+│   │   │   │   │   ├── VatStatementTemplateConfiguration.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── AccountingPeriodRepository.cs
+│   │   │   │   │   ├── BusinessChartUserSetupRepository.cs
+│   │   │   │   │   ├── BusinessUnitRepository.cs
+│   │   │   │   │   ├── GLAccountCategoryRepository.cs
+│   │   │   │   │   ├── GLBudgetNameRepository.cs
+│   │   │   │   │   ├── GLRegisterRepository.cs
+│   │   │   │   │   ├── GenBusinessPostingGroupRepository.cs
+│   │   │   │   │   ├── GenJournalBatchRepository.cs
+│   │   │   │   │   ├── GenJournalTemplateRepository.cs
+│   │   │   │   │   ├── GenProductPostingGroupRepository.cs
+│   │   │   │   │   ├── GeneralLedgerSetupRepository.cs
+│   │   │   │   │   ├── GeneralPostingSetupRepository.cs
+│   │   │   │   │   ├── MyAccountRepository.cs
+│   │   │   │   │   ├── RoundingMethodRepository.cs
+│   │   │   │   │   ├── StandardGeneralJournalRepository.cs
+│   │   │   │   │   ├── StandardGeneralJournalLineRepository.cs
+│   │   │   │   │   ├── TrialBalanceSetupRepository.cs
+│   │   │   │   │   ├── CashFlowAccountRepository.cs
+│   │   │   │   │   ├── CashFlowChartSetupRepository.cs
+│   │   │   │   │   ├── CashFlowReportSelectionRepository.cs
+│   │   │   │   │   ├── CashFlowSetupRepository.cs
+│   │   │   │   │   ├── CashFlowWorksheetLineRepository.cs
+│   │   │   │   │   ├── CostAccountingSetupRepository.cs
+│   │   │   │   │   ├── CostJournalBatchRepository.cs
+│   │   │   │   │   ├── CostJournalTemplateRepository.cs
+│   │   │   │   │   ├── CurrExchRateUpdateSetupRepository.cs
+│   │   │   │   │   ├── CurrencyRepository.cs
+│   │   │   │   │   ├── CurrencyAmountRepository.cs
+│   │   │   │   │   ├── CurrencyExchangeRateRepository.cs
+│   │   │   │   │   ├── CurrencyForFinChargeTermsRepository.cs
+│   │   │   │   │   ├── CurrencyForReminderLevelRepository.cs
+│   │   │   │   │   ├── ExchRateAdjmtRegRepository.cs
+│   │   │   │   │   ├── DepreciationBookRepository.cs
+│   │   │   │   │   ├── FaClassRepository.cs
+│   │   │   │   │   ├── FaDateTypeRepository.cs
+│   │   │   │   │   ├── FaDepreciationBookRepository.cs
+│   │   │   │   │   ├── FaJournalBatchRepository.cs
+│   │   │   │   │   ├── FaJournalLineRepository.cs
+│   │   │   │   │   ├── FaJournalSetupRepository.cs
+│   │   │   │   │   ├── FaJournalTemplateRepository.cs
+│   │   │   │   │   ├── FaLedgerEntryRepository.cs
+│   │   │   │   │   ├── FaLocationRepository.cs
+│   │   │   │   │   ├── FaMatrixPostingTypeRepository.cs
+│   │   │   │   │   ├── FaPostingGroupRepository.cs
+│   │   │   │   │   ├── FaPostingTypeRepository.cs
+│   │   │   │   │   ├── FaPostingTypeSetupRepository.cs
+│   │   │   │   │   ├── FaReclassJournalBatchRepository.cs
+│   │   │   │   │   ├── FaReclassJournalLineRepository.cs
+│   │   │   │   │   ├── FaReclassJournalTemplateRepository.cs
+│   │   │   │   │   ├── FaRegisterRepository.cs
+│   │   │   │   │   ├── FaSetupRepository.cs
+│   │   │   │   │   ├── FaSubclassRepository.cs
+│   │   │   │   │   ├── FixedAssetRepository.cs
+│   │   │   │   │   ├── MainAssetComponentRepository.cs
+│   │   │   │   │   ├── TaxAreaRepository.cs
+│   │   │   │   │   ├── TaxAreaLineRepository.cs
+│   │   │   │   │   ├── TaxDetailRepository.cs
+│   │   │   │   │   ├── TaxGroupRepository.cs
+│   │   │   │   │   ├── TaxJurisdictionRepository.cs
+│   │   │   │   │   ├── TaxSetupRepository.cs
+│   │   │   │   │   ├── GLEntryVatEntryLinkRepository.cs
+│   │   │   │   │   ├── VatBusinessPostingGroupRepository.cs
+│   │   │   │   │   ├── VatEntryRepository.cs
+│   │   │   │   │   ├── VatPostingSetupRepository.cs
+│   │   │   │   │   ├── VatProductPostingGroupRepository.cs
+│   │   │   │   │   ├── VatRateChangeSetupRepository.cs
+│   │   │   │   │   ├── VatRegistrationLogRepository.cs
+│   │   │   │   │   ├── VatReportSetupRepository.cs
+│   │   │   │   │   ├── VatStatementNameRepository.cs
+│   │   │   │   │   ├── VatStatementTemplateRepository.cs
+│   │   │   │   │   ├── GLAccountRepository.cs
+│   │   │   │   │   ├── GLEntryRepository.cs
+│   │   │   │   │   ├── GenJournalLineRepository.cs
+│   │   │   ├── Sales
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── SalesLineConfiguration.cs
+│   │   │   │   │   ├── CustLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── CrmConnectionSetupConfiguration.cs
+│   │   │   │   │   ├── CustInvoiceDiscConfiguration.cs
+│   │   │   │   │   ├── CustomerDiscountGroupConfiguration.cs
+│   │   │   │   │   ├── CustomerPostingGroupConfiguration.cs
+│   │   │   │   │   ├── CustomerPriceGroupConfiguration.cs
+│   │   │   │   │   ├── CustomerTemplateConfiguration.cs
+│   │   │   │   │   ├── DetailedCustLedgEntryConfiguration.cs
+│   │   │   │   │   ├── MyCustomerConfiguration.cs
+│   │   │   │   │   ├── OrderPromisingSetupConfiguration.cs
+│   │   │   │   │   ├── PaymentServiceSetupConfiguration.cs
+│   │   │   │   │   ├── ReturnReceiptHeaderConfiguration.cs
+│   │   │   │   │   ├── ReturnReceiptLineConfiguration.cs
+│   │   │   │   │   ├── SalesByCustGrpChartSetupConfiguration.cs
+│   │   │   │   │   ├── SalesCommentLineConfiguration.cs
+│   │   │   │   │   ├── SalesCommentLineArchiveConfiguration.cs
+│   │   │   │   │   ├── SalesCrMemoHeaderConfiguration.cs
+│   │   │   │   │   ├── SalesCrMemoLineConfiguration.cs
+│   │   │   │   │   ├── SalesCueConfiguration.cs
+│   │   │   │   │   ├── SalesDocumentIconConfiguration.cs
+│   │   │   │   │   ├── SalesHeaderArchiveConfiguration.cs
+│   │   │   │   │   ├── SalesInvoiceHeaderConfiguration.cs
+│   │   │   │   │   ├── SalesInvoiceLineConfiguration.cs
+│   │   │   │   │   ├── SalesLineArchiveConfiguration.cs
+│   │   │   │   │   ├── SalesLineDiscountConfiguration.cs
+│   │   │   │   │   ├── SalesPriceConfiguration.cs
+│   │   │   │   │   ├── SalesPriceWorksheetConfiguration.cs
+│   │   │   │   │   ├── SalesReceivablesSetupConfiguration.cs
+│   │   │   │   │   ├── SalesShipmentHeaderConfiguration.cs
+│   │   │   │   │   ├── SalesShipmentLineConfiguration.cs
+│   │   │   │   │   ├── ShipToAddressConfiguration.cs
+│   │   │   │   │   ├── ShippingAgentConfiguration.cs
+│   │   │   │   │   ├── ShippingAgentServicesConfiguration.cs
+│   │   │   │   │   ├── StandardCustomerSalesCodeConfiguration.cs
+│   │   │   │   │   ├── StandardSalesCodeConfiguration.cs
+│   │   │   │   │   ├── StandardSalesLineConfiguration.cs
+│   │   │   │   │   ├── TrailingSalesOrdersSetupConfiguration.cs
+│   │   │   │   │   ├── CancelledDocumentConfiguration.cs
+│   │   │   │   │   ├── CertificateOfSupplyConfiguration.cs
+│   │   │   │   │   ├── FinanceCueConfiguration.cs
+│   │   │   │   │   ├── PaymentMethodConfiguration.cs
+│   │   │   │   │   ├── PaymentTermTranslationConfiguration.cs
+│   │   │   │   │   ├── PaymentTermsConfiguration.cs
+│   │   │   │   │   ├── ReturnReasonConfiguration.cs
+│   │   │   │   │   ├── SalespersonPurchaserConfiguration.cs
+│   │   │   │   │   ├── CustomerConfiguration.cs
+│   │   │   │   │   ├── SalesHeaderConfiguration.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── SalesLineRepository.cs
+│   │   │   │   │   ├── CustLedgerEntryRepository.cs
+│   │   │   │   │   ├── CrmConnectionSetupRepository.cs
+│   │   │   │   │   ├── CustInvoiceDiscRepository.cs
+│   │   │   │   │   ├── CustomerDiscountGroupRepository.cs
+│   │   │   │   │   ├── CustomerPostingGroupRepository.cs
+│   │   │   │   │   ├── CustomerPriceGroupRepository.cs
+│   │   │   │   │   ├── CustomerTemplateRepository.cs
+│   │   │   │   │   ├── DetailedCustLedgEntryRepository.cs
+│   │   │   │   │   ├── MyCustomerRepository.cs
+│   │   │   │   │   ├── OrderPromisingSetupRepository.cs
+│   │   │   │   │   ├── PaymentServiceSetupRepository.cs
+│   │   │   │   │   ├── ReturnReceiptHeaderRepository.cs
+│   │   │   │   │   ├── ReturnReceiptLineRepository.cs
+│   │   │   │   │   ├── SalesByCustGrpChartSetupRepository.cs
+│   │   │   │   │   ├── SalesCommentLineRepository.cs
+│   │   │   │   │   ├── SalesCommentLineArchiveRepository.cs
+│   │   │   │   │   ├── SalesCrMemoHeaderRepository.cs
+│   │   │   │   │   ├── SalesCrMemoLineRepository.cs
+│   │   │   │   │   ├── SalesCueRepository.cs
+│   │   │   │   │   ├── SalesDocumentIconRepository.cs
+│   │   │   │   │   ├── SalesHeaderArchiveRepository.cs
+│   │   │   │   │   ├── SalesLineArchiveRepository.cs
+│   │   │   │   │   ├── SalesLineDiscountRepository.cs
+│   │   │   │   │   ├── SalesPriceRepository.cs
+│   │   │   │   │   ├── SalesPriceWorksheetRepository.cs
+│   │   │   │   │   ├── SalesReceivablesSetupRepository.cs
+│   │   │   │   │   ├── SalesShipmentHeaderRepository.cs
+│   │   │   │   │   ├── SalesShipmentLineRepository.cs
+│   │   │   │   │   ├── ShipToAddressRepository.cs
+│   │   │   │   │   ├── ShippingAgentRepository.cs
+│   │   │   │   │   ├── ShippingAgentServicesRepository.cs
+│   │   │   │   │   ├── StandardCustomerSalesCodeRepository.cs
+│   │   │   │   │   ├── StandardSalesCodeRepository.cs
+│   │   │   │   │   ├── StandardSalesLineRepository.cs
+│   │   │   │   │   ├── TrailingSalesOrdersSetupRepository.cs
+│   │   │   │   │   ├── CancelledDocumentRepository.cs
+│   │   │   │   │   ├── CertificateOfSupplyRepository.cs
+│   │   │   │   │   ├── FinanceCueRepository.cs
+│   │   │   │   │   ├── PaymentMethodRepository.cs
+│   │   │   │   │   ├── PaymentTermTranslationRepository.cs
+│   │   │   │   │   ├── PaymentTermsRepository.cs
+│   │   │   │   │   ├── ReturnReasonRepository.cs
+│   │   │   │   │   ├── SalespersonPurchaserRepository.cs
+│   │   │   │   │   ├── CustomerRepository.cs
+│   │   │   │   │   ├── SalesHeaderRepository.cs
+│   │   │   │   │   ├── SalesInvoiceLineRepository.cs
+│   │   │   │   │   ├── SalesInvoiceHeaderRepository.cs
+│   │   │   ├── Purchasing
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── VendorConfiguration.cs
+│   │   │   │   │   ├── PurchaseLineConfiguration.cs
+│   │   │   │   │   ├── VendorLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── HandledIcInboxPurchHeaderConfiguration.cs
+│   │   │   │   │   ├── HandledIcInboxPurchLineConfiguration.cs
+│   │   │   │   │   ├── HandledIcInboxSalesHeaderConfiguration.cs
+│   │   │   │   │   ├── HandledIcInboxSalesLineConfiguration.cs
+│   │   │   │   │   ├── HandledIcInboxTransConfiguration.cs
+│   │   │   │   │   ├── HandledIcOutboxPurchHdrConfiguration.cs
+│   │   │   │   │   ├── HandledIcOutboxPurchLineConfiguration.cs
+│   │   │   │   │   ├── HandledIcOutboxSalesHeaderConfiguration.cs
+│   │   │   │   │   ├── HandledIcOutboxSalesLineConfiguration.cs
+│   │   │   │   │   ├── HandledIcOutboxTransConfiguration.cs
+│   │   │   │   │   ├── IcDimensionConfiguration.cs
+│   │   │   │   │   ├── IcDimensionValueConfiguration.cs
+│   │   │   │   │   ├── IcDocumentDimensionConfiguration.cs
+│   │   │   │   │   ├── IcGLAccountConfiguration.cs
+│   │   │   │   │   ├── IcInboxPurchaseHeaderConfiguration.cs
+│   │   │   │   │   ├── IcInboxPurchaseLineConfiguration.cs
+│   │   │   │   │   ├── IcInboxSalesHeaderConfiguration.cs
+│   │   │   │   │   ├── IcInboxSalesLineConfiguration.cs
+│   │   │   │   │   ├── IcInboxTransactionConfiguration.cs
+│   │   │   │   │   ├── IcOutboxPurchaseHeaderConfiguration.cs
+│   │   │   │   │   ├── IcOutboxPurchaseLineConfiguration.cs
+│   │   │   │   │   ├── IcOutboxSalesHeaderConfiguration.cs
+│   │   │   │   │   ├── IcOutboxSalesLineConfiguration.cs
+│   │   │   │   │   ├── IcOutboxTransactionConfiguration.cs
+│   │   │   │   │   ├── IcPartnerConfiguration.cs
+│   │   │   │   │   ├── DetailedVendorLedgEntryConfiguration.cs
+│   │   │   │   │   ├── MyVendorConfiguration.cs
+│   │   │   │   │   ├── PurchCommentLineConfiguration.cs
+│   │   │   │   │   ├── PurchCommentLineArchiveConfiguration.cs
+│   │   │   │   │   ├── PurchCrMemoHdrConfiguration.cs
+│   │   │   │   │   ├── PurchCrMemoLineConfiguration.cs
+│   │   │   │   │   ├── PurchInvHeaderConfiguration.cs
+│   │   │   │   │   ├── PurchInvLineConfiguration.cs
+│   │   │   │   │   ├── PurchRcptHeaderConfiguration.cs
+│   │   │   │   │   ├── PurchRcptLineConfiguration.cs
+│   │   │   │   │   ├── PurchaseHeaderArchiveConfiguration.cs
+│   │   │   │   │   ├── PurchaseLineArchiveConfiguration.cs
+│   │   │   │   │   ├── PurchasePriceConfiguration.cs
+│   │   │   │   │   ├── PurchasesPayablesSetupConfiguration.cs
+│   │   │   │   │   ├── ReqWkshTemplateConfiguration.cs
+│   │   │   │   │   ├── RequisitionLineConfiguration.cs
+│   │   │   │   │   ├── RequisitionWkshNameConfiguration.cs
+│   │   │   │   │   ├── ReturnShipmentHeaderConfiguration.cs
+│   │   │   │   │   ├── ReturnShipmentLineConfiguration.cs
+│   │   │   │   │   ├── StandardPurchaseCodeConfiguration.cs
+│   │   │   │   │   ├── StandardPurchaseLineConfiguration.cs
+│   │   │   │   │   ├── StandardVendorPurchaseCodeConfiguration.cs
+│   │   │   │   │   ├── VendorBankAccountConfiguration.cs
+│   │   │   │   │   ├── VendorInvoiceDiscConfiguration.cs
+│   │   │   │   │   ├── VendorPostingGroupConfiguration.cs
+│   │   │   │   │   ├── PurchaseHeaderConfiguration.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── VendorLedgerEntryRepository.cs
+│   │   │   │   │   ├── HandledIcInboxPurchHeaderRepository.cs
+│   │   │   │   │   ├── HandledIcInboxPurchLineRepository.cs
+│   │   │   │   │   ├── HandledIcInboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── HandledIcInboxSalesLineRepository.cs
+│   │   │   │   │   ├── HandledIcInboxTransRepository.cs
+│   │   │   │   │   ├── HandledIcOutboxPurchHdrRepository.cs
+│   │   │   │   │   ├── HandledIcOutboxPurchLineRepository.cs
+│   │   │   │   │   ├── HandledIcOutboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── HandledIcOutboxSalesLineRepository.cs
+│   │   │   │   │   ├── HandledIcOutboxTransRepository.cs
+│   │   │   │   │   ├── IcDimensionRepository.cs
+│   │   │   │   │   ├── IcDimensionValueRepository.cs
+│   │   │   │   │   ├── IcDocumentDimensionRepository.cs
+│   │   │   │   │   ├── IcGLAccountRepository.cs
+│   │   │   │   │   ├── IcInboxPurchaseHeaderRepository.cs
+│   │   │   │   │   ├── IcInboxPurchaseLineRepository.cs
+│   │   │   │   │   ├── IcInboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── IcInboxSalesLineRepository.cs
+│   │   │   │   │   ├── IcInboxTransactionRepository.cs
+│   │   │   │   │   ├── IcOutboxPurchaseHeaderRepository.cs
+│   │   │   │   │   ├── IcOutboxPurchaseLineRepository.cs
+│   │   │   │   │   ├── IcOutboxSalesHeaderRepository.cs
+│   │   │   │   │   ├── IcOutboxSalesLineRepository.cs
+│   │   │   │   │   ├── IcOutboxTransactionRepository.cs
+│   │   │   │   │   ├── IcPartnerRepository.cs
+│   │   │   │   │   ├── DetailedVendorLedgEntryRepository.cs
+│   │   │   │   │   ├── MyVendorRepository.cs
+│   │   │   │   │   ├── PurchCommentLineRepository.cs
+│   │   │   │   │   ├── PurchCommentLineArchiveRepository.cs
+│   │   │   │   │   ├── PurchCrMemoHdrRepository.cs
+│   │   │   │   │   ├── PurchCrMemoLineRepository.cs
+│   │   │   │   │   ├── PurchRcptHeaderRepository.cs
+│   │   │   │   │   ├── PurchRcptLineRepository.cs
+│   │   │   │   │   ├── PurchaseHeaderArchiveRepository.cs
+│   │   │   │   │   ├── PurchaseLineArchiveRepository.cs
+│   │   │   │   │   ├── PurchasePriceRepository.cs
+│   │   │   │   │   ├── PurchasesPayablesSetupRepository.cs
+│   │   │   │   │   ├── ReqWkshTemplateRepository.cs
+│   │   │   │   │   ├── RequisitionLineRepository.cs
+│   │   │   │   │   ├── RequisitionWkshNameRepository.cs
+│   │   │   │   │   ├── ReturnShipmentHeaderRepository.cs
+│   │   │   │   │   ├── ReturnShipmentLineRepository.cs
+│   │   │   │   │   ├── StandardPurchaseCodeRepository.cs
+│   │   │   │   │   ├── StandardPurchaseLineRepository.cs
+│   │   │   │   │   ├── StandardVendorPurchaseCodeRepository.cs
+│   │   │   │   │   ├── VendorBankAccountRepository.cs
+│   │   │   │   │   ├── VendorInvoiceDiscRepository.cs
+│   │   │   │   │   ├── VendorPostingGroupRepository.cs
+│   │   │   │   │   ├── PurchInvLineRepository.cs
+│   │   │   │   │   ├── PurchaseLineRepository.cs
+│   │   │   │   │   ├── PurchInvHeaderRepository.cs
+│   │   │   │   │   ├── PurchaseHeaderRepository.cs
+│   │   │   │   │   ├── VendorRepository.cs
+│   │   │   ├── Context
+│   │   │   │   ├── NexusBillingDbContext.cs
+│   │   │   ├── ServiceRegistration.cs
+│   │   │   ├── Migrations
+│   │   │   │   ├── 20260613013503_Initial.Designer.cs
+│   │   │   │   ├── 20260613013503_Initial.cs
+│   │   │   │   ├── NexusBillingDbContextModelSnapshot.cs
+│   │   │   ├── Resources
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── CauseOfAbsenceRepository.cs
+│   │   │   │   │   ├── EmployeeRepository.cs
+│   │   │   │   │   ├── EmployeeAbsenceRepository.cs
+│   │   │   │   │   ├── EmployeeQualificationRepository.cs
+│   │   │   │   │   ├── EmployeeRelativeRepository.cs
+│   │   │   │   │   ├── EmploymentContractRepository.cs
+│   │   │   │   │   ├── GroundsForTerminationRepository.cs
+│   │   │   │   │   ├── HumanResourceCommentLineRepository.cs
+│   │   │   │   │   ├── HumanResourceUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── HumanResourcesSetupRepository.cs
+│   │   │   │   │   ├── PayrollSetupRepository.cs
+│   │   │   │   │   ├── RelativeRepository.cs
+│   │   │   │   │   ├── JobRepository.cs
+│   │   │   │   │   ├── JobCueRepository.cs
+│   │   │   │   │   ├── JobEntryNoRepository.cs
+│   │   │   │   │   ├── JobJournalBatchRepository.cs
+│   │   │   │   │   ├── JobJournalLineRepository.cs
+│   │   │   │   │   ├── JobJournalTemplateRepository.cs
+│   │   │   │   │   ├── JobLedgerEntryRepository.cs
+│   │   │   │   │   ├── JobPlanningLineRepository.cs
+│   │   │   │   │   ├── JobPlanningLineInvoiceRepository.cs
+│   │   │   │   │   ├── JobPostingGroupRepository.cs
+│   │   │   │   │   ├── JobQueueCategoryRepository.cs
+│   │   │   │   │   ├── JobQueueEntryRepository.cs
+│   │   │   │   │   ├── JobQueueLogEntryRepository.cs
+│   │   │   │   │   ├── JobRegisterRepository.cs
+│   │   │   │   │   ├── JobTaskRepository.cs
+│   │   │   │   │   ├── JobTaskDimensionRepository.cs
+│   │   │   │   │   ├── JobUsageLinkRepository.cs
+│   │   │   │   │   ├── JobWipMethodRepository.cs
+│   │   │   │   │   ├── JobsSetupRepository.cs
+│   │   │   │   │   ├── ResJournalBatchRepository.cs
+│   │   │   │   │   ├── ResJournalLineRepository.cs
+│   │   │   │   │   ├── ResJournalTemplateRepository.cs
+│   │   │   │   │   ├── ResLedgerEntryRepository.cs
+│   │   │   │   │   ├── ResourceRepository.cs
+│   │   │   │   │   ├── ResourceCostRepository.cs
+│   │   │   │   │   ├── ResourceGroupRepository.cs
+│   │   │   │   │   ├── ResourcePriceRepository.cs
+│   │   │   │   │   ├── ResourceRegisterRepository.cs
+│   │   │   │   │   ├── ResourceUnitOfMeasureRepository.cs
+│   │   │   │   │   ├── ResourcesSetupRepository.cs
+│   │   │   │   │   ├── TimeSheetChartSetupRepository.cs
+│   │   │   │   │   ├── WorkTypeRepository.cs
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── CauseOfAbsenceConfiguration.cs
+│   │   │   │   │   ├── EmployeeConfiguration.cs
+│   │   │   │   │   ├── EmployeeAbsenceConfiguration.cs
+│   │   │   │   │   ├── EmployeeQualificationConfiguration.cs
+│   │   │   │   │   ├── EmployeeRelativeConfiguration.cs
+│   │   │   │   │   ├── EmploymentContractConfiguration.cs
+│   │   │   │   │   ├── GroundsForTerminationConfiguration.cs
+│   │   │   │   │   ├── HumanResourceCommentLineConfiguration.cs
+│   │   │   │   │   ├── HumanResourceUnitOfMeasureConfiguration.cs
+│   │   │   │   │   ├── HumanResourcesSetupConfiguration.cs
+│   │   │   │   │   ├── PayrollSetupConfiguration.cs
+│   │   │   │   │   ├── RelativeConfiguration.cs
+│   │   │   │   │   ├── JobConfiguration.cs
+│   │   │   │   │   ├── JobCueConfiguration.cs
+│   │   │   │   │   ├── JobEntryNoConfiguration.cs
+│   │   │   │   │   ├── JobJournalBatchConfiguration.cs
+│   │   │   │   │   ├── JobJournalLineConfiguration.cs
+│   │   │   │   │   ├── JobJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── JobLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── JobPlanningLineConfiguration.cs
+│   │   │   │   │   ├── JobPlanningLineInvoiceConfiguration.cs
+│   │   │   │   │   ├── JobPostingGroupConfiguration.cs
+│   │   │   │   │   ├── JobQueueCategoryConfiguration.cs
+│   │   │   │   │   ├── JobQueueEntryConfiguration.cs
+│   │   │   │   │   ├── JobQueueLogEntryConfiguration.cs
+│   │   │   │   │   ├── JobRegisterConfiguration.cs
+│   │   │   │   │   ├── JobTaskConfiguration.cs
+│   │   │   │   │   ├── JobTaskDimensionConfiguration.cs
+│   │   │   │   │   ├── JobUsageLinkConfiguration.cs
+│   │   │   │   │   ├── JobWipMethodConfiguration.cs
+│   │   │   │   │   ├── JobsSetupConfiguration.cs
+│   │   │   │   │   ├── ResJournalBatchConfiguration.cs
+│   │   │   │   │   ├── ResJournalLineConfiguration.cs
+│   │   │   │   │   ├── ResJournalTemplateConfiguration.cs
+│   │   │   │   │   ├── ResLedgerEntryConfiguration.cs
+│   │   │   │   │   ├── ResourceConfiguration.cs
+│   │   │   │   │   ├── ResourceCostConfiguration.cs
+│   │   │   │   │   ├── ResourceGroupConfiguration.cs
+│   │   │   │   │   ├── ResourcePriceConfiguration.cs
+│   │   │   │   │   ├── ResourceRegisterConfiguration.cs
+│   │   │   │   │   ├── ResourceUnitOfMeasureConfiguration.cs
+│   │   │   │   │   ├── ResourcesSetupConfiguration.cs
+│   │   │   │   │   ├── TimeSheetChartSetupConfiguration.cs
+│   │   │   │   │   ├── WorkTypeConfiguration.cs
+│   │   │   ├── Ecf
+│   │   │   │   ├── Configurations
+│   │   │   │   │   ├── EcfCompanyConfigConfiguration.cs
+│   │   │   │   │   ├── EcfDocumentConfiguration.cs
+│   │   │   │   │   ├── EcfNcfSequenceConfiguration.cs
+│   │   │   │   ├── Repositories
+│   │   │   │   │   ├── EcfRepositories.cs
+│   │   ├── NexusBilling.Infrastructure.Identity
+│   │   │   ├── Security
+│   │   │   │   ├── JwtTokenService.cs
+│   │   │   │   ├── BcryptPasswordHasher.cs
+│   │   │   ├── NexusBilling.Infrastructure.Identity.csproj
+│   │   │   ├── ServiceRegistration.cs
+│   │   ├── NexusBilling.Infrastructure.ExternalServices
+│   │   │   ├── NexusBilling.Infrastructure.ExternalServices.csproj
+│   │   │   ├── Setup.cs
+│   │   ├── NexusBilling.Infrastructure.Shared
+│   │   │   ├── NexusBilling.Infrastructure.Shared.csproj
+│   │   │   ├── Services
+│   │   │   │   ├── NotificationService.cs
+│   │   │   ├── ServiceRegistration.cs
+│   ├── Presentation
+│   │   ├── NexusBilling.Api
+│   │   │   ├── appsettings.Development.json
+│   │   │   ├── NexusBilling.Api.http
+│   │   │   ├── Properties
+│   │   │   │   ├── launchSettings.json
+│   │   │   ├── NexusBilling.Api.csproj
+│   │   │   ├── Controllers
+│   │   │   │   ├── Security
+│   │   │   │   │   ├── AuthController.cs
+│   │   │   │   │   ├── UsersController.cs
+│   │   │   │   ├── Sales
+│   │   │   │   │   ├── CustomersController.cs
+│   │   │   │   │   ├── SalesInvoicesController.cs
+│   │   │   │   │   ├── SalesOrdersController.cs
+│   │   │   │   ├── Inventory
+│   │   │   │   │   ├── ItemsController.cs
+│   │   │   │   │   ├── LocationsController.cs
+│   │   │   │   ├── Administration
+│   │   │   │   │   ├── NoSeriesController.cs
+│   │   │   │   │   ├── ServiceOrdersController.cs
+│   │   │   │   ├── Dashboard
+│   │   │   │   │   ├── DashboardController.cs
+│   │   │   │   ├── Purchasing
+│   │   │   │   │   ├── PurchaseInvoicesController.cs
+│   │   │   │   │   ├── VendorsController.cs
+│   │   │   │   │   ├── PurchaseOrdersController.cs
+│   │   │   │   ├── Finance
+│   │   │   │   │   ├── GLAccountsController.cs
+│   │   │   │   │   ├── GLEntriesController.cs
+│   │   │   │   │   ├── GenJournalLinesController.cs
+│   │   │   ├── wwwroot
+│   │   │   │   ├── 3rdpartylicenses.txt
+│   │   │   │   ├── prerendered-routes.json
+│   │   │   │   ├── chunk-25L3OT7U.js
+│   │   │   │   ├── chunk-KO4LZI62.js
+│   │   │   │   ├── chunk-O5G6GPTS.js
+│   │   │   │   ├── chunk-QC7ABNNG.js
+│   │   │   │   ├── favicon.ico
+│   │   │   │   ├── index.html
+│   │   │   │   ├── main-WJNGQN4N.js
+│   │   │   │   ├── styles-DMFNQA3Q.css
+│   │   │   ├── appsettings.json
+│   │   │   ├── Common
+│   │   │   │   ├── ApiResponse.cs
+│   │   │   ├── ServiceRegistration.cs
+│   │   │   ├── Program.cs
+│   │   ├── NexusBilling.Web
+│   │   │   ├── .prettierrc
+│   │   │   ├── README.md
+│   │   │   ├── .editorconfig
+│   │   │   ├── .gitignore
+│   │   │   ├── tsconfig.json
+│   │   │   ├── tsconfig.app.json
+│   │   │   ├── tsconfig.spec.json
+│   │   │   ├── .vscode
+│   │   │   │   ├── extensions.json
+│   │   │   │   ├── launch.json
+│   │   │   │   ├── mcp.json
+│   │   │   │   ├── tasks.json
+│   │   │   ├── src
+│   │   │   │   ├── main.ts
+│   │   │   │   ├── styles.css
+│   │   │   │   ├── app
+│   │   │   │   │   ├── app.css
+│   │   │   │   │   ├── app.spec.ts
+│   │   │   │   │   ├── app.ts
+│   │   │   │   │   ├── app.html
+│   │   │   │   │   ├── core
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   ├── guards
+│   │   │   │   │   │   │   ├── auth.guard.ts
+│   │   │   │   │   │   ├── interceptors
+│   │   │   │   │   │   │   ├── jwt.interceptor.ts
+│   │   │   │   │   │   │   ├── error.interceptor.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── signal-r.service.ts
+│   │   │   │   │   │   │   ├── auth.service.ts
+│   │   │   │   │   │   │   ├── api.service.ts
+│   │   │   │   │   │   │   ├── pdf
+│   │   │   │   │   │   │   │   ├── pdf-report.service.ts
+│   │   │   │   │   │   │   ├── excel
+│   │   │   │   │   │   │   │   ├── excel-export.service.ts
+│   │   │   │   │   │   ├── utils
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── data-table
+│   │   │   │   │   │   │   │   ├── data-table.component.ts
+│   │   │   │   │   │   │   ├── form-controls
+│   │   │   │   │   │   │   ├── feedback
+│   │   │   │   │   │   │   ├── layout
+│   │   │   │   │   │   │   │   ├── dashboard-layout.component.ts
+│   │   │   │   │   │   │   ├── chart
+│   │   │   │   │   │   │   │   ├── nx-chart.component.ts
+│   │   │   │   │   │   ├── directives
+│   │   │   │   │   │   │   ├── phone-format.directive.ts
+│   │   │   │   │   │   │   ├── rnc-format.directive.ts
+│   │   │   │   │   │   ├── pipes
+│   │   │   │   │   │   │   ├── rnc.pipe.ts
+│   │   │   │   │   │   │   ├── cedula.pipe.ts
+│   │   │   │   │   │   │   ├── phone.pipe.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── pdf.service.ts
+│   │   │   │   │   ├── features
+│   │   │   │   │   │   ├── auth
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── models
+│   │   │   │   │   │   │   │   │   ├── auth.models.ts
+│   │   │   │   │   │   │   │   ├── repositories
+│   │   │   │   │   │   │   │   │   ├── auth.repository.ts
+│   │   │   │   │   │   │   ├── domain
+│   │   │   │   │   │   │   │   ├── entities
+│   │   │   │   │   │   │   │   │   ├── auth-user.entity.ts
+│   │   │   │   │   │   │   │   ├── mappers
+│   │   │   │   │   │   │   │   │   ├── auth.mapper.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── login
+│   │   │   │   │   │   │   │   │   │   ├── login.page.css
+│   │   │   │   │   │   │   │   │   │   ├── login.page.ts
+│   │   │   │   │   │   │   │   │   │   ├── login.page.html
+│   │   │   │   │   │   │   │   │   ├── forgot-password
+│   │   │   │   │   │   │   │   │   │   ├── forgot-password.page.ts
+│   │   │   │   │   │   │   │   ├── state
+│   │   │   │   │   │   │   │   │   ├── auth.state.ts
+│   │   │   │   │   │   ├── inventory
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── models
+│   │   │   │   │   │   │   │   ├── repositories
+│   │   │   │   │   │   │   │   ├── item.service.ts
+│   │   │   │   │   │   │   ├── domain
+│   │   │   │   │   │   │   │   ├── entities
+│   │   │   │   │   │   │   │   ├── mappers
+│   │   │   │   │   │   │   │   ├── item.model.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── item-list
+│   │   │   │   │   │   │   │   │   │   ├── item-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── item-card
+│   │   │   │   │   │   │   │   │   │   ├── item-card.page.ts
+│   │   │   │   │   │   │   │   ├── state
+│   │   │   │   │   │   ├── sales
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── models
+│   │   │   │   │   │   │   │   ├── repositories
+│   │   │   │   │   │   │   │   ├── invoice.service.ts
+│   │   │   │   │   │   │   ├── domain
+│   │   │   │   │   │   │   │   ├── entities
+│   │   │   │   │   │   │   │   ├── mappers
+│   │   │   │   │   │   │   │   ├── invoice.model.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── invoice-list
+│   │   │   │   │   │   │   │   │   │   ├── invoice-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── invoice-card
+│   │   │   │   │   │   │   │   │   │   ├── invoice-card.page.ts
+│   │   │   │   │   │   │   │   │   ├── sales-order-list
+│   │   │   │   │   │   │   │   │   │   ├── sales-order-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── sales-order-card
+│   │   │   │   │   │   │   │   │   │   ├── sales-order-card.page.ts
+│   │   │   │   │   │   │   │   ├── state
+│   │   │   │   │   │   ├── customers
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── models
+│   │   │   │   │   │   │   │   ├── repositories
+│   │   │   │   │   │   │   │   ├── customer.service.ts
+│   │   │   │   │   │   │   ├── domain
+│   │   │   │   │   │   │   │   ├── entities
+│   │   │   │   │   │   │   │   ├── mappers
+│   │   │   │   │   │   │   │   ├── customer.model.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── customer-list
+│   │   │   │   │   │   │   │   │   │   ├── customer-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── customer-card
+│   │   │   │   │   │   │   │   │   │   ├── customer-card.page.ts
+│   │   │   │   │   │   │   │   ├── state
+│   │   │   │   │   │   ├── dashboard
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── dashboard.page.ts
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── dashboard.service.ts
+│   │   │   │   │   │   ├── landing
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── landing.page.css
+│   │   │   │   │   │   │   │   │   ├── landing.page.ts
+│   │   │   │   │   │   │   │   │   ├── landing.page.html
+│   │   │   │   │   │   ├── settings
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── settings.page.ts
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── no-series.service.ts
+│   │   │   │   │   │   ├── security
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── user.service.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── user-list
+│   │   │   │   │   │   │   │   │   │   ├── user-list.page.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── domain
+│   │   │   │   │   │   │   │   ├── service-order.model.ts
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── service-order.service.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── service-order-list
+│   │   │   │   │   │   │   │   │   │   ├── service-order-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── service-order-card
+│   │   │   │   │   │   │   │   │   │   ├── service-order-card.page.ts
+│   │   │   │   │   │   ├── purchasing
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── purchase-invoice.service.ts
+│   │   │   │   │   │   │   │   ├── purchase.service.ts
+│   │   │   │   │   │   │   │   ├── vendor.service.ts
+│   │   │   │   │   │   │   ├── domain
+│   │   │   │   │   │   │   │   ├── vendor.model.ts
+│   │   │   │   │   │   │   │   ├── purchase-invoice.model.ts
+│   │   │   │   │   │   │   │   ├── purchase.model.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── vendor-list
+│   │   │   │   │   │   │   │   │   │   ├── vendor-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── purchase-order-list
+│   │   │   │   │   │   │   │   │   │   ├── purchase-order-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── purchase-invoice-card
+│   │   │   │   │   │   │   │   │   │   ├── purchase-invoice-card.page.ts
+│   │   │   │   │   │   │   │   │   ├── purchase-invoice-list
+│   │   │   │   │   │   │   │   │   │   ├── purchase-invoice-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── purchase-order-card
+│   │   │   │   │   │   │   │   │   │   ├── purchase-order-card.page.ts
+│   │   │   │   │   │   │   │   │   ├── vendor-card
+│   │   │   │   │   │   │   │   │   │   ├── vendor-card.page.ts
+│   │   │   │   │   │   ├── finance
+│   │   │   │   │   │   │   ├── data
+│   │   │   │   │   │   │   │   ├── gl-account.service.ts
+│   │   │   │   │   │   │   │   ├── gl-entry.service.ts
+│   │   │   │   │   │   │   │   ├── journal.service.ts
+│   │   │   │   │   │   │   ├── domain
+│   │   │   │   │   │   │   │   ├── gl-account.model.ts
+│   │   │   │   │   │   │   │   ├── gl-entry.model.ts
+│   │   │   │   │   │   │   │   ├── journal-line.model.ts
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   │   ├── gl-account-list
+│   │   │   │   │   │   │   │   │   │   ├── gl-account-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── gl-entry-list
+│   │   │   │   │   │   │   │   │   │   ├── gl-entry-list.page.ts
+│   │   │   │   │   │   │   │   │   ├── journal-list
+│   │   │   │   │   │   │   │   │   │   ├── journal-list.page.ts
+│   │   │   │   │   ├── app.config.ts
+│   │   │   │   │   ├── app.routes.ts
+│   │   │   │   ├── environments
+│   │   │   │   │   ├── environment.ts
+│   │   │   │   │   ├── environment.prod.ts
+│   │   │   │   ├── styles
+│   │   │   │   │   ├── _theme-colors.css
+│   │   │   │   │   ├── _components.css
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── logo-mark.svg
+│   │   │   │   ├── index.html
+│   │   │   ├── public
+│   │   │   │   ├── favicon.ico
+│   │   │   │   ├── logo-mark.svg
+│   │   │   ├── angular.json
+│   │   │   ├── package-lock.json
+│   │   │   ├── package.json
+│   ├── Nexus_Work_Manifesto.md
+├── Docs
+│   ├── Design_Plan_Domain_Persistence.md
+│   ├── Full_Database_Schema.txt
+│   ├── DB_Node_Map.md
+│   ├── API_Standards.md
+│   ├── DGII_ECF_Plan.md
+│   ├── DesignSystem
+│   │   ├── .thumbnail
+│   │   ├── SKILL.md
+│   │   ├── _adherence.oxlintrc.json
+│   │   ├── _ds_bundle.js
+│   │   ├── _ds_manifest.json
+│   │   ├── assets
+│   │   │   ├── logo-mark.svg
+│   │   │   ├── logo-mono.svg
+│   │   │   ├── logo-tile.svg
+│   │   │   ├── synset-lockup.svg
+│   │   │   ├── synset-mark.svg
+│   │   ├── components
+│   │   │   ├── core
+│   │   │   │   ├── Avatar.d.ts
+│   │   │   │   ├── Avatar.jsx
+│   │   │   │   ├── Avatar.prompt.md
+│   │   │   │   ├── Badge.d.ts
+│   │   │   │   ├── Badge.jsx
+│   │   │   │   ├── Badge.prompt.md
+│   │   │   │   ├── Button.d.ts
+│   │   │   │   ├── Button.jsx
+│   │   │   │   ├── Button.prompt.md
+│   │   │   │   ├── Checkbox.d.ts
+│   │   │   │   ├── Checkbox.jsx
+│   │   │   │   ├── Checkbox.prompt.md
+│   │   │   │   ├── IconButton.d.ts
+│   │   │   │   ├── IconButton.jsx
+│   │   │   │   ├── IconButton.prompt.md
+│   │   │   │   ├── Input.d.ts
+│   │   │   │   ├── Input.jsx
+│   │   │   │   ├── Input.prompt.md
+│   │   │   │   ├── Select.d.ts
+│   │   │   │   ├── Select.jsx
+│   │   │   │   ├── Select.prompt.md
+│   │   │   │   ├── Switch.d.ts
+│   │   │   │   ├── Switch.jsx
+│   │   │   │   ├── Switch.prompt.md
+│   │   │   │   ├── Tag.d.ts
+│   │   │   │   ├── Tag.jsx
+│   │   │   │   ├── Tag.prompt.md
+│   │   │   │   ├── core.card.html
+│   │   │   ├── data
+│   │   │   │   ├── DataTable.d.ts
+│   │   │   │   ├── DataTable.jsx
+│   │   │   │   ├── DataTable.prompt.md
+│   │   │   │   ├── FactBox.d.ts
+│   │   │   │   ├── FactBox.jsx
+│   │   │   │   ├── FactBox.prompt.md
+│   │   │   │   ├── KeyValue.d.ts
+│   │   │   │   ├── KeyValue.jsx
+│   │   │   │   ├── KeyValue.prompt.md
+│   │   │   │   ├── StatTile.d.ts
+│   │   │   │   ├── StatTile.jsx
+│   │   │   │   ├── StatTile.prompt.md
+│   │   │   │   ├── data.card.html
+│   │   │   ├── feedback
+│   │   │   │   ├── Banner.d.ts
+│   │   │   │   ├── Banner.jsx
+│   │   │   │   ├── Banner.prompt.md
+│   │   │   │   ├── EmptyState.d.ts
+│   │   │   │   ├── EmptyState.jsx
+│   │   │   │   ├── EmptyState.prompt.md
+│   │   │   │   ├── feedback.card.html
+│   │   │   ├── layout
+│   │   │   │   ├── Card.d.ts
+│   │   │   │   ├── Card.jsx
+│   │   │   │   ├── Card.prompt.md
+│   │   │   │   ├── Collapsible.d.ts
+│   │   │   │   ├── Collapsible.jsx
+│   │   │   │   ├── Collapsible.prompt.md
+│   │   │   │   ├── layout.card.html
+│   │   │   ├── navigation
+│   │   │   │   ├── Breadcrumb.d.ts
+│   │   │   │   ├── Breadcrumb.jsx
+│   │   │   │   ├── Breadcrumb.prompt.md
+│   │   │   │   ├── Tabs.d.ts
+│   │   │   │   ├── Tabs.jsx
+│   │   │   │   ├── Tabs.prompt.md
+│   │   │   │   ├── navigation.card.html
+│   │   ├── guidelines
+│   │   │   ├── brand-logo.card.html
+│   │   │   ├── color-emerald.card.html
+│   │   │   ├── color-money.card.html
+│   │   │   ├── color-slate.card.html
+│   │   │   ├── color-status.card.html
+│   │   │   ├── color-themes.card.html
+│   │   │   ├── spacing-radii.card.html
+│   │   │   ├── spacing-scale.card.html
+│   │   │   ├── type-body.card.html
+│   │   │   ├── type-display.card.html
+│   │   │   ├── type-mono.card.html
+│   │   ├── readme.md
+│   │   ├── screenshots
+│   │   │   ├── 01-landing-v4.png
+│   │   │   ├── 02-landing-v4.png
+│   │   │   ├── 03-landing-v4.png
+│   │   │   ├── 04-landing-v4.png
+│   │   │   ├── erp-login.png
+│   │   │   ├── landing-current.png
+│   │   │   ├── landing-dark-fix.png
+│   │   │   ├── landing-new.png
+│   │   │   ├── landing-preview.png
+│   │   │   ├── landing-v3.png
+│   │   ├── styles.css
+│   │   ├── system
+│   │   │   ├── controls.css
+│   │   │   ├── display.css
+│   │   │   ├── feedback.css
+│   │   ├── templates
+│   │   │   ├── landing
+│   │   │   │   ├── ds-base.js
+│   │   │   │   ├── index.html
+│   │   │   │   ├── landing.css
+│   │   │   │   ├── logo-mark.svg
+│   │   │   │   ├── logo-tile.svg
+│   │   ├── tokens
+│   │   │   ├── base.css
+│   │   │   ├── colors.css
+│   │   │   ├── elevation.css
+│   │   │   ├── fonts.css
+│   │   │   ├── motion.css
+│   │   │   ├── spacing.css
+│   │   │   ├── theme-dark.css
+│   │   │   ├── typography.css
+│   │   ├── ui_kits
+│   │   │   ├── erp
+│   │   │   │   ├── app.css
+│   │   │   │   ├── data.js
+│   │   │   │   ├── index.html
+│   │   │   │   ├── screens.jsx
+│   │   │   │   ├── shell.jsx
+│   │   │   ├── landing
+│   │   │   │   ├── index.html
+│   │   │   │   ├── landing.css
+│   │   ├── uploads
+│   │   │   ├── pasted-1781211018853-0.png
+│   │   │   ├── pasted-1781211162513-0.png
+├── NexusBilling.slnx
+├── Directory.Build.props
+├── .obsidian
+│   ├── core-plugins.json
+│   ├── app.json
+│   ├── appearance.json
+│   ├── workspace.json
+├── architecture_rules.md
+├── deploy-server.sh
+├── architecture-tree-full.txt

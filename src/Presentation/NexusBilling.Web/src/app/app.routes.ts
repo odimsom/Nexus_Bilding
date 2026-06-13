@@ -164,13 +164,6 @@ export const routes: Routes = [
           )
       },
       {
-        path: 'users',
-        loadComponent: () =>
-          import('./features/security/presentation/pages/user-list/user-list.page').then(
-            m => m.UserListPage
-          )
-      },
-      {
         path: 'gl',
         loadComponent: () =>
           import('./features/finance/presentation/pages/gl-account-list/gl-account-list.page').then(

@@ -78,7 +78,7 @@ import { PurchaseOrderService } from '../../../data/purchase.service';
                     </td>
                     <td>
                       @if (o.status === 'Open') {
-                        <span class="nx-badge nx-badge--warning">Abierta</span>
+                        <span class="nx-badge nx-badge--warn">Abierta</span>
                       } @else if (o.status === 'Released') {
                         <span class="nx-badge nx-badge--success">Lanzada</span>
                       } @else {

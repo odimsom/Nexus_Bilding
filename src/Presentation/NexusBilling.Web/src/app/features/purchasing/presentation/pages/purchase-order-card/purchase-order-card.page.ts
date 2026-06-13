@@ -77,7 +77,7 @@ import { PurchaseOrder, CreatePurchaseOrderDto } from '../../../domain/purchase.
           <div style="display:flex;align-items:center;gap:var(--nx-space-3);margin-top:var(--nx-space-1);flex-wrap:wrap;">
             <span class="nx-eyebrow">{{ order()!.vendorName || order()!.vendorNo }}</span>
             @if (order()!.status === 'Open') {
-              <span class="nx-badge nx-badge--warning"><span class="nx-badge__dot"></span>Abierta</span>
+              <span class="nx-badge nx-badge--warn"><span class="nx-badge__dot"></span>Abierta</span>
             } @else if (order()!.status === 'Released') {
               <span class="nx-badge nx-badge--success"><span class="nx-badge__dot"></span>Lanzada</span>
             } @else {
@@ -215,20 +215,7 @@ export class PurchaseOrderCardPage implements OnInit {
     this.errorMsg.set(null);
     try {
       // Formatear fecha a ISO string si es necesario, pero el backend lo acepta YYYY-MM-DD si se manda asi.
-      const no = await this.svc.create({
-        ...this.newForm,
-        lines: [
-          {
-            lineType: 'Item',
-            itemNo: 'ITEM-TEST',
-            description: 'Item de prueba de creación',
-            unitOfMeasure: 'UN',
-            quantity: 1,
-            unitPrice: 100,
-            lineDiscountPct: 0
-          }
-        ]
-      });
+      const no = await this.svc.create({ ...this.newForm, lines: [] });
       this.router.navigate(['/purchases', no], { replaceUrl: true });
     } catch (e: any) {
       this.errorMsg.set(e?.error?.error?.message ?? 'Ocurrió un error al crear el pedido.');

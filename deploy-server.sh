@@ -67,38 +67,60 @@ docker save $IMAGE | gzip | sshpass -p "$SERVER_PASS" \
    echo '=== Container started ===' && \
    docker ps | grep $CONTAINER"
 
+# Columnas nuevas en purchase_header (idempotente)
+echo "--- Schema patch purchase_header..."
+sshpass -p "$SERVER_PASS" ssh -o StrictHostKeyChecking=no "$SERVER" \
+  "docker exec -i synset-postgres psql -U nexus_user -d nexus_db" <<'SCHEMA_SQL' 2>/dev/null || true
+ALTER TABLE purchasing.purchase_header ADD COLUMN IF NOT EXISTS status            varchar(50)    NOT NULL DEFAULT 'Open';
+ALTER TABLE purchasing.purchase_header ADD COLUMN IF NOT EXISTS amount            numeric(18,2)  NOT NULL DEFAULT 0;
+ALTER TABLE purchasing.purchase_header ADD COLUMN IF NOT EXISTS amount_including_vat numeric(18,2) NOT NULL DEFAULT 0;
+ALTER TABLE purchasing.purchase_header ADD COLUMN IF NOT EXISTS currency_code     varchar(10)    NOT NULL DEFAULT '';
+ALTER TABLE purchasing.purchase_header ADD COLUMN IF NOT EXISTS payment_terms_code varchar(20)   NOT NULL DEFAULT '';
+ALTER TABLE purchasing.purchase_header ADD COLUMN IF NOT EXISTS external_document_no varchar(50)  NOT NULL DEFAULT '';
+ALTER TABLE purchasing.purchase_header ADD COLUMN IF NOT EXISTS due_date          timestamp;
+SCHEMA_SQL
+
 # Seed no-series (idempotente)
 echo "--- Seed no-series..."
 sshpass -p "$SERVER_PASS" ssh -o StrictHostKeyChecking=no "$SERVER" \
-  "docker exec synset-postgres psql -U nexus_user -d nexus_db" <<SQL 2>/dev/null || true
+  "docker exec -i synset-postgres psql -U nexus_user -d nexus_db" <<SQL 2>/dev/null || true
 INSERT INTO administration.no_series ("Id", tenant_id, code, description, default_nos, manual_nos, date_order, "CreatedAt", "UpdatedAt")
-VALUES
-  (gen_random_uuid(), '$TENANT_ID', 'CUST', 'Clientes',            true, false, false, NOW(), NOW()),
-  (gen_random_uuid(), '$TENANT_ID', 'ITEM', 'Artículos',           true, false, false, NOW(), NOW()),
-  (gen_random_uuid(), '$TENANT_ID', 'VEND', 'Proveedores',         true, false, false, NOW(), NOW()),
-  (gen_random_uuid(), '$TENANT_ID', 'PV',   'Pedidos de Venta',    true, false, false, NOW(), NOW()),
-  (gen_random_uuid(), '$TENANT_ID', 'COT',  'Cotizaciones',        true, false, false, NOW(), NOW()),
-  (gen_random_uuid(), '$TENANT_ID', 'FAC',  'Facturas Directas',   true, false, false, NOW(), NOW()),
-  (gen_random_uuid(), '$TENANT_ID', 'SI',   'Facturas Publicadas', true, false, false, NOW(), NOW())
-ON CONFLICT DO NOTHING;
+SELECT gen_random_uuid(), '$TENANT_ID', v.code, v.description, true, false, false, NOW(), NOW()
+FROM (VALUES
+  ('CUST', 'Clientes'),
+  ('ITEM', 'Artículos'),
+  ('VEND', 'Proveedores'),
+  ('ORD',  'Órdenes de Venta'),
+  ('PV',   'Pedidos de Venta'),
+  ('COT',  'Cotizaciones'),
+  ('PC',   'Pedidos de Compra'),
+  ('FAC',  'Facturas Directas'),
+  ('SI',   'Facturas Publicadas')
+) AS v(code, description)
+WHERE NOT EXISTS (
+  SELECT 1 FROM administration.no_series ns
+  WHERE ns.tenant_id = '$TENANT_ID' AND ns.code = v.code
+);
 
 INSERT INTO administration.no_series_line ("Id", tenant_id, series_code, line_no, starting_no, ending_no, warning_no, increment_by_no, last_no_used, open, "CreatedAt", "UpdatedAt")
 SELECT gen_random_uuid(), '$TENANT_ID', code, 10,
   CASE code
     WHEN 'CUST' THEN 'C-00001'   WHEN 'ITEM' THEN 'ART-00001'
-    WHEN 'VEND' THEN 'V-00001'   WHEN 'PV'   THEN 'PV-000001' 
+    WHEN 'VEND' THEN 'V-00001'   WHEN 'PV'   THEN 'PV-000001'
+    WHEN 'ORD'  THEN 'ORD-000001' WHEN 'PC'  THEN 'PC-000001'
     WHEN 'COT'  THEN 'COT-000001'
     WHEN 'FAC'  THEN 'FAC-000001' WHEN 'SI'  THEN 'SI-000001'
   END,
   CASE code
     WHEN 'CUST' THEN 'C-99999'   WHEN 'ITEM' THEN 'ART-99999'
     WHEN 'VEND' THEN 'V-99999'   WHEN 'PV'   THEN 'PV-999999'
+    WHEN 'ORD'  THEN 'ORD-999999' WHEN 'PC'  THEN 'PC-999999'
     WHEN 'COT'  THEN 'COT-999999'
     WHEN 'FAC'  THEN 'FAC-999999' WHEN 'SI'  THEN 'SI-999999'
   END,
   '', 1, '', true, NOW(), NOW()
 FROM administration.no_series
-WHERE tenant_id = '$TENANT_ID' AND code IN ('CUST','ITEM','VEND','PV','COT','FAC','SI')
+WHERE tenant_id = '$TENANT_ID' AND code IN ('CUST','ITEM','VEND','ORD','PV','COT','PC','FAC','SI')
   AND NOT EXISTS (
     SELECT 1 FROM administration.no_series_line l
     WHERE l.tenant_id = '$TENANT_ID' AND l.series_code = no_series.code

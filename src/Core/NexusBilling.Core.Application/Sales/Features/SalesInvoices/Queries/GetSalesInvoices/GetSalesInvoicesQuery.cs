@@ -6,9 +6,18 @@ public record SalesInvoiceDto(
     string Id,
     string No,
     string SellToCustomerNo,
+    string SellToCustomerName,
     string BillToName,
     DateTime PostingDate,
-    decimal AmountIncludingVat);
+    DateTime? DueDate,
+    string ExternalDocumentNo,
+    string CurrencyCode,
+    string PaymentTermsCode,
+    string PaymentMethodCode,
+    string SalespersonCode,
+    decimal Amount,
+    decimal AmountIncludingVat,
+    string Status = "posted");
 
 public record GetSalesInvoicesResult(
     IReadOnlyList<SalesInvoiceDto> Items,

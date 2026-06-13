@@ -61,7 +61,7 @@ app.MapFallbackToFile("index.html");
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<NexusBillingDbContext>();
-    // db.Database.Migrate(); // Las tablas ya fueron aprovisionadas por Full_Database_Schema.txt
+    // db.Database.Migrate(); // Tablas aprovisionadas por Full_Database_Schema.txt; columnas nuevas via deploy.sh
 }
 
 app.Run();

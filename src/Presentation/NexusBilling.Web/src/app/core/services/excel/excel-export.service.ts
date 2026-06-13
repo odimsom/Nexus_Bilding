@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import * as ExcelJS from 'exceljs';
-import { saveAs } from 'file-saver';
+import * as XLSX from 'xlsx';
 
 export interface ExcelColumn {
   header: string;
   key: string;
   width?: number;
   numFmt?: string;
-  alignment?: Partial<ExcelJS.Alignment>;
+  alignment?: { horizontal?: string };
 }
 
 export interface ExcelExportOptions {
@@ -19,123 +18,117 @@ export interface ExcelExportOptions {
   data: any[];
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ExcelExportService {
-  constructor() {}
 
   async exportAsExcel(options: ExcelExportOptions): Promise<void> {
-    const workbook = new ExcelJS.Workbook();
-    workbook.creator = 'Nexus Billing';
-    workbook.lastModifiedBy = 'Nexus Billing';
-    workbook.created = new Date();
-    workbook.modified = new Date();
+    const wb = XLSX.utils.book_new();
+    const dateStr = new Intl.DateTimeFormat('es-DO', { dateStyle: 'long', timeStyle: 'short' }).format(new Date());
+    const subtitle = options.subtitle
+      ? `${options.subtitle}  •  Generado: ${dateStr}`
+      : `Generado: ${dateStr}`;
 
-    const sheetName = options.sheetName || 'Hoja1';
-    const worksheet = workbook.addWorksheet(sheetName, {
-      properties: { tabColor: { argb: 'FF004B87' } },
-      views: [{ showGridLines: false }]
-    });
+    const sheetName = (options.sheetName ?? options.filename).slice(0, 31);
 
-    let currentRow = 1;
+    // Build rows: title row, subtitle row, blank, header row, data rows
+    const titleRow = [options.title];
+    const subtitleRow = [subtitle];
+    const blankRow: string[] = [];
+    const headerRow = options.columns.map(c => c.header);
+    const dataRows = options.data.map(row =>
+      options.columns.map(col => {
+        const val = row[col.key];
+        return val === undefined || val === null ? '' : val;
+      })
+    );
 
-    // 1. Título
-    const titleCell = worksheet.getCell(`A${currentRow}`);
-    titleCell.value = options.title;
-    titleCell.font = { name: 'Arial', size: 16, bold: true, color: { argb: 'FF003366' } };
-    titleCell.alignment = { vertical: 'middle', horizontal: 'left' };
-    currentRow++;
+    const allRows = [titleRow, subtitleRow, blankRow, headerRow, ...dataRows];
+    const ws = XLSX.utils.aoa_to_sheet(allRows);
 
-    // 2. Subtítulo (ej. Fecha de generación)
-    const dateStr = new Intl.DateTimeFormat('es-DO', { dateStyle: 'full', timeStyle: 'short' }).format(new Date());
-    const subtitleCell = worksheet.getCell(`A${currentRow}`);
-    subtitleCell.value = options.subtitle ? `${options.subtitle} - Generado el: ${dateStr}` : `Generado el: ${dateStr}`;
-    subtitleCell.font = { name: 'Arial', size: 10, italic: true, color: { argb: 'FF666666' } };
-    subtitleCell.alignment = { vertical: 'middle', horizontal: 'left' };
-    currentRow += 2; // Dejar una fila en blanco
+    const totalCols = options.columns.length;
 
-    // 3. Encabezados de la Tabla
-    const headerRow = worksheet.getRow(currentRow);
-    options.columns.forEach((col, index) => {
-      const cell = headerRow.getCell(index + 1);
-      cell.value = col.header;
-      cell.font = { name: 'Arial', size: 11, bold: true, color: { argb: 'FFFFFFFF' } };
-      cell.fill = {
-        type: 'pattern',
-        pattern: 'solid',
-        fgColor: { argb: 'FF004B87' } // Nexus Blue
+    // Column widths
+    ws['!cols'] = options.columns.map(c => ({ wch: c.width ?? 18 }));
+
+    // Merge title across all columns
+    ws['!merges'] = [
+      { s: { r: 0, c: 0 }, e: { r: 0, c: totalCols - 1 } },
+      { s: { r: 1, c: 0 }, e: { r: 1, c: totalCols - 1 } },
+    ];
+
+    // Style title cell (bold, larger)
+    const titleCellAddr = XLSX.utils.encode_cell({ r: 0, c: 0 });
+    if (ws[titleCellAddr]) {
+      ws[titleCellAddr].s = {
+        font: { bold: true, sz: 14, color: { rgb: '1A1A2E' } },
+        fill: { fgColor: { rgb: '0D9488' } },
+        alignment: { horizontal: 'left', vertical: 'center' },
       };
-      cell.alignment = { vertical: 'middle', horizontal: col.alignment?.horizontal || 'left', wrapText: true };
-      cell.border = {
-        top: { style: 'thin', color: { argb: 'FF004B87' } },
-        left: { style: 'thin', color: { argb: 'FFFFFFFF' } },
-        bottom: { style: 'thin', color: { argb: 'FF004B87' } },
-        right: { style: 'thin', color: { argb: 'FFFFFFFF' } }
+    }
+
+    // Style subtitle cell
+    const subCellAddr = XLSX.utils.encode_cell({ r: 1, c: 0 });
+    if (ws[subCellAddr]) {
+      ws[subCellAddr].s = {
+        font: { sz: 9, color: { rgb: '6B7280' }, italic: true },
+        alignment: { horizontal: 'left' },
       };
-      
-      // Establecer ancho de columna
-      const wsColumn = worksheet.getColumn(index + 1);
-      wsColumn.width = col.width || 20;
-    });
-    headerRow.height = 25;
-    
-    // Activar Autofiltro
-    const lastColLetter = this.getColumnLetter(options.columns.length);
-    worksheet.autoFilter = `A${currentRow}:${lastColLetter}${currentRow}`;
-    
-    currentRow++;
+    }
 
-    // 4. Datos
-    options.data.forEach((rowData, rowIndex) => {
-      const row = worksheet.getRow(currentRow);
-      const isAlternate = rowIndex % 2 !== 0;
-      
-      options.columns.forEach((col, colIndex) => {
-        const cell = row.getCell(colIndex + 1);
-        const val = rowData[col.key];
-        cell.value = val === undefined || val === null ? '' : val;
-        
-        cell.font = { name: 'Arial', size: 10, color: { argb: 'FF333333' } };
-        cell.alignment = { vertical: 'middle', horizontal: col.alignment?.horizontal || 'left' };
-        
-        if (col.numFmt) {
-          cell.numFmt = col.numFmt;
-        }
+    // Style header row (row index 3)
+    for (let c = 0; c < totalCols; c++) {
+      const addr = XLSX.utils.encode_cell({ r: 3, c });
+      if (ws[addr]) {
+        ws[addr].s = {
+          font: { bold: true, sz: 10, color: { rgb: 'FFFFFF' } },
+          fill: { fgColor: { rgb: '1E293B' } },
+          alignment: { horizontal: 'center', vertical: 'center' },
+          border: {
+            bottom: { style: 'thin', color: { rgb: '0D9488' } },
+          },
+        };
+      }
+    }
 
-        // Color de cebra sutil
-        if (isAlternate) {
-          cell.fill = {
-            type: 'pattern',
-            pattern: 'solid',
-            fgColor: { argb: 'FFF9FAFB' }
+    // Style data rows with alternating background
+    const dataStartRow = 4;
+    for (let r = 0; r < dataRows.length; r++) {
+      const isEven = r % 2 === 0;
+      const fillColor = isEven ? 'F8FAFC' : 'FFFFFF';
+      for (let c = 0; c < totalCols; c++) {
+        const addr = XLSX.utils.encode_cell({ r: dataStartRow + r, c });
+        if (ws[addr]) {
+          ws[addr].s = {
+            fill: { fgColor: { rgb: fillColor } },
+            font: { sz: 10 },
+            alignment: { vertical: 'center' },
           };
         }
-
-        // Bordes suaves
-        cell.border = {
-          bottom: { style: 'hair', color: { argb: 'FFE5E7EB' } }
-        };
-      });
-      
-      row.height = 20;
-      currentRow++;
-    });
-
-    // 5. Descarga
-    const buffer = await workbook.xlsx.writeBuffer();
-    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    saveAs(blob, `${options.filename}.xlsx`);
-  }
-
-  private getColumnLetter(colIndex: number): string {
-    let temp = colIndex;
-    let letter = '';
-    while (temp > 0) {
-      let modulo = (temp - 1) % 26;
-      letter = String.fromCharCode(65 + modulo) + letter;
-      temp = (temp - modulo) / 26;
+      }
     }
-    return letter;
+
+    // Freeze top 4 rows (title, subtitle, blank, header)
+    ws['!freeze'] = { xSplit: 0, ySplit: 4 };
+
+    // Row heights
+    ws['!rows'] = [
+      { hpt: 24 }, // title
+      { hpt: 14 }, // subtitle
+      { hpt: 6  }, // blank
+      { hpt: 20 }, // header
+    ];
+
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+
+    const wbOut = XLSX.write(wb, { bookType: 'xlsx', type: 'array', cellStyles: true });
+    const blob = new Blob([wbOut], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${options.filename}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 }

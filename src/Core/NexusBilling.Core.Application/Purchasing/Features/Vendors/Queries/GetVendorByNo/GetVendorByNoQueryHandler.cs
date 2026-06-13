@@ -21,8 +21,21 @@ public sealed class GetVendorByNoQueryHandler(
             vendor.No,
             vendor.Name,
             vendor.Address,
+            vendor.Address2,
             vendor.City,
+            vendor.Province,
+            vendor.Country,
             vendor.Contact,
+            vendor.PhoneNo,
+            vendor.PhoneNo2,
+            vendor.Email,
+            vendor.WebSite,
+            vendor.Rnc,
+            vendor.PaymentTermsCode,
+            vendor.PaymentMethodCode,
+            vendor.CurrencyCode,
+            vendor.CreditLimit,
+            vendor.VendorType,
             vendor.Blocked);
     }
 }

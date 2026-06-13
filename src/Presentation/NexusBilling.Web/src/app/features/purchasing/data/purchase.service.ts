@@ -46,9 +46,19 @@ export class PurchaseOrderService {
     return res.no;
   }
 
-  post(no: string) {
+  async updateLines(no: string, lines: {
+    itemNo: string; description: string; quantity: number;
+    unitPrice: number; lineDiscountPct: number; unitOfMeasure: string; lineType?: string;
+  }[]): Promise<{ amount: number; amountIncludingVat: number }> {
     return firstValueFrom(
-      this.api.post<{invoiceNo: string}>(`purchasing/orders/${no}/post`, {})
+      this.api.put<{ amount: number; amountIncludingVat: number }>(
+        `purchasing/orders/${encodeURIComponent(no)}/lines`, lines)
+    );
+  }
+
+  async post(no: string): Promise<{ invoiceNo: string }> {
+    return firstValueFrom(
+      this.api.post<{ invoiceNo: string }>(`purchasing/orders/${encodeURIComponent(no)}/post`, {})
     );
   }
 }

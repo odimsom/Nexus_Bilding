@@ -162,7 +162,7 @@ export class VendorListPage implements OnInit {
   showNewModal = signal(false);
   saving = signal(false);
   createError = signal('');
-  newForm = { name: '', address: '', city: '', contact: '' };
+  newForm = { name: '', address: '', address2: '', city: '', province: '', country: '', contact: '', phoneNo: '', phoneNo2: '', email: '', webSite: '', rnc: '', paymentTermsCode: '', paymentMethodCode: '', currencyCode: '', creditLimit: 0, vendorType: '' };
 
   sortField = 'name';
   sortAsc = true;
@@ -222,7 +222,7 @@ export class VendorListPage implements OnInit {
   }
 
   openNew() {
-    this.newForm = { name: '', address: '', city: '', contact: '' };
+    this.newForm = { name: '', address: '', address2: '', city: '', province: '', country: '', contact: '', phoneNo: '', phoneNo2: '', email: '', webSite: '', rnc: '', paymentTermsCode: '', paymentMethodCode: '', currencyCode: '', creditLimit: 0, vendorType: '' };
     this.createError.set('');
     this.showNewModal.set(true);
   }

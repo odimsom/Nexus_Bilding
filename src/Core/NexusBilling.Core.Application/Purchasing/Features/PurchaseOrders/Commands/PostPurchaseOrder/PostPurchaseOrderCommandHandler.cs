@@ -1,10 +1,11 @@
 using MediatR;
+using NexusBilling.Core.Application.Administration.Services;
 using NexusBilling.Core.Domain.Common;
 using NexusBilling.Core.Domain.Interfaces.Repositories.Base;
-using NexusBilling.Core.Domain.Purchasing.Entities;
-using NexusBilling.Core.Domain.Purchasing.Repositories;
 using NexusBilling.Core.Domain.Inventory.Entities;
 using NexusBilling.Core.Domain.Inventory.Repositories;
+using NexusBilling.Core.Domain.Purchasing.Entities;
+using NexusBilling.Core.Domain.Purchasing.Repositories;
 using System.Reflection;
 
 namespace NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.PostPurchaseOrder;
@@ -15,6 +16,7 @@ public sealed class PostPurchaseOrderCommandHandler(
     IPurchInvHeaderRepository invoiceHeaderRepo,
     IPurchInvLineRepository invoiceLineRepo,
     IItemLedgerEntryRepository itemLedgerRepo,
+    NoSeriesService noSeriesService,
     IUnitOfWork uow)
     : IRequestHandler<PostPurchaseOrderCommand, PostPurchaseOrderResult>
 {
@@ -22,89 +24,94 @@ public sealed class PostPurchaseOrderCommandHandler(
     {
         var tid = TenantIdentifier.Create(cmd.TenantId);
 
-        // 1. Fetch Order
         var order = await headerRepo.GetByNoAsync(cmd.No, ct)
             ?? throw new InvalidOperationException($"Pedido {cmd.No} no encontrado.");
 
-        var lines = (await lineRepo.GetByDocumentNoAsync(1 /* Order */, cmd.No, ct)).ToList();
+        if (order.TenantId != tid)
+            throw new InvalidOperationException($"Pedido {cmd.No} no encontrado.");
 
-        // 2. Create Posted Invoice
-        var invoiceNo = "PINV-" + order.No;
-        
-        var invoiceHeaderResult = PurchInvHeader.Create(tid);
-        if (!invoiceHeaderResult.IsSuccess)
-            throw new InvalidOperationException("Error creando cabecera de factura de compra.");
+        if (order.Status != "Open")
+            throw new InvalidOperationException($"El pedido {cmd.No} debe estar en estado Abierto para ser contabilizado.");
 
-        var invoiceHeader = invoiceHeaderResult.GetValue()!;
-        SetProperty(invoiceHeader, "No", invoiceNo);
-        SetProperty(invoiceHeader, "BuyFromVendorNo", order.BuyFromVendorNo);
-        SetProperty(invoiceHeader, "PayToName", order.PayToName);
-        SetProperty(invoiceHeader, "PostingDate", DateTime.UtcNow);
-        // Assume Amount fields are public or we use reflection for now if they are private
-        SetProperty(invoiceHeader, "Amount", order.Amount);
-        SetProperty(invoiceHeader, "AmountIncludingVat", order.AmountIncludingVat);
+        var lines = (await lineRepo.GetByDocumentNoAsync(1, cmd.No, ct)).ToList();
+        if (lines.Count == 0)
+            throw new InvalidOperationException("El pedido no tiene líneas. Agrega al menos una línea antes de contabilizar.");
+
+        // Generate invoice number via No-Series
+        var invoiceNo = await noSeriesService.GetNextNoAsync(cmd.TenantId, "FCP", ct);
+
+        // Create posted invoice header
+        var headerResult = PurchInvHeader.Create(tid);
+        if (!headerResult.IsSuccess)
+            throw new InvalidOperationException("Error al crear cabecera de factura de compra.");
+
+        var invoiceHeader = headerResult.GetValue()!;
+        Set(invoiceHeader, "No", invoiceNo);
+        Set(invoiceHeader, "BuyFromVendorNo", order.BuyFromVendorNo ?? string.Empty);
+        Set(invoiceHeader, "PayToName", order.PayToName ?? string.Empty);
+        Set(invoiceHeader, "PostingDate", DateTime.UtcNow);
+        Set(invoiceHeader, "OrderNo", order.No);
+        Set(invoiceHeader, "CurrencyCode", order.CurrencyCode ?? string.Empty);
+        Set(invoiceHeader, "PaymentTermsCode", order.PaymentTermsCode ?? string.Empty);
+        Set(invoiceHeader, "VendorInvoiceNo", order.ExternalDocumentNo ?? string.Empty);
 
         await invoiceHeaderRepo.AddAsync(invoiceHeader, ct);
 
-        // 3. Process Lines & Inventory
+        // Create invoice lines
+        int lineNo = 10000;
         foreach (var l in lines)
         {
-            var invLineResult = PurchInvLine.Create(tid);
-            if (!invLineResult.IsSuccess) continue;
+            var lineResult = PurchInvLine.Create(tid);
+            if (!lineResult.IsSuccess) continue;
 
-            var invLine = invLineResult.GetValue()!;
-            SetProperty(invLine, "DocumentNo", invoiceNo);
-            SetProperty(invLine, "No", l.No);
-            SetProperty(invLine, "Description", l.Description);
-            SetProperty(invLine, "Quantity", l.Quantity);
-            SetProperty(invLine, "UnitPrice", l.DirectUnitCost);
-            SetProperty(invLine, "Amount", l.Amount);
-            SetProperty(invLine, "AmountIncludingVat", l.AmountIncludingVat);
+            var invLine = lineResult.GetValue()!;
+            Set(invLine, "DocumentNo", invoiceNo);
+            Set(invLine, "BuyFromVendorNo", order.BuyFromVendorNo ?? string.Empty);
+            Set(invLine, "LineNo", lineNo);
+            Set(invLine, "No", l.No ?? string.Empty);
+            Set(invLine, "Description", l.Description ?? string.Empty);
+            Set(invLine, "Quantity", l.Quantity);
+            Set(invLine, "DirectUnitCost", l.DirectUnitCost);
+            Set(invLine, "Vat", l.Vat);
+            Set(invLine, "Amount", l.Amount);
+            Set(invLine, "AmountIncludingVat", l.AmountIncludingVat);
+            Set(invLine, "UnitOfMeasureCode", l.UnitOfMeasure ?? string.Empty);
 
             await invoiceLineRepo.AddAsync(invLine, ct);
 
-            // Inventory increment if it's an Item
-            if (l.Type == 2 /* Item */ && !string.IsNullOrEmpty(l.No))
+            // Update inventory for item type lines
+            if (l.Type == 2 && !string.IsNullOrEmpty(l.No))
             {
-                // Create Item Ledger Entry
-                int entryNo = new Random().Next(10000, 99999);
+                var entryNo = Math.Abs(Guid.NewGuid().GetHashCode()) % 900000 + 100000;
                 var ileResult = ItemLedgerEntry.Create(tid, entryNo);
-                    if (ileResult.IsSuccess)
-                    {
-                        var ile = ileResult.GetValue()!;
-                        SetProperty(ile, "ItemNo", l.No);
-                        SetProperty(ile, "PostingDate", DateTime.UtcNow);
-                        SetProperty(ile, "EntryType", 1 /* Purchase */);
-                        SetProperty(ile, "DocumentNo", invoiceNo);
-                        SetProperty(ile, "Quantity", l.Quantity);
-
-                        await itemLedgerRepo.AddAsync(ile, ct);
-                    }
+                if (ileResult.IsSuccess)
+                {
+                    var ile = ileResult.GetValue()!;
+                    Set(ile, "ItemNo", l.No);
+                    Set(ile, "PostingDate", DateTime.UtcNow);
+                    Set(ile, "EntryType", 1); // Purchase
+                    Set(ile, "DocumentNo", invoiceNo);
+                    Set(ile, "Quantity", l.Quantity);
+                    await itemLedgerRepo.AddAsync(ile, ct);
+                }
             }
+
+            lineNo += 10000;
         }
 
-        // 4. Update order status or delete. Let's just update status to 'Released' to keep history for now.
-        order.Status = "Released";
+        // Mark order as posted
+        order.Status = "Posted";
         await headerRepo.UpdateAsync(order, ct);
 
         await uow.SaveChangesAsync(ct);
         return new PostPurchaseOrderResult(invoiceNo);
     }
 
-    private void SetProperty(object obj, string propertyName, object value)
+    private static void Set(object obj, string prop, object value)
     {
-        var prop = obj.GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-        if (prop != null && prop.CanWrite)
-        {
-            prop.SetValue(obj, value);
-        }
-        else
-        {
-            var field = obj.GetType().GetField($"<{propertyName}>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (field != null)
-            {
-                field.SetValue(obj, value);
-            }
-        }
+        var pi = obj.GetType().GetProperty(prop, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        if (pi?.CanWrite == true) { pi.SetValue(obj, value); return; }
+        var fi = obj.GetType().GetField($"<{prop}>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance);
+        fi?.SetValue(obj, value);
     }
 }

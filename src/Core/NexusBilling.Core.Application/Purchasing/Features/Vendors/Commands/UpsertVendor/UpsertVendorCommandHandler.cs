@@ -28,11 +28,14 @@ public sealed class UpsertVendorCommandHandler(
         {
             var vendorNo = request.No;
             if (string.IsNullOrWhiteSpace(vendorNo))
-            {
                 vendorNo = await noSeriesService.GetNextNoAsync(request.TenantId, "VEND", cancellationToken);
-            }
 
-            var result = Vendor.Create(tenantId, vendorNo, request.Name, request.Address, request.City, request.Contact);
+            var result = Vendor.Create(tenantId, vendorNo, request.Name,
+                request.Address, request.Address2, request.City, request.Province, request.Country,
+                request.Contact, request.PhoneNo, request.PhoneNo2, request.Email, request.WebSite,
+                request.Rnc, request.PaymentTermsCode, request.PaymentMethodCode,
+                request.CurrencyCode, request.CreditLimit, request.VendorType);
+
             if (!result.IsSuccess)
                 throw new InvalidOperationException(result.GetError()?.Message ?? "Error al crear proveedor");
 
@@ -42,7 +45,12 @@ public sealed class UpsertVendorCommandHandler(
         }
         else
         {
-            vendor.Update(request.Name, request.Address, request.City, request.Contact);
+            vendor.Update(
+                request.Name, request.Address, request.Address2, request.City,
+                request.Province, request.Country, request.Contact,
+                request.PhoneNo, request.PhoneNo2, request.Email, request.WebSite,
+                request.Rnc, request.PaymentTermsCode, request.PaymentMethodCode,
+                request.CurrencyCode, request.CreditLimit, request.VendorType);
             await vendorRepository.UpdateAsync(vendor);
         }
 

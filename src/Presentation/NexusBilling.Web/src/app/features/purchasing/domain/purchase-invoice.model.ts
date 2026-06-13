@@ -23,3 +23,21 @@ export interface PurchaseInvoiceDetail extends PurchaseInvoice {
   paymentTermsCode: string;
   lines: PurchaseInvoiceLine[];
 }
+
+export interface CreateInvoiceLineForm {
+  description: string;
+  quantity: number;
+  unitCost: number;
+  unitOfMeasureCode: string;
+  vatPct: number;
+}
+
+export interface CreatePurchaseInvoiceDto {
+  buyFromVendorNo: string;
+  payToName: string;
+  postingDate: string;
+  externalDocumentNo: string;
+  paymentTermsCode: string;
+  currencyCode: string;
+  lines: CreateInvoiceLineForm[];
+}

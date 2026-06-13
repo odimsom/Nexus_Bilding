@@ -1,4 +1,5 @@
 using MediatR;
+using NexusBilling.Core.Application.Administration.Services;
 using NexusBilling.Core.Application.Ecf.Interfaces;
 using NexusBilling.Core.Domain.Common;
 using NexusBilling.Core.Domain.Ecf.Entities;
@@ -17,6 +18,7 @@ public sealed class PostSalesOrderCommandHandler(
     IEcfCompanyConfigRepository ecfConfigRepo,
     IEcfDocumentRepository ecfDocRepo,
     IEcfService ecfService,
+    NoSeriesService noSeriesService,
     IUnitOfWork uow)
     : IRequestHandler<PostSalesOrderCommand, PostSalesOrderResult>
 {
@@ -28,10 +30,15 @@ public sealed class PostSalesOrderCommandHandler(
         var order = await headerRepo.GetByNoForTenantAsync(cmd.TenantId, cmd.No, ct)
             ?? throw new InvalidOperationException($"Orden {cmd.No} no encontrada.");
 
-        var lines = (await lineRepo.GetByDocumentNoAsync(1 /* Order */, cmd.No, ct)).ToList();
+        if (order.Status != "Open" && order.Status != "Released")
+            throw new InvalidOperationException($"La orden {cmd.No} debe estar Abierta o Lanzada para contabilizarse.");
 
-        // 2. Create Posted Invoice
-        var invoiceNo = "INV-" + order.No; // En un flujo real esto viene de una serie (NoSeries)
+        var lines = (await lineRepo.GetByDocumentNoAsync(1 /* Order */, cmd.No, ct)).ToList();
+        if (lines.Count == 0)
+            throw new InvalidOperationException("La orden no tiene líneas. Agrega al menos una línea antes de contabilizar.");
+
+        // 2. Generate invoice number via No-Series
+        var invoiceNo = await noSeriesService.GetNextNoAsync(cmd.TenantId, "FS", ct);
         
         var invoiceHeaderResult = SalesInvoiceHeader.Create(tid);
         if (!invoiceHeaderResult.IsSuccess)
@@ -40,17 +47,23 @@ public sealed class PostSalesOrderCommandHandler(
         var invoiceHeader = invoiceHeaderResult.GetValue()!;
         invoiceHeader.No = invoiceNo;
         invoiceHeader.SellToCustomerNo = order.SellToCustomerNo;
-        invoiceHeader.BillToName = order.BillToName;
+        invoiceHeader.SellToCustomerName = order.SellToCustomerName;
+        invoiceHeader.BillToName = order.BillToName ?? order.SellToCustomerName;
         invoiceHeader.PostingDate = DateTime.UtcNow;
+        invoiceHeader.DueDate = order.DueDate;
         invoiceHeader.Amount = order.Amount;
         invoiceHeader.AmountIncludingVat = order.AmountIncludingVat;
         invoiceHeader.CurrencyCode = order.CurrencyCode;
         invoiceHeader.PaymentTermsCode = order.PaymentTermsCode;
-        invoiceHeader.VatRegistrationNo = order.ExternalDocumentNo; // Simulación
+        invoiceHeader.PaymentMethodCode = order.PaymentMethodCode;
+        invoiceHeader.SalespersonCode = order.SalespersonCode;
+        invoiceHeader.ExternalDocumentNo = order.ExternalDocumentNo;
+        invoiceHeader.OrderNo = order.No;
 
         await invoiceHeaderRepo.AddAsync(invoiceHeader, ct);
 
         var invoiceLines = new List<SalesInvoiceLine>();
+        int lineNo = 10000;
         foreach (var l in lines)
         {
             var invLineResult = SalesInvoiceLine.Create(tid);
@@ -58,13 +71,17 @@ public sealed class PostSalesOrderCommandHandler(
 
             var invLine = invLineResult.GetValue()!;
             invLine.DocumentNo = invoiceNo;
+            invLine.LineNo = lineNo;
+            invLine.No = l.No ?? string.Empty;
             invLine.Description = l.Description;
             invLine.Quantity = l.Quantity;
             invLine.UnitPrice = l.UnitPrice;
+            invLine.LineDiscount = l.LineDiscount;
             invLine.Amount = l.Amount;
             invLine.AmountIncludingVat = l.AmountIncludingVat;
             invLine.UnitOfMeasureCode = l.UnitOfMeasure;
             invLine.Vat = l.Vat;
+            lineNo += 10000;
 
             await invoiceLineRepo.AddAsync(invLine, ct);
             invoiceLines.Add(invLine);

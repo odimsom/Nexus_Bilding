@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { ServiceOrderService, CreateServiceOrderData } from '../../../data/service-order.service';
 import { ServiceOrderListItem } from '../../../domain/service-order.model';
+import { sortBy } from '../../../../../shared/utils/sort.utils';
 import { ApiService } from '../../../../../core/services/api.service';
 import { CustomerService } from '../../../../customers/data/customer.service';
 import { ItemService, ItemListItem } from '../../../../inventory/data/item.service';
@@ -84,18 +85,18 @@ interface ServiceLine {
           <table class="nx-table" aria-label="Órdenes de servicio">
             <thead>
               <tr>
-                <th>No.</th>
-                <th>Tipo</th>
-                <th>Cliente</th>
+                <th class="sortable" (click)="setSort('no')">No. {{ si('no') }}</th>
+                <th class="sortable" (click)="setSort('documentType')">Tipo {{ si('documentType') }}</th>
+                <th class="sortable" (click)="setSort('customerName')">Cliente {{ si('customerName') }}</th>
                 <th>Descripción</th>
-                <th>Inicio</th>
-                <th>Fin</th>
+                <th class="sortable" (click)="setSort('startingDate')">Inicio {{ si('startingDate') }}</th>
+                <th class="sortable" (click)="setSort('finishingDate')">Fin {{ si('finishingDate') }}</th>
                 <th>Contrato</th>
-                <th>Estado</th>
+                <th class="sortable" (click)="setSort('status')">Estado {{ si('status') }}</th>
               </tr>
             </thead>
             <tbody>
-              @for (o of filtered(); track o.no) {
+              @for (o of sortedFiltered(); track o.no) {
                 <tr style="cursor:pointer;" [routerLink]="['/services', o.no]">
                   <td class="nx-td--doc">{{ o.no }}</td>
                   <td style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">{{ o.documentType }}</td>
@@ -333,6 +334,7 @@ interface ServiceLine {
     :host { display: block; }
     .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:4rem auto; }
     @keyframes spin { to { transform:rotate(360deg); } }
+    .sortable { cursor:pointer; user-select:none; white-space:nowrap; }
     .modal-backdrop { position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:1000; }
     .modal-box { background:var(--nx-surface);border-radius:var(--nx-radius-xl);width:min(720px,96vw);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--nx-shadow-xl); }
     .modal-box--wide { width:min(1000px,96vw); }
@@ -358,6 +360,27 @@ export class ServiceOrderListPage implements OnInit {
   searchText = '';
   activeTab = signal<string>('all');
   filtered = signal<ServiceOrderListItem[]>([]);
+
+  sortField = 'no';
+  sortAsc = false;
+
+  sortedFiltered(): ServiceOrderListItem[] {
+    return sortBy(this.filtered(), this.sortField, this.sortAsc);
+  }
+
+  setSort(f: string): void {
+    if (this.sortField === f) {
+      this.sortAsc = !this.sortAsc;
+    } else {
+      this.sortField = f;
+      this.sortAsc = true;
+    }
+  }
+
+  si(f: string): string {
+    if (this.sortField !== f) return '';
+    return this.sortAsc ? '↑' : '↓';
+  }
 
   showNew = signal(false);
   saving = signal(false);

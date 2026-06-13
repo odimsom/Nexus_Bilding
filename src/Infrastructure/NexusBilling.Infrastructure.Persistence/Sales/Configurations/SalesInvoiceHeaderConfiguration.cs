@@ -118,5 +118,8 @@ public class SalesInvoiceHeaderConfiguration : IEntityTypeConfiguration<SalesInv
         builder.Property(x => x.ResponsibilityCenter).HasColumnName("responsibility_center");
         builder.Property(x => x.AllowLineDisc).HasColumnName("allow_line_disc");
         builder.Property(x => x.GetShipmentUsed).HasColumnName("get_shipment_used");
+        // Amount y AmountIncludingVat no existen en la tabla — se calculan desde sales_invoice_line
+        builder.Ignore(x => x.Amount);
+        builder.Ignore(x => x.AmountIncludingVat);
     }
 }

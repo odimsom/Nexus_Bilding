@@ -377,7 +377,7 @@ export class DashboardLayoutComponent {
   isActive(route: string): boolean {
     const url = this.currentUrl();
     if (route === '/dashboard') return url === '/dashboard' || url === '/';
-    return url.startsWith(route);
+    return url === route || url.startsWith(route + '/');
   }
 
   navigate(route: string): void { this.router.navigate([route]); }

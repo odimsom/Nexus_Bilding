@@ -44,9 +44,22 @@ namespace NexusBilling.Api.Controllers.Purchasing;
 
 public record CreateVendorRequest(
     string Name,
-    string Address,
-    string City,
-    string Contact);
+    string? Address,
+    string? Address2,
+    string? City,
+    string? Province,
+    string? Country,
+    string? Contact,
+    string? PhoneNo,
+    string? PhoneNo2,
+    string? Email,
+    string? WebSite,
+    string? Rnc,
+    string? PaymentTermsCode,
+    string? PaymentMethodCode,
+    string? CurrencyCode,
+    decimal? CreditLimit,
+    string? VendorType);
 
 [Authorize]
 [ApiController]
@@ -79,7 +92,11 @@ public class VendorsController(IMediator mediator) : ControllerBase
         if (tenantId == Guid.Empty)
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
-        var cmd = new CreateVendorCommand(tenantId, req.Name, req.Address ?? "", req.City ?? "", req.Contact ?? "");
+        var cmd = new CreateVendorCommand(tenantId, req.Name,
+            req.Address ?? "", req.Address2 ?? "", req.City ?? "", req.Province ?? "", req.Country ?? "",
+            req.Contact ?? "", req.PhoneNo ?? "", req.PhoneNo2 ?? "", req.Email ?? "", req.WebSite ?? "",
+            req.Rnc ?? "", req.PaymentTermsCode ?? "", req.PaymentMethodCode ?? "",
+            req.CurrencyCode ?? "", req.CreditLimit ?? 0m, req.VendorType ?? "");
         var no = await mediator.Send(cmd, cancellationToken);
 
         return Ok(ApiResponse<object>.Ok(new { No = no }));
@@ -107,7 +124,11 @@ public class VendorsController(IMediator mediator) : ControllerBase
         if (tenantId == Guid.Empty)
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
-        var cmd = new UpsertVendorCommand(tenantId, no, no, req.Name, req.Address ?? "", req.City ?? "", req.Contact ?? "");
+        var cmd = new UpsertVendorCommand(tenantId, no, no, req.Name,
+            req.Address ?? "", req.Address2 ?? "", req.City ?? "", req.Province ?? "", req.Country ?? "",
+            req.Contact ?? "", req.PhoneNo ?? "", req.PhoneNo2 ?? "", req.Email ?? "", req.WebSite ?? "",
+            req.Rnc ?? "", req.PaymentTermsCode ?? "", req.PaymentMethodCode ?? "",
+            req.CurrencyCode ?? "", req.CreditLimit ?? 0m, req.VendorType ?? "");
         await mediator.Send(cmd, cancellationToken);
 
         return Ok(ApiResponse<object>.Ok(new { No = no }));

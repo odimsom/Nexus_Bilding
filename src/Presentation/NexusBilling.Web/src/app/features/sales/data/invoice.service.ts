@@ -70,6 +70,14 @@ export class InvoiceService {
     return firstValueFrom(this.api.get<SalesOrderDetail>(`sales/orders/${encodeURIComponent(no)}`));
   }
 
+  async updateLines(no: string, lines: SalesOrderLine[]): Promise<{ amount: number; amountIncludingVat: number }> {
+    const res = await firstValueFrom(
+      this.api.put<{ amount: number; amountIncludingVat: number }>(
+        `sales/orders/${encodeURIComponent(no)}/lines`, lines)
+    );
+    return res;
+  }
+
   /* ── Sales Invoices (posted) ───────────────────────────────── */
 
   async loadInvoices(params?: { search?: string; page?: number; pageSize?: number }): Promise<void> {

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UserService, AppUser } from '../../../data/user.service';
+import { sortBy } from '../../../../../shared/utils/sort.utils';
 
 @Component({
   selector: 'app-user-list',
@@ -37,15 +38,15 @@ import { UserService, AppUser } from '../../../data/user.service';
         <table class="nx-table">
           <thead>
             <tr>
-              <th>Usuario</th>
-              <th>Nombre Completo</th>
-              <th>Email</th>
-              <th>Estado</th>
+              <th class="sortable" (click)="setSort('username')">Usuario {{ si('username') }}</th>
+              <th class="sortable" (click)="setSort('fullName')">Nombre Completo {{ si('fullName') }}</th>
+              <th class="sortable" (click)="setSort('email')">Email {{ si('email') }}</th>
+              <th class="sortable" (click)="setSort('isActive')">Estado {{ si('isActive') }}</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            @for (u of users(); track u.id) {
+            @for (u of sorted(); track u.id) {
               <tr>
                 <td style="font-weight:var(--nx-weight-medium);">{{ u.username }}</td>
                 <td>{{ u.fullName || '—' }}</td>
@@ -105,6 +106,7 @@ import { UserService, AppUser } from '../../../data/user.service';
     :host { display: block; }
     .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:4rem auto; }
     @keyframes spin { to { transform:rotate(360deg); } }
+    .sortable { cursor:pointer; user-select:none; white-space:nowrap; }
     .modal-backdrop { position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:1000; }
     .modal-box { background:var(--nx-surface);border-radius:var(--nx-radius-xl);width:min(500px,96vw);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--nx-shadow-xl); }
     .modal-header { display:flex;align-items:center;justify-content:space-between;padding:var(--nx-space-5) var(--nx-space-6);border-bottom:1px solid var(--nx-border); }
@@ -116,10 +118,39 @@ import { UserService, AppUser } from '../../../data/user.service';
 })
 export class UserListPage implements OnInit {
   readonly svc = inject(UserService);
-  
+
   get users() { return this.svc.users; }
   get loading() { return this.svc.loading; }
-  
+
+  sortField = 'username';
+  sortAsc = true;
+
+  sorted(): AppUser[] {
+    const items = this.svc.users();
+    if (this.sortField === 'isActive') {
+      return [...items].sort((a, b) => {
+        const av = a.isActive ? 1 : 0;
+        const bv = b.isActive ? 1 : 0;
+        return this.sortAsc ? av - bv : bv - av;
+      });
+    }
+    return sortBy(items, this.sortField, this.sortAsc);
+  }
+
+  setSort(f: string): void {
+    if (this.sortField === f) {
+      this.sortAsc = !this.sortAsc;
+    } else {
+      this.sortField = f;
+      this.sortAsc = true;
+    }
+  }
+
+  si(f: string): string {
+    if (this.sortField !== f) return '';
+    return this.sortAsc ? '↑' : '↓';
+  }
+
   showModal = signal(false);
   saving = signal(false);
   modalError = signal<string | null>(null);

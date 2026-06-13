@@ -19,7 +19,7 @@ public sealed class GetDashboardStatsQueryHandler(
 
         var (_, customerCount) = await customerRepo.ListAsync(tenantId, null, null, 1, 1, cancellationToken);
         var (_, itemCount)     = await itemRepo.ListAsync(tenantId, null, null, 1, 1, cancellationToken);
-        var (_, vendorCount)   = await vendorRepo.ListAsync(tenantId, null, 1, 1, cancellationToken);
+        var vendorCount        = await vendorRepo.CountForTenantAsync(tenantId, cancellationToken: cancellationToken);
         
         var (allSalesOrders, _)     = await salesRepo.GetPagedForTenantAsync(tenantId, null, null, null, 1, 500, cancellationToken);
         var (allPurchaseOrders, _)  = await purchaseRepo.ListAsync(tenantId, null, 1, 500, cancellationToken);

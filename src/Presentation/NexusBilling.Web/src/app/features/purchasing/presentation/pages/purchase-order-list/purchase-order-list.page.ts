@@ -1,12 +1,14 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { PurchaseOrderService } from '../../../data/purchase.service';
+import { sortBy } from '../../../../../shared/utils/sort.utils';
 
 @Component({
   selector: 'app-purchase-order-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   template: `
     <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
       <a routerLink="/dashboard">Dashboard</a>
@@ -36,7 +38,7 @@ import { PurchaseOrderService } from '../../../data/purchase.service';
         <div class="nx-card__head" style="gap:var(--nx-space-4);flex-wrap:wrap;">
           <div class="nx-input-icon" style="max-width:320px;flex:1;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input class="nx-input" placeholder="Buscar pedidos..." />
+            <input class="nx-input" placeholder="Buscar pedidos..." [(ngModel)]="searchText" (ngModelChange)="applyFilter()" />
           </div>
           <div style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">
             {{ svc.totalItems() }} pedidos en total
@@ -57,15 +59,15 @@ import { PurchaseOrderService } from '../../../data/purchase.service';
             <table class="nx-table">
               <thead>
                 <tr>
-                  <th style="width:120px;">No.</th>
-                  <th>Proveedor</th>
-                  <th>Fecha</th>
-                  <th style="text-align:right;">Monto Total</th>
-                  <th>Estado</th>
+                  <th class="sortable" style="width:120px;" (click)="setSort('no')">No. {{ si('no') }}</th>
+                  <th class="sortable" (click)="setSort('vendorName')">Proveedor {{ si('vendorName') }}</th>
+                  <th class="sortable" (click)="setSort('postingDate')">Fecha {{ si('postingDate') }}</th>
+                  <th class="sortable" style="text-align:right;" (click)="setSort('amountIncludingVat')">Monto Total {{ si('amountIncludingVat') }}</th>
+                  <th class="sortable" (click)="setSort('status')">Estado {{ si('status') }}</th>
                 </tr>
               </thead>
               <tbody>
-                @for (o of svc.items(); track o.no) {
+                @for (o of sorted(); track o.no) {
                   <tr style="cursor:pointer;" [routerLink]="['/purchases', o.no]">
                     <td class="nx-td--doc"><a class="nx-link">{{ o.no }}</a></td>
                     <td style="font-weight:var(--nx-weight-medium);">
@@ -98,14 +100,54 @@ import { PurchaseOrderService } from '../../../data/purchase.service';
     :host { display: block; }
     .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:4rem auto; }
     @keyframes spin { to { transform:rotate(360deg); } }
+    .sortable { cursor:pointer; user-select:none; white-space:nowrap; }
   `]
 })
 export class PurchaseOrderListPage implements OnInit {
   readonly svc = inject(PurchaseOrderService);
   private readonly router = inject(Router);
 
+  sortField = 'postingDate';
+  sortAsc = false;
+  searchText = '';
+  filteredItems = signal<any[]>([]);
+
   async ngOnInit() {
     await this.svc.load();
+    this.applyFilter();
+  }
+
+  applyFilter(): void {
+    const q = this.searchText.toLowerCase().trim();
+    const all = this.svc.items();
+    if (!q) {
+      this.filteredItems.set(all);
+    } else {
+      this.filteredItems.set(all.filter(o =>
+        o.no.toLowerCase().includes(q) ||
+        (o.vendorName ?? '').toLowerCase().includes(q) ||
+        (o.vendorNo ?? '').toLowerCase().includes(q) ||
+        (o.status ?? '').toLowerCase().includes(q)
+      ));
+    }
+  }
+
+  sorted(): any[] {
+    return sortBy(this.filteredItems(), this.sortField, this.sortAsc);
+  }
+
+  setSort(f: string): void {
+    if (this.sortField === f) {
+      this.sortAsc = !this.sortAsc;
+    } else {
+      this.sortField = f;
+      this.sortAsc = true;
+    }
+  }
+
+  si(f: string): string {
+    if (this.sortField !== f) return '';
+    return this.sortAsc ? '↑' : '↓';
   }
 
   createNew() {

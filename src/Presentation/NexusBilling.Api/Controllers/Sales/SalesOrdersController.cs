@@ -21,6 +21,7 @@ using NexusBilling.Core.Application.Purchasing.Features.Vendors.Queries.GetVendo
 using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.CreateSalesOrder;
 using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.PostSalesOrder;
 using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.ReleaseSalesOrder;
+using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.UpdateSalesOrderLines;
 using NexusBilling.Core.Application.Sales.Features.Customers.Commands.SetCustomerBlocked;
 using NexusBilling.Core.Application.Sales.Features.Customers.Commands.UpsertCustomer;
 using NexusBilling.Core.Application.Sales.Features.Customers.Queries.GetCustomerByNo;
@@ -158,6 +159,29 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
         return found
             ? Ok(ApiResponse<object>.Ok(new { no, status = "Released" }))
             : NotFound(ApiResponse<object?>.NotFound($"La orden {no} no fue encontrada."));
+    }
+
+    [HttpPut("{no}/lines")]
+    public async Task<IActionResult> UpdateLines(string no, [FromBody] IReadOnlyList<SalesOrderLineRequest> lines, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        try
+        {
+            var cmd = new UpdateSalesOrderLinesCommand(
+                tenantId, no,
+                lines.Select(l => new SalesOrderLineData(
+                    l.ItemNo, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure, l.LineType))
+                .ToList());
+            var result = await mediator.Send(cmd, cancellationToken);
+            return Ok(ApiResponse<object>.Ok(new { amount = result.Amount, amountIncludingVat = result.AmountIncludingVat }));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
     }
 
     [HttpPost("{no}/post")]

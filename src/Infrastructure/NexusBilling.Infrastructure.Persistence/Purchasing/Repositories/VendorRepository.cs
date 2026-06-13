@@ -21,6 +21,27 @@ public class VendorRepository(NexusBillingDbContext dbContext)
         Guid tenantId, string? search, int page, int pageSize,
         CancellationToken cancellationToken = default)
     {
+        var query = BuildTenantQuery(tenantId, search);
+
+        var total = await CountForTenantAsync(tenantId, search, cancellationToken);
+        var items = await query.OrderBy(x => x.No)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return (items, total);
+    }
+
+    public async Task<int> CountForTenantAsync(
+        Guid tenantId,
+        string? search = null,
+        CancellationToken cancellationToken = default)
+    {
+        return await BuildTenantQuery(tenantId, search).CountAsync(cancellationToken);
+    }
+
+    private IQueryable<Vendor> BuildTenantQuery(Guid tenantId, string? search)
+    {
         var query = _dbContext.Set<Vendor>()
             .Where(x => x.TenantId == TenantIdentifier.Create(tenantId));
 
@@ -30,12 +51,6 @@ public class VendorRepository(NexusBillingDbContext dbContext)
             query = query.Where(x => x.No.ToLower().Contains(s) || x.Name.ToLower().Contains(s));
         }
 
-        var total = await query.CountAsync(cancellationToken);
-        var items = await query.OrderBy(x => x.No)
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync(cancellationToken);
-
-        return (items, total);
+        return query;
     }
 }

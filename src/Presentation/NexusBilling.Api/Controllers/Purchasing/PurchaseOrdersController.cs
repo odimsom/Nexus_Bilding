@@ -39,8 +39,19 @@ using NexusBilling.Core.Application.Security.Features.Users.Queries.GetUsers;
 
 using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Queries.GetPurchaseOrderByNo;
 using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.CreatePurchaseOrder;
+using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.UpdatePurchaseOrderLines;
+using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.PostPurchaseOrder;
 
 namespace NexusBilling.Api.Controllers.Purchasing;
+
+public record PurchaseOrderLineRequest(
+    string ItemNo,
+    string Description,
+    decimal Quantity,
+    decimal UnitPrice,
+    decimal LineDiscountPct,
+    string UnitOfMeasure,
+    string LineType = "Item");
 
 public record CreatePurchaseOrderRequest(
     string BuyFromVendorNo,
@@ -101,7 +112,7 @@ public class PurchaseOrdersController(IMediator mediator) : ControllerBase
         var cmd = new CreatePurchaseOrderCommand(
             tenantId,
             null,
-            "PC", // Serie de pedidos de compra
+            "PC",
             req.BuyFromVendorNo,
             req.PayToName ?? "",
             req.PostingDate ?? DateTime.UtcNow,
@@ -112,8 +123,56 @@ public class PurchaseOrdersController(IMediator mediator) : ControllerBase
             req.Lines ?? []
         );
 
-        var result = await mediator.Send(cmd, cancellationToken);
-        return Ok(ApiResponse<object>.Ok(new { No = result.No }));
+        try
+        {
+            var result = await mediator.Send(cmd, cancellationToken);
+            return Ok(ApiResponse<object>.Ok(new { no = result.No }));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
+    }
+
+    [HttpPut("{no}/lines")]
+    public async Task<IActionResult> UpdateLines(string no, [FromBody] IReadOnlyList<PurchaseOrderLineRequest> lines, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        try
+        {
+            var cmd = new UpdatePurchaseOrderLinesCommand(
+                tenantId, no,
+                lines.Select(l => new PurchaseOrderLineData(
+                    l.ItemNo, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure, l.LineType))
+                .ToList());
+            var result = await mediator.Send(cmd, cancellationToken);
+            return Ok(ApiResponse<object>.Ok(new { amount = result.Amount, amountIncludingVat = result.AmountIncludingVat }));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
+    }
+
+    [HttpPost("{no}/post")]
+    public async Task<IActionResult> Post(string no, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        try
+        {
+            var result = await mediator.Send(new PostPurchaseOrderCommand(tenantId, no), cancellationToken);
+            return Ok(ApiResponse<object>.Ok(new { invoiceNo = result.InvoiceNo }));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
     }
 
     private Guid GetTenantId()

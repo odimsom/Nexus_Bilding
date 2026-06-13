@@ -16,7 +16,7 @@ public sealed class CreateVendorCommandHandler(
     public async Task<string> Handle(CreateVendorCommand request, CancellationToken cancellationToken)
     {
         var tenantId = TenantIdentifier.Create(request.TenantId);
-        
+
         string no = await noSeriesService.GetNextNoAsync(request.TenantId, "VEND", cancellationToken);
 
         var result = Vendor.Create(
@@ -24,8 +24,21 @@ public sealed class CreateVendorCommandHandler(
             no,
             request.Name,
             request.Address,
+            request.Address2,
             request.City,
-            request.Contact);
+            request.Province,
+            request.Country,
+            request.Contact,
+            request.PhoneNo,
+            request.PhoneNo2,
+            request.Email,
+            request.WebSite,
+            request.Rnc,
+            request.PaymentTermsCode,
+            request.PaymentMethodCode,
+            request.CurrencyCode,
+            request.CreditLimit,
+            request.VendorType);
 
         if (!result.IsSuccess)
             throw new InvalidOperationException($"Vendor creation failed: {result.GetError().Message}");

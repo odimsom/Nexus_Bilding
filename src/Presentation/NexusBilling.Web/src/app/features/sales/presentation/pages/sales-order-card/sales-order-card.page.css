@@ -1,0 +1,89 @@
+    :host {
+        display: block;
+    }
+
+    .nx-spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid var(--nx-border);
+        border-top-color: var(--nx-action);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 2rem auto;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--nx-space-4);
+    }
+
+    .nx-field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--nx-space-1);
+    }
+
+    .nx-input--num {
+        text-align: right;
+    }
+
+    .nx-table--form td {
+        padding: var(--nx-space-1) var(--nx-space-2);
+    }
+
+    .nx-table--form .nx-input--sm {
+        height: 32px;
+        font-size: var(--nx-text-sm);
+        padding: 0 var(--nx-space-2);
+    }
+
+    .autocomplete-drop {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--nx-surface);
+        border: 1px solid var(--nx-border);
+        border-radius: var(--nx-radius-lg);
+        box-shadow: var(--nx-shadow-xl);
+        z-index: 200;
+        max-height: 240px;
+        overflow-y: auto;
+    }
+
+    .autocomplete-item {
+        display: flex;
+        align-items: baseline;
+        gap: var(--nx-space-2);
+        padding: var(--nx-space-2) var(--nx-space-3);
+        cursor: pointer;
+        font-size: var(--nx-text-sm);
+    }
+
+    .autocomplete-item:hover {
+        background: var(--nx-canvas);
+    }
+
+    .autocomplete-item__no {
+        font-family: var(--nx-font-mono);
+        font-size: var(--nx-text-xs);
+        color: var(--nx-text-muted);
+        min-width: 72px;
+    }
+
+    .autocomplete-item__name {
+        font-weight: var(--nx-weight-medium);
+        flex: 1;
+    }
+
+    .autocomplete-item__meta {
+        font-size: var(--nx-text-xs);
+        color: var(--nx-text-faint);
+    }

@@ -11,7 +11,7 @@ public sealed class GetVendorsQueryHandler(IVendorRepository vendorRepo)
     {
         var (items, total) = await vendorRepo.ListAsync(
             request.TenantId,
-            null, // search
+            null,
             request.Page,
             request.PageSize,
             cancellationToken);
@@ -20,8 +20,21 @@ public sealed class GetVendorsQueryHandler(IVendorRepository vendorRepo)
             v.No,
             v.Name,
             v.Address,
+            v.Address2,
             v.City,
+            v.Province,
+            v.Country,
             v.Contact,
+            v.PhoneNo,
+            v.PhoneNo2,
+            v.Email,
+            v.WebSite,
+            v.Rnc,
+            v.PaymentTermsCode,
+            v.PaymentMethodCode,
+            v.CurrencyCode,
+            v.CreditLimit,
+            v.VendorType,
             v.Blocked)).ToList();
 
         return (dtos, total);

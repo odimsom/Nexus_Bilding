@@ -38,6 +38,25 @@ public class SalesInvoiceHeaderRepository(NexusBillingDbContext dbContext) : Gen
             .Take(pageSize)
             .ToListAsync(cancellationToken);
 
+        if (items.Count > 0)
+        {
+            var nos = items.Select(i => i.No).ToList();
+            var sums = await _dbContext.SalesInvoiceLines
+                .Where(l => nos.Contains(l.DocumentNo))
+                .GroupBy(l => l.DocumentNo)
+                .Select(g => new { No = g.Key, Amount = g.Sum(l => l.Amount), AmountIncVat = g.Sum(l => l.AmountIncludingVat) })
+                .ToDictionaryAsync(x => x.No, cancellationToken);
+
+            foreach (var item in items)
+            {
+                if (sums.TryGetValue(item.No, out var s))
+                {
+                    item.Amount = s.Amount;
+                    item.AmountIncludingVat = s.AmountIncVat;
+                }
+            }
+        }
+
         return (items, total);
     }
 }

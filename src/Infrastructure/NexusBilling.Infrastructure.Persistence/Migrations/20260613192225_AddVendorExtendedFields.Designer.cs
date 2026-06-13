@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NexusBilling.Infrastructure.Persistence.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NexusBilling.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(NexusBillingDbContext))]
-    partial class NexusBillingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260613192225_AddVendorExtendedFields")]
+    partial class AddVendorExtendedFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50771,13 +50774,6 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("address");
 
-                    b.Property<string>("Address2")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("")
-                        .HasColumnName("address_2");
-
                     b.Property<bool>("Blocked")
                         .HasColumnType("boolean")
                         .HasColumnName("blocked");
@@ -50792,21 +50788,8 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("contact");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("")
-                        .HasColumnName("country");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<decimal>("CreditLimit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("credit_limit");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -50832,13 +50815,6 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("no");
 
-                    b.Property<string>("PaymentMethodCode")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("")
-                        .HasColumnName("payment_method_code");
-
                     b.Property<string>("PaymentTermsCode")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -50853,20 +50829,6 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasDefaultValue("")
                         .HasColumnName("phone_no");
 
-                    b.Property<string>("PhoneNo2")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("")
-                        .HasColumnName("phone_no_2");
-
-                    b.Property<string>("Province")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("")
-                        .HasColumnName("province");
-
                     b.Property<string>("Rnc")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -50880,20 +50842,6 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("VendorType")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("")
-                        .HasColumnName("vendor_type");
-
-                    b.Property<string>("WebSite")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("")
-                        .HasColumnName("web_site");
 
                     b.HasKey("Id");
 

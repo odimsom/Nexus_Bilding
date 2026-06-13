@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ApiService, PagedData } from '../../../core/services/api.service';
-import { PurchaseInvoice, PurchaseInvoiceDetail } from '../domain/purchase-invoice.model';
+import { PurchaseInvoice, PurchaseInvoiceDetail, CreatePurchaseInvoiceDto } from '../domain/purchase-invoice.model';
 
 @Injectable({ providedIn: 'root' })
 export class PurchaseInvoiceService {
@@ -37,5 +37,12 @@ export class PurchaseInvoiceService {
     } catch {
       return null;
     }
+  }
+
+  async create(data: CreatePurchaseInvoiceDto): Promise<string> {
+    const res = await firstValueFrom(
+      this.api.post<{ data: { no: string } }>('purchasing/invoices', data)
+    );
+    return res.data.no;
   }
 }

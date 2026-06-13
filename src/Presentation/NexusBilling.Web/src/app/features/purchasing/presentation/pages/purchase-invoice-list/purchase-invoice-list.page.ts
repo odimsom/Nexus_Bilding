@@ -1,12 +1,14 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe, CurrencyPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { PurchaseInvoiceService } from '../../../data/purchase-invoice.service';
+import { sortBy } from '../../../../../shared/utils/sort.utils';
 
 @Component({
   selector: 'app-purchase-invoice-list',
   standalone: true,
-  imports: [RouterLink, DatePipe, CurrencyPipe],
+  imports: [RouterLink, DatePipe, CurrencyPipe, FormsModule],
   template: `
     <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
       <a routerLink="/dashboard">Dashboard</a>
@@ -19,6 +21,12 @@ import { PurchaseInvoiceService } from '../../../data/purchase-invoice.service';
         <h1 class="nx-page-title">Facturas de Compra</h1>
         <p class="nx-page-subtitle">Historial de facturas recibidas de proveedores</p>
       </div>
+      <div class="nx-page-actions">
+        <a routerLink="/purchase-invoices/new" class="nx-btn nx-btn--primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nueva Factura
+        </a>
+      </div>
     </div>
 
     @if (svc.loading()) {
@@ -30,7 +38,7 @@ import { PurchaseInvoiceService } from '../../../data/purchase-invoice.service';
         <div class="nx-card__head" style="gap:var(--nx-space-4);flex-wrap:wrap;">
           <div class="nx-input-icon" style="max-width:320px;flex:1;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input class="nx-input" placeholder="Buscar facturas…" />
+            <input class="nx-input" placeholder="Buscar facturas…" [(ngModel)]="searchText" (ngModelChange)="applyFilter()" />
           </div>
           <div style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">
             {{ svc.totalItems() }} facturas en total
@@ -50,16 +58,16 @@ import { PurchaseInvoiceService } from '../../../data/purchase-invoice.service';
             <table class="nx-table">
               <thead>
                 <tr>
-                  <th style="width:140px;">No. Factura</th>
-                  <th style="width:120px;">Proveedor</th>
-                  <th>Nombre Proveedor</th>
-                  <th>Fecha</th>
+                  <th class="sortable" style="width:140px;" (click)="setSort('no')">No. Factura {{ si('no') }}</th>
+                  <th class="sortable" style="width:120px;" (click)="setSort('buyFromVendorNo')">Proveedor {{ si('buyFromVendorNo') }}</th>
+                  <th class="sortable" (click)="setSort('payToName')">Nombre Proveedor {{ si('payToName') }}</th>
+                  <th class="sortable" (click)="setSort('postingDate')">Fecha {{ si('postingDate') }}</th>
                   <th>Estado</th>
-                  <th style="text-align:right;">Importe Total</th>
+                  <th class="sortable" style="text-align:right;" (click)="setSort('amountIncludingVat')">Importe Total {{ si('amountIncludingVat') }}</th>
                 </tr>
               </thead>
               <tbody>
-                @for (inv of svc.items(); track inv.no) {
+                @for (inv of sorted(); track inv.no) {
                   <tr style="cursor:pointer;" [routerLink]="['/purchase-invoices', inv.no]">
                     <td class="nx-td--doc"><a class="nx-link">{{ inv.no }}</a></td>
                     <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ inv.buyFromVendorNo }}</td>
@@ -80,12 +88,51 @@ import { PurchaseInvoiceService } from '../../../data/purchase-invoice.service';
     :host { display: block; }
     .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:4rem auto; }
     @keyframes spin { to { transform:rotate(360deg); } }
+    .sortable { cursor:pointer; user-select:none; white-space:nowrap; }
   `]
 })
 export class PurchaseInvoiceListPage implements OnInit {
   readonly svc = inject(PurchaseInvoiceService);
 
+  sortField = 'postingDate';
+  sortAsc = false;
+  searchText = '';
+  filteredItems = signal<any[]>([]);
+
   async ngOnInit() {
     await this.svc.load();
+    this.applyFilter();
+  }
+
+  applyFilter(): void {
+    const q = this.searchText.toLowerCase().trim();
+    const all = this.svc.items();
+    if (!q) {
+      this.filteredItems.set(all);
+    } else {
+      this.filteredItems.set(all.filter(inv =>
+        (inv.no ?? '').toLowerCase().includes(q) ||
+        (inv.buyFromVendorNo ?? '').toLowerCase().includes(q) ||
+        (inv.payToName ?? '').toLowerCase().includes(q)
+      ));
+    }
+  }
+
+  sorted(): any[] {
+    return sortBy(this.filteredItems(), this.sortField, this.sortAsc);
+  }
+
+  setSort(f: string): void {
+    if (this.sortField === f) {
+      this.sortAsc = !this.sortAsc;
+    } else {
+      this.sortField = f;
+      this.sortAsc = true;
+    }
+  }
+
+  si(f: string): string {
+    if (this.sortField !== f) return '';
+    return this.sortAsc ? '↑' : '↓';
   }
 }

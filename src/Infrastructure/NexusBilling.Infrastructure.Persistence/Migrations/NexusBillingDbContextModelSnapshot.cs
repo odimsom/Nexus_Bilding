@@ -51,7 +51,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("column_layout_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("MeasureName")
                         .IsRequired()
@@ -78,7 +78,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -102,14 +102,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("acc_schedule_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -123,7 +123,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("ForecastedValuesStart")
                         .HasColumnType("smallint")
@@ -148,7 +148,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("ViewBy")
                         .HasColumnType("smallint")
@@ -189,7 +189,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_object_totaling");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -276,7 +276,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("underline");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -295,7 +295,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_view_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultColumnLayout")
                         .IsRequired()
@@ -317,7 +317,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -345,7 +345,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("column_layout_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -353,7 +353,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("EndDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("end_date");
 
                     b.Property<bool>("LastViewed")
@@ -378,7 +378,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("period_length");
 
                     b.Property<DateTime?>("StartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("start_date");
 
                     b.Property<Guid>("TenantId")
@@ -386,7 +386,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -414,7 +414,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("category");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -435,7 +435,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Version")
                         .IsRequired()
@@ -468,7 +468,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("charge_per_line");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -504,7 +504,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("threshold_remaining_amount");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -518,7 +518,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -530,7 +530,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -586,7 +586,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comparison_period_formula_lcid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Formula")
                         .IsRequired()
@@ -627,7 +627,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ValueEntryTypeFilter")
                         .IsRequired()
@@ -654,7 +654,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_area");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -671,7 +671,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -698,7 +698,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bold");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -772,7 +772,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("underline");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -790,7 +790,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_area");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultColumnTemplateName")
                         .IsRequired()
@@ -817,7 +817,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -854,10 +854,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("base_x_axis_on");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("EndDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("end_date");
 
                     b.Property<bool>("LastViewed")
@@ -878,7 +878,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("period_length");
 
                     b.Property<DateTime?>("StartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("start_date");
 
                     b.Property<Guid>("TenantId")
@@ -886,7 +886,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -919,7 +919,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_line_template_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -936,7 +936,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -959,7 +959,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_view_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -993,7 +993,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -1017,7 +1017,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ItemLedgerEntryTypeFilter")
                         .IsRequired()
@@ -1034,7 +1034,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ValueEntryTypeFilter")
                         .IsRequired()
@@ -1080,7 +1080,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DateCompression")
                         .HasColumnType("smallint")
@@ -1115,7 +1115,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_budget_entry_no");
 
                     b.Property<DateTime?>("LastDateUpdated")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_updated");
 
                     b.Property<int>("LastEntryNo")
@@ -1132,7 +1132,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("refresh_when_unblocked");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -1144,7 +1144,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("update_on_posting");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1202,7 +1202,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cash_flow_forecast_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -1239,7 +1239,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<Guid>("TenantId")
@@ -1247,7 +1247,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1266,7 +1266,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_view_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -1283,7 +1283,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1306,7 +1306,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("FixedAssets")
                         .HasColumnType("boolean")
@@ -1334,7 +1334,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -1362,7 +1362,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_setup_session_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Enabled")
                         .HasColumnType("boolean")
@@ -1381,7 +1381,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1399,7 +1399,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("assisted_setup_page_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Featured")
                         .HasColumnType("boolean")
@@ -1456,7 +1456,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tour_status");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("VideoStatus")
                         .HasColumnType("boolean")
@@ -1483,7 +1483,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("Image")
                         .HasColumnType("uuid")
@@ -1499,7 +1499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1513,10 +1513,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_time");
 
                     b.Property<int>("EnteryNo")
@@ -1536,7 +1536,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1554,7 +1554,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("app_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("PrimaryKey")
                         .HasColumnType("integer")
@@ -1574,7 +1574,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1596,7 +1596,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("azure_ad_user_mgt_codeunit_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -1608,7 +1608,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1719,7 +1719,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditTransferMsgNos")
                         .IsRequired()
@@ -1786,7 +1786,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_check_no");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LastPaymentStatementNo")
@@ -1910,7 +1910,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transit_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -1953,7 +1953,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bank_account_no");
 
                     b.Property<DateTime?>("ClosedAtDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("closed_at_date");
 
                     b.Property<int>("ClosedByEntryNo")
@@ -1961,7 +1961,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("closed_by_entry_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -1998,7 +1998,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -2048,7 +2048,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("positive");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("ReasonCode")
@@ -2100,7 +2100,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -2124,7 +2124,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("GLBankAccountNo")
                         .IsRequired()
@@ -2136,7 +2136,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2155,7 +2155,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -2167,7 +2167,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2181,7 +2181,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("PasswordKey")
                         .HasColumnType("uuid")
@@ -2212,7 +2212,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -2236,7 +2236,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -2248,7 +2248,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2271,7 +2271,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataExchDefCode")
                         .IsRequired()
@@ -2304,7 +2304,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2322,7 +2322,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_incl_tolerance_matched");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DocNoExtDocNoMatched")
                         .HasColumnType("smallint")
@@ -2349,7 +2349,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2367,7 +2367,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("booking_mgr_codeunit");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -2379,7 +2379,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2398,7 +2398,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -2410,7 +2410,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2424,10 +2424,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateAndTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_and_time");
 
                     b.Property<long>("EntryNo")
@@ -2503,7 +2503,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type_of_change");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -2526,7 +2526,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("change_log_activated");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -2538,7 +2538,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2552,7 +2552,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldNo")
                         .HasColumnType("integer")
@@ -2579,7 +2579,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2593,7 +2593,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("LogDeletion")
                         .HasColumnType("smallint")
@@ -2616,7 +2616,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2634,7 +2634,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blob");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("IdNav")
                         .IsRequired()
@@ -2651,7 +2651,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2674,7 +2674,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code_unit_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Enabled")
                         .HasColumnType("boolean")
@@ -2685,7 +2685,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2726,7 +2726,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bank_payment_type");
 
                     b.Property<DateTime?>("CheckDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("check_date");
 
                     b.Property<string>("CheckNo")
@@ -2739,7 +2739,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("check_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DataExchEntryNo")
                         .HasColumnType("integer")
@@ -2789,7 +2789,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("positive_pay_exported");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("RecordIdToPrint")
@@ -2815,7 +2815,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -2839,7 +2839,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -2855,7 +2855,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2921,7 +2921,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_object_totaling");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dimension1Totaling")
                         .IsRequired()
@@ -2977,7 +2977,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -2996,7 +2996,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_view_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -3013,7 +3013,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3037,10 +3037,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("LineNo")
@@ -3061,7 +3061,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3138,10 +3138,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreatedDatetime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_datetime");
 
                     b.Property<string>("CustomSystemIndicatorText")
@@ -3150,7 +3150,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("custom_system_indicator_text");
 
                     b.Property<DateTime?>("CustomsPermitDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("customs_permit_date");
 
                     b.Property<string>("CustomsPermitNo")
@@ -3342,7 +3342,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatRegistrationNo")
                         .IsRequired()
@@ -3361,7 +3361,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldId")
                         .HasColumnType("integer")
@@ -3396,7 +3396,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3410,7 +3410,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("Media")
                         .HasColumnType("uuid")
@@ -3446,7 +3446,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3465,7 +3465,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("ExcludeConfigTables")
                         .HasColumnType("boolean")
@@ -3494,7 +3494,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3512,7 +3512,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blob_value");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldId")
                         .HasColumnType("integer")
@@ -3540,7 +3540,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -3559,7 +3559,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ErrorText")
                         .IsRequired()
@@ -3597,7 +3597,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3615,7 +3615,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("create_missing_codes");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Dimension")
                         .HasColumnType("boolean")
@@ -3669,7 +3669,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("ValidateField")
                         .HasColumnType("boolean")
@@ -3687,7 +3687,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FieldFilter")
                         .IsRequired()
@@ -3716,7 +3716,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3730,7 +3730,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Invalid")
                         .HasColumnType("boolean")
@@ -3758,7 +3758,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3777,7 +3777,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comments");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -3785,7 +3785,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by_user_id");
 
                     b.Property<DateTime?>("CreatedDateAndTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_and_time");
 
                     b.Property<string>("DataTemplate")
@@ -3802,7 +3802,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimensions_as_columns");
 
                     b.Property<DateTime?>("ExportedDateAndTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("exported_date_and_time");
 
                     b.Property<string>("ImportedByUserId")
@@ -3811,7 +3811,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("imported_by_user_id");
 
                     b.Property<DateTime?>("ImportedDateAndTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("imported_date_and_time");
 
                     b.Property<string>("PackageCode")
@@ -3852,7 +3852,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Validated")
                         .HasColumnType("boolean")
@@ -3880,7 +3880,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("answer_option");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldId")
                         .HasColumnType("integer")
@@ -3924,7 +3924,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3943,7 +3943,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -3964,7 +3964,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -3983,7 +3983,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -3995,7 +3995,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4068,10 +4068,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CustomsPermitDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("customs_permit_date");
 
                     b.Property<string>("CustomsPermitNo")
@@ -4256,7 +4256,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatRegistrationNo")
                         .IsRequired()
@@ -4284,7 +4284,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("action");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("CustomProcessingCodeunitId")
                         .HasColumnType("integer")
@@ -4308,7 +4308,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4327,7 +4327,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -4352,7 +4352,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4366,7 +4366,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataTemplateCode")
                         .IsRequired()
@@ -4426,7 +4426,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4479,7 +4479,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -4545,7 +4545,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("language_code");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LastTimeModified")
@@ -4661,7 +4661,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatRegistrationNo")
                         .IsRequired()
@@ -4690,7 +4690,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("LinkToTable")
                         .HasColumnType("smallint")
@@ -4706,7 +4706,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4725,7 +4725,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("IndustryGroupCode")
                         .IsRequired()
@@ -4737,7 +4737,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4756,7 +4756,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("JobResponsibilityCode")
                         .IsRequired()
@@ -4768,7 +4768,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4799,10 +4799,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contract_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateOfChange")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_of_change");
 
                     b.Property<string>("FieldDescription")
@@ -4843,7 +4843,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type_of_change");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -4867,7 +4867,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount");
 
                     b.Property<DateTime?>("ChangeDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("change_date");
 
                     b.Property<string>("ContractGroupCode")
@@ -4881,7 +4881,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contract_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -4916,7 +4916,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type_of_change");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -4940,7 +4940,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -4956,7 +4956,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -4983,7 +4983,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact_address_format");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EuCountryRegionCode")
                         .IsRequired()
@@ -5005,7 +5005,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatScheme")
                         .IsRequired()
@@ -5024,7 +5024,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldNo")
                         .HasColumnType("integer")
@@ -5065,7 +5065,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("threshold_2");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -5102,7 +5102,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<byte[]>("CustomXmlPart")
                         .HasColumnType("bytea")
@@ -5119,7 +5119,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("file_extension");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_modified");
 
                     b.Property<string>("LastModifiedByUser")
@@ -5144,7 +5144,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5158,7 +5158,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomReportLayoutCode")
                         .IsRequired()
@@ -5197,7 +5197,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("Usage")
                         .HasColumnType("smallint")
@@ -5223,7 +5223,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultAccountTemplate")
                         .IsRequired()
@@ -5270,7 +5270,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5284,7 +5284,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -5314,7 +5314,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("ValuePosting")
                         .HasColumnType("smallint")
@@ -5332,7 +5332,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Priority")
                         .HasColumnType("integer")
@@ -5352,7 +5352,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5370,7 +5370,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("calc_method");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Deferral")
                         .HasPrecision(18, 5)
@@ -5410,7 +5410,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5443,7 +5443,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("consolidation_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -5470,7 +5470,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5488,7 +5488,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("combination_restriction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dimension1Code")
                         .IsRequired()
@@ -5505,7 +5505,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5519,7 +5519,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -5544,7 +5544,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5558,7 +5558,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DimensionSetId")
                         .HasColumnType("integer")
@@ -5581,7 +5581,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5605,7 +5605,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code_caption");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FilterCaption")
                         .IsRequired()
@@ -5626,7 +5626,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5654,7 +5654,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("consolidation_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -5702,7 +5702,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("totaling");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5716,7 +5716,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dimension1Code")
                         .IsRequired()
@@ -5743,7 +5743,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5757,7 +5757,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("GlobalDim1FieldNo")
                         .HasColumnType("integer")
@@ -5780,7 +5780,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -5799,7 +5799,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -5830,7 +5830,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("ValuePosting")
                         .HasColumnType("smallint")
@@ -5856,7 +5856,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("consumer_secret");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("DocExchTenantId")
                         .HasColumnType("uuid")
@@ -5903,7 +5903,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("token_secret");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserAgent")
                         .IsRequired()
@@ -5927,7 +5927,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Default")
                         .HasColumnType("boolean")
@@ -5986,7 +5986,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("Usage")
                         .HasColumnType("smallint")
@@ -6004,7 +6004,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -6041,7 +6041,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -6060,7 +6060,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("Field")
                         .HasColumnType("smallint")
@@ -6079,7 +6079,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6102,7 +6102,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("codeunit_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DeliveryCodeunitId")
                         .HasColumnType("integer")
@@ -6118,7 +6118,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("Usage")
                         .HasColumnType("smallint")
@@ -6146,7 +6146,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("context_record_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -6184,7 +6184,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6220,7 +6220,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("DoubleUnderline")
                         .HasColumnType("boolean")
@@ -6268,7 +6268,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("underline");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Xlcolid")
                         .IsRequired()
@@ -6306,7 +6306,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("azure_ad_auth_endpoint");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ExchangeResourceUri")
                         .IsRequired()
@@ -6328,7 +6328,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6346,7 +6346,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("all_language_codes");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -6354,7 +6354,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<bool>("FinanceChargeMemo")
@@ -6456,7 +6456,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("service_quote");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<short>("TableName")
@@ -6472,7 +6472,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("text_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6486,7 +6486,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LanguageCode")
                         .IsRequired()
@@ -6520,7 +6520,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("text_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6539,7 +6539,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -6551,7 +6551,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6570,7 +6570,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -6592,7 +6592,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6611,7 +6611,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -6631,7 +6631,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6645,7 +6645,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("CreatedManually")
                         .HasColumnType("boolean")
@@ -6690,7 +6690,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6704,7 +6704,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("ContractExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("contract_expiration_date");
 
                     b.Property<string>("ContractNo")
@@ -6721,10 +6721,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contract_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreditMemoDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("credit_memo_date");
 
                     b.Property<bool>("Credited")
@@ -6746,7 +6746,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("InvoicedToDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("invoiced_to_date");
 
                     b.Property<string>("ItemNo")
@@ -6755,15 +6755,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("LastPlannedServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_planned_service_date");
 
                     b.Property<DateTime?>("LastPreventiveMaintDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_preventive_maint_date");
 
                     b.Property<DateTime?>("LastServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_service_date");
 
                     b.Property<decimal>("LineAmount")
@@ -6800,7 +6800,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("new_line");
 
                     b.Property<DateTime?>("NextPlannedServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_planned_service_date");
 
                     b.Property<decimal>("Profit")
@@ -6839,7 +6839,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -6852,7 +6852,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -6871,7 +6871,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("AcceptBefore")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("accept_before");
 
                     b.Property<string>("Address")
@@ -7028,7 +7028,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -7064,7 +7064,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("FaxNo")
@@ -7073,7 +7073,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fax_no");
 
                     b.Property<DateTime?>("FileDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("file_date");
 
                     b.Property<string>("FileTime")
@@ -7087,7 +7087,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("filed_by");
 
                     b.Property<DateTime?>("FirstServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("first_service_date");
 
                     b.Property<bool>("InvoiceAfterService")
@@ -7104,7 +7104,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("language_code");
 
                     b.Property<DateTime?>("LastInvoiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_invoice_date");
 
                     b.Property<decimal>("LastPriceUpdate")
@@ -7113,7 +7113,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_price_update");
 
                     b.Property<DateTime?>("LastPriceUpdateDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_price_update_date");
 
                     b.Property<decimal>("MaxLaborUnitPrice")
@@ -7132,7 +7132,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("name_2");
 
                     b.Property<DateTime?>("NextInvoiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_invoice_date");
 
                     b.Property<string>("NextInvoicePeriod")
@@ -7141,15 +7141,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("next_invoice_period");
 
                     b.Property<DateTime?>("NextInvoicePeriodEnd")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_invoice_period_end");
 
                     b.Property<DateTime?>("NextInvoicePeriodStart")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_invoice_period_start");
 
                     b.Property<DateTime?>("NextPriceUpdateDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_price_update_date");
 
                     b.Property<string>("NoSeries")
@@ -7294,7 +7294,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shortcut_dimension_2_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<short>("Status")
@@ -7311,7 +7311,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("YourReference")
                         .IsRequired()
@@ -7365,7 +7365,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -7387,11 +7387,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("FinChargeTermsCode")
@@ -7453,7 +7453,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("post_interest");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -7490,7 +7490,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatBusPostingGroup")
                         .IsRequired()
@@ -7528,7 +7528,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("attached_to_line_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -7536,7 +7536,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -7549,7 +7549,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<int>("EntryNo")
@@ -7590,7 +7590,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("original_amount");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("RemainingAmount")
@@ -7616,7 +7616,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Vat")
                         .HasPrecision(18, 5)
@@ -7673,7 +7673,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -7730,7 +7730,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -7744,7 +7744,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FilterText")
                         .IsRequired()
@@ -7788,7 +7788,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("XAxisFieldCaption")
                         .IsRequired()
@@ -7867,14 +7867,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_incl_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("CreatedByUserId")
                         .HasColumnType("uuid")
                         .HasColumnName("created_by_user_id");
 
                     b.Property<DateTime?>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_time");
 
                     b.Property<short>("CreatedDocErrorMsgType")
@@ -7897,7 +7897,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -7910,7 +7910,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<int>("EntryNo")
@@ -7926,7 +7926,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("job_queue_status");
 
                     b.Property<DateTime?>("LastDateTimeModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_time_modified");
 
                     b.Property<Guid>("LastModifiedByUserId")
@@ -7960,11 +7960,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("posted");
 
                     b.Property<DateTime?>("PostedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posted_date_time");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("Processed")
@@ -7985,7 +7985,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("released_by_user_id");
 
                     b.Property<DateTime?>("ReleasedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("released_date_time");
 
                     b.Property<short>("Status")
@@ -7997,7 +7997,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Url1")
                         .IsRequired()
@@ -8084,7 +8084,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("content");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedByUserName")
                         .IsRequired()
@@ -8092,7 +8092,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by_user_name");
 
                     b.Property<DateTime?>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_time");
 
                     b.Property<bool>("Default")
@@ -8141,7 +8141,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ocr_service_document_reference");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<Guid>("TenantId")
@@ -8153,7 +8153,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseForOcr")
                         .HasColumnType("boolean")
@@ -8171,7 +8171,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("GeneralJournalBatchName")
                         .IsRequired()
@@ -8201,7 +8201,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -8220,7 +8220,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -8232,7 +8232,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -8255,7 +8255,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -8263,11 +8263,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("EffectiveDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("effective_date");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("FaClassCode")
@@ -8306,7 +8306,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("insurance_vendor_no");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LocationCode")
@@ -8344,7 +8344,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -8358,7 +8358,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -8395,7 +8395,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -8409,7 +8409,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -8462,7 +8462,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("test_report_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -8481,7 +8481,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -8493,7 +8493,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -8565,10 +8565,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_lcy");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<short>("DeliveryStatus")
@@ -8680,7 +8680,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_do_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -8725,7 +8725,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correspondence_type_default");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -8769,7 +8769,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_duration_min");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("WizardAction")
                         .HasColumnType("smallint")
@@ -8792,7 +8792,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cover_sheets");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EMails")
                         .IsRequired()
@@ -8939,7 +8939,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -8957,7 +8957,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("attachment_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomLayoutCode")
                         .IsRequired()
@@ -8984,7 +8984,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9002,7 +9002,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amounts_in_add_currency");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyIdentifier")
                         .IsRequired()
@@ -9038,7 +9038,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9077,10 +9077,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_of_origin_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<string>("DocumentNo")
@@ -9193,7 +9193,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9211,7 +9211,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("checklist_report_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -9232,7 +9232,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9280,7 +9280,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -9302,11 +9302,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("FinChargeTermsCode")
@@ -9358,7 +9358,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("post_code");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -9410,7 +9410,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -9453,7 +9453,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("attached_to_line_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -9461,7 +9461,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -9474,7 +9474,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<int>("EntryNo")
@@ -9511,7 +9511,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("original_amount");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("RemainingAmount")
@@ -9537,7 +9537,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Vat")
                         .HasPrecision(18, 5)
@@ -9585,7 +9585,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -9597,7 +9597,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9616,7 +9616,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -9628,7 +9628,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("WindowsLanguageId")
                         .HasColumnType("integer")
@@ -9655,7 +9655,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code_unit_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
@@ -9667,7 +9667,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("uid");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9685,7 +9685,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -9703,7 +9703,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("No")
@@ -9731,7 +9731,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9750,7 +9750,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -9762,7 +9762,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -9803,7 +9803,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -9830,7 +9830,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -9877,7 +9877,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fa_no_budgeted_fa_no");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("FaPostingGroup")
@@ -9943,7 +9943,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_series");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("Quantity")
@@ -9996,7 +9996,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseTax")
                         .HasColumnType("boolean")
@@ -10039,7 +10039,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FaNo")
                         .IsRequired()
@@ -10071,7 +10071,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("service_agent_phone_no");
 
                     b.Property<DateTime?>("ServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("service_date");
 
                     b.Property<Guid>("TenantId")
@@ -10079,7 +10079,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10136,7 +10136,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact_nos");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefCompanySalutationCode")
                         .IsRequired()
@@ -10279,7 +10279,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_do_nos");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10302,7 +10302,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("content");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatingUser")
                         .IsRequired()
@@ -10315,7 +10315,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("FileName")
@@ -10350,7 +10350,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Width")
                         .HasColumnType("integer")
@@ -10368,7 +10368,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DisplayTarget")
                         .IsRequired()
@@ -10389,7 +10389,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10408,7 +10408,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("IdNav")
                         .HasColumnType("uuid")
@@ -10427,7 +10427,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10449,7 +10449,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("apply_to_table_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<byte[]>("Description")
                         .HasColumnType("bytea")
@@ -10473,7 +10473,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -10512,7 +10512,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("compatibility_revision");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -10533,7 +10533,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("VersionBuild")
                         .HasColumnType("integer")
@@ -10576,7 +10576,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("category");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -10597,7 +10597,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Version")
                         .IsRequired()
@@ -10621,7 +10621,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("DateOrder")
                         .HasColumnType("boolean")
@@ -10645,7 +10645,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10659,7 +10659,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EndingNo")
                         .IsRequired()
@@ -10671,7 +10671,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("increment_by_no");
 
                     b.Property<DateTime?>("LastDateUsed")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_used");
 
                     b.Property<string>("LastNoUsed")
@@ -10693,7 +10693,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("series_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<string>("StartingNo")
@@ -10706,7 +10706,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WarningNo")
                         .IsRequired()
@@ -10730,7 +10730,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SeriesCode")
                         .IsRequired()
@@ -10742,7 +10742,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10756,7 +10756,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -10764,7 +10764,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by");
 
                     b.Property<DateTime?>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_time");
 
                     b.Property<string>("CustomLink")
@@ -10819,7 +10819,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10833,7 +10833,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DailyFrequency")
                         .HasColumnType("smallint")
@@ -10893,7 +10893,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tuesday");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -10916,7 +10916,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DisplayTarget")
                         .HasColumnType("smallint")
@@ -10935,7 +10935,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -10954,7 +10954,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Key")
                         .IsRequired()
@@ -10975,7 +10975,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -10994,7 +10994,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -11010,7 +11010,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -11028,7 +11028,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("body_text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DisplayTarget")
                         .IsRequired()
@@ -11052,7 +11052,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("WizardId")
                         .HasColumnType("integer")
@@ -11070,7 +11070,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -11082,7 +11082,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -11096,7 +11096,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultCustomerTemplate")
                         .IsRequired()
@@ -11152,7 +11152,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -11166,7 +11166,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("HasSubscribers")
                         .HasColumnType("boolean")
@@ -11203,7 +11203,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<byte[]>("UserAlCode")
                         .HasColumnType("bytea")
@@ -11230,7 +11230,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -11267,7 +11267,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -11290,7 +11290,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("authorization_key");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerId")
                         .IsRequired()
@@ -11317,7 +11317,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("enabled");
 
                     b.Property<DateTime?>("MasterDataLastSync")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("master_data_last_sync");
 
                     b.Property<bool>("MasterDataSyncEnabled")
@@ -11358,7 +11358,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -11385,14 +11385,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("breaking");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<byte[]>("DefaultManifest")
                         .HasColumnType("bytea")
                         .HasColumnName("default_manifest");
 
                     b.Property<DateTime?>("DeploymentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("deployment_date");
 
                     b.Property<string>("Description")
@@ -11418,7 +11418,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Version")
                         .IsRequired()
@@ -11437,7 +11437,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("OfficeHostCodeunitId")
                         .HasColumnType("integer")
@@ -11453,7 +11453,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -11477,7 +11477,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DirectionsFromLocationServ")
                         .IsRequired()
@@ -11514,7 +11514,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UrlEncodeNonAsciiChars")
                         .HasColumnType("boolean")
@@ -11532,7 +11532,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DistanceIn")
                         .HasColumnType("smallint")
@@ -11557,7 +11557,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -11594,14 +11594,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<DateTime?>("DateClosed")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_closed");
 
                     b.Property<string>("Description")
@@ -11661,7 +11661,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WizardCampaignDescription")
                         .IsRequired()
@@ -11679,7 +11679,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("wizard_contact_name");
 
                     b.Property<DateTime?>("WizardEstimatedClosingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("wizard_estimated_closing_date");
 
                     b.Property<decimal>("WizardEstimatedValueLcy")
@@ -11703,7 +11703,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ElementNo")
                         .HasColumnType("integer")
@@ -11723,7 +11723,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -11747,10 +11747,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("condition");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("LastSynchTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_synch_time");
 
                     b.Property<Guid>("RecordGuid")
@@ -11771,7 +11771,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -11795,7 +11795,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("additional_information");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DocumentNo")
                         .IsRequired()
@@ -11835,7 +11835,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -11862,7 +11862,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bal_account_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("JournalBatchName")
                         .IsRequired()
@@ -11879,7 +11879,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseThisAccountAsDef")
                         .HasColumnType("boolean")
@@ -11922,7 +11922,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SearchCity")
                         .IsRequired()
@@ -11934,7 +11934,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -11948,7 +11948,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -11980,7 +11980,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<Guid>("TenantId")
@@ -11988,7 +11988,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12002,7 +12002,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrinterName")
                         .IsRequired()
@@ -12018,7 +12018,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -12042,7 +12042,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -12054,7 +12054,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12073,11 +12073,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company");
 
                     b.Property<DateTime?>("Created")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -12115,7 +12115,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Url1")
                         .IsRequired()
@@ -12154,7 +12154,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -12166,7 +12166,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12185,7 +12185,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -12223,7 +12223,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12242,7 +12242,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -12314,7 +12314,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("WaitingForCustomer")
                         .HasColumnType("boolean")
@@ -12332,10 +12332,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_time");
 
                     b.Property<string>("Description")
@@ -12372,7 +12372,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -12396,7 +12396,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomReportLayoutCode")
                         .IsRequired()
@@ -12421,7 +12421,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12435,7 +12435,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomReportLayoutCode")
                         .IsRequired()
@@ -12461,7 +12461,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("Usage")
                         .HasColumnType("smallint")
@@ -12492,7 +12492,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -12504,7 +12504,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12518,7 +12518,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LocationCode")
                         .IsRequired()
@@ -12531,7 +12531,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("resource_no");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -12539,7 +12539,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12588,7 +12588,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EMail")
                         .IsRequired()
@@ -12645,7 +12645,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12659,7 +12659,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Details")
                         .IsRequired()
@@ -12680,7 +12680,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12703,7 +12703,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -12719,7 +12719,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12747,7 +12747,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("completed");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DateFormula")
                         .IsRequired()
@@ -12777,7 +12777,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12796,7 +12796,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -12808,7 +12808,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12822,7 +12822,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LanguageCode")
                         .IsRequired()
@@ -12868,7 +12868,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12882,7 +12882,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -12894,7 +12894,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -12913,7 +12913,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FailureCodeunit")
                         .HasColumnType("integer")
@@ -12928,7 +12928,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("is_ready");
 
                     b.Property<DateTime?>("NotBefore")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("not_before");
 
                     b.Property<string>("Record")
@@ -12945,7 +12945,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("UserFormatId")
                         .HasColumnType("integer")
@@ -12985,7 +12985,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("attachment_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -13016,7 +13016,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -13035,7 +13035,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("analysis_view_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -13069,7 +13069,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -13092,7 +13092,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("aggregated_with_entry");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -13100,7 +13100,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by");
 
                     b.Property<DateTime?>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_time");
 
                     b.Property<string>("CustomLink")
@@ -13130,7 +13130,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("recipient_user_id");
 
                     b.Property<DateTime?>("SentDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("sent_date_time");
 
                     b.Property<Guid>("TenantId")
@@ -13147,7 +13147,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -13170,7 +13170,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -13206,7 +13206,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("service_price_group_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -13214,7 +13214,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -13233,10 +13233,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("LineNo")
@@ -13269,7 +13269,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -13288,7 +13288,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -13310,7 +13310,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -13324,7 +13324,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("AcceptBefore")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("accept_before");
 
                     b.Property<bool>("AllowUnbalancedAmounts")
@@ -13402,7 +13402,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contract_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -13434,7 +13434,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("e_mail");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("FaxNo")
@@ -13443,7 +13443,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fax_no");
 
                     b.Property<DateTime?>("FirstServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("first_service_date");
 
                     b.Property<bool>("InvoiceAfterService")
@@ -13460,11 +13460,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("language_code");
 
                     b.Property<DateTime?>("LastInvoiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_invoice_date");
 
                     b.Property<DateTime?>("LastInvoicePeriodEnd")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_invoice_period_end");
 
                     b.Property<decimal>("LastPriceUpdate")
@@ -13473,7 +13473,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_price_update");
 
                     b.Property<DateTime?>("LastPriceUpdateDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_price_update_date");
 
                     b.Property<decimal>("MaxLaborUnitPrice")
@@ -13482,7 +13482,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("max_labor_unit_price");
 
                     b.Property<DateTime?>("NextInvoiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_invoice_date");
 
                     b.Property<string>("NextInvoicePeriod")
@@ -13491,15 +13491,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("next_invoice_period");
 
                     b.Property<DateTime?>("NextInvoicePeriodEnd")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_invoice_period_end");
 
                     b.Property<DateTime?>("NextInvoicePeriodStart")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_invoice_period_start");
 
                     b.Property<DateTime?>("NextPriceUpdateDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_price_update_date");
 
                     b.Property<string>("NoSeries")
@@ -13595,7 +13595,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shortcut_dimension_2_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<short>("Status")
@@ -13612,7 +13612,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("YourReference")
                         .IsRequired()
@@ -13631,7 +13631,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("ContractExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("contract_expiration_date");
 
                     b.Property<string>("ContractNo")
@@ -13648,10 +13648,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contract_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreditMemoDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("credit_memo_date");
 
                     b.Property<bool>("Credited")
@@ -13669,7 +13669,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("InvoicedToDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("invoiced_to_date");
 
                     b.Property<string>("ItemNo")
@@ -13678,15 +13678,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("LastPlannedServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_planned_service_date");
 
                     b.Property<DateTime?>("LastPreventiveMaintDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_preventive_maint_date");
 
                     b.Property<DateTime?>("LastServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_service_date");
 
                     b.Property<decimal>("LineAmount")
@@ -13723,7 +13723,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("new_line");
 
                     b.Property<DateTime?>("NextPlannedServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_planned_service_date");
 
                     b.Property<decimal>("Profit")
@@ -13762,7 +13762,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -13775,7 +13775,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -13808,7 +13808,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DefaultQuantity")
                         .HasPrecision(18, 5)
@@ -13845,7 +13845,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -13859,7 +13859,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -13871,7 +13871,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -13895,7 +13895,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("before");
 
                     b.Property<DateTime?>("ChangeDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("change_date");
 
                     b.Property<string>("ChangeTime")
@@ -13904,7 +13904,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("change_time");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DocumentNo")
                         .IsRequired()
@@ -13932,7 +13932,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -13951,7 +13951,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DestinationDocumentNo")
                         .IsRequired()
@@ -13976,7 +13976,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -14005,7 +14005,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_to_address");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DocumentNo")
                         .IsRequired()
@@ -14021,7 +14021,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("SendingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("sending_date");
 
                     b.Property<string>("SendingTime")
@@ -14048,7 +14048,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_address");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -14203,7 +14203,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -14250,7 +14250,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -14258,7 +14258,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EMail")
@@ -14276,7 +14276,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("ExpectedFinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_finishing_date");
 
                     b.Property<string>("FaxNo")
@@ -14285,7 +14285,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fax_no");
 
                     b.Property<DateTime?>("FinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("finishing_date");
 
                     b.Property<string>("FinishingTime")
@@ -14370,7 +14370,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("notify_customer");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderTime")
@@ -14404,7 +14404,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("phone_no_2");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<string>("PostCode")
@@ -14413,7 +14413,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("post_code");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -14458,7 +14458,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("reserve");
 
                     b.Property<DateTime?>("ResponseDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("response_date");
 
                     b.Property<string>("ResponseTime")
@@ -14606,7 +14606,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shortcut_dimension_2_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<string>("StartingTime")
@@ -14647,7 +14647,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseDiscount")
                         .HasPrecision(18, 5)
@@ -14821,7 +14821,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -14873,7 +14873,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("doc_exch_original_identifier");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentExchangeIdentifier")
@@ -14886,7 +14886,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_exchange_status");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EMail")
@@ -14904,7 +14904,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("ExpectedFinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_finishing_date");
 
                     b.Property<string>("FaxNo")
@@ -14913,7 +14913,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fax_no");
 
                     b.Property<DateTime?>("FinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("finishing_date");
 
                     b.Property<string>("FinishingTime")
@@ -14989,7 +14989,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("notify_customer");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderNo")
@@ -15033,7 +15033,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("phone_no_2");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<string>("PostCode")
@@ -15042,7 +15042,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("post_code");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -15079,7 +15079,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("reason_code");
 
                     b.Property<DateTime?>("ResponseDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("response_date");
 
                     b.Property<string>("ResponseTime")
@@ -15208,7 +15208,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("source_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<string>("StartingTime")
@@ -15245,7 +15245,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -15356,7 +15356,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_components_from");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerDiscGroup")
                         .IsRequired()
@@ -15474,7 +15474,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("location_code");
 
                     b.Property<DateTime?>("NeededByDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("needed_by_date");
 
                     b.Property<decimal>("NetWeight")
@@ -15492,7 +15492,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("nonstock");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -15696,7 +15696,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -15768,7 +15768,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -15801,7 +15801,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description_2");
 
                     b.Property<DateTime?>("InstallationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("installation_date");
 
                     b.Property<string>("ItemNo")
@@ -15810,7 +15810,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("LastServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_service_date");
 
                     b.Property<string>("LocationOfServiceItem")
@@ -15843,7 +15843,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("response_time_hours");
 
                     b.Property<DateTime?>("SalesDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("sales_date");
 
                     b.Property<string>("SalesServShptDocumentNo")
@@ -15908,7 +15908,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -15931,11 +15931,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("vendor_no");
 
                     b.Property<DateTime?>("WarrantyEndingDateLabor")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_ending_date_labor");
 
                     b.Property<DateTime?>("WarrantyEndingDateParts")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_ending_date_parts");
 
                     b.Property<decimal>("WarrantyLabor")
@@ -15949,11 +15949,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("warranty_parts");
 
                     b.Property<DateTime?>("WarrantyStartingDateLabor")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_starting_date_labor");
 
                     b.Property<DateTime?>("WarrantyStartingDateParts")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_starting_date_parts");
 
                     b.HasKey("Id");
@@ -15972,10 +15972,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("active");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateInstalled")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_installed");
 
                     b.Property<string>("Description")
@@ -15993,7 +15993,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("from_line_no");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<int>("LineNo")
@@ -16029,7 +16029,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -16057,7 +16057,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("create_service_item");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DefaultContractDiscount")
                         .HasPrecision(18, 5)
@@ -16084,7 +16084,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -16121,7 +16121,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contract_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -16167,7 +16167,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fault_reason_code");
 
                     b.Property<DateTime?>("FinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("finishing_date");
 
                     b.Property<string>("FinishingTime")
@@ -16208,7 +16208,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("resolution_code");
 
                     b.Property<DateTime?>("ResponseDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("response_date");
 
                     b.Property<string>("ResponseTime")
@@ -16272,7 +16272,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shortcut_dimension_2_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<string>("StartingTime")
@@ -16290,7 +16290,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -16312,11 +16312,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("warranty");
 
                     b.Property<DateTime?>("WarrantyEndingDateLabor")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_ending_date_labor");
 
                     b.Property<DateTime?>("WarrantyEndingDateParts")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_ending_date_parts");
 
                     b.Property<decimal>("WarrantyLabor")
@@ -16330,11 +16330,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("warranty_parts");
 
                     b.Property<DateTime?>("WarrantyStartingDateLabor")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_starting_date_labor");
 
                     b.Property<DateTime?>("WarrantyStartingDateParts")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_starting_date_parts");
 
                     b.HasKey("Id");
@@ -16359,7 +16359,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("before");
 
                     b.Property<DateTime?>("ChangeDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("change_date");
 
                     b.Property<string>("ChangeTime")
@@ -16368,7 +16368,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("change_time");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DocumentNo")
                         .IsRequired()
@@ -16397,7 +16397,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -16469,7 +16469,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -16583,7 +16583,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("open");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("Prepaid")
@@ -16669,7 +16669,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -16778,7 +16778,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_components_from");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -16953,7 +16953,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("location_code");
 
                     b.Property<DateTime?>("NeededByDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("needed_by_date");
 
                     b.Property<decimal>("NetWeight")
@@ -16971,7 +16971,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("nonstock");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<decimal>("OutstandingAmount")
@@ -17004,11 +17004,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("planned");
 
                     b.Property<DateTime?>("PlannedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_delivery_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -17026,7 +17026,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("product_group_code");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<decimal>("QtyConsumedBase")
@@ -17134,7 +17134,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("replaced_item_type");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<short>("Reserve")
@@ -17261,7 +17261,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("TimeSheetDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("time_sheet_date");
 
                     b.Property<int>("TimeSheetLineNo")
@@ -17328,7 +17328,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -17469,7 +17469,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_time_sheet_to_order");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DefaultResponseTimeHours")
                         .HasPrecision(18, 5)
@@ -17495,7 +17495,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("first_warning_within_hours");
 
                     b.Property<DateTime?>("LastContractServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_contract_service_date");
 
                     b.Property<bool>("LinkServiceToServiceItem")
@@ -17655,7 +17655,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_mandatory");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseContractCancelReason")
                         .HasColumnType("boolean")
@@ -17692,11 +17692,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("allocated_hours");
 
                     b.Property<DateTime?>("AllocationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allocation_date");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -17772,7 +17772,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -17791,7 +17791,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -17803,7 +17803,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -17822,7 +17822,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -17834,7 +17834,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -17848,10 +17848,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<int>("FromEntryNo")
@@ -17884,7 +17884,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_warranty_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -18034,7 +18034,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -18081,11 +18081,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EMail")
@@ -18103,7 +18103,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("ExpectedFinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_finishing_date");
 
                     b.Property<string>("FaxNo")
@@ -18112,7 +18112,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fax_no");
 
                     b.Property<DateTime?>("FinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("finishing_date");
 
                     b.Property<string>("FinishingTime")
@@ -18178,7 +18178,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("notify_customer");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderNo")
@@ -18222,7 +18222,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("phone_no_2");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<string>("PostCode")
@@ -18231,7 +18231,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("post_code");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -18253,7 +18253,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("reason_code");
 
                     b.Property<DateTime?>("ResponseDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("response_date");
 
                     b.Property<string>("ResponseTime")
@@ -18372,7 +18372,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("source_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<string>("StartingTime")
@@ -18409,7 +18409,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -18476,7 +18476,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contract_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -18513,7 +18513,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fault_reason_code");
 
                     b.Property<DateTime?>("FinishingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("finishing_date");
 
                     b.Property<string>("FinishingTime")
@@ -18550,7 +18550,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("resolution_code");
 
                     b.Property<DateTime?>("ResponseDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("response_date");
 
                     b.Property<string>("ResponseTime")
@@ -18604,7 +18604,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<string>("StartingTime")
@@ -18622,7 +18622,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -18644,11 +18644,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("warranty");
 
                     b.Property<DateTime?>("WarrantyEndingDateLabor")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_ending_date_labor");
 
                     b.Property<DateTime?>("WarrantyEndingDateParts")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_ending_date_parts");
 
                     b.Property<decimal>("WarrantyLabor")
@@ -18662,11 +18662,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("warranty_parts");
 
                     b.Property<DateTime?>("WarrantyStartingDateLabor")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_starting_date_labor");
 
                     b.Property<DateTime?>("WarrantyStartingDateParts")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_starting_date_parts");
 
                     b.HasKey("Id");
@@ -18742,7 +18742,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -18854,7 +18854,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("location_code");
 
                     b.Property<DateTime?>("NeededByDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("needed_by_date");
 
                     b.Property<decimal>("NetWeight")
@@ -18872,7 +18872,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("nonstock");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<int>("OrderLineNo")
@@ -18885,7 +18885,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -19038,7 +19038,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("TimeSheetDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("time_sheet_date");
 
                     b.Property<int>("TimeSheetLineNo")
@@ -19105,7 +19105,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -19162,7 +19162,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("Priority")
                         .HasColumnType("smallint")
@@ -19177,7 +19177,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19196,7 +19196,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19208,7 +19208,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19227,7 +19227,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19239,7 +19239,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19253,7 +19253,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19275,7 +19275,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19294,7 +19294,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19306,7 +19306,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19324,7 +19324,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("authentication");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("PasswordKey")
                         .HasColumnType("uuid")
@@ -19353,7 +19353,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -19376,7 +19376,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("accept_license_agreement");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -19420,7 +19420,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("terms_of_use_url");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19439,7 +19439,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19451,7 +19451,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19590,7 +19590,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_journal");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DeletedDocument")
                         .IsRequired()
@@ -19802,7 +19802,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unapplied_sales_entry_appln");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatSettlement")
                         .IsRequired()
@@ -19856,7 +19856,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19868,7 +19868,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19887,7 +19887,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19899,7 +19899,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19913,7 +19913,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -19934,7 +19934,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19948,7 +19948,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -19960,7 +19960,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -19974,7 +19974,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
@@ -19986,7 +19986,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("name");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20009,7 +20009,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("content");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatingUser")
                         .IsRequired()
@@ -20022,7 +20022,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("FileName")
@@ -20057,7 +20057,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Width")
                         .HasColumnType("integer")
@@ -20080,7 +20080,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("IdNav")
                         .HasColumnType("uuid")
@@ -20099,7 +20099,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20122,7 +20122,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("content");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Embedded")
                         .HasColumnType("boolean")
@@ -20150,7 +20150,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Width")
                         .HasColumnType("integer")
@@ -20172,7 +20172,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("app_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DeletePermission")
                         .HasColumnType("smallint")
@@ -20217,7 +20217,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20235,7 +20235,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("app_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -20252,7 +20252,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20266,7 +20266,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ObjectId")
                         .HasColumnType("integer")
@@ -20290,7 +20290,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20304,7 +20304,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DataItem")
                         .HasColumnType("integer")
@@ -20337,7 +20337,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenantwebserviceid");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20351,7 +20351,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<byte[]>("Odatafilterclause")
                         .HasColumnType("bytea")
@@ -20371,7 +20371,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenantwebserviceid");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20390,7 +20390,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -20402,7 +20402,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20461,14 +20461,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<DateTime?>("DateClosed")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_closed");
 
                     b.Property<string>("Description")
@@ -20481,7 +20481,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("duration");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("EndingTime")
@@ -20500,7 +20500,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("language_code");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LastTimeModified")
@@ -20620,7 +20620,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_duration_min");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WizardCampaignDescription")
                         .IsRequired()
@@ -20657,7 +20657,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("attachment_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -20679,7 +20679,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_do_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20697,11 +20697,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cache_data");
 
                     b.Property<DateTime?>("CacheWriteTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("cache_write_time");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
@@ -20712,7 +20712,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id_nav");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSecurityId")
                         .HasColumnType("uuid")
@@ -20739,7 +20739,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -20751,7 +20751,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -20775,7 +20775,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("assigned_user_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DimensionSetId")
                         .HasColumnType("integer")
@@ -20827,7 +20827,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("outbound_whse_handling_time");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<int>("PostingFromWhseRef")
@@ -20835,11 +20835,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("posting_from_whse_ref");
 
                     b.Property<DateTime?>("ReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("receipt_date");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -21000,7 +21000,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("trsf_to_country_region_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -21026,7 +21026,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("completely_shipped");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DerivedFromLineNo")
                         .HasColumnType("integer")
@@ -21185,11 +21185,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity_shipped");
 
                     b.Property<DateTime?>("ReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("receipt_date");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShippingAgentCode")
@@ -21266,7 +21266,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -21290,7 +21290,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("area");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DimensionSetId")
                         .HasColumnType("integer")
@@ -21322,15 +21322,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_series");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<DateTime?>("ReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("receipt_date");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -21418,7 +21418,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transfer_from_post_code");
 
                     b.Property<DateTime?>("TransferOrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("transfer_order_date");
 
                     b.Property<string>("TransferOrderNo")
@@ -21487,7 +21487,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("trsf_to_country_region_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -21501,7 +21501,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -21586,7 +21586,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity_base");
 
                     b.Property<DateTime?>("ReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("receipt_date");
 
                     b.Property<string>("ShippingAgentCode")
@@ -21659,7 +21659,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -21683,7 +21683,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("area");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DimensionSetId")
                         .HasColumnType("integer")
@@ -21715,15 +21715,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_series");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<DateTime?>("ReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("receipt_date");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -21811,7 +21811,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transfer_from_post_code");
 
                     b.Property<DateTime?>("TransferOrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("transfer_order_date");
 
                     b.Property<string>("TransferOrderNo")
@@ -21880,7 +21880,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("trsf_to_country_region_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -21894,7 +21894,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -21979,7 +21979,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity_base");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShippingAgentCode")
@@ -22052,7 +22052,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -22076,7 +22076,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataFormat")
                         .IsRequired()
@@ -22135,7 +22135,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transformation_type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22149,7 +22149,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -22171,7 +22171,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22185,7 +22185,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("No")
                         .IsRequired()
@@ -22206,7 +22206,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22225,7 +22225,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -22242,7 +22242,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22261,7 +22261,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -22278,7 +22278,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22302,7 +22302,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bill_to_customer_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -22377,7 +22377,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("open");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("Quantity")
@@ -22443,7 +22443,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -22482,7 +22482,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ObjectId")
                         .HasColumnType("integer")
@@ -22506,7 +22506,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22530,7 +22530,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -22556,11 +22556,151 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
                     b.ToTable("webhook_subscription", "administration");
+                });
+
+            modelBuilder.Entity("NexusBilling.Core.Domain.Ecf.Entities.EcfCompanyConfig", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("Environment")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("P12PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("P12Path")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("RepresentativeName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Rnc")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ecf_company_config", "erp");
+                });
+
+            modelBuilder.Entity("NexusBilling.Core.Domain.Ecf.Entities.EcfDocument", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Ncf")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("SecurityCode")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<Guid>("SourceDocumentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
+
+                    b.Property<string>("TrackId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("XmlContent")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SourceDocumentId");
+
+                    b.HasIndex("TenantId", "Ncf")
+                        .IsUnique();
+
+                    b.ToTable("ecf_document", "erp");
+                });
+
+            modelBuilder.Entity("NexusBilling.Core.Domain.Ecf.Entities.EcfNcfSequence", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<long>("CurrentNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<long>("MaxNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NcfType")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId", "NcfType")
+                        .IsUnique();
+
+                    b.ToTable("ecf_ncf_sequence", "erp");
                 });
 
             modelBuilder.Entity("NexusBilling.Core.Domain.Finance.Entities.AccountingPeriod", b =>
@@ -22582,7 +22722,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("closed");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("DateLocked")
                         .HasColumnType("boolean")
@@ -22598,7 +22738,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("new_fiscal_year");
 
                     b.Property<DateTime>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -22606,7 +22746,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22620,7 +22760,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ObjectId")
                         .HasColumnType("integer")
@@ -22639,7 +22779,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -22690,7 +22830,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("consolidation");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .HasColumnType("text")
@@ -22769,7 +22909,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22791,7 +22931,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("GLAccountFilter")
                         .IsRequired()
@@ -22807,7 +22947,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("indentation");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("Name")
@@ -22847,7 +22987,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("totaling");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22865,7 +23005,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("chart_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("GroupBy")
                         .HasColumnType("smallint")
@@ -22888,7 +23028,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -22907,7 +23047,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ReportId")
                         .HasColumnType("integer")
@@ -22923,7 +23063,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -22965,7 +23105,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cortana_intelligence_enabled");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FaBudgetCfAccountNo")
                         .IsRequired()
@@ -23064,7 +23204,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("timeout");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Variance")
                         .HasColumnType("integer")
@@ -23096,7 +23236,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cash_flow_account_no");
 
                     b.Property<DateTime?>("CashFlowDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("cash_flow_date");
 
                     b.Property<string>("CashFlowForecastNo")
@@ -23105,7 +23245,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cash_flow_forecast_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -23117,7 +23257,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -23153,11 +23293,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscToleranceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_disc_tolerance_date");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<string>("ShortcutDimension1Code")
@@ -23184,7 +23324,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23228,7 +23368,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_object_dimension");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LastAllocationDocNo")
                         .IsRequired()
@@ -23246,7 +23386,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("primary_key");
 
                     b.Property<DateTime?>("StartingDateForGLTransfer")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date_for_g_l_transfer");
 
                     b.Property<Guid>("TenantId")
@@ -23254,7 +23394,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23283,7 +23423,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bal_cost_type_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("DeleteAfterPosting")
                         .HasColumnType("boolean")
@@ -23314,7 +23454,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23328,7 +23468,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -23359,7 +23499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23378,7 +23518,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataExchDefCode")
                         .IsRequired()
@@ -23413,7 +23553,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("terms_of_service");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<byte[]>("WebServiceUrl")
                         .HasColumnType("bytea")
@@ -23461,7 +23601,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("conv_lcy_rndg_debit_acc");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CurrencyFactor")
                         .HasPrecision(18, 5)
@@ -23487,11 +23627,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("invoice_rounding_type");
 
                     b.Property<DateTime?>("LastDateAdjusted")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_adjusted");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<decimal>("MaxPaymentToleranceAmount")
@@ -23569,7 +23709,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unrealized_losses_acc");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("VatRoundingType")
                         .HasColumnType("smallint")
@@ -23592,7 +23732,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -23600,7 +23740,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<Guid>("TenantId")
@@ -23608,7 +23748,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23627,7 +23767,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("adjustment_exch_rate_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -23659,7 +23799,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("relational_exch_rate_amount");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -23667,7 +23807,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23686,7 +23826,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("additional_fee");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -23703,7 +23843,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23727,7 +23867,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("additional_fee");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -23748,7 +23888,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -23827,7 +23967,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DefaultEndingBookValue")
                         .HasPrecision(18, 5)
@@ -23890,7 +24030,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("g_l_integration_write_down");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<bool>("MarkErrorsAsCorrections")
@@ -23898,7 +24038,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("mark_errors_as_corrections");
 
                     b.Property<DateTime?>("NewFiscalYearStartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("new_fiscal_year_starting_date");
 
                     b.Property<int>("NoOfDaysInFiscalYear")
@@ -23922,7 +24062,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseCustom1Depreciation")
                         .HasColumnType("boolean")
@@ -23993,10 +24133,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("adjusted_base_lcy");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("CurrencyCode")
@@ -24023,7 +24163,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -24042,7 +24182,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -24054,7 +24194,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -24068,7 +24208,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -24096,7 +24236,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -24115,7 +24255,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("accum_depr_custom_1");
 
                     b.Property<DateTime?>("AcquisitionDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("acquisition_date");
 
                     b.Property<string>("ComponentOfMainAsset")
@@ -24124,7 +24264,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("component_of_main_asset");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DecliningBalance")
                         .HasPrecision(18, 5)
@@ -24141,11 +24281,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("depr_below_zero");
 
                     b.Property<DateTime?>("DeprEndingDateCustom1")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depr_ending_date_custom_1");
 
                     b.Property<DateTime?>("DeprStartingDateCustom1")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depr_starting_date_custom_1");
 
                     b.Property<decimal>("DeprThisYearCustom1")
@@ -24159,7 +24299,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("depreciation_book_code");
 
                     b.Property<DateTime?>("DepreciationEndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depreciation_ending_date");
 
                     b.Property<short>("DepreciationMethod")
@@ -24167,7 +24307,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("depreciation_method");
 
                     b.Property<DateTime?>("DepreciationStartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depreciation_starting_date");
 
                     b.Property<string>("DepreciationTableCode")
@@ -24181,7 +24321,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("DisposalDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("disposal_date");
 
                     b.Property<decimal>("EndingBookValue")
@@ -24215,7 +24355,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("final_rounding_amount");
 
                     b.Property<DateTime?>("FirstUserDefinedDeprDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("first_user_defined_depr_date");
 
                     b.Property<decimal>("FixedDeprAmount")
@@ -24229,7 +24369,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fixed_depr_amount_below_zero");
 
                     b.Property<DateTime?>("GLAcquisitionDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("g_l_acquisition_date");
 
                     b.Property<bool>("IgnoreDefEndingBookValue")
@@ -24237,39 +24377,39 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ignore_def_ending_book_value");
 
                     b.Property<DateTime?>("LastAcquisitionCostDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_acquisition_cost_date");
 
                     b.Property<DateTime?>("LastAppreciationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_appreciation_date");
 
                     b.Property<DateTime?>("LastCustom1Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_custom_1_date");
 
                     b.Property<DateTime?>("LastCustom2Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_custom_2_date");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<DateTime?>("LastDepreciationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_depreciation_date");
 
                     b.Property<DateTime?>("LastMaintenanceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_maintenance_date");
 
                     b.Property<DateTime?>("LastSalvageValueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_salvage_value_date");
 
                     b.Property<DateTime?>("LastWriteDownDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_write_down_date");
 
                     b.Property<short>("MainAssetComponent")
@@ -24287,7 +24427,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_of_depreciation_years");
 
                     b.Property<DateTime?>("ProjectedDisposalDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("projected_disposal_date");
 
                     b.Property<decimal>("ProjectedProceedsOnDisposal")
@@ -24305,7 +24445,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("straight_line");
 
                     b.Property<DateTime?>("TempEndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("temp_ending_date");
 
                     b.Property<decimal>("TempFixedDeprAmount")
@@ -24318,7 +24458,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDbFirstFiscalYear")
                         .HasColumnType("boolean")
@@ -24344,7 +24484,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -24381,7 +24521,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -24409,7 +24549,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -24444,7 +24584,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -24462,7 +24602,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("duplicate_in_depreciation_book");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -24480,7 +24620,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fa_no");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("FaPostingGroup")
@@ -24529,7 +24669,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_of_depreciation_days");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingNoSeries")
@@ -24581,7 +24721,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -24599,7 +24739,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DepreciationBookCode")
                         .IsRequired()
@@ -24641,7 +24781,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -24660,7 +24800,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -24721,7 +24861,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("test_report_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -24772,7 +24912,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -24790,11 +24930,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("declining_balance");
 
                     b.Property<DateTime?>("DeprEndingDateCustom1")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depr_ending_date_custom_1");
 
                     b.Property<DateTime?>("DeprStartingDateCustom1")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depr_starting_date_custom_1");
 
                     b.Property<decimal>("DeprThisYearCustom1")
@@ -24808,7 +24948,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("depreciation_book_code");
 
                     b.Property<DateTime?>("DepreciationEndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depreciation_ending_date");
 
                     b.Property<short>("DepreciationMethod")
@@ -24816,7 +24956,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("depreciation_method");
 
                     b.Property<DateTime?>("DepreciationStartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("depreciation_starting_date");
 
                     b.Property<string>("DepreciationTableCode")
@@ -24842,7 +24982,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("disposal_entry_no");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -24893,7 +25033,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fa_posting_category");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("FaPostingGroup")
@@ -24980,7 +25120,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("part_of_depreciable_basis");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<short>("PropertyClassCustom1")
@@ -25050,7 +25190,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseFaLedgerCheck")
                         .HasColumnType("boolean")
@@ -25097,7 +25237,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -25109,7 +25249,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25123,7 +25263,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -25139,7 +25279,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25213,7 +25353,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Custom1Account")
                         .IsRequired()
@@ -25300,7 +25440,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WriteDownAccOnDisposal")
                         .IsRequired()
@@ -25334,7 +25474,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -25362,7 +25502,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25380,7 +25520,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("acquisition_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DepreciationBookCode")
                         .IsRequired()
@@ -25424,7 +25564,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25438,7 +25578,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -25460,7 +25600,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25478,7 +25618,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("calc_db1_depr_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DepreciationBookCode")
                         .IsRequired()
@@ -25501,7 +25641,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("fa_no");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<bool>("InsertBalAccount")
@@ -25528,7 +25668,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("new_fa_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("ReclassifyAcqCost")
@@ -25574,7 +25714,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25588,7 +25728,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -25609,7 +25749,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25623,10 +25763,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<int>("FromEntryNo")
@@ -25672,7 +25812,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_maintenance_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -25691,11 +25831,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("AllowFaPostingFrom")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_fa_posting_from");
 
                     b.Property<DateTime?>("AllowFaPostingTo")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_fa_posting_to");
 
                     b.Property<bool>("AllowPostingToMainAssets")
@@ -25707,7 +25847,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("automatic_insurance_posting");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultDeprBook")
                         .IsRequired()
@@ -25739,7 +25879,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25758,7 +25898,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultFaPostingGroup")
                         .IsRequired()
@@ -25780,7 +25920,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25807,7 +25947,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("component_of_main_asset");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -25858,7 +25998,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("inactive");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LocationCode")
@@ -25876,7 +26016,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("maintenance_vendor_no");
 
                     b.Property<DateTime?>("NextServiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_service_date");
 
                     b.Property<string>("No")
@@ -25917,7 +26057,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("under_maintenance");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorNo")
                         .IsRequired()
@@ -25925,7 +26065,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("vendor_no");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.HasKey("Id");
@@ -25948,7 +26088,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("IncomeBalance")
                         .HasColumnType("smallint")
@@ -25969,7 +26109,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -25991,7 +26131,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("additional_report_definition");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -26032,7 +26172,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -26066,7 +26206,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("budget_dimension4_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -26083,7 +26223,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -26131,7 +26271,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("close_income_statement_dim_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasColumnType("numeric")
@@ -26303,7 +26443,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseTax")
                         .HasColumnType("boolean")
@@ -26340,7 +26480,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("GLEntryNo")
                         .HasColumnType("integer")
@@ -26351,7 +26491,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("VatEntryNo")
                         .HasColumnType("integer")
@@ -26369,7 +26509,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreationDate")
                         .HasColumnType("text")
@@ -26414,7 +26554,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_vat_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -26442,7 +26582,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefVatBusPostingGroup")
                         .IsRequired()
@@ -26459,7 +26599,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -26499,7 +26639,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_vat_setup_to_jnl_lines");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -26540,7 +26680,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -26729,7 +26869,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasColumnType("numeric")
@@ -27211,7 +27351,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_information");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -27301,7 +27441,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_vat_setup_to_jnl_lines");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("CustReceiptReportId")
                         .HasColumnType("integer")
@@ -27370,7 +27510,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("VendorReceiptReportId")
                         .HasColumnType("integer")
@@ -27397,7 +27537,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefVatProdPostingGroup")
                         .IsRequired()
@@ -27414,7 +27554,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -27498,7 +27638,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("check_gl_account_usage");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("EmuCurrency")
                         .HasColumnType("boolean")
@@ -27659,7 +27799,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unrealized_vat");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseLegacyGLEntryLocking")
                         .HasColumnType("boolean")
@@ -27704,7 +27844,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cogs_account_interim");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DirectCostAppliedAccount")
                         .IsRequired()
@@ -27841,7 +27981,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -27855,7 +27995,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -27877,7 +28017,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -27896,7 +28036,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("account_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -27908,7 +28048,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -27940,7 +28080,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("MinimumAmount")
                         .HasColumnType("numeric")
@@ -27959,7 +28099,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -27978,7 +28118,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -27995,7 +28135,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28127,7 +28267,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasColumnType("numeric")
@@ -28306,7 +28446,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseTax")
                         .HasColumnType("boolean")
@@ -28359,7 +28499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -28371,7 +28511,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28389,7 +28529,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("calculation_order");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("TaxArea")
                         .IsRequired()
@@ -28406,7 +28546,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28424,10 +28564,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("calculate_tax_on_tax");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("EffectiveDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("effective_date");
 
                     b.Property<decimal>("MaximumAmountQty")
@@ -28464,7 +28604,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28483,7 +28623,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -28495,7 +28635,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28522,7 +28662,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -28573,7 +28713,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unrealized_vat_type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28591,7 +28731,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("auto_create_tax_details");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("NonTaxableTaxGroupCode")
                         .IsRequired()
@@ -28638,7 +28778,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unreal_tax_acc_sales");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28662,7 +28802,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("column_layout_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -28674,7 +28814,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28693,7 +28833,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -28705,7 +28845,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -28782,10 +28922,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -28835,7 +28975,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_series");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("ReasonCode")
@@ -28938,7 +29078,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unrealized_vat_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseTax")
                         .HasColumnType("boolean")
@@ -28998,7 +29138,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("certificate_of_supply_required");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("EuService")
                         .HasColumnType("boolean")
@@ -29048,7 +29188,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unrealized_vat_type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Vat")
                         .HasPrecision(18, 5)
@@ -29096,7 +29236,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -29108,7 +29248,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -29127,7 +29267,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("account_filter");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("IgnoreStatusOnPurchDocs")
                         .HasColumnType("boolean")
@@ -29249,7 +29389,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("update_work_centers");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("VatRateChangeToolCompleted")
                         .HasColumnType("boolean")
@@ -29281,7 +29421,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -29296,7 +29436,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -29314,7 +29454,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("verified_address");
 
                     b.Property<DateTime?>("VerifiedDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("verified_date");
 
                     b.Property<string>("VerifiedName")
@@ -29334,7 +29474,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("ModifySubmittedReports")
                         .HasColumnType("boolean")
@@ -29355,7 +29495,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -29369,7 +29509,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -29391,7 +29531,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -29405,7 +29545,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -29426,7 +29566,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("VatStatementReportId")
                         .HasColumnType("integer")
@@ -29453,7 +29593,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("calculation");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -29470,7 +29610,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("location_code");
 
                     b.Property<DateTime?>("NewDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("new_date");
 
                     b.Property<decimal>("Quantity")
@@ -29521,7 +29661,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -29540,7 +29680,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -29557,7 +29697,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -29596,10 +29736,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("Description")
@@ -29621,11 +29761,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("GenProdPostingGroup")
@@ -29649,7 +29789,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LocationCode")
@@ -29681,7 +29821,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("planning_flexibility");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingNo")
@@ -29745,7 +29885,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shortcut_dimension_2_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<short>("Status")
@@ -29767,7 +29907,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -29818,7 +29958,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -29844,7 +29984,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("GenProdPostingGroup")
@@ -29978,7 +30118,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -30024,7 +30164,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("create_movements_automatically");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultLocationForOrders")
                         .IsRequired()
@@ -30050,7 +30190,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -30068,7 +30208,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_is_adjusted");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ItemNo")
                         .IsRequired()
@@ -30085,10 +30225,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("ValuationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("valuation_date");
 
                     b.Property<string>("VariantCode")
@@ -30113,7 +30253,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -30125,7 +30265,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -30144,10 +30284,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("base_calendar_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<short>("Day")
@@ -30172,7 +30312,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -30204,7 +30344,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("CrossDockBin")
                         .HasColumnType("boolean")
@@ -30248,7 +30388,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WarehouseClassCode")
                         .IsRequired()
@@ -30290,7 +30430,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("block_movement");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("CrossDockBin")
                         .HasColumnType("boolean")
@@ -30343,7 +30483,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -30372,7 +30512,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -30394,7 +30534,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorksheetTemplateName")
                         .IsRequired()
@@ -30413,7 +30553,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -30438,7 +30578,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -30475,7 +30615,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Dedicated")
                         .HasColumnType("boolean")
@@ -30511,7 +30651,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WarehouseClassCode")
                         .IsRequired()
@@ -30540,7 +30680,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -30568,7 +30708,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -30582,7 +30722,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -30660,7 +30800,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -30693,7 +30833,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("concurrent_capacity");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -30705,7 +30845,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -30780,7 +30920,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("output_quantity");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("QtyPerCapUnitOfMeasure")
@@ -30860,7 +31000,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -30899,7 +31039,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -30915,7 +31055,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -30929,7 +31069,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("GLEntryNo")
                         .HasColumnType("integer")
@@ -30944,7 +31084,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ValueEntryNo")
                         .HasColumnType("integer")
@@ -30974,7 +31114,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_is_adjusted");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DirectCost")
                         .HasPrecision(18, 5)
@@ -31097,7 +31237,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31121,10 +31261,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<short>("DocumentType")
@@ -31145,7 +31285,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31163,10 +31303,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("closed");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("Name")
@@ -31179,7 +31319,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31198,7 +31338,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -31210,7 +31350,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31234,7 +31374,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("capacity_variance_account");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("InventoryAccount")
                         .IsRequired()
@@ -31276,7 +31416,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WipAccount")
                         .IsRequired()
@@ -31319,7 +31459,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_comments_order_to_shpt");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("ExpectedCostPostingToGL")
                         .HasColumnType("boolean")
@@ -31418,7 +31558,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transfer_order_nos");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31441,7 +31581,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -31499,7 +31639,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatProdPostingGroup")
                         .IsRequired()
@@ -31541,7 +31681,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DateCompression")
                         .HasColumnType("smallint")
@@ -31576,7 +31716,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_budget_entry_no");
 
                     b.Property<DateTime?>("LastDateUpdated")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_updated");
 
                     b.Property<int>("LastEntryNo")
@@ -31598,7 +31738,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("refresh_when_unblocked");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -31610,7 +31750,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("update_on_posting");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31648,7 +31788,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount_non_invtbl");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dimension1ValueCode")
                         .IsRequired()
@@ -31693,7 +31833,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("location_code");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("Quantity")
@@ -31725,7 +31865,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31743,7 +31883,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_application");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedByUser")
                         .IsRequired()
@@ -31751,7 +31891,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by_user");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<int>("EntryNo")
@@ -31772,7 +31912,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_modified_by_user");
 
                     b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_modified_date");
 
                     b.Property<bool>("OutboundEntryIsUpdated")
@@ -31784,11 +31924,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("outbound_item_entry_no");
 
                     b.Property<DateTime?>("OutputCompletelyInvdDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("output_completely_invd_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("Quantity")
@@ -31805,7 +31945,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transferred_from_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31823,7 +31963,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_application");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedByUser")
                         .IsRequired()
@@ -31831,7 +31971,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by_user");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("DeletedByUser")
@@ -31840,7 +31980,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("deleted_by_user");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("deleted_date");
 
                     b.Property<int>("EntryNo")
@@ -31861,7 +32001,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_modified_by_user");
 
                     b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_modified_date");
 
                     b.Property<int>("OutboundItemEntryNo")
@@ -31869,11 +32009,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("outbound_item_entry_no");
 
                     b.Property<DateTime?>("OutputCompletelyInvdDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("output_completely_invd_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<int>("PrimaryEntryNo")
@@ -31894,7 +32034,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transferred_from_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31912,7 +32052,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdNav")
                         .HasColumnType("integer")
@@ -31937,7 +32077,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -31959,7 +32099,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdNav")
                         .HasColumnType("integer")
@@ -31975,7 +32115,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -31994,7 +32134,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ItemAttributeId")
                         .HasColumnType("integer")
@@ -32018,7 +32158,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -32055,7 +32195,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("budget_dimension_3_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -32072,7 +32212,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -32091,7 +32231,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -32120,7 +32260,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -32134,7 +32274,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -32176,7 +32316,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatProdPostingGroup")
                         .IsRequired()
@@ -32218,7 +32358,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("applies_to_doc_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -32272,7 +32412,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -32286,7 +32426,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -32326,7 +32466,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -32350,7 +32490,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -32362,7 +32502,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -32376,7 +32516,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ItemEntryNo")
                         .HasColumnType("integer")
@@ -32432,7 +32572,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -32451,7 +32591,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ItemNo")
                         .IsRequired()
@@ -32468,7 +32608,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -32487,7 +32627,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -32524,7 +32664,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -32606,7 +32746,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -32632,7 +32772,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("discount_amount");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<int>("DocumentLineNo")
@@ -32667,7 +32807,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_type");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -32748,7 +32888,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_charge_no");
 
                     b.Property<DateTime?>("ItemExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("item_expiration_date");
 
                     b.Property<string>("ItemNo")
@@ -32820,7 +32960,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("new_dimension_set_id");
 
                     b.Property<DateTime?>("NewItemExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("new_item_expiration_date");
 
                     b.Property<string>("NewLocationCode")
@@ -32863,7 +33003,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("operation_no");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<int>("OrderLineNo")
@@ -32926,11 +33066,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("phys_invt_counting_period_type");
 
                     b.Property<DateTime?>("PlannedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_delivery_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingNoSeries")
@@ -33225,7 +33365,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("update_standard_cost");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("ValueEntryType")
                         .HasColumnType("smallint")
@@ -33245,7 +33385,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("warehouse_adjustment");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.Property<string>("WorkCenterGroupCode")
@@ -33275,7 +33415,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -33336,7 +33476,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("WhseRegisterReportId")
                         .HasColumnType("integer")
@@ -33382,7 +33522,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -33403,7 +33543,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<int>("DocumentLineNo")
@@ -33437,7 +33577,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_type");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -33486,7 +33626,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("job_task_no");
 
                     b.Property<DateTime?>("LastInvoiceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_invoice_date");
 
                     b.Property<string>("LocationCode")
@@ -33542,7 +33682,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("positive");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<int>("ProdOrderCompLineNo")
@@ -33618,7 +33758,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -33626,7 +33766,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("variant_code");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.HasKey("Id");
@@ -33641,10 +33781,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<int>("FromCapacityEntryNo")
@@ -33698,7 +33838,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_value_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -33722,7 +33862,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -33882,7 +34022,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WarrantyDateFormula")
                         .IsRequired()
@@ -33901,7 +34041,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -33928,7 +34068,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -33952,7 +34092,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ItemNo")
                         .IsRequired()
@@ -33968,7 +34108,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -33987,7 +34127,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -34009,7 +34149,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -34023,7 +34163,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ItemNo")
                         .IsRequired()
@@ -34040,7 +34180,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -34084,7 +34224,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -34096,7 +34236,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -34119,7 +34259,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("certificate_number");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -34145,7 +34285,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("test_quality");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -34203,7 +34343,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DirectUnitCost")
                         .HasPrecision(18, 5)
@@ -34240,7 +34380,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("indirect_cost");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LocationCode")
@@ -34363,7 +34503,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("WaitTime")
                         .HasPrecision(18, 5)
@@ -34397,7 +34537,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -34409,7 +34549,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -34423,7 +34563,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -34435,7 +34575,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -34466,7 +34606,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_incl_setup");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrentProductionForecast")
                         .IsRequired()
@@ -34564,7 +34704,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseForecastOnLocations")
                         .HasColumnType("boolean")
@@ -34603,7 +34743,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("create_transfer_order");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("MakeOrders")
                         .HasColumnType("smallint")
@@ -34644,7 +34784,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transfer_wksh_name");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -34663,7 +34803,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -34685,7 +34825,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -34704,7 +34844,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("NoFormat")
                         .HasColumnType("smallint")
@@ -34725,7 +34865,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -34744,7 +34884,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -34756,7 +34896,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -34826,7 +34966,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("phys_invt_counting_period_type");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("QtyCalculated")
@@ -34879,7 +35019,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -34912,7 +35052,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("count_frequency_per_year");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -34924,7 +35064,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -34942,7 +35082,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("action_msg_response_planning");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Inactive")
                         .HasColumnType("boolean")
@@ -34954,7 +35094,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("LatestDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("latest_date");
 
                     b.Property<string>("LocationCode")
@@ -34971,7 +35111,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -34990,7 +35130,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -35025,7 +35165,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorksheetTemplateName")
                         .IsRequired()
@@ -35044,7 +35184,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ItemNo")
                         .IsRequired()
@@ -35052,7 +35192,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<Guid>("TenantId")
@@ -35060,7 +35200,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ValueEntryNo")
                         .HasColumnType("integer")
@@ -35088,7 +35228,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -35105,11 +35245,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("GenProdPostingGroup")
@@ -35167,7 +35307,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("overhead_rate");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingNoSeries")
@@ -35215,7 +35355,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("source_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -35233,7 +35373,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -35267,7 +35407,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -35289,7 +35429,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_no");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("GenProdPostingGroup")
@@ -35402,7 +35542,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -35426,7 +35566,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("assigned_user_id");
 
                     b.Property<DateTime?>("AssignmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("assignment_date");
 
                     b.Property<string>("AssignmentTime")
@@ -35435,7 +35575,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("assignment_time");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DestinationNo")
                         .IsRequired()
@@ -35481,15 +35621,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_series");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<DateTime?>("RegisteringDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("registering_date");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<short>("SourceDocument")
@@ -35514,7 +35654,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -35537,7 +35677,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bin_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -35559,11 +35699,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("destination_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ItemNo")
@@ -35678,7 +35818,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -35686,7 +35826,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("variant_code");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.Property<string>("WhseActivityNo")
@@ -35721,10 +35861,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("LineNo")
@@ -35745,7 +35885,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -35774,7 +35914,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount_acy");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -35791,15 +35931,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<DateTime?>("EndingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date_time");
 
                     b.Property<string>("EndingTime")
@@ -35936,11 +36076,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shortcut_dimension_2_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<DateTime?>("StartingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date_time");
 
                     b.Property<string>("StartingTime")
@@ -35972,7 +36112,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -35996,7 +36136,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("concurrent_capacities");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("CriticalPath")
                         .HasColumnType("boolean")
@@ -36013,11 +36153,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<DateTime?>("EndingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date_time");
 
                     b.Property<string>("EndingTime")
@@ -36213,11 +36353,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("standard_task_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<DateTime?>("StartingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date_time");
 
                     b.Property<string>("StartingTime")
@@ -36252,7 +36392,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost_per");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("WaitTime")
                         .HasPrecision(18, 5)
@@ -36291,7 +36431,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -36308,7 +36448,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WarehouseClassCode")
                         .IsRequired()
@@ -36327,10 +36467,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("Description")
@@ -36344,7 +36484,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description_2");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<int>("LowLevelCode")
@@ -36380,7 +36520,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VersionNos")
                         .IsRequired()
@@ -36403,7 +36543,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("calculation_formula");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Depth")
                         .HasPrecision(18, 5)
@@ -36416,7 +36556,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("LeadTimeOffset")
@@ -36479,7 +36619,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("scrap");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -36496,7 +36636,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -36530,7 +36670,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -36547,7 +36687,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -36580,10 +36720,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("Description")
@@ -36601,15 +36741,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<DateTime?>("EndingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date_time");
 
                     b.Property<string>("EndingTime")
@@ -36618,7 +36758,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ending_time");
 
                     b.Property<DateTime?>("FinishedDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("finished_date");
 
                     b.Property<string>("FirmPlannedOrderNo")
@@ -36642,7 +36782,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("inventory_posting_group");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LocationCode")
@@ -36718,11 +36858,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("source_type");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<DateTime?>("StartingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date_time");
 
                     b.Property<string>("StartingTime")
@@ -36744,7 +36884,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -36779,7 +36919,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -36787,7 +36927,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("Description")
@@ -36804,11 +36944,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<int>("ItemLedgerEntryNo")
@@ -36835,7 +36975,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("lot_no");
 
                     b.Property<DateTime?>("NewExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("new_expiration_date");
 
                     b.Property<string>("NewLotNo")
@@ -36896,7 +37036,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("serial_no");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("SourceBatchName")
@@ -36938,7 +37078,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transferred_from_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -36946,7 +37086,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("variant_code");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.HasKey("Id");
@@ -36961,7 +37101,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -36974,7 +37114,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description_2");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("No")
@@ -37005,7 +37145,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VersionNos")
                         .IsRequired()
@@ -37029,7 +37169,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("concurrent_capacities");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37167,7 +37307,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost_per");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VersionCode")
                         .IsRequired()
@@ -37211,7 +37351,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37223,7 +37363,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -37242,7 +37382,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37254,7 +37394,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -37268,7 +37408,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37285,7 +37425,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -37304,7 +37444,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37321,7 +37461,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -37359,7 +37499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37561,7 +37701,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("ValueEntryType")
                         .HasColumnType("smallint")
@@ -37598,7 +37738,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("components_at_location");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DampenerPeriod")
                         .IsRequired()
@@ -37628,11 +37768,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("item_no");
 
                     b.Property<DateTime?>("LastCountingPeriodUpdate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_counting_period_update");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<decimal>("LastDirectCost")
@@ -37680,11 +37820,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("minimum_order_quantity");
 
                     b.Property<DateTime?>("NextCountingEndDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_counting_end_date");
 
                     b.Property<DateTime?>("NextCountingStartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("next_counting_start_date");
 
                     b.Property<decimal>("OrderMultiple")
@@ -37784,7 +37924,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseCrossDocking")
                         .HasColumnType("boolean")
@@ -37822,7 +37962,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -37834,7 +37974,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -37898,10 +38038,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("Description")
@@ -37914,7 +38054,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<int>("ItemLedgerEntryNo")
@@ -37937,7 +38077,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("lot_no");
 
                     b.Property<DateTime?>("NewExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("new_expiration_date");
 
                     b.Property<string>("NewLotNo")
@@ -38043,7 +38183,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transfer_item_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -38051,7 +38191,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("variant_code");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.HasKey("Id");
@@ -38066,7 +38206,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ItemNo")
                         .IsRequired()
@@ -38121,7 +38261,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("untracked_quantity");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -38224,7 +38364,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_posted_to_g_l_acy");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -38241,7 +38381,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("discount_amount");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<int>("DocumentLineNo")
@@ -38392,7 +38532,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("partial_revaluation");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("PurchaseAmountActual")
@@ -38458,7 +38598,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -38466,7 +38606,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("user_id");
 
                     b.Property<DateTime?>("ValuationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("valuation_date");
 
                     b.Property<bool>("ValuedByAverageCost")
@@ -38499,7 +38639,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SourceRowid")
                         .IsRequired()
@@ -38511,7 +38651,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ValueEntryNo")
                         .HasColumnType("integer")
@@ -38534,7 +38674,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("assigned_user_id");
 
                     b.Property<DateTime?>("AssignmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("assignment_date");
 
                     b.Property<string>("AssignmentTime")
@@ -38547,10 +38687,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("breakbulk_filter");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateOfLastPrinting")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_of_last_printing");
 
                     b.Property<string>("DestinationNo")
@@ -38563,7 +38703,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("destination_type");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -38601,7 +38741,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_series");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("RegisteringNo")
@@ -38615,7 +38755,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("registering_no_series");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<short>("SortingMethod")
@@ -38653,7 +38793,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -38705,7 +38845,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("breakbulk_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("CrossDockInformation")
                         .HasColumnType("smallint")
@@ -38740,11 +38880,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("destination_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ItemNo")
@@ -38884,7 +39024,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("special_equipment_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -38897,7 +39037,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -38905,7 +39045,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("variant_code");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.Property<decimal>("Weight")
@@ -38943,7 +39083,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -38955,7 +39095,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -38974,7 +39114,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -38986,7 +39126,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39010,10 +39150,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("LineNo")
@@ -39038,7 +39178,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39057,7 +39197,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("adcs_user");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Default")
                         .HasColumnType("boolean")
@@ -39073,7 +39213,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -39102,7 +39242,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bin_type_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Cubage")
                         .HasPrecision(18, 5)
@@ -39127,7 +39267,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_type");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ItemNo")
@@ -39203,7 +39343,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("reference_no");
 
                     b.Property<DateTime?>("RegisteringDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("registering_date");
 
                     b.Property<string>("SerialNo")
@@ -39251,7 +39391,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -39264,7 +39404,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("variant_code");
 
                     b.Property<DateTime?>("WarrantyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("warranty_date");
 
                     b.Property<decimal>("Weight")
@@ -39307,7 +39447,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("assigned_user_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -39349,7 +39489,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39363,7 +39503,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -39420,7 +39560,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39434,10 +39574,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<int>("FromEntryNo")
@@ -39467,7 +39607,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -39490,7 +39630,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("completely_handled");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DestinationNo")
                         .IsRequired()
@@ -39506,7 +39646,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_status");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -39520,7 +39660,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("location_code");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -39563,7 +39703,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39577,7 +39717,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("LastWhsePostingRefNo")
                         .HasColumnType("integer")
@@ -39642,7 +39782,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WhseInternalPickNos")
                         .IsRequired()
@@ -39696,7 +39836,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("assigned_user_id");
 
                     b.Property<DateTime?>("AssignmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("assignment_date");
 
                     b.Property<string>("AssignmentTime")
@@ -39714,7 +39854,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("create_posted_header");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DocumentStatus")
                         .HasColumnType("smallint")
@@ -39746,11 +39886,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("no_series");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -39791,7 +39931,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ZoneCode")
                         .IsRequired()
@@ -39810,7 +39950,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -39822,7 +39962,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39836,7 +39976,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -39848,7 +39988,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39862,7 +40002,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -39884,7 +40024,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorksheetTemplateName")
                         .IsRequired()
@@ -39903,7 +40043,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -39928,7 +40068,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -39990,7 +40130,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DirectUnitCost")
                         .HasPrecision(18, 5)
@@ -40032,7 +40172,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("indirect_cost");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LocationCode")
@@ -40142,7 +40282,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkCenterGroupCode")
                         .IsRequired()
@@ -40166,7 +40306,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -40178,7 +40318,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -40197,7 +40337,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -40209,7 +40349,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -40233,7 +40373,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("CrossDockBinZone")
                         .HasColumnType("boolean")
@@ -40259,7 +40399,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WarehouseClassCode")
                         .IsRequired()
@@ -40300,7 +40440,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("applied_vend_ledger_entry_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -40359,7 +40499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("initial_document_type");
 
                     b.Property<DateTime?>("InitialEntryDueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("initial_entry_due_date");
 
                     b.Property<string>("InitialEntryGlobalDim1")
@@ -40387,7 +40527,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("max_payment_tolerance");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("ReasonCode")
@@ -40427,7 +40567,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unapplied_by_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseTax")
                         .HasColumnType("boolean")
@@ -40474,7 +40614,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -40482,7 +40622,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -40490,11 +40630,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("IcPartnerCode")
@@ -40522,11 +40662,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -40534,11 +40674,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -40580,7 +40720,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorCrMemoNo")
                         .IsRequired()
@@ -40619,7 +40759,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -40697,7 +40837,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<decimal>("Quantity")
@@ -40715,7 +40855,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("receipt_no");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<int>("ReturnShipmentLineNo")
@@ -40746,7 +40886,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -40770,7 +40910,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bill_to_customer_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -40778,7 +40918,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -40786,7 +40926,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -40814,11 +40954,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -40826,11 +40966,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -40872,7 +41012,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -40891,7 +41031,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -40963,7 +41103,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<decimal>("Quantity")
@@ -40972,7 +41112,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<Guid>("TenantId")
@@ -40994,7 +41134,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -41013,10 +41153,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -41039,7 +41179,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ic_partner_g_l_acc_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<int>("SourceLineNo")
@@ -41067,7 +41207,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -41086,7 +41226,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -41094,7 +41234,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -41102,11 +41242,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("IcPartnerCode")
@@ -41134,11 +41274,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -41146,11 +41286,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -41192,7 +41332,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorCrMemoNo")
                         .IsRequired()
@@ -41226,7 +41366,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -41304,7 +41444,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<decimal>("Quantity")
@@ -41313,7 +41453,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<Guid>("TenantId")
@@ -41335,7 +41475,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -41359,7 +41499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bill_to_customer_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -41367,7 +41507,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -41375,7 +41515,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -41408,11 +41548,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -41420,11 +41560,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -41466,7 +41606,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -41485,7 +41625,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -41553,7 +41693,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<decimal>("Quantity")
@@ -41562,7 +41702,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<int>("ReturnReceiptLineNo")
@@ -41602,7 +41742,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -41621,10 +41761,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -41647,7 +41787,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ic_partner_g_l_acc_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<int>("SourceLineNo")
@@ -41675,7 +41815,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -41698,7 +41838,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("MapToDimensionCode")
                         .IsRequired()
@@ -41715,7 +41855,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -41738,7 +41878,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -41773,7 +41913,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -41787,7 +41927,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -41825,7 +41965,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -41847,7 +41987,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blocked");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("IncomeBalance")
                         .HasColumnType("smallint")
@@ -41877,7 +42017,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -41896,7 +42036,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -41904,7 +42044,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -41912,11 +42052,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("IcPartnerCode")
@@ -41944,11 +42084,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -41956,11 +42096,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -42002,7 +42142,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorCrMemoNo")
                         .IsRequired()
@@ -42041,7 +42181,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -42123,7 +42263,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<decimal>("Quantity")
@@ -42141,7 +42281,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("receipt_no");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<int>("ReturnShipmentLineNo")
@@ -42172,7 +42312,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -42196,7 +42336,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bill_to_customer_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -42204,7 +42344,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -42212,7 +42352,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -42240,11 +42380,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -42252,11 +42392,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -42298,7 +42438,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -42317,7 +42457,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -42389,7 +42529,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<decimal>("Quantity")
@@ -42398,7 +42538,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<Guid>("TenantId")
@@ -42420,7 +42560,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -42439,10 +42579,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -42474,7 +42614,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("original_document_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<int>("SourceLineNo")
@@ -42498,7 +42638,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -42517,7 +42657,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -42525,7 +42665,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -42533,11 +42673,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("IcPartnerCode")
@@ -42565,11 +42705,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -42577,11 +42717,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -42623,7 +42763,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorCrMemoNo")
                         .IsRequired()
@@ -42657,7 +42797,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -42735,7 +42875,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<decimal>("Quantity")
@@ -42744,7 +42884,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<Guid>("TenantId")
@@ -42766,7 +42906,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -42790,7 +42930,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bill_to_customer_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -42798,7 +42938,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -42806,7 +42946,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -42839,11 +42979,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_discount");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("PricesIncludingVat")
@@ -42851,11 +42991,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -42897,7 +43037,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -42916,7 +43056,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_including_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -42984,7 +43124,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_no");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<decimal>("Quantity")
@@ -42993,7 +43133,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<int>("ReturnReceiptLineNo")
@@ -43033,7 +43173,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseAmount")
                         .HasPrecision(18, 5)
@@ -43052,10 +43192,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -43082,7 +43222,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("line_action");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<int>("SourceLineNo")
@@ -43106,7 +43246,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -43133,7 +43273,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_distribution_in_lcy");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -43182,7 +43322,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorNo")
                         .IsRequired()
@@ -43201,7 +43341,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -43218,7 +43358,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -43252,10 +43392,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("DocumentLineNo")
@@ -43280,7 +43420,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -43304,10 +43444,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("DocNoOccurrence")
@@ -43336,7 +43476,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("VersionNo")
                         .HasColumnType("integer")
@@ -43441,7 +43581,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -43458,11 +43598,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EntryPoint")
@@ -43471,7 +43611,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -43589,11 +43729,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -43758,7 +43898,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -43867,7 +44007,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -43936,11 +44076,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<short>("FaPostingType")
@@ -44114,7 +44254,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pay_to_vendor_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -44272,7 +44412,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -44425,7 +44565,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditorNo")
                         .IsRequired()
@@ -44447,11 +44587,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EntryPoint")
@@ -44460,7 +44600,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -44508,7 +44648,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_address_code");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderNo")
@@ -44597,11 +44737,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -44761,7 +44901,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -44875,7 +45015,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -44944,11 +45084,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<short>("FaPostingType")
@@ -45132,7 +45272,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pay_to_vendor_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -45303,7 +45443,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -45461,7 +45601,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -45478,11 +45618,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EntryPoint")
@@ -45491,7 +45631,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -45549,7 +45689,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_address_code");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderNo")
@@ -45633,11 +45773,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -45646,7 +45786,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("posting_description");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<string>("PurchaserCode")
@@ -45665,7 +45805,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("reason_code");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -45777,7 +45917,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -45881,7 +46021,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -45945,11 +46085,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<short>("FaPostingType")
@@ -46113,7 +46253,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("operation_no");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<int>("OrderLineNo")
@@ -46136,11 +46276,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pay_to_vendor_no");
 
                     b.Property<DateTime?>("PlannedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_receipt_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -46163,7 +46303,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("product_group_code");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<string>("PurchasingCode")
@@ -46202,7 +46342,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity_invoiced");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -46335,7 +46475,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -46395,18 +46535,42 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("amount");
+
+                    b.Property<decimal>("AmountIncludingVat")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("amount_including_vat");
+
                     b.Property<string>("BuyFromVendorNo")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CurrencyCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
+                        .HasColumnName("currency_code");
 
                     b.Property<string>("DocumentType")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("document_type");
+
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("due_date");
+
+                    b.Property<string>("ExternalDocumentNo")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("external_document_no");
 
                     b.Property<string>("No")
                         .IsRequired()
@@ -46418,16 +46582,28 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("pay_to_name");
 
+                    b.Property<string>("PaymentTermsCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("payment_terms_code");
+
                     b.Property<DateTime>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("status");
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -46552,7 +46728,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -46565,7 +46741,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_factor");
 
                     b.Property<DateTime?>("DateArchived")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_archived");
 
                     b.Property<int>("DimensionSetId")
@@ -46577,7 +46753,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("doc_no_occurrence");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -46585,7 +46761,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EntryPoint")
@@ -46594,7 +46770,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -46707,7 +46883,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_class");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("PayToAddress")
@@ -46786,11 +46962,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -46818,7 +46994,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prepayment");
 
                     b.Property<DateTime?>("PrepaymentDueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("prepayment_due_date");
 
                     b.Property<string>("PrepaymentNo")
@@ -46852,7 +47028,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prepmt_payment_terms_code");
 
                     b.Property<DateTime?>("PrepmtPmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("prepmt_pmt_discount_date");
 
                     b.Property<string>("PrepmtPostingDescription")
@@ -46865,7 +47041,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<string>("PurchaseQuoteNo")
@@ -46898,7 +47074,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("receiving_no_series");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -47032,7 +47208,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseDiscount")
                         .HasPrecision(18, 5)
@@ -47172,7 +47348,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("completely_received");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -47252,11 +47428,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<short>("FaPostingType")
@@ -47444,7 +47620,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("operation_no");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<decimal>("OutstandingAmount")
@@ -47476,7 +47652,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pay_to_vendor_no");
 
                     b.Property<DateTime?>("PlannedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_receipt_date");
 
                     b.Property<short>("PlanningFlexibility")
@@ -47594,7 +47770,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("profit");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<string>("PurchasingCode")
@@ -47667,7 +47843,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("receipt_no");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -47722,7 +47898,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("return_shpd_not_invd_lcy");
 
                     b.Property<DateTime?>("ReturnsDeferralStartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("returns_deferral_start_date");
 
                     b.Property<string>("RoutingNo")
@@ -47852,7 +48028,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -47989,7 +48165,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("completely_received");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -48075,11 +48251,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<short>("FaPostingType")
@@ -48212,7 +48388,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("operation_no");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<decimal>("OutstandingAmount")
@@ -48246,7 +48422,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pay_to_vendor_no");
 
                     b.Property<DateTime?>("PlannedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_receipt_date");
 
                     b.Property<short>("PlanningFlexibility")
@@ -48355,7 +48531,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("profit");
 
                     b.Property<DateTime?>("PromisedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_receipt_date");
 
                     b.Property<string>("PurchasingCode")
@@ -48443,7 +48619,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("receipt_no");
 
                     b.Property<DateTime?>("RequestedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_receipt_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -48506,7 +48682,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("return_shpd_not_invd_lcy");
 
                     b.Property<DateTime?>("ReturnsDeferralStartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("returns_deferral_start_date");
 
                     b.Property<string>("RoutingNo")
@@ -48642,7 +48818,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -48717,7 +48893,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -48730,7 +48906,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("ItemNo")
@@ -48744,7 +48920,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("minimum_quantity");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -48757,7 +48933,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -48781,7 +48957,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("AllowDocumentDeletionBefore")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_document_deletion_before");
 
                     b.Property<bool>("AllowVatDifference")
@@ -48834,7 +49010,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("copy_comments_order_to_receipt");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditAccForNonItemLines")
                         .IsRequired()
@@ -48968,7 +49144,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorNos")
                         .IsRequired()
@@ -48987,7 +49163,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -49016,7 +49192,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -49052,7 +49228,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_amount");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -49065,7 +49241,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_factor");
 
                     b.Property<DateTime?>("DemandDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("demand_date");
 
                     b.Property<int>("DemandLineNo")
@@ -49124,15 +49300,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<DateTime?>("EndingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date_time");
 
                     b.Property<string>("EndingTime")
@@ -49141,7 +49317,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ending_time");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<decimal>("FinishedQtyBase")
@@ -49245,7 +49421,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_address_code");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderPromisingId")
@@ -49262,7 +49438,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_promising_line_no");
 
                     b.Property<DateTime?>("OriginalDueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("original_due_date");
 
                     b.Property<string>("OriginalItemNo")
@@ -49452,11 +49628,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shortcut_dimension_2_code");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<DateTime?>("StartingDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date_time");
 
                     b.Property<string>("StartingTime")
@@ -49483,7 +49659,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transfer_from_code");
 
                     b.Property<DateTime?>("TransferShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("transfer_shipment_date");
 
                     b.Property<short>("Type")
@@ -49506,7 +49682,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code_demand");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -49550,7 +49726,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -49567,7 +49743,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorksheetTemplateName")
                         .IsRequired()
@@ -49673,7 +49849,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -49690,11 +49866,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("EntryPoint")
@@ -49703,7 +49879,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("ExpectedReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expected_receipt_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -49821,11 +49997,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -49962,7 +50138,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -50061,7 +50237,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -50125,7 +50301,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_point");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<short>("FaPostingType")
@@ -50220,7 +50396,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pay_to_vendor_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -50385,7 +50561,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -50446,7 +50622,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -50463,7 +50639,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -50482,7 +50658,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_excl_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -50536,7 +50712,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -50560,7 +50736,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -50572,7 +50748,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorNo")
                         .IsRequired()
@@ -50610,7 +50786,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("contact");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -50627,7 +50803,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -50696,7 +50872,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -50773,7 +50949,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transit_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VendorNo")
                         .IsRequired()
@@ -50797,7 +50973,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -50824,7 +51000,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -50890,7 +51066,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("buy_from_vendor_no");
 
                     b.Property<DateTime?>("ClosedAtDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("closed_at_date");
 
                     b.Property<decimal>("ClosedByAmount")
@@ -50914,7 +51090,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("closed_by_entry_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditorNo")
                         .IsRequired()
@@ -50935,7 +51111,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -50948,7 +51124,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<int>("EntryNo")
@@ -51034,11 +51210,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pmt_disc_rcd_lcy");
 
                     b.Property<DateTime?>("PmtDiscToleranceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_disc_tolerance_date");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<decimal>("PmtToleranceLcy")
@@ -51050,7 +51226,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("positive");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("Prepayment")
@@ -51105,7 +51281,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -51138,7 +51314,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditCurrApplnRndgAcc")
                         .IsRequired()
@@ -51200,7 +51376,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51219,7 +51395,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -51236,7 +51412,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51265,15 +51441,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("alt_address_code");
 
                     b.Property<DateTime?>("AltAddressEndDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("alt_address_end_date");
 
                     b.Property<DateTime?>("AltAddressStartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("alt_address_start_date");
 
                     b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("birth_date");
 
                     b.Property<string>("CauseOfInactivityCode")
@@ -51312,7 +51488,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EMail")
                         .IsRequired()
@@ -51320,7 +51496,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("e_mail");
 
                     b.Property<DateTime?>("EmploymentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("employment_date");
 
                     b.Property<string>("EmplymtContractCode")
@@ -51367,7 +51543,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("image");
 
                     b.Property<DateTime?>("InactiveDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("inactive_date");
 
                     b.Property<string>("Initials")
@@ -51381,7 +51557,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("job_title");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LastName")
@@ -51467,7 +51643,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("TerminationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("termination_date");
 
                     b.Property<string>("Title")
@@ -51486,7 +51662,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("union_membership_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51505,7 +51681,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cause_of_absence_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -51522,7 +51698,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("FromDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("from_date");
 
                     b.Property<decimal>("QtyPerUnitOfMeasure")
@@ -51545,7 +51721,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("ToDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("to_date");
 
                     b.Property<string>("UnitOfMeasureCode")
@@ -51554,7 +51730,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51578,7 +51754,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("course_grade");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -51595,11 +51771,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("employee_status");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<DateTime?>("FromDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("from_date");
 
                     b.Property<string>("InstitutionCompany")
@@ -51621,7 +51797,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("ToDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("to_date");
 
                     b.Property<short>("Type")
@@ -51629,7 +51805,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51643,11 +51819,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("birth_date");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EmployeeNo")
                         .IsRequired()
@@ -51693,7 +51869,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51712,7 +51888,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -51724,7 +51900,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51743,7 +51919,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -51755,7 +51931,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51784,10 +51960,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("LineNo")
@@ -51812,7 +51988,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51831,7 +52007,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("QtyPerUnitOfMeasure")
                         .HasPrecision(18, 5)
@@ -51843,7 +52019,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51862,7 +52038,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("base_unit_of_measure");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EmployeeNos")
                         .IsRequired()
@@ -51879,7 +52055,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -51964,10 +52140,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("complete");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<string>("CurrencyCode")
@@ -51996,7 +52172,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description_2");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<short>("ExchCalculationCost")
@@ -52037,7 +52213,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("language_code");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("No")
@@ -52078,7 +52254,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("search_description");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<short>("Status")
@@ -52090,7 +52266,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WipMethod")
                         .IsRequired()
@@ -52098,7 +52274,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("wip_method");
 
                     b.Property<DateTime?>("WipPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("wip_posting_date");
 
                     b.Property<short>("WipPostingMethod")
@@ -52117,7 +52293,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -52129,7 +52305,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -52143,7 +52319,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -52159,7 +52335,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -52173,7 +52349,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -52210,7 +52386,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -52256,7 +52432,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -52293,7 +52469,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost_lcy");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -52311,7 +52487,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_type");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -52419,7 +52595,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("posted_service_shipment_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -52526,7 +52702,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("TimeSheetDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("time_sheet_date");
 
                     b.Property<int>("TimeSheetLineNo")
@@ -52603,7 +52779,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price_lcy");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -52627,7 +52803,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -52684,7 +52860,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("test_report_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -52742,7 +52918,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -52760,7 +52936,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("customer_price_group");
 
                     b.Property<DateTime?>("DatetimeAdjusted")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("datetime_adjusted");
 
                     b.Property<string>("Description")
@@ -52783,7 +52959,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost_lcy");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -52937,7 +53113,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("posted_service_shipment_no");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("QtyPerUnitOfMeasure")
@@ -53049,7 +53225,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price_lcy");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -53097,7 +53273,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -53105,7 +53281,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("CurrencyDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("currency_date");
 
                     b.Property<decimal>("CurrencyFactor")
@@ -53134,7 +53310,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost_lcy");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -53171,7 +53347,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("job_task_no");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<int>("LedgerEntryNo")
@@ -53235,11 +53411,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("planned");
 
                     b.Property<DateTime?>("PlannedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_delivery_date");
 
                     b.Property<DateTime?>("PlanningDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planning_date");
 
                     b.Property<decimal>("PostedLineAmount")
@@ -53263,7 +53439,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("posted_total_cost_lcy");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<decimal>("QtyPerUnitOfMeasure")
@@ -53332,7 +53508,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("remaining_total_cost_lcy");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<short>("Reserve")
@@ -53420,7 +53596,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price_lcy");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UsageLink")
                         .HasColumnType("boolean")
@@ -53473,7 +53649,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DocumentNo")
                         .IsRequired()
@@ -53495,7 +53671,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("invoiced_cost_amount_lcy");
 
                     b.Property<DateTime?>("InvoicedDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("invoiced_date");
 
                     b.Property<int>("JobLedgerEntryNo")
@@ -53530,11 +53706,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("TransferredDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("transferred_date");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -53553,7 +53729,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("GLCostsAppliedAccount")
                         .IsRequired()
@@ -53610,7 +53786,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WipAccruedCostsAccount")
                         .IsRequired()
@@ -53649,7 +53825,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -53661,7 +53837,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -53675,7 +53851,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -53683,7 +53859,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("EarliestStartDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("earliest_start_date_time");
 
                     b.Property<string>("EndingTime")
@@ -53712,7 +53888,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("error_message_4");
 
                     b.Property<DateTime?>("ExpirationDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date_time");
 
                     b.Property<Guid>("IdNav")
@@ -53725,7 +53901,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("job_queue_category_code");
 
                     b.Property<DateTime?>("LastReadyState")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_ready_state");
 
                     b.Property<int>("MaximumNoOfAttemptsToRun")
@@ -53776,7 +53952,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("recurring_job");
 
                     b.Property<DateTime?>("ReferenceStartingTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("reference_starting_time");
 
                     b.Property<short>("ReportOutputType")
@@ -53845,7 +54021,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("timeout_sec");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -53865,7 +54041,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("user_session_id");
 
                     b.Property<DateTime?>("UserSessionStarted")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("user_session_started");
 
                     b.Property<byte[]>("Xml")
@@ -53884,7 +54060,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -53892,7 +54068,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("description");
 
                     b.Property<DateTime?>("EndDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("end_date_time");
 
                     b.Property<int>("EntryNo")
@@ -53942,7 +54118,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("processed_by_user_id");
 
                     b.Property<DateTime?>("StartDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("start_date_time");
 
                     b.Property<short>("Status")
@@ -53954,7 +54130,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -53973,10 +54149,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<int>("FromEntryNo")
@@ -54006,7 +54182,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -54025,7 +54201,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54103,7 +54279,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("totaling");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WipMethod")
                         .IsRequired()
@@ -54126,7 +54302,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DimensionCode")
                         .IsRequired()
@@ -54157,7 +54333,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -54171,7 +54347,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("EntryNo")
                         .HasColumnType("integer")
@@ -54196,7 +54372,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -54215,7 +54391,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54243,7 +54419,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Valid")
                         .HasColumnType("boolean")
@@ -54281,7 +54457,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("automatic_update_job_item_cost");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultJobPostingGroup")
                         .IsRequired()
@@ -54321,7 +54497,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -54335,7 +54511,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("GeneralJournalBatchName")
                         .IsRequired()
@@ -54356,7 +54532,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -54380,7 +54556,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54392,7 +54568,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -54406,7 +54582,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54443,7 +54619,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -54457,7 +54633,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54474,7 +54650,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -54487,7 +54663,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_type");
 
                     b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -54538,7 +54714,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_type");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingNoSeries")
@@ -54613,7 +54789,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime?>("TimeSheetDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("time_sheet_date");
 
                     b.Property<int>("TimeSheetLineNo")
@@ -54651,7 +54827,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkTypeCode")
                         .IsRequired()
@@ -54670,7 +54846,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54727,7 +54903,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("test_report_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -54745,7 +54921,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("chargeable");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54762,7 +54938,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_unit_cost");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -54832,7 +55008,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_type");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<decimal>("QtyPerUnitOfMeasure")
@@ -54909,7 +55085,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -54976,7 +55152,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultDeferralTemplateCode")
                         .IsRequired()
@@ -54994,7 +55170,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("education");
 
                     b.Property<DateTime?>("EmploymentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("employment_date");
 
                     b.Property<string>("GenProdPostingGroup")
@@ -55032,7 +55208,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("job_title");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("Name")
@@ -55127,7 +55303,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseTimeSheet")
                         .HasColumnType("boolean")
@@ -55164,7 +55340,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cost_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DirectUnitCost")
                         .HasPrecision(18, 5)
@@ -55185,7 +55361,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_cost");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkTypeCode")
                         .IsRequired()
@@ -55204,7 +55380,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("GlobalDimension1Code")
                         .IsRequired()
@@ -55231,7 +55407,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -55250,7 +55426,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -55271,7 +55447,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkTypeCode")
                         .IsRequired()
@@ -55290,10 +55466,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_date");
 
                     b.Property<int>("FromEntryNo")
@@ -55323,7 +55499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("to_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -55347,7 +55523,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("QtyPerUnitOfMeasure")
                         .HasPrecision(18, 5)
@@ -55368,7 +55544,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -55382,7 +55558,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -55412,7 +55588,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("time_sheet_nos");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -55426,7 +55602,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("MeasureType")
                         .HasColumnType("smallint")
@@ -55437,7 +55613,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("show_by");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -55445,7 +55621,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -55469,7 +55645,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -55486,7 +55662,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -55510,7 +55686,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("cancelled_doc_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("SourceId")
                         .HasColumnType("integer")
@@ -55521,7 +55697,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -55535,7 +55711,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerVendorName")
                         .IsRequired()
@@ -55566,7 +55742,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("printed");
 
                     b.Property<DateTime?>("ReceiptDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("receipt_date");
 
                     b.Property<string>("ShipToCountryRegionCode")
@@ -55580,7 +55756,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("shipment_method_code");
 
                     b.Property<DateTime?>("ShipmentPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_posting_date");
 
                     b.Property<short>("Status")
@@ -55592,7 +55768,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VehicleRegistrationNo")
                         .IsRequired()
@@ -55620,7 +55796,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("connection_string");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrmVersion")
                         .IsRequired()
@@ -55703,7 +55879,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -55731,7 +55907,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -55758,7 +55934,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -55824,7 +56000,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("calculate_interest");
 
                     b.Property<DateTime?>("ClosedAtDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("closed_at_date");
 
                     b.Property<decimal>("ClosedByAmount")
@@ -55852,7 +56028,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("closing_interest_calculated");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .HasColumnType("text")
@@ -55882,7 +56058,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("direct_debit_mandate_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentNo")
@@ -55895,7 +56071,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<int>("EntryNo")
@@ -55980,11 +56156,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("pmt_disc_given_lcy");
 
                     b.Property<DateTime?>("PmtDiscToleranceDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_disc_tolerance_date");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<decimal>("PmtToleranceLcy")
@@ -55996,7 +56172,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("positive");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<bool>("Prepayment")
@@ -56059,7 +56235,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transaction_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -56110,7 +56286,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditLimit")
                         .HasColumnType("numeric")
@@ -56166,7 +56342,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatRegistrationNo")
                         .IsRequired()
@@ -56190,7 +56366,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -56202,7 +56378,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56231,7 +56407,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditCurrApplnRndgAcc")
                         .IsRequired()
@@ -56298,7 +56474,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56325,7 +56501,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -56341,7 +56517,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatBusPostingGrPrice")
                         .IsRequired()
@@ -56374,7 +56550,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("country_region_code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -56446,7 +56622,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("territory_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatBusPostingGroup")
                         .IsRequired()
@@ -56483,7 +56659,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("applied_cust_ledger_entry_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("CreditAmount")
                         .HasPrecision(18, 5)
@@ -56551,7 +56727,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("initial_document_type");
 
                     b.Property<DateTime?>("InitialEntryDueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("initial_entry_due_date");
 
                     b.Property<string>("InitialEntryGlobalDim1")
@@ -56579,7 +56755,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("max_payment_tolerance");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("ReasonCode")
@@ -56619,7 +56795,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unapplied_by_entry_no");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseTax")
                         .HasColumnType("boolean")
@@ -56652,7 +56828,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -56664,7 +56840,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56678,7 +56854,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -56700,7 +56876,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -56719,7 +56895,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("OffsetTime")
                         .IsRequired()
@@ -56751,7 +56927,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56784,7 +56960,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -56810,7 +56986,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56832,7 +57008,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("available");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -56876,7 +57052,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("terms_of_service");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56890,7 +57066,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -56912,7 +57088,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56935,7 +57111,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -56962,7 +57138,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -56981,7 +57157,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultLocationCode")
                         .IsRequired()
@@ -57002,7 +57178,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -57107,7 +57283,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -57139,11 +57315,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<bool>("Eu3PartyTrade")
@@ -57209,7 +57385,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("opportunity_no");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("PackageTrackingNo")
@@ -57233,11 +57409,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -57250,7 +57426,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<string>("ReasonCode")
@@ -57259,7 +57435,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("reason_code");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -57388,7 +57564,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_post_code");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -57450,7 +57626,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -57547,7 +57723,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -57612,7 +57788,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -57678,7 +57854,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("nonstock");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -57751,7 +57927,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sell_to_customer_no");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShortcutDimension1Code")
@@ -57842,7 +58018,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -57894,14 +58070,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("PeriodLength")
                         .HasColumnType("smallint")
                         .HasColumnName("period_length");
 
                     b.Property<DateTime?>("StartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("start_date");
 
                     b.Property<Guid>("TenantId")
@@ -57909,7 +58085,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -57938,10 +58114,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("DocumentLineNo")
@@ -57966,7 +58142,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -57990,10 +58166,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("DocNoOccurrence")
@@ -58022,7 +58198,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("VersionNo")
                         .HasColumnType("integer")
@@ -58131,7 +58307,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -58172,7 +58348,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("doc_exch_original_identifier");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentExchangeIdentifier")
@@ -58185,7 +58361,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_exchange_status");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<bool>("Eu3PartyTrade")
@@ -58266,11 +58442,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -58437,7 +58613,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_post_code");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -58489,7 +58665,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -58587,7 +58763,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blanket_order_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -58657,7 +58833,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -58752,7 +58928,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("nonstock");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -58814,7 +58990,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sell_to_customer_no");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShortcutDimension1Code")
@@ -58914,7 +59090,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -58986,7 +59162,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("average_days_delayed");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
@@ -58998,7 +59174,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -59012,7 +59188,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("Picture")
                         .HasColumnType("uuid")
@@ -59027,7 +59203,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -59058,7 +59234,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("bill_to_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -59073,7 +59249,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<string>("ExternalDocumentNo")
@@ -59103,7 +59279,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("SalespersonCode")
@@ -59137,7 +59313,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -59275,7 +59451,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditCardNo")
                         .IsRequired()
@@ -59303,7 +59479,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("customer_posting_group");
 
                     b.Property<DateTime?>("DateArchived")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_archived");
 
                     b.Property<int>("DimensionSetId")
@@ -59315,7 +59491,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("doc_no_occurrence");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<short>("DocumentType")
@@ -59323,7 +59499,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<bool>("Eu3PartyTrade")
@@ -59444,7 +59620,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("order_class");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OutboundWhseHandlingTime")
@@ -59473,11 +59649,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -59505,7 +59681,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prepayment");
 
                     b.Property<DateTime?>("PrepaymentDueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("prepayment_due_date");
 
                     b.Property<string>("PrepaymentNo")
@@ -59539,7 +59715,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prepmt_payment_terms_code");
 
                     b.Property<DateTime?>("PrepmtPmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("prepmt_pmt_discount_date");
 
                     b.Property<string>("PrepmtPostingDescription")
@@ -59557,7 +59733,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<string>("ReasonCode")
@@ -59570,7 +59746,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("receive");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<short>("Reserve")
@@ -59726,7 +59902,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_post_code");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -59811,7 +59987,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("VatBaseDiscount")
                         .HasPrecision(18, 5)
@@ -59860,6 +60036,12 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.Property<bool>("AllowLineDisc")
                         .HasColumnType("boolean")
                         .HasColumnName("allow_line_disc");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("AmountIncludingVat")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("AppliesToDocNo")
                         .IsRequired()
@@ -59953,7 +60135,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("coupled_to_crm");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -59999,7 +60181,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("doc_exch_original_identifier");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<string>("DocumentExchangeIdentifier")
@@ -60012,7 +60194,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_exchange_status");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<bool>("Eu3PartyTrade")
@@ -60078,7 +60260,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("opportunity_no");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderNo")
@@ -60116,11 +60298,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -60282,7 +60464,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_post_code");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -60339,7 +60521,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -60441,7 +60623,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blanket_order_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -60515,7 +60697,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -60610,7 +60792,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("nonstock");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -60663,7 +60845,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sell_to_customer_no");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<int>("ShipmentLineNo")
@@ -60772,7 +60954,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -60876,7 +61058,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("blanket_order_no");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .HasColumnType("text")
@@ -61127,7 +61309,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sell_to_customer_no");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<int>("ShipmentLineNo")
@@ -61229,7 +61411,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Vat")
                         .HasColumnType("numeric")
@@ -61359,7 +61541,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("completely_shipped");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -61446,7 +61628,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -61580,11 +61762,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("planned");
 
                     b.Property<DateTime?>("PlannedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_delivery_date");
 
                     b.Property<DateTime?>("PlannedShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_shipment_date");
 
                     b.Property<string>("PostingGroup")
@@ -61685,7 +61867,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("profit");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<int>("PurchOrderLineNo")
@@ -61778,7 +61960,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity_shipped");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<short>("Reserve")
@@ -61845,7 +62027,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("return_receipt_no");
 
                     b.Property<DateTime?>("ReturnsDeferralStartDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("returns_deferral_start_date");
 
                     b.Property<string>("SellToCustomerNo")
@@ -61878,7 +62060,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("service_order_no");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<int>("ShipmentLineNo")
@@ -62020,7 +62202,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -62091,7 +62273,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -62099,7 +62281,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<decimal>("LineDiscount")
@@ -62122,7 +62304,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sales_type");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -62139,7 +62321,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -62166,7 +62348,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("allow_line_disc");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -62174,7 +62356,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("ItemNo")
@@ -62201,7 +62383,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sales_type");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -62219,7 +62401,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_price");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -62251,7 +62433,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("allow_line_disc");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -62264,7 +62446,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("current_unit_price");
 
                     b.Property<DateTime?>("EndingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("ending_date");
 
                     b.Property<string>("ItemNo")
@@ -62301,7 +62483,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sales_type");
 
                     b.Property<DateTime?>("StartingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("starting_date");
 
                     b.Property<Guid>("TenantId")
@@ -62314,7 +62496,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -62338,7 +62520,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("AllowDocumentDeletionBefore")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_document_deletion_before");
 
                     b.Property<bool>("AllowVatDifference")
@@ -62395,7 +62577,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("create_item_from_description");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreditMemoNos")
                         .IsRequired()
@@ -62580,7 +62762,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VatBusPostingGrPrice")
                         .IsRequired()
@@ -62690,7 +62872,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -62722,11 +62904,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("dimension_set_id");
 
                     b.Property<DateTime?>("DocumentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("document_date");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<bool>("Eu3PartyTrade")
@@ -62788,7 +62970,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("opportunity_no");
 
                     b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("order_date");
 
                     b.Property<string>("OrderNo")
@@ -62827,11 +63009,11 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("payment_terms_code");
 
                     b.Property<DateTime?>("PmtDiscountDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("pmt_discount_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingDescription")
@@ -62844,7 +63026,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("prices_including_vat");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<string>("QuoteNo")
@@ -62858,7 +63040,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("reason_code");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -62977,7 +63159,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("ship_to_post_code");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShipmentMethodCode")
@@ -63044,7 +63226,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("transport_method");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -63140,7 +63322,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("correction");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CrossReferenceNo")
                         .IsRequired()
@@ -63209,7 +63391,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("exit_point");
 
                     b.Property<DateTime?>("FaPostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fa_posting_date");
 
                     b.Property<string>("GenBusPostingGroup")
@@ -63298,15 +63480,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("outbound_whse_handling_time");
 
                     b.Property<DateTime?>("PlannedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_delivery_date");
 
                     b.Property<DateTime?>("PlannedShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("planned_shipment_date");
 
                     b.Property<DateTime?>("PostingDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
 
                     b.Property<string>("PostingGroup")
@@ -63320,7 +63502,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("product_group_code");
 
                     b.Property<DateTime?>("PromisedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("promised_delivery_date");
 
                     b.Property<int>("PurchOrderLineNo")
@@ -63368,7 +63550,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("quantity_invoiced");
 
                     b.Property<DateTime?>("RequestedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("requested_delivery_date");
 
                     b.Property<string>("ResponsibilityCenter")
@@ -63387,7 +63569,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("sell_to_customer_no");
 
                     b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("shipment_date");
 
                     b.Property<string>("ShippingTime")
@@ -63483,7 +63665,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("units_per_parcel");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseDuplicationList")
                         .HasColumnType("boolean")
@@ -63545,7 +63727,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("commission");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EMail")
                         .IsRequired()
@@ -63596,7 +63778,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -63645,7 +63827,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("county");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -63668,7 +63850,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("home_page");
 
                     b.Property<DateTime?>("LastDateModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_modified");
 
                     b.Property<string>("LocationCode")
@@ -63745,7 +63927,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -63769,7 +63951,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("InternetAddress")
                         .IsRequired()
@@ -63786,7 +63968,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -63810,7 +63992,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -63832,7 +64014,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -63855,7 +64037,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomerNo")
                         .IsRequired()
@@ -63887,14 +64069,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("ValidFromDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("valid_from_date");
 
                     b.Property<DateTime?>("ValidToDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("valid_to_date");
 
                     b.HasKey("Id");
@@ -63914,7 +64096,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -63931,7 +64113,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -63950,7 +64132,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("amount_excl_vat");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -64004,7 +64186,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unit_of_measure_code");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VariantCode")
                         .IsRequired()
@@ -64027,7 +64209,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("chart_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("PeriodLength")
                         .HasColumnType("smallint")
@@ -64042,7 +64224,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UseWorkDateAsBase")
                         .HasColumnType("boolean")
@@ -64078,7 +64260,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
@@ -64094,7 +64276,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSecurityId")
                         .HasColumnType("uuid")
@@ -64121,7 +64303,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("client_type");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DatabaseName")
                         .IsRequired()
@@ -64129,15 +64311,15 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("database_name");
 
                     b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expires_at");
 
                     b.Property<DateTime>("LastActivity")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_activity");
 
                     b.Property<DateTime?>("LoginDatetime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("login_datetime");
 
                     b.Property<string>("RefreshToken")
@@ -64172,7 +64354,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -64200,7 +64382,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("average_collection_days");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("OverduePurchInvoiceAmount")
                         .HasPrecision(18, 5)
@@ -64232,7 +64414,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("top_10_customer_sales_ytd");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64251,10 +64433,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateAndTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_and_time");
 
                     b.Property<string>("DocumentNo")
@@ -64284,7 +64466,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -64336,7 +64518,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("available_credit_limit_lcy");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -64344,7 +64526,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DateTimeSentForApproval")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_time_sent_for_approval");
 
                     b.Property<string>("DelegationDateFormula")
@@ -64362,7 +64544,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_type");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<int>("EntryNo")
@@ -64370,7 +64552,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("entry_no");
 
                     b.Property<DateTime?>("LastDateTimeModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_time_modified");
 
                     b.Property<string>("LastModifiedByUserId")
@@ -64414,7 +64596,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("WorkflowStepInstanceId")
                         .HasColumnType("uuid")
@@ -64432,7 +64614,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -64461,7 +64643,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64475,7 +64657,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldId")
                         .HasColumnType("integer")
@@ -64490,7 +64672,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64504,10 +64686,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("ObjectId")
@@ -64533,7 +64715,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("time");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSid")
                         .HasColumnType("uuid")
@@ -64560,7 +64742,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("PageId")
                         .HasColumnType("integer")
@@ -64576,7 +64758,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64590,7 +64772,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<short>("DeletePermission")
                         .HasColumnType("smallint")
@@ -64635,7 +64817,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64649,7 +64831,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -64666,7 +64848,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64680,7 +64862,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -64700,7 +64882,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64714,7 +64896,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PermissionSetId")
                         .IsRequired()
@@ -64730,7 +64912,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64749,10 +64931,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateAndTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_and_time");
 
                     b.Property<string>("DocumentNo")
@@ -64778,7 +64960,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -64826,7 +65008,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("available_credit_limit_lcy");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -64834,7 +65016,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<DateTime?>("DateTimeSentForApproval")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date_time_sent_for_approval");
 
                     b.Property<string>("DelegationDateFormula")
@@ -64848,7 +65030,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("document_no");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("due_date");
 
                     b.Property<int>("EntryNo")
@@ -64860,7 +65042,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("iteration_no");
 
                     b.Property<DateTime?>("LastDateTimeModified")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_date_time_modified");
 
                     b.Property<string>("LastModifiedById")
@@ -64912,7 +65094,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64926,10 +65108,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("LastActive")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_active");
 
                     b.Property<int>("ManagementPort")
@@ -64968,7 +65150,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -64996,7 +65178,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("comment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DatabaseName")
                         .IsRequired()
@@ -65004,7 +65186,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("database_name");
 
                     b.Property<DateTime?>("EventDatetime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("event_datetime");
 
                     b.Property<short>("EventType")
@@ -65028,7 +65210,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -65051,7 +65233,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -65086,7 +65268,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -65105,7 +65287,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ObjectId")
                         .HasColumnType("integer")
@@ -65128,7 +65310,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
@@ -65155,7 +65337,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DefaultProfileId")
                         .IsRequired()
@@ -65172,7 +65354,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -65195,7 +65377,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
@@ -65211,7 +65393,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserGroupCode")
                         .IsRequired()
@@ -65239,14 +65421,14 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company_name");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid")
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserGroupCode")
                         .IsRequired()
@@ -65273,7 +65455,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("app_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
@@ -65289,7 +65471,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserGroupCode")
                         .IsRequired()
@@ -65308,7 +65490,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("PlanId")
                         .HasColumnType("uuid")
@@ -65319,7 +65501,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserGroupCode")
                         .IsRequired()
@@ -65338,10 +65520,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("FirstLoginDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("first_login_date");
 
                     b.Property<Guid>("TenantId")
@@ -65349,7 +65531,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSid")
                         .HasColumnType("uuid")
@@ -65367,10 +65549,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<int>("PageId")
@@ -65396,7 +65578,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("time");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSid")
                         .HasColumnType("uuid")
@@ -65419,7 +65601,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("company");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("DebuggerBreakOnError")
                         .HasColumnType("boolean")
@@ -65456,7 +65638,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("time_zone");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSid")
                         .HasColumnType("uuid")
@@ -65474,7 +65656,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("PlanId")
                         .HasColumnType("uuid")
@@ -65485,7 +65667,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSecurityId")
                         .HasColumnType("uuid")
@@ -65503,7 +65685,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("InstructionCode")
                         .IsRequired()
@@ -65515,7 +65697,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -65548,7 +65730,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("authentication_object_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("NameIdentifier")
                         .IsRequired()
@@ -65565,7 +65747,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSecurityId")
                         .HasColumnType("uuid")
@@ -65577,7 +65759,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("webservices_key");
 
                     b.Property<DateTime?>("WebservicesKeyExpiryDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("webservices_key_expiry_date");
 
                     b.HasKey("Id");
@@ -65592,7 +65774,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Reviewed")
                         .HasColumnType("boolean")
@@ -65603,7 +65785,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserSecurityId")
                         .HasColumnType("uuid")
@@ -65621,19 +65803,19 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("AllowFaPostingFrom")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_fa_posting_from");
 
                     b.Property<DateTime?>("AllowFaPostingTo")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_fa_posting_to");
 
                     b.Property<DateTime?>("AllowPostingFrom")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_posting_from");
 
                     b.Property<DateTime?>("AllowPostingTo")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("allow_posting_to");
 
                     b.Property<bool>("ApprovalAdministrator")
@@ -65646,7 +65828,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("approver_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EMail")
                         .IsRequired()
@@ -65715,7 +65897,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("unlimited_sales_approval");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -65734,10 +65916,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("date");
 
                     b.Property<decimal>("Minutes")
@@ -65750,7 +65932,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -65769,7 +65951,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FunctionName")
                         .IsRequired()
@@ -65794,7 +65976,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -65818,7 +66000,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -65838,7 +66020,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -65857,7 +66039,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -65869,7 +66051,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -65883,7 +66065,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -65917,7 +66099,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("UsedForRecordChange")
                         .HasColumnType("boolean")
@@ -65935,7 +66117,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -65965,7 +66147,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -65979,7 +66161,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldNo")
                         .HasColumnType("integer")
@@ -66002,7 +66184,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkflowCode")
                         .IsRequired()
@@ -66033,7 +66215,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("argument");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -66074,7 +66256,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkflowCode")
                         .IsRequired()
@@ -66106,7 +66288,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("approver_user_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomLink")
                         .IsRequired()
@@ -66180,7 +66362,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkflowUserGroupCode")
                         .IsRequired()
@@ -66212,7 +66394,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("approver_user_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomLink")
                         .IsRequired()
@@ -66291,7 +66473,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkflowUserGroupCode")
                         .IsRequired()
@@ -66314,7 +66496,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("argument");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -66322,7 +66504,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by_user_id");
 
                     b.Property<DateTime?>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_time");
 
                     b.Property<string>("Description")
@@ -66349,7 +66531,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_modified_by_user_id");
 
                     b.Property<DateTime?>("LastModifiedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_modified_date_time");
 
                     b.Property<int>("NextWorkflowStepId")
@@ -66391,7 +66573,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkflowCode")
                         .IsRequired()
@@ -66418,7 +66600,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("argument");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -66426,7 +66608,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("created_by_user_id");
 
                     b.Property<DateTime?>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_date_time");
 
                     b.Property<string>("Description")
@@ -66453,7 +66635,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("last_modified_by_user_id");
 
                     b.Property<DateTime?>("LastModifiedDateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_modified_date_time");
 
                     b.Property<int>("NextWorkflowStepId")
@@ -66495,7 +66677,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkflowCode")
                         .IsRequired()
@@ -66518,7 +66700,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldId")
                         .HasColumnType("integer")
@@ -66541,7 +66723,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -66555,7 +66737,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("FieldId")
                         .HasColumnType("integer")
@@ -66583,7 +66765,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -66620,7 +66802,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("code");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -66632,7 +66814,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -66646,7 +66828,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("SequenceNo")
                         .HasColumnType("integer")
@@ -66657,7 +66839,7 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnName("tenant_id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()

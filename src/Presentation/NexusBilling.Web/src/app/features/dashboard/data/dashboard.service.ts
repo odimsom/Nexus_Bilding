@@ -10,6 +10,10 @@ export interface DashboardStats {
   openOrders: number;
   totalSalesThisMonth: number;
   totalSalesAllTime: number;
+  totalVendors: number;
+  openPurchaseOrders: number;
+  totalPurchasesThisMonth: number;
+  totalPurchasesAllTime: number;
   recentOrders: RecentOrder[];
   monthlySales: MonthlyTotal[];
 }

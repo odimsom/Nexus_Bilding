@@ -37,7 +37,14 @@ public class PurchaseHeader : Entity
     public string No { get; private set; }
     public string BuyFromVendorNo { get; private set; }
     public string PayToName { get; private set; }
-    public DateTime PostingDate { get; private set; }
+    public DateTime PostingDate { get; set; }
+    public DateTime? DueDate { get; set; }
+    public string Status { get; set; } = "Open";
+    public decimal Amount { get; set; }
+    public decimal AmountIncludingVat { get; set; }
+    public string CurrencyCode { get; set; } = string.Empty;
+    public string PaymentTermsCode { get; set; } = string.Empty;
+    public string ExternalDocumentNo { get; set; } = string.Empty;
 
     public IReadOnlyCollection<object> DomainEvents => _domainEvents.AsReadOnly();
 

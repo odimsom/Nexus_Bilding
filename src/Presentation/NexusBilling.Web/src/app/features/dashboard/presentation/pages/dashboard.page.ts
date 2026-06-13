@@ -47,14 +47,24 @@ import { NxChartComponent } from '../../../../shared/components/chart/nx-chart.c
           <span class="nx-stat__value nx-num">{{ svc.stats()!.totalCustomers }}</span>
           <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Total registrados</span>
         </a>
+        <a routerLink="/vendors" class="nx-stat" style="text-decoration:none;cursor:pointer;">
+          <span class="nx-stat__label">Proveedores</span>
+          <span class="nx-stat__value nx-num">{{ svc.stats()!.totalVendors }}</span>
+          <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Total registrados</span>
+        </a>
         <a routerLink="/inventory" class="nx-stat" style="text-decoration:none;cursor:pointer;">
           <span class="nx-stat__label">Artículos</span>
           <span class="nx-stat__value nx-num">{{ svc.stats()!.totalItems }}</span>
           <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">En catálogo</span>
         </a>
         <a routerLink="/sales" class="nx-stat" style="text-decoration:none;cursor:pointer;">
-          <span class="nx-stat__label">Órdenes Abiertas</span>
+          <span class="nx-stat__label">Ventas Abiertas</span>
           <span class="nx-stat__value nx-num">{{ svc.stats()!.openOrders }}</span>
+          <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Pendientes</span>
+        </a>
+        <a routerLink="/purchasing" class="nx-stat" style="text-decoration:none;cursor:pointer;">
+          <span class="nx-stat__label">Compras Abiertas</span>
+          <span class="nx-stat__value nx-num">{{ svc.stats()!.openPurchaseOrders }}</span>
           <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Pendientes</span>
         </a>
         <div class="nx-stat">
@@ -65,11 +75,11 @@ import { NxChartComponent } from '../../../../shared/components/chart/nx-chart.c
           <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Incluye ITBIS</span>
         </div>
         <div class="nx-stat">
-          <span class="nx-stat__label">Ventas Totales</span>
+          <span class="nx-stat__label">Compras Este Mes</span>
           <span class="nx-stat__value nx-num" style="font-size:var(--nx-text-xl);">
-            {{ svc.stats()!.totalSalesAllTime | currency:'DOP':'symbol':'1.2-2' }}
+            {{ svc.stats()!.totalPurchasesThisMonth | currency:'DOP':'symbol':'1.2-2' }}
           </span>
-          <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Histórico acumulado</span>
+          <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Incluye ITBIS</span>
         </div>
       </div>
 
@@ -193,11 +203,13 @@ export class DashboardPage implements OnInit {
   readonly svc = inject(DashboardService);
 
   readonly quickLinks = [
-    { route: '/customers', label: 'Clientes',     desc: 'Gestiona tu cartera',     icon: 'users',     bg: 'var(--nx-blue-50)',    color: 'var(--nx-blue-600)'   },
-    { route: '/inventory', label: 'Inventario',   desc: 'Artículos y existencias', icon: 'package',   bg: 'var(--nx-green-50)',   color: 'var(--nx-green-600)'  },
-    { route: '/sales',     label: 'Órdenes',      desc: 'Pedidos de venta',        icon: 'file-text', bg: 'var(--nx-amber-50)',   color: 'var(--nx-amber-600)'  },
-    { route: '/invoices',  label: 'Facturas',     desc: 'Facturas publicadas',     icon: 'receipt',   bg: 'var(--nx-indigo-50)',  color: 'var(--nx-indigo-600)' },
-    { route: '/settings',  label: 'Config.',      desc: 'Empresa y secuencias',    icon: 'settings',  bg: 'var(--nx-canvas-alt)', color: 'var(--nx-text-muted)' },
+    { route: '/customers',         label: 'Clientes',           desc: 'Gestiona tu cartera',     icon: 'users',     bg: 'var(--nx-blue-50)',    color: 'var(--nx-blue-600)'   },
+    { route: '/inventory',         label: 'Inventario',         desc: 'Artículos y existencias', icon: 'package',   bg: 'var(--nx-green-50)',   color: 'var(--nx-green-600)'  },
+    { route: '/sales',             label: 'Órdenes de Venta',   desc: 'Pedidos de venta',        icon: 'file-text', bg: 'var(--nx-amber-50)',   color: 'var(--nx-amber-600)'  },
+    { route: '/invoices',          label: 'Facturas de Venta',  desc: 'Facturas emitidas',       icon: 'receipt',   bg: 'var(--nx-indigo-50)',  color: 'var(--nx-indigo-600)' },
+    { route: '/purchases',         label: 'Órdenes de Compra',  desc: 'Pedidos a proveedores',   icon: 'file-text', bg: 'var(--nx-orange-50)',  color: 'var(--nx-orange-600)' },
+    { route: '/purchase-invoices', label: 'Facturas de Compra', desc: 'Facturas recibidas',      icon: 'receipt',   bg: 'var(--nx-teal-50)',    color: 'var(--nx-teal-600)'   },
+    { route: '/settings',          label: 'Config.',            desc: 'Empresa y secuencias',    icon: 'settings',  bg: 'var(--nx-canvas-alt)', color: 'var(--nx-text-muted)' },
   ];
 
   readonly salesChartOptions: ChartOptions = {

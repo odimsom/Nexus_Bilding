@@ -63,10 +63,38 @@ export const routes: Routes = [
           )
       },
       {
+        path: 'vendors/:no',
+        loadComponent: () =>
+          import('./features/purchasing/presentation/pages/vendor-card/vendor-card.page').then(
+            m => m.VendorCardPage
+          )
+      },
+      {
         path: 'purchases',
         loadComponent: () =>
           import('./features/purchasing/presentation/pages/purchase-order-list/purchase-order-list.page').then(
             m => m.PurchaseOrderListPage
+          )
+      },
+      {
+        path: 'purchases/:no',
+        loadComponent: () =>
+          import('./features/purchasing/presentation/pages/purchase-order-card/purchase-order-card.page').then(
+            m => m.PurchaseOrderCardPage
+          )
+      },
+      {
+        path: 'purchase-invoices',
+        loadComponent: () =>
+          import('./features/purchasing/presentation/pages/purchase-invoice-list/purchase-invoice-list.page').then(
+            m => m.PurchaseInvoiceListPage
+          )
+      },
+      {
+        path: 'purchase-invoices/:no',
+        loadComponent: () =>
+          import('./features/purchasing/presentation/pages/purchase-invoice-card/purchase-invoice-card.page').then(
+            m => m.PurchaseInvoiceCardPage
           )
       },
       {
@@ -127,12 +155,19 @@ export const routes: Routes = [
             m => m.ServiceOrderCardPage
           )
       },
-      /* ── CONFIGURACIÓN ─────────────────────────────────── */
+      /* ── CONFIGURACIÓN Y SEGURIDAD ──────────────────────── */
       {
         path: 'settings',
         loadComponent: () =>
           import('./features/settings/presentation/pages/settings.page').then(
             m => m.SettingsPage
+          )
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./features/security/presentation/pages/user-list/user-list.page').then(
+            m => m.UserListPage
           )
       },
       /* ── RUTA CATCH-ALL dentro del shell ────────────────── */

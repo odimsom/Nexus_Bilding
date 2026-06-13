@@ -37,4 +37,24 @@ export class VendorService {
     );
     return res.data.no;
   }
+
+  async getByNo(no: string): Promise<Vendor | null> {
+    try {
+      return await firstValueFrom(this.api.get<Vendor>(`purchasing/vendors/${no}`));
+    } catch {
+      return null;
+    }
+  }
+
+  async update(no: string, data: CreateVendorFormData): Promise<void> {
+    await firstValueFrom(this.api.put(`purchasing/vendors/${no}`, data));
+  }
+
+  async block(no: string): Promise<void> {
+    await firstValueFrom(this.api.patch(`purchasing/vendors/${no}/block`));
+  }
+
+  async unblock(no: string): Promise<void> {
+    await firstValueFrom(this.api.patch(`purchasing/vendors/${no}/unblock`));
+  }
 }

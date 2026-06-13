@@ -67,7 +67,7 @@ import { VendorService } from '../../../data/vendor.service';
               </thead>
               <tbody>
                 @for (v of svc.items(); track v.no) {
-                  <tr style="cursor:pointer;">
+                  <tr style="cursor:pointer;" [routerLink]="['/vendors', v.no]">
                     <td class="nx-td--doc"><a class="nx-link">{{ v.no }}</a></td>
                     <td style="font-weight:var(--nx-weight-medium);">{{ v.name }}</td>
                     <td>{{ v.contact || '—' }}</td>

@@ -17,5 +17,12 @@ public class PurchaseHeaderConfiguration : IEntityTypeConfiguration<PurchaseHead
         builder.Property(x => x.BuyFromVendorNo).HasColumnName("buy_from_vendor_no");
         builder.Property(x => x.PayToName).HasColumnName("pay_to_name");
         builder.Property(x => x.PostingDate).HasColumnName("posting_date");
+        builder.Property(x => x.DueDate).HasColumnName("due_date");
+        builder.Property(x => x.Status).HasColumnName("status").HasMaxLength(50);
+        builder.Property(x => x.Amount).HasColumnName("amount").HasColumnType("decimal(18,2)");
+        builder.Property(x => x.AmountIncludingVat).HasColumnName("amount_including_vat").HasColumnType("decimal(18,2)");
+        builder.Property(x => x.CurrencyCode).HasColumnName("currency_code").HasMaxLength(10);
+        builder.Property(x => x.PaymentTermsCode).HasColumnName("payment_terms_code").HasMaxLength(20);
+        builder.Property(x => x.ExternalDocumentNo).HasColumnName("external_document_no").HasMaxLength(50);
     }
 }

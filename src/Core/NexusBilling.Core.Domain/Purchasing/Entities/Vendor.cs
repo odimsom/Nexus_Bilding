@@ -64,6 +64,15 @@ public class Vendor : Entity
         return OperationResult<Vendor, DomainError>.Ok(new Vendor(tenantId, no.Trim(), name.Trim(), address.Trim(), city.Trim(), contact.Trim()));
     }
 
+    public void Update(string name, string address, string city, string contact)
+    {
+        Name = name.Trim();
+        Address = address.Trim();
+        City = city.Trim();
+        Contact = contact.Trim();
+        UpdatedAt = DateTime.UtcNow;
+    }
+
     public void Block()
     {
         Blocked = true;

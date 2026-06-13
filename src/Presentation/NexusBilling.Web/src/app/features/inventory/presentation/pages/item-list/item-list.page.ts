@@ -15,22 +15,22 @@ import { ApiService } from '../../../../../core/services/api.service';
     <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
       <a routerLink="/dashboard">Dashboard</a>
       <span class="nx-crumbs__sep">›</span>
-      <span class="nx-crumb--current">Artículos</span>
+      <span class="nx-crumb--current">Productos</span>
     </nav>
 
     <div class="nx-page-header">
       <div>
-        <h1 class="nx-page-title">Lista de Artículos</h1>
+        <h1 class="nx-page-title">Lista de Productos</h1>
         <p class="nx-page-subtitle">
           @if (svc.loading()) { Cargando… }
-          @else { {{ svc.totalItems() }} artículos }
+          @else { {{ svc.totalItems() }} productos }
         </p>
       </div>
       <div class="nx-page-actions">
         <button class="nx-btn nx-btn--secondary nx-btn--sm">Ajuste Inventario</button>
         <button class="nx-btn nx-btn--primary nx-btn--sm" (click)="openModal()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Nuevo Artículo
+          Nuevo Producto
         </button>
       </div>
     </div>
@@ -72,7 +72,7 @@ import { ApiService } from '../../../../../core/services/api.service';
     <!-- KPI tiles -->
     <div class="kpi-row">
       <div class="nx-stat">
-        <span class="nx-stat__label">Total Artículos</span>
+        <span class="nx-stat__label">Total Productos</span>
         <span class="nx-stat__value nx-num" style="font-size:var(--nx-text-xl);">{{ svc.totalItems() }}</span>
       </div>
       <div class="nx-stat">
@@ -93,19 +93,19 @@ import { ApiService } from '../../../../../core/services/api.service';
       @if (svc.loading()) {
         <div class="nx-empty">
           <div class="nx-spinner"></div>
-          <p class="nx-empty__text" style="margin-top:var(--nx-space-3);">Cargando artículos…</p>
+          <p class="nx-empty__text" style="margin-top:var(--nx-space-3);">Cargando productos…</p>
         </div>
       } @else if (visibleItems().length === 0) {
         <div class="nx-empty">
           <div class="nx-empty__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
           </div>
-          <p class="nx-empty__title">No se encontraron artículos</p>
+          <p class="nx-empty__title">No se encontraron productos</p>
           <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="clearFilters()">Limpiar filtros</button>
         </div>
       } @else {
         <div style="overflow-x:auto;">
-          <table class="nx-table" aria-label="Lista de artículos">
+          <table class="nx-table" aria-label="Lista de productos">
             <thead>
               <tr>
                 <th class="sortable" (click)="setSort('no')">No. {{ si('no') }}</th>
@@ -147,7 +147,7 @@ import { ApiService } from '../../../../../core/services/api.service';
                     }
                   </td>
                   <td>
-                    <a [routerLink]="['/inventory', item.no]" class="nx-iconbtn nx-iconbtn--sm" aria-label="Ver artículo">
+                    <a [routerLink]="['/inventory', item.no]" class="nx-iconbtn nx-iconbtn--sm" aria-label="Ver producto">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                     </a>
                   </td>
@@ -167,12 +167,12 @@ import { ApiService } from '../../../../../core/services/api.service';
       }
     </div>
 
-    <!-- Modal: Nuevo Artículo -->
+    <!-- Modal: Nuevo Producto -->
     @if (showModal()) {
       <div class="modal-backdrop" (click)="closeModal()">
         <div class="modal-box" (click)="$event.stopPropagation()">
           <div class="modal-header">
-            <h2 class="nx-page-title" style="margin:0;">Nuevo Artículo</h2>
+            <h2 class="nx-page-title" style="margin:0;">Nuevo Producto</h2>
             <button class="nx-iconbtn" (click)="closeModal()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
@@ -180,7 +180,7 @@ import { ApiService } from '../../../../../core/services/api.service';
           <div class="modal-body">
             @if (modalError()) {
               <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">
-                {{ noSeriesMissing() ? 'No hay una secuencia numérica configurada para artículos (ITEM).' : modalError() }}
+                {{ noSeriesMissing() ? 'No hay una secuencia numérica configurada para productos (ITEM).' : modalError() }}
                 @if (noSeriesMissing()) {
                   <br />
                   <a class="nx-link" style="font-size:var(--nx-text-sm);cursor:pointer;"
@@ -192,7 +192,7 @@ import { ApiService } from '../../../../../core/services/api.service';
             }
             <div class="form-grid">
               <div class="nx-field">
-                <label class="nx-label">No. Artículo</label>
+                <label class="nx-label">No. Producto</label>
                 <div style="display:flex;gap:var(--nx-space-2);">
                   <input
                     class="nx-input"
@@ -266,7 +266,7 @@ import { ApiService } from '../../../../../core/services/api.service';
           <div class="modal-footer">
             <button class="nx-btn nx-btn--ghost" (click)="closeModal()">Cancelar</button>
             <button class="nx-btn nx-btn--primary" [disabled]="saving()" (click)="saveItem()">
-              @if (saving()) { Guardando… } @else { Guardar Artículo }
+              @if (saving()) { Guardando… } @else { Guardar Producto }
             </button>
           </div>
         </div>
@@ -401,7 +401,7 @@ export class ItemListPage implements OnInit {
 
   async saveItem(): Promise<void> {
     if (!this.form.description?.trim()) {
-      this.modalError.set('La descripción del artículo es obligatoria.');
+      this.modalError.set('La descripción del producto es obligatoria.');
       return;
     }
     this.saving.set(true);
@@ -415,14 +415,14 @@ export class ItemListPage implements OnInit {
       const msg: string = e?.error?.error?.message ?? e?.message ?? '';
       if (msg.toLowerCase().includes('serie') || msg.toLowerCase().includes('series')) {
         this.noSeriesMissing.set(true);
-        this.modalError.set('No hay una secuencia de numeración configurada para artículos.');
+        this.modalError.set('No hay una secuencia de numeración configurada para productos.');
       } else if (msg.toLowerCase().includes('already') || msg.toLowerCase().includes('ya existe') || msg.toLowerCase().includes('duplicate')) {
-        this.modalError.set('El número de artículo ya está en uso. Haz clic en actualizar para obtener uno disponible.');
+        this.modalError.set('El número de producto ya está en uso. Haz clic en actualizar para obtener uno disponible.');
         this.fetchNextNo();
       } else if (msg) {
         this.modalError.set(msg);
       } else {
-        this.modalError.set('Ocurrió un error al guardar el artículo. Intenta de nuevo.');
+        this.modalError.set('Ocurrió un error al guardar el producto. Intenta de nuevo.');
       }
     } finally {
       this.saving.set(false);

@@ -9,7 +9,7 @@ public class GenericRepository<TEntity>(NexusBillingDbContext dbContext) : IGene
 {
     protected readonly NexusBillingDbContext _dbContext = dbContext;
 
-    public virtual async Task<TEntity?> GetByIdAsync(long id, Expression<Func<TEntity, object>>[]? includes = null, CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity?> GetByIdAsync(Guid id, Expression<Func<TEntity, object>>[]? includes = null, CancellationToken cancellationToken = default)
     {
         if (includes == null || includes.Length == 0)
         {
@@ -24,7 +24,7 @@ public class GenericRepository<TEntity>(NexusBillingDbContext dbContext) : IGene
 
         var query = ApplyIncludes(includes);
 
-        return await query.FirstOrDefaultAsync(e => EF.Property<long>(e, primaryKeyName) == id, cancellationToken);
+        return await query.FirstOrDefaultAsync(e => EF.Property<Guid>(e, primaryKeyName) == id, cancellationToken);
     }
 
     public virtual async Task<IReadOnlyList<TEntity>> GetAllAsync(Expression<Func<TEntity, object>>[]? includes = null, CancellationToken cancellationToken = default)
@@ -39,14 +39,14 @@ public class GenericRepository<TEntity>(NexusBillingDbContext dbContext) : IGene
         return await query.ToListAsync(cancellationToken);
     }
 
-    public virtual async Task<bool> ExistsAsync(long id, CancellationToken cancellationToken = default)
+    public virtual async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var primaryKeyName = _dbContext.Model.FindEntityType(typeof(TEntity))?.FindPrimaryKey()?.Properties
             .Select(x => x.Name).SingleOrDefault();
 
         if (string.IsNullOrEmpty(primaryKeyName)) return false;
 
-        return await _dbContext.Set<TEntity>().AnyAsync(e => EF.Property<long>(e, primaryKeyName) == id, cancellationToken);
+        return await _dbContext.Set<TEntity>().AnyAsync(e => EF.Property<Guid>(e, primaryKeyName) == id, cancellationToken);
     }
 
     public virtual async Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
@@ -75,7 +75,7 @@ public class GenericRepository<TEntity>(NexusBillingDbContext dbContext) : IGene
         return Task.CompletedTask;
     }
 
-    public virtual async Task DeleteByIdAsync(long id, CancellationToken cancellationToken = default)
+    public virtual async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await _dbContext.Set<TEntity>().FindAsync([id], cancellationToken);
         if (entity != null)

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Purchasing.Entities;
 using NexusBilling.Core.Domain.Purchasing.Repositories;
@@ -20,7 +21,7 @@ public class VendorRepository(NexusBillingDbContext dbContext)
         CancellationToken cancellationToken = default)
     {
         var query = _dbContext.Set<Vendor>()
-            .Where(x => x.TenantId.Value == tenantId);
+            .Where(x => EF.Property<Guid>(x, "TenantId") == tenantId);
 
         if (!string.IsNullOrWhiteSpace(search))
         {

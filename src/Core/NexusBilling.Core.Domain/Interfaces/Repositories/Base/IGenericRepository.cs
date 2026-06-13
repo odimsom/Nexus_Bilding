@@ -5,7 +5,7 @@ namespace NexusBilling.Core.Domain.Interfaces.Repositories.Base;
 public interface IGenericRepository<T> where T : class
 {
     Task<T?> GetByIdAsync(
-        long id,
+        Guid id,
         Expression<Func<T, object>>[]? includes = null,
         CancellationToken cancellationToken = default);
 
@@ -18,7 +18,7 @@ public interface IGenericRepository<T> where T : class
         Expression<Func<T, object>>[]? includes = null,
         CancellationToken cancellationToken = default);
 
-    Task<bool> ExistsAsync(long id, CancellationToken cancellationToken = default);
+    Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default);
 
     Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
     Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
@@ -26,5 +26,5 @@ public interface IGenericRepository<T> where T : class
     Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
 
     Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
-    Task DeleteByIdAsync(long id, CancellationToken cancellationToken = default);
+    Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken = default);
 }

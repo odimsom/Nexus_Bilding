@@ -226,7 +226,7 @@ export class DashboardLayoutComponent {
       '/customers': 'Clientes',
       '/invoices':  'Facturas',
       '/sales':     'Órdenes de venta',
-      '/inventory': 'Artículos',
+      '/inventory': 'Productos',
       '/vendors':   'Proveedores',
       '/purchases': 'Compras',
       '/gl':        'Mayor General',
@@ -258,7 +258,7 @@ export class DashboardLayoutComponent {
         group: 'Inventario',
         icon: 'package',
         children: [
-          { label: 'Artículos', route: '/inventory', icon: 'boxes' },
+          { label: 'Productos', route: '/inventory', icon: 'boxes' },
         ]
       }
     },
@@ -291,6 +291,7 @@ export class DashboardLayoutComponent {
         icon: 'landmark',
         children: [
           { label: 'Mayor General', route: '/gl',      icon: 'bar-chart-2' },
+          { label: 'Mov. Contables',route: '/gl-entries', icon: 'list-tree' },
           { label: 'Diario',        route: '/journal', icon: 'book-open' },
         ]
       }
@@ -313,7 +314,7 @@ export class DashboardLayoutComponent {
     { id: 'customers', label: 'Clientes',          desc: 'Gestión de clientes',     icon: 'users',            route: '/customers' },
     { id: 'invoices',  label: 'Facturas',          desc: 'Facturas de venta',       icon: 'receipt',          route: '/invoices'  },
     { id: 'sales',     label: 'Órdenes de venta',  desc: 'Pedidos de ventas',       icon: 'file-text',        route: '/sales'     },
-    { id: 'inventory', label: 'Artículos',         desc: 'Inventario y productos',  icon: 'package',          route: '/inventory' },
+    { id: 'inventory', label: 'Productos',         desc: 'Inventario y productos',  icon: 'package',          route: '/inventory' },
     { id: 'vendors',   label: 'Proveedores',       desc: 'Gestión de suplidores',   icon: 'users-2',          route: '/vendors'   },
     { id: 'services',  label: 'Órdenes Servicio',  desc: 'Órdenes de servicio',     icon: 'clipboard-list',   route: '/services'  },
     { id: 'settings',  label: 'Configuración',     desc: 'Ajustes del sistema',     icon: 'settings',         route: '/settings'  },

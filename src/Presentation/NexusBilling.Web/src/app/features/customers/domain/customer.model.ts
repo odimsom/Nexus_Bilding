@@ -26,4 +26,4 @@ export interface CustomerFilter {
   salespersonCode?: string;
 }
 
-export type CustomerSortField = 'no' | 'name' | 'city' | 'balance' | 'balanceDue';
+export type CustomerSortField = 'no' | 'name' | 'city' | 'balance' | 'balanceDue' | 'contact' | 'salespersonCode' | 'paymentTermsCode' | 'blocked';

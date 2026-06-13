@@ -153,7 +153,7 @@ export class PdfService {
             body: [
               [
                 { text: 'No.', style: 'tableHeader' },
-                { text: 'Artículo', style: 'tableHeader' },
+                { text: 'Producto', style: 'tableHeader' },
                 { text: 'Descripción', style: 'tableHeader' },
                 { text: 'Cant.', style: 'tableHeader', alignment: 'right' },
                 { text: 'U/M', style: 'tableHeader', alignment: 'center' },
@@ -322,7 +322,7 @@ export class PdfService {
             body: [
               [
                 { text: 'No.', style: 'tableHeader' },
-                { text: 'Artículo', style: 'tableHeader' },
+                { text: 'Producto', style: 'tableHeader' },
                 { text: 'Descripción', style: 'tableHeader' },
                 { text: 'Cant.', style: 'tableHeader', alignment: 'right' },
                 { text: 'U/M', style: 'tableHeader', alignment: 'center' },

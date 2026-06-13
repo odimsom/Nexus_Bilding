@@ -1,45 +1,23 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Finance.Entities;
 using NexusBilling.Core.Domain.Finance.Repositories;
 using NexusBilling.Infrastructure.Persistence.Context;
+using NexusBilling.Infrastructure.Persistence.Repositories.Base;
 
 namespace NexusBilling.Infrastructure.Persistence.Finance.Repositories;
 
-public class GenJournalLineRepository : IGenJournalLineRepository
+public sealed class GenJournalLineRepository(NexusBillingDbContext dbContext)
+    : GenericRepository<GenJournalLine>(dbContext), IGenJournalLineRepository
 {
-    private readonly NexusBillingDbContext _context;
+    private readonly NexusBillingDbContext _dbContext = dbContext;
 
-    public GenJournalLineRepository(NexusBillingDbContext context)
+    public async Task<IReadOnlyList<GenJournalLine>> GetLinesAsync(Guid tenantId, string templateName, string batchName, CancellationToken cancellationToken = default)
     {
-        _context = context;
-    }
-
-    public async Task<GenJournalLine?> GetByIdAsync(long id)
-    {
-        return await _context.Set<GenJournalLine>().FindAsync(id);
-    }
-
-    public async Task<IEnumerable<GenJournalLine>> GetAllAsync()
-    {
-        return await _context.Set<GenJournalLine>().ToListAsync();
-    }
-
-    public async Task AddAsync(GenJournalLine entity)
-    {
-        await _context.Set<GenJournalLine>().AddAsync(entity);
-    }
-
-    public Task UpdateAsync(GenJournalLine entity)
-    {
-        _context.Set<GenJournalLine>().Update(entity);
-        return Task.CompletedTask;
-    }
-
-    public Task DeleteAsync(GenJournalLine entity)
-    {
-        _context.Set<GenJournalLine>().Remove(entity);
-        return Task.CompletedTask;
+        return await _dbContext.Set<GenJournalLine>()
+            .Where(x => x.TenantId == NexusBilling.Core.Domain.Common.TenantIdentifier.Create(tenantId) && 
+                        x.JournalTemplateName == templateName && 
+                        x.JournalBatchName == batchName)
+            .OrderBy(x => x.LineNo)
+            .ToListAsync(cancellationToken);
     }
 }

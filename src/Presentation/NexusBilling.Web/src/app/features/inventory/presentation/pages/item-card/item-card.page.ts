@@ -13,13 +13,13 @@ import { Item } from '../../../domain/item.model';
     @if (loading()) {
       <div class="nx-empty" style="min-height:300px;">
         <div class="nx-spinner"></div>
-        <p class="nx-empty__text" style="margin-top:var(--nx-space-3);">Cargando artículo…</p>
+        <p class="nx-empty__text" style="margin-top:var(--nx-space-3);">Cargando producto…</p>
       </div>
     } @else if (item()) {
       <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
         <a routerLink="/dashboard">Dashboard</a>
         <span class="nx-crumbs__sep">›</span>
-        <a routerLink="/inventory">Artículos</a>
+        <a routerLink="/inventory">Productos</a>
         <span class="nx-crumbs__sep">›</span>
         <span class="nx-crumb--current">{{ item()!.description }}</span>
       </nav>
@@ -92,7 +92,7 @@ import { Item } from '../../../domain/item.model';
             <div class="nx-card__head"><div class="nx-card__title">Información General</div></div>
             <div class="nx-card__body">
               <dl class="nx-kv nx-kv--ruled nx-kv--2col">
-                <dt class="nx-kv__k">No. Artículo</dt>
+                <dt class="nx-kv__k">No. Producto</dt>
                 <dd class="nx-kv__v nx-kv__v--mono">{{ item()!.no }}</dd>
                 <dt class="nx-kv__k">Descripción</dt>
                 <dd class="nx-kv__v" style="font-weight:var(--nx-weight-medium);">{{ item()!.description }}</dd>
@@ -157,7 +157,7 @@ import { Item } from '../../../domain/item.model';
         <!-- FactBox -->
         <div class="nx-factbox">
           <div class="nx-factbox__head">
-            <div class="nx-factbox__eyebrow">Artículo</div>
+            <div class="nx-factbox__eyebrow">Producto</div>
             <div class="nx-factbox__title">{{ item()!.no }}</div>
           </div>
           <div class="nx-factbox__section">
@@ -165,8 +165,8 @@ import { Item } from '../../../domain/item.model';
             <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
               <div style="display:flex;justify-content:space-between;font-size:var(--nx-text-sm);">
                 <span style="color:var(--nx-text-muted);">En stock</span>
-                <strong [style.color]="(item()!.inventory ?? 0) === 0 ? 'var(--nx-red-600)' : 'var(--nx-emerald-600)'">
-                  {{ (item()!.inventory ?? 0) | number:'1.0-0' }} {{ item()!.baseUnitOfMeasure }}
+                <strong [style.color]="item()!.inventory === 0 ? 'var(--nx-money-negative)' : 'var(--nx-money-positive)'">
+                  {{ item()!.inventory | number:'1.0-0' }} {{ item()!.baseUnitOfMeasure }}
                 </strong>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:var(--nx-text-sm);">
@@ -182,16 +182,16 @@ import { Item } from '../../../domain/item.model';
           <div class="nx-factbox__section">
             <div class="nx-factbox__sectionlabel">Acciones Rápidas</div>
             <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
-              <button class="nx-btn nx-btn--secondary nx-btn--sm nx-btn--block" (click)="openEdit()">Editar Artículo</button>
-              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block" (click)="openLedger()">Diario de Artículo</button>
-              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block">Movimientos de Artículo</button>
+              <button class="nx-btn nx-btn--secondary nx-btn--sm nx-btn--block" (click)="openEdit()">Editar Producto</button>
+              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block" (click)="openLedger()">Diario de Producto</button>
+              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block">Movimientos de Producto</button>
               @if (item()!.blocked) {
                 <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block" [disabled]="actionLoading()" (click)="toggleBlock()">
                   @if (actionLoading()) { Procesando… } @else { ✓ Desbloquear }
                 </button>
               } @else {
                 <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block" style="color:var(--nx-red-500);" [disabled]="actionLoading()" (click)="toggleBlock()">
-                  @if (actionLoading()) { Procesando… } @else { Bloquear Artículo }
+                  @if (actionLoading()) { Procesando… } @else { Bloquear Producto }
                 </button>
               }
             </div>
@@ -204,8 +204,8 @@ import { Item } from '../../../domain/item.model';
         <div class="nx-empty__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         </div>
-        <p class="nx-empty__title">Artículo no encontrado</p>
-        <a routerLink="/inventory" class="nx-btn nx-btn--secondary nx-btn--sm">Volver a Artículos</a>
+        <p class="nx-empty__title">Producto no encontrado</p>
+        <a routerLink="/inventory" class="nx-btn nx-btn--secondary nx-btn--sm">Volver a Productos</a>
       </div>
     }
 
@@ -225,7 +225,7 @@ import { Item } from '../../../domain/item.model';
             }
             <div class="form-grid">
               <div class="nx-field">
-                <label class="nx-label">No. Artículo</label>
+                <label class="nx-label">No. Producto</label>
                 <input class="nx-input" [value]="form.no" disabled style="opacity:.6;" />
               </div>
               <div class="nx-field">
@@ -310,7 +310,7 @@ import { Item } from '../../../domain/item.model';
               <strong>Aviso de proceso:</strong> Las entradas normales de stock deben realizarse a través de un <strong>Pedido de Compra</strong>. Usa esta opción únicamente para ajustes físicos, mermas o adquisiciones atípicas.
             </div>
             <div class="nx-callout nx-callout--info" style="margin-bottom:var(--nx-space-4);">
-              Existencia actual: <strong>{{ item()!.inventory ?? 0 }} {{ item()!.baseUnitOfMeasure }}</strong>
+              Disponibilidad actual: <strong>{{ item()!.inventory }} {{ item()!.baseUnitOfMeasure }}</strong>
             </div>
             <div class="form-grid" style="grid-template-columns:1fr;">
               <div class="nx-field">
@@ -318,7 +318,7 @@ import { Item } from '../../../domain/item.model';
                 <input class="nx-input nx-num" type="number" [(ngModel)]="adjustForm.quantity"
                   placeholder="Positivo para entrada, negativo para salida" />
                 <span style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-top:4px;">
-                  Resultado final en stock: <strong>{{ (item()!.inventory ?? 0) + (adjustForm.quantity || 0) }}</strong> {{ item()!.baseUnitOfMeasure }}
+                  Proyección de stock: <strong>{{ item()!.inventory + (adjustForm.quantity || 0) }} {{ item()!.baseUnitOfMeasure }}</strong>
                 </span>
               </div>
               <div class="nx-field">
@@ -353,7 +353,7 @@ import { Item } from '../../../domain/item.model';
         <div class="modal-box" style="max-width:860px;" (click)="$event.stopPropagation()">
           <div class="modal-header">
             <div>
-              <h2 class="nx-page-title" style="margin:0;">Movimientos de Artículo</h2>
+              <h2 class="nx-page-title" style="margin:0;">Movimientos de Producto</h2>
               <div style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">{{ item()?.no }} — {{ item()?.description }}</div>
             </div>
             <button class="nx-iconbtn" (click)="closeLedger()">
@@ -366,7 +366,7 @@ import { Item } from '../../../domain/item.model';
             } @else if (ledgerEntries().length === 0) {
               <div class="nx-empty">
                 <p class="nx-empty__title">Sin movimientos</p>
-                <p class="nx-empty__text">Este artículo aún no tiene entradas en el diario.</p>
+                <p class="nx-empty__text">Este producto aún no tiene entradas en el diario.</p>
               </div>
             } @else {
               <table class="nx-table">
@@ -458,7 +458,7 @@ export class ItemCardPage implements OnInit {
   adjustError  = signal('');
   adjustForm   = { quantity: 0, documentNo: '', description: '' };
 
-  // Diario de artículo
+  // Diario de producto
   showLedger    = signal(false);
   ledgerLoading = signal(false);
   ledgerEntries = signal<LedgerEntry[]>([]);
@@ -516,7 +516,7 @@ export class ItemCardPage implements OnInit {
       const updated = await this.svc.getByNo(i.no);
       this.item.set(updated);
     } catch (e: any) {
-      alert(e?.error?.error?.message ?? 'Error al cambiar el estado del artículo.');
+      alert(e?.error?.error?.message ?? 'Error al cambiar el estado del producto.');
     } finally {
       this.actionLoading.set(false);
     }

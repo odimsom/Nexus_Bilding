@@ -21,7 +21,7 @@ public class PurchInvHeaderRepository(NexusBillingDbContext dbContext) : Generic
         CancellationToken cancellationToken = default)
     {
         var query = _dbContext.PurchInvHeaders
-            .Where(x => x.TenantId.Value == tenantId);
+            .Where(x => x.TenantId == NexusBilling.Core.Domain.Common.TenantIdentifier.Create(tenantId));
 
         if (!string.IsNullOrWhiteSpace(search))
         {

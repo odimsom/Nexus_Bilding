@@ -8,6 +8,7 @@ import { CustomerSortField } from '../../../domain/customer.model';
 import { ApiService } from '../../../../../core/services/api.service';
 import { RncFormatDirective } from '../../../../../shared/directives/rnc-format.directive';
 import { PhoneFormatDirective } from '../../../../../shared/directives/phone-format.directive';
+import { ExcelExportService } from '../../../../../core/services/excel/excel-export.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -29,9 +30,9 @@ import { PhoneFormatDirective } from '../../../../../shared/directives/phone-for
         </p>
       </div>
       <div class="nx-page-actions">
-        <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="exportCsv()">
+        <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="exportExcel()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Exportar
+          Exportar Excel
         </button>
         <button class="nx-btn nx-btn--primary nx-btn--sm" (click)="openModal()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -97,12 +98,12 @@ import { PhoneFormatDirective } from '../../../../../shared/directives/phone-for
                 <th class="sortable" (click)="setSort('no')">No. {{ si('no') }}</th>
                 <th class="sortable" (click)="setSort('name')">Nombre {{ si('name') }}</th>
                 <th class="sortable" (click)="setSort('city')">Ciudad {{ si('city') }}</th>
-                <th>Contacto</th>
-                <th>Vendedor</th>
-                <th>Cond. Pago</th>
+                <th class="sortable" (click)="setSort('contact')">Contacto {{ si('contact') }}</th>
+                <th class="sortable" (click)="setSort('salespersonCode')">Vendedor {{ si('salespersonCode') }}</th>
+                <th class="sortable" (click)="setSort('paymentTermsCode')">Cond. Pago {{ si('paymentTermsCode') }}</th>
                 <th class="num sortable" (click)="setSort('balance')">Saldo {{ si('balance') }}</th>
                 <th class="num sortable" (click)="setSort('balanceDue')">Saldo Vencido {{ si('balanceDue') }}</th>
-                <th>Estado</th>
+                <th class="sortable" (click)="setSort('blocked')">Estado {{ si('blocked') }}</th>
                 <th></th>
               </tr>
             </thead>
@@ -304,6 +305,7 @@ export class CustomerListPage implements OnInit {
   readonly svc = inject(CustomerService);
   private readonly router = inject(Router);
   private readonly api = inject(ApiService);
+  private readonly excel = inject(ExcelExportService);
 
   searchText = '';
   showBlocked: 'all' | 'active' | 'blocked' = 'all';
@@ -366,17 +368,38 @@ export class CustomerListPage implements OnInit {
     this.svc.load({ search: this.searchText || undefined, blocked, page });
   }
 
-  exportCsv(): void {
+  async exportExcel(): Promise<void> {
     const rows = this.sorted();
-    const header = 'No.,Nombre,Ciudad,Contacto,Vendedor,Condición Pago,Saldo,Saldo Vencido,Estado';
-    const body = rows.map(r =>
-      [r.no, r.name, r.city, r.contact, r.salespersonCode, r.paymentTermsCode,
-       r.balance, r.balanceDue, r.blocked ? 'Bloqueado' : 'Activo'].join(',')
-    ).join('\n');
-    const blob = new Blob([header + '\n' + body], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'clientes.csv'; a.click();
-    URL.revokeObjectURL(url);
+    const data = rows.map(r => ({
+      no: r.no,
+      name: r.name,
+      city: r.city || '',
+      contact: r.contact || '',
+      salesperson: r.salespersonCode || '',
+      terms: r.paymentTermsCode || '',
+      balance: r.balance,
+      balanceDue: r.balanceDue,
+      status: r.blocked ? 'Bloqueado' : 'Activo'
+    }));
+
+    await this.excel.exportAsExcel({
+      filename: 'Clientes_Nexus',
+      title: 'Listado de Clientes',
+      subtitle: 'Nexus Billing - Módulo de Ventas',
+      sheetName: 'Clientes',
+      columns: [
+        { header: 'No.', key: 'no', width: 15 },
+        { header: 'Nombre', key: 'name', width: 40 },
+        { header: 'Ciudad', key: 'city', width: 20 },
+        { header: 'Contacto', key: 'contact', width: 25 },
+        { header: 'Vendedor', key: 'salesperson', width: 12 },
+        { header: 'Condición Pago', key: 'terms', width: 15 },
+        { header: 'Saldo', key: 'balance', width: 15, numFmt: '#,##0.00', alignment: { horizontal: 'right' } },
+        { header: 'Saldo Vencido', key: 'balanceDue', width: 15, numFmt: '#,##0.00', alignment: { horizontal: 'right' } },
+        { header: 'Estado', key: 'status', width: 12 }
+      ],
+      data
+    });
   }
 
   openModal(): void {

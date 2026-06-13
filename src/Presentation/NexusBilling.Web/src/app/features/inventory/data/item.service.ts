@@ -89,7 +89,7 @@ export class ItemService {
       this.totalPages.set(result.pagination.totalPages);
       this.currentPage.set(result.pagination.page);
     } catch (e: any) {
-      this.error.set(e?.error?.error?.message ?? 'Error al cargar artículos.');
+      this.error.set(e?.error?.error?.message ?? 'Error al cargar productos.');
       this.items.set([]);
     } finally {
       this.loading.set(false);

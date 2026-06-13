@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using NexusBilling.Core.Domain.Finance.Entities;
 
+using NexusBilling.Core.Domain.Interfaces.Repositories.Base;
+
 namespace NexusBilling.Core.Domain.Finance.Repositories;
 
-public interface IGLEntryRepository
+public interface IGLEntryRepository : IGenericRepository<GLEntry>
 {
-    Task<GLEntry?> GetByIdAsync(long id);
-    Task<IEnumerable<GLEntry>> GetAllAsync();
-    Task AddAsync(GLEntry entity);
-    Task UpdateAsync(GLEntry entity);
-    Task DeleteAsync(GLEntry entity);
+    Task<(IReadOnlyList<GLEntry> Entries, int Total)> ListAsync(
+        Guid tenantId, string? glAccountNo, int page, int pageSize,
+        CancellationToken cancellationToken = default);
 }

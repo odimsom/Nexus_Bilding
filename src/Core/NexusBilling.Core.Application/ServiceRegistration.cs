@@ -44,7 +44,7 @@ public static class ServiceRegistration
 {
     public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddAutoMapper(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddScoped<NoSeriesService>();
         services.AddScoped<IEcfService, EcfService>();

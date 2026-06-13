@@ -170,6 +170,27 @@ export const routes: Routes = [
             m => m.UserListPage
           )
       },
+      {
+        path: 'gl',
+        loadComponent: () =>
+          import('./features/finance/presentation/pages/gl-account-list/gl-account-list.page').then(
+            m => m.GLAccountListPage
+          )
+      },
+      {
+        path: 'gl-entries',
+        loadComponent: () =>
+          import('./features/finance/presentation/pages/gl-entry-list/gl-entry-list.page').then(
+            m => m.GLEntryListPage
+          )
+      },
+      {
+        path: 'journal',
+        loadComponent: () =>
+          import('./features/finance/presentation/pages/journal-list/journal-list.page').then(
+            m => m.JournalListPage
+          )
+      },
       /* ── RUTA CATCH-ALL dentro del shell ────────────────── */
       { path: '**', redirectTo: 'dashboard' }
     ]

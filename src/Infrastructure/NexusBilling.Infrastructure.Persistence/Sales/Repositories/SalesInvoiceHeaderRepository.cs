@@ -21,7 +21,7 @@ public class SalesInvoiceHeaderRepository(NexusBillingDbContext dbContext) : Gen
         CancellationToken cancellationToken = default)
     {
         var query = _dbContext.SalesInvoiceHeaders
-            .Where(x => x.TenantId.Value == tenantId);
+            .Where(x => x.TenantId == NexusBilling.Core.Domain.Common.TenantIdentifier.Create(tenantId));
 
         if (!string.IsNullOrWhiteSpace(search))
         {

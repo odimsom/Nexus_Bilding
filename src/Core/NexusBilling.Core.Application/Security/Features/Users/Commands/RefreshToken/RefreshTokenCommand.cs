@@ -50,7 +50,7 @@ public sealed class RefreshTokenCommandHandler
         var userIdStr = principal.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value 
             ?? principal.FindFirst("sub")?.Value;
 
-        if (string.IsNullOrEmpty(userIdStr) || !long.TryParse(userIdStr, out var userId))
+        if (string.IsNullOrEmpty(userIdStr) || !Guid.TryParse(userIdStr, out var userId))
             return OperationResult<TokenResponse, DomainError>.Fail(DomainError.Business("Auth.InvalidToken", "Invalid token claims"));
 
         var session = await _activeSessionRepository.GetByRefreshTokenAsync(request.RefreshToken, cancellationToken);

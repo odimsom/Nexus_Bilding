@@ -53,7 +53,7 @@ import { NxChartComponent } from '../../../../shared/components/chart/nx-chart.c
           <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">Total registrados</span>
         </a>
         <a routerLink="/inventory" class="nx-stat" style="text-decoration:none;cursor:pointer;">
-          <span class="nx-stat__label">Artículos</span>
+          <span class="nx-stat__label">Productos</span>
           <span class="nx-stat__value nx-num">{{ svc.stats()!.totalItems }}</span>
           <span class="nx-eyebrow" style="margin-top:var(--nx-space-1);">En catálogo</span>
         </a>
@@ -204,7 +204,7 @@ export class DashboardPage implements OnInit {
 
   readonly quickLinks = [
     { route: '/customers',         label: 'Clientes',           desc: 'Gestiona tu cartera',     icon: 'users',     bg: 'var(--nx-blue-50)',    color: 'var(--nx-blue-600)'   },
-    { route: '/inventory',         label: 'Inventario',         desc: 'Artículos y existencias', icon: 'package',   bg: 'var(--nx-green-50)',   color: 'var(--nx-green-600)'  },
+    { route: '/inventory',         label: 'Inventario',         desc: 'Productos y existencias', icon: 'package',   bg: 'var(--nx-green-50)',   color: 'var(--nx-green-600)'  },
     { route: '/sales',             label: 'Órdenes de Venta',   desc: 'Pedidos de venta',        icon: 'file-text', bg: 'var(--nx-amber-50)',   color: 'var(--nx-amber-600)'  },
     { route: '/invoices',          label: 'Facturas de Venta',  desc: 'Facturas emitidas',       icon: 'receipt',   bg: 'var(--nx-indigo-50)',  color: 'var(--nx-indigo-600)' },
     { route: '/purchases',         label: 'Órdenes de Compra',  desc: 'Pedidos a proveedores',   icon: 'file-text', bg: 'var(--nx-orange-50)',  color: 'var(--nx-orange-600)' },

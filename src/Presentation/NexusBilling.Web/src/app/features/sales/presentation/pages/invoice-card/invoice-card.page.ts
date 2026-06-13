@@ -135,7 +135,7 @@ import { PdfService } from '../../../../../shared/services/pdf.service';
                     <tr>
                       <th>No. Línea</th>
                       <th>Tipo</th>
-                      <th>No. Artículo</th>
+                      <th>No. Producto</th>
                       <th>Descripción</th>
                       <th class="nx-th--num">Cantidad</th>
                       <th>U/M</th>

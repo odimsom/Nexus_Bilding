@@ -6,6 +6,11 @@ La solución se organiza mediante módulos funcionales y no únicamente por resp
 
 En la capa de aplicación utilizo casos de uso, comandos y consultas para orquestar los procesos de negocio sin contener reglas de dominio. La infraestructura implementa los contratos definidos por el dominio para persistencia, autenticación, almacenamiento e integraciones externas. Las capas de presentación (API, Web o aplicaciones cliente) actúan únicamente como puntos de entrada al sistema.
 
+- Las vistas deben tener *breadcrumbs* de navegación y un título descriptivo claro (`nx-page-header`).
+- Toda lista/tabla paginada debe mostrar spinners de carga (`nx-spinner`) si los datos están demorando y estados vacíos (`nx-empty`) claros.
+- **Regla de Ordenamiento (Sorting):** TODAS las columnas de TODAS las tablas deben ser ordenables (sortable). No se debe dejar ninguna columna sin la capacidad de ordenar. Esto incluye vistas existentes y cualquier vista futura.
+- Toda funcionalidad que registre operaciones principales debe incluir un botón de **Exportación Excel** enriquecido (con `ExcelExportService`) para ofrecer reportes Premium.
+
 Adicionalmente, aplico una organización modular estricta en toda la solución. Ningún componente se ubica directamente en la raíz de una capa; todo pertenece a un módulo explícito, incluso cuando inicialmente contiene pocos archivos. Este enfoque facilita la escalabilidad, el mantenimiento y la eventual separación de módulos en componentes o servicios independientes si el crecimiento del proyecto lo requiere.
 
 ### Estilo de Codificación y Comentarios

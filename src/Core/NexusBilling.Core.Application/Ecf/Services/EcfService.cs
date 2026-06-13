@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml.Linq;
@@ -93,8 +94,8 @@ public class EcfService : IEcfService
     {
         try
         {
-            // Cargar certificado
-            using var cert = new X509Certificate2(p12Path, p12Password, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
+            // Usar X509CertificateLoader en lugar de constructor obsoleto
+            using var cert = X509CertificateLoader.LoadPkcs12(System.IO.File.ReadAllBytes(p12Path), p12Password);
             
             var xmlDoc = new XmlDocument();
             xmlDoc.PreserveWhitespace = true;

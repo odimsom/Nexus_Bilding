@@ -1,45 +1,31 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NexusBilling.Core.Domain.Finance.Entities;
 using NexusBilling.Core.Domain.Finance.Repositories;
 using NexusBilling.Infrastructure.Persistence.Context;
+using NexusBilling.Infrastructure.Persistence.Repositories.Base;
 
 namespace NexusBilling.Infrastructure.Persistence.Finance.Repositories;
 
-public class GLEntryRepository : IGLEntryRepository
+public sealed class GLEntryRepository(NexusBillingDbContext dbContext)
+    : GenericRepository<GLEntry>(dbContext), IGLEntryRepository
 {
-    private readonly NexusBillingDbContext _context;
+    private readonly NexusBillingDbContext _dbContext = dbContext;
 
-    public GLEntryRepository(NexusBillingDbContext context)
+    public async Task<(IReadOnlyList<GLEntry> Entries, int Total)> ListAsync(Guid tenantId, string? glAccountNo, int page, int pageSize, CancellationToken cancellationToken = default)
     {
-        _context = context;
-    }
+        var query = _dbContext.Set<GLEntry>().Where(x => x.TenantId == NexusBilling.Core.Domain.Common.TenantIdentifier.Create(tenantId));
 
-    public async Task<GLEntry?> GetByIdAsync(long id)
-    {
-        return await _context.Set<GLEntry>().FindAsync(id);
-    }
+        if (!string.IsNullOrWhiteSpace(glAccountNo))
+            query = query.Where(x => x.GLAccountNo == glAccountNo);
 
-    public async Task<IEnumerable<GLEntry>> GetAllAsync()
-    {
-        return await _context.Set<GLEntry>().ToListAsync();
-    }
+        var total = await query.CountAsync(cancellationToken);
+        var entries = await query
+            .OrderByDescending(x => x.PostingDate)
+            .ThenByDescending(x => x.EntryNo)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
 
-    public async Task AddAsync(GLEntry entity)
-    {
-        await _context.Set<GLEntry>().AddAsync(entity);
-    }
-
-    public Task UpdateAsync(GLEntry entity)
-    {
-        _context.Set<GLEntry>().Update(entity);
-        return Task.CompletedTask;
-    }
-
-    public Task DeleteAsync(GLEntry entity)
-    {
-        _context.Set<GLEntry>().Remove(entity);
-        return Task.CompletedTask;
+        return (entries, total);
     }
 }

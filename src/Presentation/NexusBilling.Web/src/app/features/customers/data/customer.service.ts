@@ -107,12 +107,16 @@ export class CustomerService {
       let av: string | number = '';
       let bv: string | number = '';
       switch (sortField) {
-        case 'no':        av = a.no;        bv = b.no;        break;
-        case 'name':      av = a.name;      bv = b.name;      break;
-        case 'city':      av = a.city;      bv = b.city;      break;
+        case 'no':        av = a.no || '';        bv = b.no || '';        break;
+        case 'name':      av = a.name || '';      bv = b.name || '';      break;
+        case 'city':      av = a.city || '';      bv = b.city || '';      break;
+        case 'contact':   av = a.contact || '';   bv = b.contact || '';   break;
+        case 'salespersonCode': av = a.salespersonCode || ''; bv = b.salespersonCode || ''; break;
+        case 'paymentTermsCode': av = a.paymentTermsCode || ''; bv = b.paymentTermsCode || ''; break;
+        case 'blocked':   av = a.blocked ? '1' : '0'; bv = b.blocked ? '1' : '0'; break;
         case 'balance':   av = a.balance;   bv = b.balance;   break;
         case 'balanceDue':av = a.balanceDue;bv = b.balanceDue;break;
-        default:          av = a.name;      bv = b.name;
+        default:          av = a.name || '';      bv = b.name || '';
       }
       if (typeof av === 'string') return sortAsc ? av.localeCompare(bv as string) : (bv as string).localeCompare(av);
       return sortAsc ? av - (bv as number) : (bv as number) - av;

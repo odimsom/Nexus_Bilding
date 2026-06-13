@@ -229,7 +229,7 @@ interface ServiceLine {
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--nx-space-2);">
                 <span style="font-weight:var(--nx-weight-semibold);font-size:var(--nx-text-sm);">Líneas <span style="color:var(--nx-red-500);">*</span></span>
                 <div style="display:flex;gap:var(--nx-space-2);">
-                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine(1)">+ Artículo</button>
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine(1)">+ Producto</button>
                   <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine(2)">+ Recurso</button>
                   <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine(3)">+ Costo</button>
                   <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine(4)">+ Cuenta CG</button>
@@ -295,7 +295,7 @@ interface ServiceLine {
                       </tr>
                     }
                     @if (lines.length === 0) {
-                      <tr><td colspan="10" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-5);">Agrega artículos, recursos o costos con los botones de arriba</td></tr>
+                      <tr><td colspan="10" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-5);">Agrega productos, recursos o costos con los botones de arriba</td></tr>
                     }
                   </tbody>
                   <tfoot>

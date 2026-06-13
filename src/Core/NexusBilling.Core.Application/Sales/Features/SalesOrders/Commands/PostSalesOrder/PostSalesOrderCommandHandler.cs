@@ -75,7 +75,7 @@ public sealed class PostSalesOrderCommandHandler(
         string? trackId = null;
 
         var ecfConfigs = await ecfConfigRepo.GetAllAsync(null, ct);
-        var ecfConfig = ecfConfigs.FirstOrDefault(c => c.TenantId.Value == cmd.TenantId && c.IsActive);
+        var ecfConfig = ecfConfigs.FirstOrDefault(c => c.TenantId == NexusBilling.Core.Domain.Common.TenantIdentifier.Create(cmd.TenantId) && c.IsActive);
 
         if (ecfConfig != null)
         {

@@ -14,7 +14,6 @@ public sealed class PostPurchaseOrderCommandHandler(
     IPurchaseLineRepository lineRepo,
     IPurchInvHeaderRepository invoiceHeaderRepo,
     IPurchInvLineRepository invoiceLineRepo,
-    IItemRepository itemRepo,
     IItemLedgerEntryRepository itemLedgerRepo,
     IUnitOfWork uow)
     : IRequestHandler<PostPurchaseOrderCommand, PostPurchaseOrderResult>

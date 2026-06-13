@@ -20,7 +20,7 @@ public class PurchaseHeaderRepository(NexusBillingDbContext dbContext)
         CancellationToken cancellationToken = default)
     {
         var query = _dbContext.Set<PurchaseHeader>()
-            .Where(x => x.TenantId.Value == tenantId);
+            .Where(x => x.TenantId == NexusBilling.Core.Domain.Common.TenantIdentifier.Create(tenantId));
 
         if (!string.IsNullOrWhiteSpace(search))
         {

@@ -142,7 +142,7 @@ import { SalesOrderDetail } from '../../../domain/invoice.model';
                     <tr>
                       <th style="width:70px;">No. línea</th>
                       <th style="width:80px;">Tipo</th>
-                      <th style="width:120px;">No. artículo</th>
+                      <th style="width:120px;">No. producto</th>
                       <th>Descripción</th>
                       <th class="nx-th--num" style="width:80px;">Cant.</th>
                       <th style="width:60px;">U/M</th>

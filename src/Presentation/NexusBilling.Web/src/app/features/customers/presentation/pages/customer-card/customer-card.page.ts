@@ -370,7 +370,7 @@ interface OrderLine {
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--nx-space-2);">
                 <span style="font-weight:var(--nx-weight-semibold);font-size:var(--nx-text-sm);">Líneas del Pedido <span style="color:var(--nx-red-500);">*</span></span>
                 <div style="display:flex;gap:var(--nx-space-2);">
-                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine('Item')">+ Artículo</button>
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine('Item')">+ Producto</button>
                   <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine('Service')">+ Servicio</button>
                 </div>
               </div>
@@ -395,14 +395,14 @@ interface OrderLine {
                       <tr>
                         <td style="color:var(--nx-text-faint);font-size:var(--nx-text-xs);font-family:var(--nx-font-mono);">{{ (i + 1) * 10000 }}</td>
                         <td>
-                          <span class="nx-badge nx-badge--outline" style="font-size:10px;">{{ line.type === 'Item' ? 'Art.' : 'Serv.' }}</span>
+                          <span class="nx-badge nx-badge--outline" style="font-size:10px;">{{ line.type === 'Item' ? 'Prod.' : 'Serv.' }}</span>
                         </td>
                         <td style="position:relative;">
                           <input
                             class="nx-input nx-input--sm"
                             style="width:100%;font-family:var(--nx-font-mono);"
                             [(ngModel)]="line.itemNo"
-                            [placeholder]="line.type === 'Item' ? 'ART-00001' : 'SRV-001'"
+                            [placeholder]="line.type === 'Item' ? 'PROD-00001' : 'SRV-001'"
                             (focus)="onItemFocus(i)"
                             (input)="onItemInput(i)"
                             (blur)="closeSuggestionsDelayed(i)"
@@ -446,7 +446,7 @@ interface OrderLine {
                       </tr>
                     }
                     @if (orderLines.length === 0) {
-                      <tr><td colspan="10" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-5);">Agrega artículos o servicios con los botones de arriba</td></tr>
+                      <tr><td colspan="10" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-5);">Agrega productos o servicios con los botones de arriba</td></tr>
                     }
                   </tbody>
                   <tfoot>
@@ -693,8 +693,12 @@ export class CustomerCardPage implements OnInit {
   onItemFocus(i: number): void {
     const line = this.orderLines[i];
     const q = line.itemNo.toLowerCase().trim();
+    let filtered = this.allItems;
+    if (line.type === 'Item') filtered = filtered.filter(it => it.type === 'Inventory');
+    else if (line.type === 'Service') filtered = filtered.filter(it => it.type === 'Service');
+
     if (!q) {
-      const suggestions = this.allItems.slice(0, 10);
+      const suggestions = filtered.slice(0, 10);
       this.orderLines[i] = { ...line, suggestions, showSuggestions: suggestions.length > 0 };
     }
   }
@@ -702,12 +706,16 @@ export class CustomerCardPage implements OnInit {
   onItemInput(i: number): void {
     const line = this.orderLines[i];
     const q = line.itemNo.toLowerCase().trim();
+    let filtered = this.allItems;
+    if (line.type === 'Item') filtered = filtered.filter(it => it.type === 'Inventory');
+    else if (line.type === 'Service') filtered = filtered.filter(it => it.type === 'Service');
+
     if (!q) {
-      const suggestions = this.allItems.slice(0, 10);
+      const suggestions = filtered.slice(0, 10);
       this.orderLines[i] = { ...line, suggestions, showSuggestions: suggestions.length > 0 };
       return;
     }
-    const suggestions = this.allItems
+    const suggestions = filtered
       .filter(it => it.no.toLowerCase().includes(q) || it.description.toLowerCase().includes(q))
       .slice(0, 8);
     this.orderLines[i] = { ...line, suggestions, showSuggestions: suggestions.length > 0 };

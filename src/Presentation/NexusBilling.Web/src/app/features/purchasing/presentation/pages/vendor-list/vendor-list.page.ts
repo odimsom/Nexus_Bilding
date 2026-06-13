@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { VendorService } from '../../../data/vendor.service';
+import { ExcelExportService } from '../../../../../core/services/excel/excel-export.service';
 
 @Component({
   selector: 'app-vendor-list',
@@ -21,6 +22,10 @@ import { VendorService } from '../../../data/vendor.service';
         <p class="nx-page-subtitle">Gestiona tu catálogo de suplidores y abastecimiento</p>
       </div>
       <div class="nx-page-actions">
+        <button class="nx-btn nx-btn--secondary" (click)="exportExcel()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar Excel
+        </button>
         <button class="nx-btn nx-btn--primary" (click)="openNew()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Nuevo Proveedor
@@ -58,15 +63,15 @@ import { VendorService } from '../../../data/vendor.service';
             <table class="nx-table">
               <thead>
                 <tr>
-                  <th style="width:120px;">No.</th>
-                  <th>Nombre</th>
-                  <th>Contacto</th>
-                  <th>Ciudad</th>
-                  <th>Estado</th>
+                  <th class="sortable" style="width:120px;" (click)="setSort('no')">No. {{ si('no') }}</th>
+                  <th class="sortable" (click)="setSort('name')">Nombre {{ si('name') }}</th>
+                  <th class="sortable" (click)="setSort('contact')">Contacto {{ si('contact') }}</th>
+                  <th class="sortable" (click)="setSort('city')">Ciudad {{ si('city') }}</th>
+                  <th class="sortable" (click)="setSort('blocked')">Estado {{ si('blocked') }}</th>
                 </tr>
               </thead>
               <tbody>
-                @for (v of svc.items(); track v.no) {
+                @for (v of sorted(); track v.no) {
                   <tr style="cursor:pointer;" [routerLink]="['/vendors', v.no]">
                     <td class="nx-td--doc"><a class="nx-link">{{ v.no }}</a></td>
                     <td style="font-weight:var(--nx-weight-medium);">{{ v.name }}</td>
@@ -136,6 +141,8 @@ import { VendorService } from '../../../data/vendor.service';
   `,
   styles: [`
     :host { display: block; }
+    .sortable { cursor:pointer;user-select:none;white-space:nowrap; }
+    .sortable:hover { color:var(--nx-text-body); }
     .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:4rem auto; }
     @keyframes spin { to { transform:rotate(360deg); } }
     .modal-backdrop { position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:1000; }
@@ -150,14 +157,68 @@ import { VendorService } from '../../../data/vendor.service';
 export class VendorListPage implements OnInit {
   readonly svc = inject(VendorService);
   private readonly router = inject(Router);
+  private readonly excel = inject(ExcelExportService);
 
   showNewModal = signal(false);
   saving = signal(false);
   createError = signal('');
   newForm = { name: '', address: '', city: '', contact: '' };
 
+  sortField = 'name';
+  sortAsc = true;
+
+  sorted() {
+    return [...this.svc.items()].sort((a, b) => {
+      let av: string | number = '';
+      let bv: string | number = '';
+      switch (this.sortField) {
+        case 'no':        av = a.no || '';        bv = b.no || '';        break;
+        case 'name':      av = a.name || '';      bv = b.name || '';      break;
+        case 'contact':   av = a.contact || '';   bv = b.contact || '';   break;
+        case 'city':      av = a.city || '';      bv = b.city || '';      break;
+        case 'blocked':   av = a.blocked ? '1' : '0'; bv = b.blocked ? '1' : '0'; break;
+        default:          av = a.name || '';      bv = b.name || '';
+      }
+      return this.sortAsc ? av.localeCompare(bv as string) : (bv as string).localeCompare(av);
+    });
+  }
+
+  setSort(f: string): void {
+    if (this.sortField === f) this.sortAsc = !this.sortAsc;
+    else { this.sortField = f; this.sortAsc = true; }
+  }
+
+  si(f: string): string {
+    return this.sortField === f ? (this.sortAsc ? '↑' : '↓') : '';
+  }
+
   async ngOnInit() {
     await this.svc.load();
+  }
+
+  async exportExcel(): Promise<void> {
+    const data = this.svc.items().map(v => ({
+      no: v.no,
+      name: v.name,
+      contact: v.contact || '',
+      city: v.city || '',
+      status: v.blocked ? 'Bloqueado' : 'Activo'
+    }));
+
+    await this.excel.exportAsExcel({
+      filename: 'Proveedores_Nexus',
+      title: 'Catálogo de Proveedores',
+      subtitle: 'Nexus Billing - Módulo de Compras',
+      sheetName: 'Proveedores',
+      columns: [
+        { header: 'No.', key: 'no', width: 15 },
+        { header: 'Nombre', key: 'name', width: 45 },
+        { header: 'Contacto', key: 'contact', width: 25 },
+        { header: 'Ciudad', key: 'city', width: 20 },
+        { header: 'Estado', key: 'status', width: 12 }
+      ],
+      data
+    });
   }
 
   openNew() {

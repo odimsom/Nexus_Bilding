@@ -7,7 +7,28 @@ namespace NexusBilling.Core.Domain.Purchasing.Entities;
 
 public class PurchInvLine : Entity
 {
-    private PurchInvLine() { }
+    private PurchInvLine()
+    {
+        BuyFromVendorNo = string.Empty; DocumentNo = string.Empty; No = string.Empty;
+        LocationCode = string.Empty; PostingGroup = string.Empty; Description = string.Empty;
+        Description2 = string.Empty; UnitOfMeasure = string.Empty; ShortcutDimension1Code = string.Empty;
+        ShortcutDimension2Code = string.Empty; JobNo = string.Empty; ReceiptNo = string.Empty;
+        PayToVendorNo = string.Empty; VendorItemNo = string.Empty; GenBusPostingGroup = string.Empty;
+        GenProdPostingGroup = string.Empty; TransactionType = string.Empty; TransportMethod = string.Empty;
+        EntryPoint = string.Empty; Area = string.Empty; TransactionSpecification = string.Empty;
+        TaxAreaCode = string.Empty; TaxGroupCode = string.Empty; VatBusPostingGroup = string.Empty;
+        VatProdPostingGroup = string.Empty; BlanketOrderNo = string.Empty; VatIdentifier = string.Empty;
+        IcPartnerReference = string.Empty; IcPartnerCode = string.Empty; JobTaskNo = string.Empty;
+        JobCurrencyCode = string.Empty; DeferralCode = string.Empty; ProdOrderNo = string.Empty;
+        VariantCode = string.Empty; BinCode = string.Empty; UnitOfMeasureCode = string.Empty;
+        DepreciationBookCode = string.Empty; MaintenanceCode = string.Empty; InsuranceNo = string.Empty;
+        BudgetedFaNo = string.Empty; DuplicateInDepreciationBook = string.Empty;
+        ResponsibilityCenter = string.Empty; CrossReferenceNo = string.Empty;
+        UnitOfMeasureCrossRef = string.Empty; CrossReferenceTypeNo = string.Empty;
+        ItemCategoryCode = string.Empty; PurchasingCode = string.Empty; ProductGroupCode = string.Empty;
+        ReturnReasonCode = string.Empty; RoutingNo = string.Empty; OperationNo = string.Empty;
+        WorkCenterNo = string.Empty;
+    }
 
     public TenantIdentifier TenantId { get; private set; }
     public string BuyFromVendorNo { get; private set; }

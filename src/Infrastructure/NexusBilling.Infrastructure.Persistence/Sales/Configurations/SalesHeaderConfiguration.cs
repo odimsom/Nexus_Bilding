@@ -27,5 +27,8 @@ public class SalesHeaderConfiguration : IEntityTypeConfiguration<SalesHeader>
         builder.Property(x => x.SalespersonCode).HasColumnName("salesperson_code").HasDefaultValue(string.Empty);
         builder.Property(x => x.ExternalDocumentNo).HasColumnName("external_document_no").HasDefaultValue(string.Empty);
         builder.Property(x => x.Status).HasColumnName("status").HasDefaultValue("Open");
+        builder.Property(x => x.ValidUntilDate).HasColumnName("valid_until_date").IsRequired(false);
+        builder.Property(x => x.QuotedBy).HasColumnName("quoted_by").IsRequired(false).HasDefaultValue(string.Empty);
+        builder.Property(x => x.Observations).HasColumnName("observations").IsRequired(false).HasDefaultValue(string.Empty);
     }
 }

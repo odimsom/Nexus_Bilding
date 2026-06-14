@@ -7,7 +7,87 @@ namespace NexusBilling.Core.Domain.Purchasing.Entities;
 
 public class PurchInvHeader : Entity
 {
-    private PurchInvHeader() { }
+    private PurchInvHeader()
+    {
+        BuyFromVendorNo = string.Empty;
+        No = string.Empty;
+        PayToVendorNo = string.Empty;
+        PayToName = string.Empty;
+        PayToName2 = string.Empty;
+        PayToAddress = string.Empty;
+        PayToAddress2 = string.Empty;
+        PayToCity = string.Empty;
+        PayToContact = string.Empty;
+        YourReference = string.Empty;
+        ShipToCode = string.Empty;
+        ShipToName = string.Empty;
+        ShipToName2 = string.Empty;
+        ShipToAddress = string.Empty;
+        ShipToAddress2 = string.Empty;
+        ShipToCity = string.Empty;
+        ShipToContact = string.Empty;
+        PostingDescription = string.Empty;
+        PaymentTermsCode = string.Empty;
+        ShipmentMethodCode = string.Empty;
+        LocationCode = string.Empty;
+        ShortcutDimension1Code = string.Empty;
+        ShortcutDimension2Code = string.Empty;
+        VendorPostingGroup = string.Empty;
+        CurrencyCode = string.Empty;
+        InvoiceDiscCode = string.Empty;
+        LanguageCode = string.Empty;
+        PurchaserCode = string.Empty;
+        OrderNo = string.Empty;
+        OnHold = string.Empty;
+        AppliesToDocNo = string.Empty;
+        BalAccountNo = string.Empty;
+        VendorOrderNo = string.Empty;
+        VendorInvoiceNo = string.Empty;
+        VatRegistrationNo = string.Empty;
+        SellToCustomerNo = string.Empty;
+        ReasonCode = string.Empty;
+        GenBusPostingGroup = string.Empty;
+        TransactionType = string.Empty;
+        TransportMethod = string.Empty;
+        VatCountryRegionCode = string.Empty;
+        BuyFromVendorName = string.Empty;
+        BuyFromVendorName2 = string.Empty;
+        BuyFromAddress = string.Empty;
+        BuyFromAddress2 = string.Empty;
+        BuyFromCity = string.Empty;
+        BuyFromContact = string.Empty;
+        PayToPostCode = string.Empty;
+        PayToCounty = string.Empty;
+        PayToCountryRegionCode = string.Empty;
+        BuyFromPostCode = string.Empty;
+        BuyFromCounty = string.Empty;
+        BuyFromCountryRegionCode = string.Empty;
+        ShipToPostCode = string.Empty;
+        ShipToCounty = string.Empty;
+        ShipToCountryRegionCode = string.Empty;
+        OrderAddressCode = string.Empty;
+        EntryPoint = string.Empty;
+        Area = string.Empty;
+        TransactionSpecification = string.Empty;
+        PaymentMethodCode = string.Empty;
+        PreAssignedNoSeries = string.Empty;
+        NoSeries = string.Empty;
+        OrderNoSeries = string.Empty;
+        PreAssignedNo = string.Empty;
+        UserId = string.Empty;
+        SourceCode = string.Empty;
+        TaxAreaCode = string.Empty;
+        VatBusPostingGroup = string.Empty;
+        PrepaymentNoSeries = string.Empty;
+        PrepaymentOrderNo = string.Empty;
+        QuoteNo = string.Empty;
+        CreditorNo = string.Empty;
+        PaymentReference = string.Empty;
+        CampaignNo = string.Empty;
+        BuyFromContactNo = string.Empty;
+        PayToContactNo = string.Empty;
+        ResponsibilityCenter = string.Empty;
+    }
 
     public TenantIdentifier TenantId { get; private set; }
     public string BuyFromVendorNo { get; private set; }

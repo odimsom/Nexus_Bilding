@@ -1,0 +1,282 @@
+
+    @if (loading()) {
+      <div class="nx-empty" style="min-height:300px;">
+        <div class="nx-spinner"></div>
+        <p class="nx-empty__text" style="margin-top:var(--nx-space-3);">Cargando cliente…</p>
+      </div>
+    } @else if (customer()) {
+      <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
+        <a routerLink="/dashboard">Dashboard</a>
+        <span class="nx-crumbs__sep">›</span>
+        <a routerLink="/customers">Clientes</a>
+        <span class="nx-crumbs__sep">›</span>
+        <span class="nx-crumb--current">{{ customer()!.name }}</span>
+      </nav>
+
+      <div class="nx-page-header">
+        <div class="nx-avatar nx-avatar--lg" style="background:var(--nx-emerald-100);color:var(--nx-emerald-800);flex-shrink:0;">
+          {{ customer()!.name.charAt(0) }}
+        </div>
+        <div style="flex:1;min-width:0;">
+          <h1 class="nx-page-title">{{ customer()!.name }}</h1>
+          <div style="display:flex;align-items:center;gap:var(--nx-space-3);margin-top:var(--nx-space-1);flex-wrap:wrap;">
+            <span class="nx-eyebrow">{{ customer()!.no }}</span>
+            @if (customer()!.salespersonCode) {
+              <span class="nx-badge nx-badge--info">Vendedor: {{ customer()!.salespersonCode }}</span>
+            }
+            @if (customer()!.blocked) {
+              <span class="nx-badge nx-badge--danger"><span class="nx-badge__dot"></span>Bloqueado</span>
+            } @else {
+              <span class="nx-badge nx-badge--success"><span class="nx-badge__dot"></span>Activo</span>
+            }
+          </div>
+        </div>
+        <div class="nx-page-actions">
+          <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="openEdit()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Editar
+          </button>
+          <button class="nx-btn nx-btn--primary nx-btn--sm" (click)="openOrder()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Nueva Factura
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI tiles -->
+      <div class="kpi-row">
+        <div class="nx-kpi-tile">
+          <div class="nx-kpi-tile__label">Saldo Total</div>
+          <div class="nx-kpi-tile__value" [style.color]="customer()!.balance > 0 ? 'var(--nx-amber-600)' : 'inherit'">
+            {{ customer()!.balance | currency:'DOP':'symbol':'1.2-2' }}
+          </div>
+          <div class="nx-kpi-tile__sub">Deuda pendiente</div>
+        </div>
+        <div class="nx-kpi-tile">
+          <div class="nx-kpi-tile__label">Saldo Vencido</div>
+          <div class="nx-kpi-tile__value" [style.color]="customer()!.balanceDue > 0 ? 'var(--nx-red-600)' : 'var(--nx-emerald-600)'">
+            {{ customer()!.balanceDue | currency:'DOP':'symbol':'1.2-2' }}
+          </div>
+          <div class="nx-kpi-tile__sub">Facturas vencidas</div>
+        </div>
+        <div class="nx-kpi-tile">
+          <div class="nx-kpi-tile__label">Límite de Crédito</div>
+          <div class="nx-kpi-tile__value">{{ customer()!.creditLimit | currency:'DOP':'symbol':'1.2-2' }}</div>
+          <div class="nx-kpi-tile__sub">
+            @if (customer()!.creditLimit > 0) { {{ utilizacion() }}% utilizado } @else { Sin límite }
+          </div>
+        </div>
+        <div class="nx-kpi-tile">
+          <div class="nx-kpi-tile__label">Disponible</div>
+          <div class="nx-kpi-tile__value" [style.color]="disponible() < 0 ? 'var(--nx-red-600)' : 'var(--nx-emerald-600)'">
+            {{ disponible() | currency:'DOP':'symbol':'1.2-2' }}
+          </div>
+          <div class="nx-kpi-tile__sub">Crédito disponible</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:var(--nx-space-4);align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:var(--nx-space-4);">
+          <div class="nx-card">
+            <div class="nx-card__head"><div class="nx-card__title">Información General</div></div>
+            <div class="nx-card__body">
+              <dl class="nx-kv nx-kv--ruled nx-kv--2col">
+                <dt class="nx-kv__k">No. Cliente</dt>
+                <dd class="nx-kv__v nx-kv__v--mono">{{ customer()!.no }}</dd>
+                <dt class="nx-kv__k">Nombre</dt>
+                <dd class="nx-kv__v" style="font-weight:var(--nx-weight-medium);">{{ customer()!.name }}</dd>
+                <dt class="nx-kv__k">Dirección</dt>
+                <dd class="nx-kv__v">{{ customer()!.address || '—' }}</dd>
+                <dt class="nx-kv__k">Ciudad</dt>
+                <dd class="nx-kv__v">{{ customer()!.city || '—' }}</dd>
+                <dt class="nx-kv__k">País</dt>
+                <dd class="nx-kv__v">{{ customer()!.countryRegionCode || '—' }}</dd>
+                <dt class="nx-kv__k">Contacto</dt>
+                <dd class="nx-kv__v">{{ customer()!.contact || '—' }}</dd>
+                <dt class="nx-kv__k">Teléfono</dt>
+                <dd class="nx-kv__v nx-kv__v--mono">
+                  @if (customer()!.phoneNo) {
+                    <a [href]="'tel:'+customer()!.phoneNo" class="nx-link">{{ customer()!.phoneNo | phone }}</a>
+                  } @else { — }
+                </dd>
+                <dt class="nx-kv__k">Correo electrónico</dt>
+                <dd class="nx-kv__v">
+                  @if (customer()!.email) {
+                    <a [href]="'mailto:'+customer()!.email" class="nx-link">{{ customer()!.email }}</a>
+                  } @else { — }
+                </dd>
+                <dt class="nx-kv__k">RNC / Cédula</dt>
+                <dd class="nx-kv__v nx-kv__v--mono">{{ customer()!.vatRegistrationNo | rnc }}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="nx-card">
+            <div class="nx-card__head"><div class="nx-card__title">Facturación y Cobro</div></div>
+            <div class="nx-card__body">
+              <dl class="nx-kv nx-kv--ruled nx-kv--2col">
+                <dt class="nx-kv__k">Condición de Pago</dt>
+                <dd class="nx-kv__v">{{ customer()!.paymentTermsCode || '—' }}</dd>
+                <dt class="nx-kv__k">Método de Pago</dt>
+                <dd class="nx-kv__v">{{ customer()!.paymentMethodCode || '—' }}</dd>
+                <dt class="nx-kv__k">Vendedor</dt>
+                <dd class="nx-kv__v">{{ customer()!.salespersonCode || '—' }}</dd>
+                <dt class="nx-kv__k">Moneda</dt>
+                <dd class="nx-kv__v">{{ customer()!.currencyCode || 'DOP (local)' }}</dd>
+                <dt class="nx-kv__k">Grupo Contabilización</dt>
+                <dd class="nx-kv__v">{{ customer()!.customerPostingGroup || '—' }}</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- FactBox -->
+        <div class="nx-factbox">
+          <div class="nx-factbox__head">
+            <div class="nx-factbox__eyebrow">Información Relacionada</div>
+            <div class="nx-factbox__title">Resumen Financiero</div>
+          </div>
+          <div class="nx-factbox__section">
+            <div class="nx-factbox__sectionlabel">Saldos</div>
+            <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
+              <div style="display:flex;justify-content:space-between;font-size:var(--nx-text-sm);">
+                <span style="color:var(--nx-text-muted);">Saldo Total</span>
+                <strong>{{ customer()!.balance | currency:'DOP':'':'1.0-0' }}</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--nx-text-sm);">
+                <span style="color:var(--nx-text-muted);">Vencido</span>
+                <strong [style.color]="customer()!.balanceDue > 0 ? 'var(--nx-red-600)' : 'inherit'">
+                  {{ customer()!.balanceDue | currency:'DOP':'':'1.0-0' }}
+                </strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--nx-text-sm);">
+                <span style="color:var(--nx-text-muted);">Límite Crédito</span>
+                <strong>{{ customer()!.creditLimit | currency:'DOP':'':'1.0-0' }}</strong>
+              </div>
+              @if (customer()!.creditLimit > 0) {
+                <div style="margin-top:var(--nx-space-1);">
+                  <div style="height:6px;background:var(--nx-border);border-radius:99px;overflow:hidden;">
+                    <div [style.width]="utilizacion()+'%'"
+                         [style.background]="utilizacion() > 80 ? 'var(--nx-red-500)' : 'var(--nx-emerald-500)'"
+                         style="height:100%;border-radius:99px;transition:width .3s;"></div>
+                  </div>
+                  <div style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-top:2px;">{{ utilizacion() }}% utilizado</div>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="nx-factbox__section">
+            <div class="nx-factbox__sectionlabel">Acciones Rápidas</div>
+            <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
+              <button class="nx-btn nx-btn--secondary nx-btn--sm nx-btn--block" (click)="openEdit()">Editar Cliente</button>
+              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block" (click)="openOrder()">Nueva Factura / Pedido</button>
+              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block" [routerLink]="['/invoices']">Ver Facturas</button>
+              @if (customer()!.blocked) {
+                <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block" [disabled]="actionLoading()" (click)="toggleBlock()">
+                  @if (actionLoading()) { Procesando… } @else { ✓ Desbloquear }
+                </button>
+              } @else {
+                <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block" style="color:var(--nx-red-500);" [disabled]="actionLoading()" (click)="toggleBlock()">
+                  @if (actionLoading()) { Procesando… } @else { Bloquear Cliente }
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+    } @else {
+      <div class="nx-empty">
+        <div class="nx-empty__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <p class="nx-empty__title">Cliente no encontrado</p>
+        <a routerLink="/customers" class="nx-btn nx-btn--secondary nx-btn--sm">Volver a Clientes</a>
+      </div>
+    }
+
+    <!-- Edit Modal -->
+    @if (showEdit()) {
+      <div class="modal-backdrop" (click)="closeEdit()">
+        <div class="modal-box" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h2 class="nx-page-title" style="margin:0;">Editar: {{ customer()!.name }}</h2>
+            <button class="nx-iconbtn" (click)="closeEdit()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            @if (editError()) {
+              <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ editError() }}</div>
+            }
+            <div class="form-grid">
+              <div class="nx-field"><label class="nx-label">No. Cliente</label><input class="nx-input" [value]="form.no" disabled style="opacity:.6;" /></div>
+              <div class="nx-field"><label class="nx-label">Nombre *</label><input class="nx-input" [(ngModel)]="form.name" /></div>
+              <div class="nx-field" style="grid-column:1/-1;"><label class="nx-label">Dirección</label><input class="nx-input" [(ngModel)]="form.address" /></div>
+              <div class="nx-field"><label class="nx-label">Ciudad</label><input class="nx-input" [(ngModel)]="form.city" /></div>
+              <div class="nx-field"><label class="nx-label">País</label><input class="nx-input" [(ngModel)]="form.countryRegionCode" /></div>
+              <div class="nx-field"><label class="nx-label">Contacto</label><input class="nx-input" [(ngModel)]="form.contact" /></div>
+              <div class="nx-field"><label class="nx-label">Teléfono</label><input class="nx-input" type="tel" nxPhone [(ngModel)]="form.phoneNo" /></div>
+              <div class="nx-field"><label class="nx-label">Correo Electrónico</label><input class="nx-input" type="email" [(ngModel)]="form.email" /></div>
+              <div class="nx-field"><label class="nx-label">RNC / Cédula</label><input class="nx-input" nxRnc [(ngModel)]="form.vatRegistrationNo" /></div>
+              <div class="nx-field"><label class="nx-label">Límite de Crédito (DOP)</label><input class="nx-input" type="number" [(ngModel)]="form.creditLimit" /></div>
+              <div class="nx-field"><label class="nx-label">Condición de Pago</label>
+                <select class="nx-select" [(ngModel)]="form.paymentTermsCode">
+                  <option value="">— Seleccionar —</option>
+                  @for (term of paymentTermsSvc.terms(); track term.code) {
+                    <option [value]="term.code">{{ term.description }}</option>
+                  }
+                </select>
+              </div>
+              <div class="nx-field"><label class="nx-label">Método de Pago</label>
+                <select class="nx-select" [(ngModel)]="form.paymentMethodCode">
+                  <option value="">— Seleccionar —</option>
+                  @for (m of paymentMethodSvc.methods(); track m.code) {
+                    <option [value]="m.code">{{ m.description }}</option>
+                  }
+                </select>
+              </div>
+              <div class="nx-field"><label class="nx-label">Vendedor</label>
+                <select class="nx-select" [(ngModel)]="form.salespersonCode">
+                  <option value="">— Sin asignar —</option>
+                  @for (s of salespersonSvc.salespersons(); track s.code) {
+                    <option [value]="s.code">{{ s.code }} — {{ s.name }}</option>
+                  }
+                </select>
+              </div>
+              <div class="nx-field"><label class="nx-label">Moneda</label>
+                <select class="nx-select" [(ngModel)]="form.currencyCode">
+                  <option value="">DOP (local)</option>
+                  @for (c of currencySvc.currencies(); track c.code) {
+                    @if (c.code !== 'DOP') {
+                      <option [value]="c.code">{{ c.code }} — {{ c.description }}</option>
+                    }
+                  }
+                </select>
+              </div>
+              <div class="nx-field"><label class="nx-label">Grupo Contabilización</label>
+                <input class="nx-input" [(ngModel)]="form.customerPostingGroup" placeholder="DOMESTIC, EXPORT…" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="nx-btn nx-btn--ghost" (click)="closeEdit()">Cancelar</button>
+            <button class="nx-btn nx-btn--primary" [disabled]="saving()" (click)="saveEdit()">
+              @if (saving()) { Guardando… } @else { Guardar Cambios }
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Nueva Orden / Factura / Cotización Modal -->
+    @if (showOrder()) {
+      <app-create-sales-order-modal
+        [fixedCustomerNo]="customer()!.no"
+        [fixedCustomerName]="customer()!.name"
+        [fixedPaymentTermsCode]="customer()!.paymentTermsCode"
+        (closed)="closeOrder()"
+        (created)="closeOrder()">
+      </app-create-sales-order-modal>
+    }
+  

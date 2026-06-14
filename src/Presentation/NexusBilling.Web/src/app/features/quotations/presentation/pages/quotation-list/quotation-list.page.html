@@ -1,0 +1,101 @@
+
+    <div class="nx-page-header">
+      <div>
+        <h1 class="nx-page-title">Cotizaciones</h1>
+        <p class="nx-page-subtitle">Gestión de cotizaciones a clientes</p>
+      </div>
+      <div class="nx-page-actions">
+        <button class="nx-btn nx-btn--secondary" (click)="exportCSV()" [disabled]="filtered().length === 0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar
+        </button>
+        <a routerLink="/quotes/new" class="nx-btn nx-btn--primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nueva Cotización
+        </a>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="nx-card" style="margin-bottom:var(--nx-space-4);">
+      <div class="nx-card__body" style="display:flex;gap:var(--nx-space-3);align-items:center;flex-wrap:wrap;">
+        <input class="nx-input" style="flex:1;min-width:200px;" placeholder="Buscar por No., cliente…" [(ngModel)]="search" (input)="applyFilter()" />
+        <select class="nx-select" style="width:150px;" [(ngModel)]="statusFilter" (ngModelChange)="applyFilter()">
+          <option value="">Todos los estados</option>
+          <option value="Open">Abiertas</option>
+          <option value="Closed">Cerradas</option>
+        </select>
+        <select class="nx-select" style="width:150px;" [(ngModel)]="expiryFilter" (ngModelChange)="applyFilter()">
+          <option value="">Todas</option>
+          <option value="active">Vigentes</option>
+          <option value="expired">Vencidas</option>
+        </select>
+      </div>
+    </div>
+
+    @if (svc.loading()) {
+      <div class="nx-empty" style="min-height:200px;">
+        <div class="nx-spinner"></div>
+      </div>
+    } @else {
+      <div class="nx-card">
+        <div style="overflow-x:auto;">
+          <table class="nx-table">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Válida Hasta</th>
+                <th>Cotizó</th>
+                <th>Estado</th>
+                <th class="nx-th--num">Subtotal</th>
+                <th class="nx-th--num">Total c/ITBIS</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (q of filtered(); track q.no) {
+                <tr [style.opacity]="q.isExpired && q.status === 'Open' ? '0.65' : '1'">
+                  <td class="nx-td--doc">
+                    <a [routerLink]="['/quotes', q.no]" class="nx-link">{{ q.no }}</a>
+                  </td>
+                  <td>
+                    <a [routerLink]="['/customers', q.sellToCustomerNo]" class="nx-link">{{ q.sellToCustomerName }}</a>
+                  </td>
+                  <td class="nx-td--doc">{{ q.postingDate | date:'dd/MM/yyyy' }}</td>
+                  <td class="nx-td--doc">
+                    @if (q.validUntilDate) {
+                      <span [style.color]="q.isExpired ? 'var(--nx-red-500)' : 'inherit'">
+                        {{ q.validUntilDate | date:'dd/MM/yyyy' }}
+                        @if (q.isExpired) { <span style="font-size:10px;"> (vencida)</span> }
+                      </span>
+                    } @else { — }
+                  </td>
+                  <td>{{ q.quotedBy || '—' }}</td>
+                  <td>
+                    <span class="nx-badge" [class]="statusBadge(q)">
+                      <span class="nx-badge__dot"></span>{{ statusLabel(q) }}
+                    </span>
+                  </td>
+                  <td class="nx-td--num">{{ q.amount | number:'1.2-2' }}</td>
+                  <td class="nx-td--num" style="font-weight:var(--nx-weight-semibold);">{{ q.amountIncludingVat | number:'1.2-2' }}</td>
+                </tr>
+              }
+              @if (filtered().length === 0) {
+                <tr>
+                  <td colspan="8" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-8);font-style:italic;">
+                    No hay cotizaciones que coincidan.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        @if (filtered().length > 0) {
+          <div class="nx-card__foot" style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">
+            {{ filtered().length }} cotización(es)
+          </div>
+        }
+      </div>
+    }
+  

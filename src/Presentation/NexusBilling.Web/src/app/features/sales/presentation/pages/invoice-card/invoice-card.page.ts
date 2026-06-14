@@ -2,217 +2,23 @@ import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { InvoiceService } from '../../../data/invoice.service';
+import { PdfService } from '../../../../../shared/services/pdf.service';
 
 @Component({
   selector: 'app-invoice-card',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  template: `
-    @if (loading()) {
-      <div class="nx-empty" style="min-height:300px;">
-        <div class="nx-spinner"></div>
-        <p class="nx-empty__text" style="margin-top:var(--nx-space-3);">Cargando factura…</p>
-      </div>
-    } @else if (invoice()) {
-      <nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
-        <a routerLink="/dashboard">Dashboard</a>
-        <span class="nx-crumbs__sep">›</span>
-        <a routerLink="/invoices">Facturas de Venta</a>
-        <span class="nx-crumbs__sep">›</span>
-        <span class="nx-crumb--current">{{ invoice()!.no }}</span>
-      </nav>
-
-      <div class="nx-page-header">
-        <div>
-          <h1 class="nx-page-title" style="font-family:var(--nx-font-mono);letter-spacing:0;">{{ invoice()!.no }}</h1>
-          <div style="display:flex;align-items:center;gap:var(--nx-space-3);margin-top:var(--nx-space-1);">
-            <span class="nx-badge nx-badge--success"><span class="nx-badge__dot"></span>Publicada</span>
-            @if (invoice()!.currencyCode) {
-              <span class="nx-badge nx-badge--outline">{{ invoice()!.currencyCode }}</span>
-            }
-            @if (invoice()!.externalDocumentNo) {
-              <span class="nx-eyebrow">Ref: {{ invoice()!.externalDocumentNo }}</span>
-            }
-          </div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 300px;gap:var(--nx-space-4);align-items:start;">
-        <div style="display:flex;flex-direction:column;gap:var(--nx-space-4);">
-
-          <!-- General -->
-          <div class="nx-card">
-            <div class="nx-card__head"><div class="nx-card__title">General</div></div>
-            <div class="nx-card__body">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 var(--nx-space-6);">
-                <dl class="nx-kv nx-kv--ruled">
-                  <dt class="nx-kv__k">No. Factura</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.no }}</dd>
-                  <dt class="nx-kv__k">No. Pedido</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.orderNo || '—' }}</dd>
-                  <dt class="nx-kv__k">Ref. Externa</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.externalDocumentNo || '—' }}</dd>
-                  <dt class="nx-kv__k">Vendedor</dt>
-                  <dd class="nx-kv__v">{{ invoice()!.salespersonCode || '—' }}</dd>
-                </dl>
-                <dl class="nx-kv nx-kv--ruled">
-                  <dt class="nx-kv__k">Fecha Registro</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.postingDate | date:'dd/MM/yyyy' }}</dd>
-                  <dt class="nx-kv__k">Vencimiento</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.dueDate ? (invoice()!.dueDate | date:'dd/MM/yyyy') : '—' }}</dd>
-                  <dt class="nx-kv__k">Cond. Pago</dt>
-                  <dd class="nx-kv__v">{{ invoice()!.paymentTermsCode || '—' }}</dd>
-                  <dt class="nx-kv__k">Método Pago</dt>
-                  <dd class="nx-kv__v">{{ invoice()!.paymentMethodCode || '—' }}</dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cliente -->
-          <div class="nx-card">
-            <div class="nx-card__head">
-              <div class="nx-card__title">Cliente</div>
-              <div class="nx-card__actions">
-                <a [routerLink]="['/customers', invoice()!.sellToCustomerNo]" class="nx-btn nx-btn--ghost nx-btn--sm">Ver ficha</a>
-              </div>
-            </div>
-            <div class="nx-card__body">
-              <dl class="nx-kv nx-kv--ruled">
-                <dt class="nx-kv__k">No. Cliente</dt>
-                <dd class="nx-kv__v nx-kv__v--mono">
-                  <a [routerLink]="['/customers', invoice()!.sellToCustomerNo]" class="nx-link">{{ invoice()!.sellToCustomerNo }}</a>
-                </dd>
-                <dt class="nx-kv__k">Nombre</dt>
-                <dd class="nx-kv__v">{{ invoice()!.sellToCustomerName }}</dd>
-                <dt class="nx-kv__k">Facturar A</dt>
-                <dd class="nx-kv__v">{{ invoice()!.billToName }}</dd>
-                <dt class="nx-kv__k">Moneda</dt>
-                <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.currencyCode || 'DOP' }}</dd>
-              </dl>
-            </div>
-          </div>
-
-          <!-- Lines -->
-          <div class="nx-card">
-            <div class="nx-card__head"><div class="nx-card__title">Líneas de Factura</div></div>
-            @if (!invoice()!.lines || invoice()!.lines.length === 0) {
-              <div class="nx-empty" style="padding:var(--nx-space-8);">
-                <p class="nx-empty__text">No hay líneas de detalle disponibles.</p>
-              </div>
-            } @else {
-              <div style="overflow-x:auto;">
-                <table class="nx-table">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Descripción</th>
-                      <th class="nx-th--num">Cant.</th>
-                      <th>U/M</th>
-                      <th class="nx-th--num">Precio Unit.</th>
-                      <th class="nx-th--num">% Dto.</th>
-                      <th class="nx-th--num">Importe</th>
-                      <th class="nx-th--num">c/IVA</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (line of invoice()!.lines; track line.lineNo) {
-                      <tr>
-                        <td class="nx-td--doc">{{ line.no || '—' }}</td>
-                        <td>{{ line.description }}</td>
-                        <td class="nx-td--num">{{ line.quantity | number:'1.0-4' }}</td>
-                        <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ line.unitOfMeasureCode }}</td>
-                        <td class="nx-td--num">{{ line.unitPrice | number:'1.2-2' }}</td>
-                        <td class="nx-td--num">
-                          @if (line.lineDiscountPct > 0) {
-                            {{ line.lineDiscountPct | number:'1.1-2' }}%
-                          } @else {
-                            <span style="color:var(--nx-text-faint);">—</span>
-                          }
-                        </td>
-                        <td class="nx-td--num">{{ line.amount | number:'1.2-2' }}</td>
-                        <td class="nx-td--num" style="font-weight:var(--nx-weight-semibold);">{{ line.amountIncludingVat | number:'1.2-2' }}</td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
-              <div class="nx-card__foot" style="justify-content:flex-end;">
-                <dl class="nx-kv" style="grid-template-columns:auto auto;gap:var(--nx-space-1) var(--nx-space-6);text-align:right;">
-                  <dt class="nx-kv__k">Subtotal</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.amount | number:'1.2-2' }}</dd>
-                  <dt class="nx-kv__k">ITBIS (18%)</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ (invoice()!.amountIncludingVat - invoice()!.amount) | number:'1.2-2' }}</dd>
-                  <dt class="nx-kv__k" style="font-weight:var(--nx-weight-bold);color:var(--nx-text-strong);">Total</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-lg);font-weight:var(--nx-weight-bold);">
-                    {{ invoice()!.currencyCode || 'RD$' }} {{ invoice()!.amountIncludingVat | number:'1.2-2' }}
-                  </dd>
-                </dl>
-              </div>
-            }
-          </div>
-
-        </div>
-
-        <!-- FactBox -->
-        <div class="nx-factbox">
-          <div class="nx-factbox__head">
-            <div class="nx-factbox__eyebrow">Factura publicada</div>
-            <div class="nx-factbox__title">{{ invoice()!.no }}</div>
-          </div>
-          <div class="nx-factbox__section">
-            <div class="nx-factbox__sectionlabel">Importes</div>
-            <dl class="nx-kv">
-              <dt class="nx-kv__k" style="font-size:var(--nx-text-xs);">Subtotal</dt>
-              <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-sm);">{{ invoice()!.amount | number:'1.2-2' }}</dd>
-              <dt class="nx-kv__k" style="font-size:var(--nx-text-xs);">ITBIS</dt>
-              <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-sm);">{{ (invoice()!.amountIncludingVat - invoice()!.amount) | number:'1.2-2' }}</dd>
-              <dt class="nx-kv__k" style="font-size:var(--nx-text-xs);">Total c/IVA</dt>
-              <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-sm);font-weight:var(--nx-weight-bold);">{{ invoice()!.amountIncludingVat | number:'1.2-2' }}</dd>
-            </dl>
-          </div>
-          <div class="nx-factbox__section">
-            <div class="nx-factbox__sectionlabel">Relacionado</div>
-            <ul class="nx-linklist">
-              <li>
-                <a [routerLink]="['/customers', invoice()!.sellToCustomerNo]" class="nx-link">
-                  Ver cliente
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 17 10-10"/><path d="M7 7h10v10"/></svg>
-                </a>
-              </li>
-              <li>
-                <a routerLink="/invoices" class="nx-link">
-                  Todas las facturas
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 17 10-10"/><path d="M7 7h10v10"/></svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    } @else {
-      <div class="nx-empty">
-        <div class="nx-empty__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        </div>
-        <p class="nx-empty__title">Factura no encontrada</p>
-        <a routerLink="/invoices" class="nx-btn nx-btn--secondary nx-btn--sm" style="margin-top:var(--nx-space-3);">Volver</a>
-      </div>
-    }
-  `,
-  styles: [`
-    :host { display: block; }
-    .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:2rem auto; }
-    @keyframes spin { to { transform:rotate(360deg); } }
-  `]
+  templateUrl: './invoice-card.page.html',
+  styleUrl: './invoice-card.page.css'
 })
 export class InvoiceCardPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly svc = inject(InvoiceService);
+  private readonly pdfSvc = inject(PdfService);
 
   invoice = signal<any | null>(null);
   loading = signal(true);
+  printing = signal(false);
 
   async ngOnInit(): Promise<void> {
     const no = this.route.snapshot.paramMap.get('no') ?? '';
@@ -222,6 +28,47 @@ export class InvoiceCardPage implements OnInit {
       this.invoice.set(null);
     } finally {
       this.loading.set(false);
+    }
+  }
+
+  async printPdf(): Promise<void> {
+    const inv = this.invoice();
+    if (!inv || this.printing()) return;
+    this.printing.set(true);
+    try {
+      await this.pdfSvc.printInvoice({
+        no: inv.no,
+        orderNo: inv.orderNo,
+        customerName: inv.sellToCustomerName,
+        customerNo: inv.sellToCustomerNo,
+        billToName: inv.billToName,
+        externalDocumentNo: inv.externalDocumentNo,
+        salespersonCode: inv.salespersonCode,
+        postingDate: inv.postingDate,
+        dueDate: inv.dueDate,
+        paymentTerms: inv.paymentTermsCode,
+        paymentMethodCode: inv.paymentMethodCode,
+        currencyCode: inv.currencyCode || 'DOP',
+        status: 'posted',
+        lines: (inv.lines ?? []).map((l: any) => ({
+          lineNo: l.lineNo,
+          type: l.type,
+          no: l.no,
+          description: l.description,
+          quantity: l.quantity,
+          unitPrice: l.unitPrice,
+          lineDiscountPct: l.lineDiscountPct ?? 0,
+          amount: l.amount,
+          vat: l.amountIncludingVat - l.amount,
+          amountIncludingVat: l.amountIncludingVat,
+          unitOfMeasureCode: l.unitOfMeasureCode,
+        })),
+        amount: inv.amount,
+        amountIncludingVat: inv.amountIncludingVat,
+        remainingAmount: inv.remainingAmount ?? 0,
+      });
+    } finally {
+      this.printing.set(false);
     }
   }
 }

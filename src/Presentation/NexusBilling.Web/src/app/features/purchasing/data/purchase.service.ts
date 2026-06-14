@@ -61,4 +61,13 @@ export class PurchaseOrderService {
       this.api.post<{ invoiceNo: string }>(`purchasing/orders/${encodeURIComponent(no)}/post`, {})
     );
   }
+
+  async updateHeader(no: string, data: {
+    dueDate: string | null;
+    currencyCode: string;
+    paymentTermsCode: string;
+    externalDocumentNo: string | null;
+  }): Promise<void> {
+    await firstValueFrom(this.api.patch<void>(`purchasing/orders/${encodeURIComponent(no)}`, data));
+  }
 }

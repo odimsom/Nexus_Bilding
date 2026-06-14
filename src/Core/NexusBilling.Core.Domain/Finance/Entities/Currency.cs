@@ -10,7 +10,7 @@ public class Currency : Entity
     private Currency() { }
 
     public TenantIdentifier TenantId { get; private set; }
-    public string Code { get; private set; }
+    public string Code { get; set; }
     public DateTime? LastDateModified { get; private set; }
     public DateTime? LastDateAdjusted { get; private set; }
     public string UnrealizedGainsAcc { get; private set; }
@@ -21,7 +21,7 @@ public class Currency : Entity
     public short InvoiceRoundingType { get; private set; }
     public decimal AmountRoundingPrecision { get; private set; }
     public decimal UnitAmountRoundingPrecision { get; private set; }
-    public string Description { get; private set; }
+    public string Description { get; set; }
     public string AmountDecimalPlaces { get; private set; }
     public string UnitAmountDecimalPlaces { get; private set; }
     public string RealizedGLGainsAccount { get; private set; }
@@ -37,7 +37,7 @@ public class Currency : Entity
     public short VatRoundingType { get; private set; }
     public decimal PaymentTolerance { get; private set; }
     public decimal MaxPaymentToleranceAmount { get; private set; }
-    public string Symbol { get; private set; }
+    public string Symbol { get; set; }
 
     public static OperationResult<Currency, DomainError> Create(TenantIdentifier tenantId)
     {

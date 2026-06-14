@@ -10,8 +10,8 @@ public class PaymentMethod : Entity
     private PaymentMethod() { }
 
     public TenantIdentifier TenantId { get; private set; }
-    public string Code { get; private set; }
-    public string Description { get; private set; }
+    public string Code { get; set; }
+    public string Description { get; set; }
     public short BalAccountType { get; private set; }
     public string BalAccountNo { get; private set; }
     public bool DirectDebit { get; private set; }

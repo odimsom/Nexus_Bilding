@@ -10,15 +10,15 @@ public class SalespersonPurchaser : Entity
     private SalespersonPurchaser() { }
 
     public TenantIdentifier TenantId { get; private set; }
-    public string Code { get; private set; }
-    public string Name { get; private set; }
+    public string Code { get; set; }
+    public string Name { get; set; }
     public decimal Commission { get; private set; }
     public Guid Image { get; private set; }
     public string GlobalDimension1Code { get; private set; }
     public string GlobalDimension2Code { get; private set; }
-    public string EMail { get; private set; }
-    public string PhoneNo { get; private set; }
-    public string JobTitle { get; private set; }
+    public string EMail { get; set; }
+    public string PhoneNo { get; set; }
+    public string JobTitle { get; set; }
     public string SearchEMail { get; private set; }
     public string EMail2 { get; private set; }
 

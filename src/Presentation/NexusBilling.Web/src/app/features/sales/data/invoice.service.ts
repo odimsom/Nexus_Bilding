@@ -78,6 +78,17 @@ export class InvoiceService {
     return res;
   }
 
+  async updateOrderHeader(no: string, data: {
+    dueDate: string | null;
+    currencyCode: string;
+    paymentTermsCode: string;
+    paymentMethodCode: string;
+    salespersonCode: string;
+    externalDocumentNo: string | null;
+  }): Promise<void> {
+    await firstValueFrom(this.api.patch<void>(`sales/orders/${encodeURIComponent(no)}`, data));
+  }
+
   /* ── Sales Invoices (posted) ───────────────────────────────── */
 
   async loadInvoices(params?: { search?: string; page?: number; pageSize?: number }): Promise<void> {

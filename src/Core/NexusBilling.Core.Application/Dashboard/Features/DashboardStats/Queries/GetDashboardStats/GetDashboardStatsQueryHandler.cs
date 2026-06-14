@@ -27,7 +27,8 @@ public sealed class GetDashboardStatsQueryHandler(
         var now        = DateTime.UtcNow;
         var monthStart = new DateTime(now.Year, now.Month, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        var openOrders     = allSalesOrders.Count(o => o.Status == "Open" || o.Status == "Released");
+        var openOrders       = allSalesOrders.Count(o => (o.Status == "Open" || o.Status == "Released") && o.DocumentType != "Quote");
+        var openQuotations   = allSalesOrders.Count(o => o.DocumentType == "Quote" && o.Status == "Open");
         var totalThisMonth = allSalesOrders.Where(o => o.PostingDate >= monthStart).Sum(o => o.AmountIncludingVat);
         var totalAllTime   = allSalesOrders.Sum(o => o.AmountIncludingVat);
 
@@ -47,7 +48,7 @@ public sealed class GetDashboardStatsQueryHandler(
                 o.AmountIncludingVat))
             .ToList();
 
-        // Last 12 months of sales grouped by month
+        // Last 12 months grouped by month
         var twelveMonthsAgo = now.AddMonths(-11);
         var monthStart12    = new DateTime(twelveMonthsAgo.Year, twelveMonthsAgo.Month, 1, 0, 0, 0, DateTimeKind.Utc);
         var monthlySales = allSalesOrders
@@ -59,6 +60,15 @@ public sealed class GetDashboardStatsQueryHandler(
             .OrderBy(m => m.Month)
             .ToList();
 
-        return new DashboardStatsDto(customerCount, itemCount, openOrders, totalThisMonth, totalAllTime, vendorCount, openPurchases, totalPurchasesThisMonth, totalPurchasesAllTime, recent, monthlySales);
+        var monthlyPurchases = allPurchaseOrders
+            .Where(o => o.PostingDate >= monthStart12)
+            .GroupBy(o => new { o.PostingDate.Year, o.PostingDate.Month })
+            .Select(g => new MonthlyTotalDto(
+                $"{g.Key.Year}-{g.Key.Month:D2}",
+                g.Sum(o => o.AmountIncludingVat)))
+            .OrderBy(m => m.Month)
+            .ToList();
+
+        return new DashboardStatsDto(customerCount, itemCount, openOrders, totalThisMonth, totalAllTime, vendorCount, openPurchases, totalPurchasesThisMonth, totalPurchasesAllTime, recent, monthlySales, monthlyPurchases, openQuotations);
     }
 }

@@ -1,214 +1,5 @@
-<!-- ═══════════════════ NEW ORDER FORM ═══════════════════ -->
-@if (isNew()) {
-<nav class="nx-crumbs" style="margin-bottom:var(--nx-space-4);">
-    <a routerLink="/dashboard">Dashboard</a>
-    <span class="nx-crumbs__sep">›</span>
-    <a routerLink="/sales">Órdenes de Venta</a>
-    <span class="nx-crumbs__sep">›</span>
-    <span class="nx-crumb--current">Nueva</span>
-</nav>
-
-<div class="nx-page-header" style="margin-bottom:var(--nx-space-5);">
-    <div>
-        <h1 class="nx-page-title">Nueva Orden de Venta</h1>
-        <p class="nx-page-subtitle">Complete los datos del encabezado y agregue las líneas de producto</p>
-    </div>
-</div>
-
-@if (errorMsg()) {
-<div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-4);">{{ errorMsg() }}</div>
-}
-
-<div style="display:flex;flex-direction:column;gap:var(--nx-space-4);">
-
-    <!-- Encabezado -->
-    <div class="nx-card">
-        <div class="nx-card__head">
-            <div class="nx-card__title">Encabezado del Documento</div>
-        </div>
-        <div class="nx-card__body">
-            <div class="form-grid">
-                <div class="nx-field">
-                    <label class="nx-label">Tipo de Documento *</label>
-                    <select class="nx-input" [(ngModel)]="newHeader.documentType">
-                        <option value="Order">Pedido</option>
-                        <option value="Quote">Cotización</option>
-                    </select>
-                </div>
-                <div class="nx-field" style="position:relative;">
-                    <label class="nx-label">Cliente *</label>
-                    <input class="nx-input" [(ngModel)]="newHeader.sellToCustomerName"
-                        placeholder="Buscar cliente por nombre o número…" (focus)="searchCustomers($event)"
-                        (input)="searchCustomers($event)" (blur)="hideCustomerDrop()" autocomplete="off" />
-                    @if (showCustomerDrop() && customerSugg().length > 0) {
-                    <div class="autocomplete-drop">
-                        @for (c of customerSugg(); track c.no) {
-                        <div class="autocomplete-item" (mousedown)="selectCustomer(c)">
-                            <span class="autocomplete-item__no">{{ c.no }}</span>
-                            <span class="autocomplete-item__name">{{ c.name }}</span>
-                            @if (c.city) { <span class="autocomplete-item__meta">{{ c.city }}</span> }
-                        </div>
-                        }
-                    </div>
-                    }
-                </div>
-                <div class="nx-field">
-                    <label class="nx-label">Fecha de Registro *</label>
-                    <input class="nx-input" type="date" [(ngModel)]="newHeader.postingDate" />
-                </div>
-                <div class="nx-field">
-                    <label class="nx-label">Fecha de Vencimiento</label>
-                    <input class="nx-input" type="date" [(ngModel)]="newHeader.dueDate" />
-                </div>
-                <div class="nx-field">
-                    <label class="nx-label">Ref. del Cliente</label>
-                    <input class="nx-input" [(ngModel)]="newHeader.externalDocumentNo"
-                        placeholder="No. pedido del cliente" />
-                </div>
-                <div class="nx-field">
-                    <label class="nx-label">Condición de Pago</label>
-                    <select class="nx-input" [(ngModel)]="newHeader.paymentTermsCode">
-                        <option value="">— Sin especificar —</option>
-                        <option value="CM">Contado</option>
-                        <option value="15D">15 días</option>
-                        <option value="30D">30 días</option>
-                        <option value="60D">60 días</option>
-                    </select>
-                </div>
-                <div class="nx-field">
-                    <label class="nx-label">Método de Pago</label>
-                    <select class="nx-input" [(ngModel)]="newHeader.paymentMethodCode">
-                        <option value="">— Sin especificar —</option>
-                        <option value="EFE">Efectivo</option>
-                        <option value="CHQ">Cheque</option>
-                        <option value="TRF">Transferencia</option>
-                        <option value="TAR">Tarjeta</option>
-                    </select>
-                </div>
-                <div class="nx-field">
-                    <label class="nx-label">Moneda</label>
-                    <select class="nx-input" [(ngModel)]="newHeader.currencyCode">
-                        <option value="">DOP (Pesos)</option>
-                        <option value="USD">USD (Dólares)</option>
-                        <option value="EUR">EUR (Euros)</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Líneas -->
-    <div class="nx-card">
-        <div class="nx-card__head">
-            <div class="nx-card__title">Líneas del Documento</div>
-            <div class="nx-card__actions">
-                <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" style="width:14px;height:14px;">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                    Agregar Línea
-                </button>
-            </div>
-        </div>
-
-        @if (newLines().length === 0) {
-        <div class="nx-empty" style="padding:var(--nx-space-6);">
-            <p class="nx-empty__text">Sin líneas. Presiona "Agregar Línea" para comenzar.</p>
-        </div>
-        } @else {
-        <div style="overflow-x:auto;">
-            <table class="nx-table nx-table--form">
-                <thead>
-                    <tr>
-                        <th style="width:110px;">No. Artículo</th>
-                        <th>Descripción</th>
-                        <th style="width:70px;text-align:right;">Cant.</th>
-                        <th style="width:110px;text-align:right;">Precio Unit.</th>
-                        <th style="width:70px;text-align:right;">Dto. %</th>
-                        <th style="width:70px;">U/M</th>
-                        <th style="width:100px;text-align:right;">Total</th>
-                        <th style="width:36px;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (line of newLines(); track $index; let i = $index) {
-                    <tr>
-                        <td><input class="nx-input nx-input--sm" [(ngModel)]="line.itemNo" placeholder="Ej. A-001" />
-                        </td>
-                        <td><input class="nx-input nx-input--sm" [(ngModel)]="line.description"
-                                placeholder="Descripción del artículo o servicio" /></td>
-                        <td><input class="nx-input nx-input--sm nx-input--num" type="number" [(ngModel)]="line.quantity"
-                                min="0.01" step="1" /></td>
-                        <td><input class="nx-input nx-input--sm nx-input--num" type="number"
-                                [(ngModel)]="line.unitPrice" min="0" step="0.01" /></td>
-                        <td><input class="nx-input nx-input--sm nx-input--num" type="number"
-                                [(ngModel)]="line.lineDiscountPct" min="0" max="100" step="0.1" /></td>
-                        <td><input class="nx-input nx-input--sm" [(ngModel)]="line.unitOfMeasure" placeholder="UND" />
-                        </td>
-                        <td
-                            style="text-align:right;font-size:var(--nx-text-sm);padding-right:var(--nx-space-3);white-space:nowrap;">
-                            {{ lineTotal(line) | number:'1.2-2' }}
-                        </td>
-                        <td>
-                            <button class="nx-iconbtn nx-iconbtn--sm" style="color:var(--nx-red-400);"
-                                (click)="removeLine(i)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="3 6 5 6 21 6" />
-                                    <path d="M19 6l-1 14H6L5 6" />
-                                    <path d="M10 11v6" />
-                                    <path d="M14 11v6" />
-                                    <path d="M9 6V4h6v2" />
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Totals -->
-        <div class="nx-card__foot" style="display:flex;justify-content:flex-end;">
-            <dl class="nx-kv"
-                style="display:grid;grid-template-columns:auto auto;gap:var(--nx-space-1) var(--nx-space-6);text-align:right;min-width:260px;">
-                <dt class="nx-kv__k">Subtotal</dt>
-                <dd class="nx-kv__v nx-kv__v--mono">{{ subtotal() | number:'1.2-2' }}</dd>
-                <dt class="nx-kv__k">ITBIS (18%)</dt>
-                <dd class="nx-kv__v nx-kv__v--mono">{{ totalVat() | number:'1.2-2' }}</dd>
-                <dt class="nx-kv__k" style="font-weight:var(--nx-weight-bold);">Total</dt>
-                <dd class="nx-kv__v nx-kv__v--mono"
-                    style="font-size:var(--nx-text-lg);font-weight:var(--nx-weight-bold);">
-                    {{ totalWithVat() | number:'1.2-2' }}
-                </dd>
-            </dl>
-        </div>
-        }
-    </div>
-
-    <!-- Actions -->
-    <div style="display:flex;justify-content:flex-end;gap:var(--nx-space-3);padding-bottom:var(--nx-space-6);">
-        <a routerLink="/sales" class="nx-btn nx-btn--ghost">Cancelar</a>
-        <button class="nx-btn nx-btn--primary" [disabled]="saving() || !newHeader.sellToCustomerNo"
-            (click)="saveOrder()">
-            @if (saving()) { Guardando… } @else {
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" style="width:14px;height:14px;">
-                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                <polyline points="17 21 17 13 7 13 7 21" />
-                <polyline points="7 3 7 8 15 8" />
-            </svg>
-            Guardar Orden
-            }
-        </button>
-    </div>
-
-</div>
-}
-
 <!-- ═══════════════════ DETAIL VIEW ═══════════════════ -->
-@else if (loading()) {
+@if (loading()) {
 <div class="nx-empty" style="min-height:300px;">
     <div class="nx-spinner"></div>
     <p class="nx-empty__text" style="margin-top:var(--nx-space-3);">Cargando orden…</p>
@@ -250,6 +41,12 @@
             </svg>
             {{ printing() ? 'Generando…' : 'Imprimir' }}
         </button>
+        @if (order()!.status === 'Open') {
+        <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="openEditHeader()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Editar
+        </button>
+        }
         @if (order()!.status === 'Open') {
         <button class="nx-btn nx-btn--subtle nx-btn--sm" [disabled]="releasing()" (click)="releaseOrder()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -364,7 +161,8 @@
                 <table class="nx-table nx-table--form">
                     <thead>
                         <tr>
-                            <th style="width:110px;">No. Artículo</th>
+                            <th style="width:90px;">Tipo</th>
+                            <th style="width:100px;">No.</th>
                             <th>Descripción</th>
                             <th style="width:70px;text-align:right;">Cant.</th>
                             <th style="width:110px;text-align:right;">Precio Unit.</th>
@@ -377,7 +175,13 @@
                     <tbody>
                         @for (line of newLines(); track $index; let i = $index) {
                         <tr>
-                            <td><input class="nx-input nx-input--sm" [(ngModel)]="line.itemNo" /></td>
+                            <td>
+                                <select class="nx-input nx-input--sm" [(ngModel)]="line.lineType">
+                                    <option value="Item">Artículo</option>
+                                    <option value="Service">Servicio</option>
+                                </select>
+                            </td>
+                            <td><input class="nx-input nx-input--sm" [(ngModel)]="line.itemNo" [placeholder]="line.lineType === 'Service' ? 'SRV-001' : 'ART-001'" /></td>
                             <td><input class="nx-input nx-input--sm" [(ngModel)]="line.description" /></td>
                             <td><input class="nx-input nx-input--sm nx-input--num" type="number"
                                     [(ngModel)]="line.quantity" min="0" /></td>
@@ -420,7 +224,7 @@
             }
             } @else {
             <!-- Read-only lines -->
-            @if (!order()!.lines?.length) {
+            @if (!order()!.lines.length) {
             <div class="nx-empty" style="padding:var(--nx-space-8);">
                 <p class="nx-empty__text">Sin líneas de detalle.</p>
                 @if (order()!.status === 'Open') {
@@ -490,6 +294,66 @@
             }
         </div>
 
+        <!-- Panel de Cuotas (vista detalle) -->
+        @if (isDetailInstallments()) {
+        <div class="nx-card">
+            <div class="nx-card__head">
+                <div class="nx-card__title">Plan de Cuotas</div>
+                <div class="nx-card__actions">
+                    <button class="nx-btn nx-btn--ghost nx-btn--sm" (click)="addInstallmentRow()">+ Fila</button>
+                </div>
+            </div>
+            @if (installments().length === 0) {
+            <div class="nx-empty" style="padding:var(--nx-space-5);">
+                <p class="nx-empty__text">Sin cuotas registradas.</p>
+            </div>
+            } @else {
+            <div style="overflow-x:auto;">
+                <table class="nx-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px;">No.</th>
+                            <th>Fecha Vencimiento</th>
+                            <th class="nx-th--num">Monto</th>
+                            <th style="text-align:center;">Pagado</th>
+                            <th>Fecha Pago</th>
+                            <th style="width:36px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (inst of installments(); track inst.no; let i = $index) {
+                        <tr [style.opacity]="inst.paid ? '0.7' : '1'">
+                            <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ inst.no }}</td>
+                            <td class="nx-td--doc">{{ inst.dueDate }}</td>
+                            <td class="nx-td--num" style="font-weight:var(--nx-weight-semibold);">{{ inst.amount | number:'1.2-2' }}</td>
+                            <td style="text-align:center;">
+                                <button class="nx-btn nx-btn--sm" [class]="inst.paid ? 'nx-btn--primary' : 'nx-btn--ghost'" (click)="togglePaid(inst)">
+                                    @if (inst.paid) { Pagado } @else { Marcar }
+                                </button>
+                            </td>
+                            <td style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">
+                                {{ inst.paidDate || '—' }}
+                            </td>
+                            <td>
+                                <button class="nx-iconbtn nx-iconbtn--sm" style="color:var(--nx-red-400);" (click)="removeInstallmentRow(i)">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                                </button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="nx-card__foot" style="display:flex;justify-content:flex-end;">
+                <span style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">
+                    Total: <strong>{{ installmentTotal() | number:'1.2-2' }}</strong>
+                    &nbsp;·&nbsp; {{ paidCount() }}/{{ installments().length }} pagadas
+                </span>
+            </div>
+            }
+        </div>
+        }
+
     </div>
 
     <!-- FactBox -->
@@ -523,6 +387,25 @@
                 <dd class="nx-kv__v" style="font-size:var(--nx-text-sm);">{{ order()!.sellToCustomerName }}</dd>
             </dl>
         </div>
+        @if (isDetailInstallments() && installments().length > 0) {
+        <div class="nx-factbox__section">
+            <div class="nx-factbox__sectionlabel">Progreso de Pago</div>
+            <div style="display:flex;flex-direction:column;align-items:center;padding:var(--nx-space-3) 0;">
+                <svg viewBox="0 0 36 36" style="width:88px;height:88px;">
+                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--nx-surface-raised)" stroke-width="3.8"/>
+                    <circle cx="18" cy="18" r="15.9" fill="none"
+                        [attr.stroke]="paymentPct() === 100 ? 'var(--nx-green-500)' : 'var(--nx-action)'"
+                        stroke-width="3.8"
+                        [attr.stroke-dasharray]="paymentPct() + ' 100'"
+                        stroke-linecap="round"
+                        transform="rotate(-90 18 18)"/>
+                    <text x="18" y="17" text-anchor="middle" font-size="6.5" fill="var(--nx-text-strong)" font-weight="bold">{{ paidCount() }}/{{ installments().length }}</text>
+                    <text x="18" y="24" text-anchor="middle" font-size="4.5" fill="var(--nx-text-muted)">cuotas</text>
+                </svg>
+                <div style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-top:var(--nx-space-1);">{{ paymentPct() }}% pagado</div>
+            </div>
+        </div>
+        }
         <div class="nx-factbox__section">
             <div class="nx-factbox__sectionlabel">Relacionado</div>
             <ul class="nx-linklist">
@@ -538,10 +421,80 @@
                             <path d="m7 17 10-10" />
                             <path d="M7 7h10v10" />
                         </svg></a></li>
+                <li>
+                    <button class="nx-link" style="background:none;border:none;cursor:pointer;padding:0;font-size:inherit;color:inherit;" (click)="exportLines()">
+                        Exportar líneas CSV
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;"><path d="m7 17 10-10"/><path d="M7 7h10v10"/></svg>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>
 </div>
+
+<!-- Edit header modal -->
+@if (showEditModal()) {
+<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1000;">
+    <div class="nx-card" style="width:520px;max-height:90vh;overflow-y:auto;padding:var(--nx-space-6);">
+        <h3 style="margin-bottom:var(--nx-space-4);">Editar Encabezado</h3>
+        @if (editError()) {
+        <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-4);">{{ editError() }}</div>
+        }
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--nx-space-4);">
+            <div class="nx-field">
+                <label class="nx-label">Fecha de Vencimiento</label>
+                <input class="nx-input" type="date" [(ngModel)]="editForm.dueDate" />
+            </div>
+            <div class="nx-field">
+                <label class="nx-label">Ref. Externa</label>
+                <input class="nx-input" [(ngModel)]="editForm.externalDocumentNo" placeholder="Referencia del cliente" />
+            </div>
+            <div class="nx-field">
+                <label class="nx-label">Moneda</label>
+                <select class="nx-input" [(ngModel)]="editForm.currencyCode">
+                    <option value="">— Moneda local (DOP) —</option>
+                    @for (c of currencySvc.currencies(); track c.code) {
+                    <option [value]="c.code">{{ c.code }} — {{ c.description }}</option>
+                    }
+                </select>
+            </div>
+            <div class="nx-field">
+                <label class="nx-label">Condición de Pago</label>
+                <select class="nx-input" [(ngModel)]="editForm.paymentTermsCode">
+                    <option value="">— Sin especificar —</option>
+                    @for (t of paymentTermsSvc.terms(); track t.code) {
+                    <option [value]="t.code">{{ t.description }}</option>
+                    }
+                </select>
+            </div>
+            <div class="nx-field">
+                <label class="nx-label">Forma de Pago</label>
+                <select class="nx-input" [(ngModel)]="editForm.paymentMethodCode">
+                    <option value="">— Sin especificar —</option>
+                    @for (m of paymentMethodSvc.methods(); track m.code) {
+                    <option [value]="m.code">{{ m.description }}</option>
+                    }
+                </select>
+            </div>
+            <div class="nx-field">
+                <label class="nx-label">Vendedor</label>
+                <select class="nx-input" [(ngModel)]="editForm.salespersonCode">
+                    <option value="">— Sin especificar —</option>
+                    @for (s of salespersonSvc.salespersons(); track s.code) {
+                    <option [value]="s.code">{{ s.code }} — {{ s.name }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div style="display:flex;gap:var(--nx-space-3);justify-content:flex-end;margin-top:var(--nx-space-5);">
+            <button class="nx-btn nx-btn--ghost" [disabled]="editSaving()" (click)="showEditModal.set(false)">Cancelar</button>
+            <button class="nx-btn nx-btn--primary" [disabled]="editSaving()" (click)="saveEditHeader()">
+                @if (editSaving()) { Guardando… } @else { Guardar Cambios }
+            </button>
+        </div>
+    </div>
+</div>
+}
 
 } @else {
 <div class="nx-empty">

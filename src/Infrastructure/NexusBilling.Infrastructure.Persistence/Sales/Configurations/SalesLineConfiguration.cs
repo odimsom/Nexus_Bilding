@@ -110,5 +110,11 @@ public class SalesLineConfiguration : IEntityTypeConfiguration<SalesLine>
         builder.Property(x => x.PrepmtAmountInvLcy).HasColumnName("prepmt_amount_inv_lcy");
         builder.Property(x => x.IcPartnerCode).HasColumnName("ic_partner_code");
         builder.Property(x => x.PrepmtVatAmountInvLcy).HasColumnName("prepmt_vat_amount_inv_lcy");
+        builder.Property(x => x.ServiceBillingType).HasColumnName("service_billing_type").IsRequired(false);
+        builder.Property(x => x.ServiceStartDate).HasColumnName("service_start_date").IsRequired(false);
+        builder.Property(x => x.ServiceEndDate).HasColumnName("service_end_date").IsRequired(false);
+        builder.Property(x => x.ServiceHours).HasColumnName("service_hours").IsRequired(false);
+        builder.Property(x => x.HourlyRate).HasColumnName("hourly_rate").IsRequired(false);
+        builder.Property(x => x.ResourceNo).HasColumnName("resource_no").IsRequired(false).HasDefaultValue(string.Empty);
     }
 }

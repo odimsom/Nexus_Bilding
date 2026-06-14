@@ -21,6 +21,7 @@ using NexusBilling.Core.Application.Purchasing.Features.Vendors.Queries.GetVendo
 using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.CreateSalesOrder;
 using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.PostSalesOrder;
 using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.ReleaseSalesOrder;
+using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.UpdateSalesOrderHeader;
 using NexusBilling.Core.Application.Sales.Features.SalesOrders.Commands.UpdateSalesOrderLines;
 using NexusBilling.Core.Application.Sales.Features.Customers.Commands.SetCustomerBlocked;
 using NexusBilling.Core.Application.Sales.Features.Customers.Commands.UpsertCustomer;
@@ -184,6 +185,30 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
         }
     }
 
+    [HttpPatch("{no}")]
+    public async Task<IActionResult> UpdateHeader(string no, [FromBody] UpdateSalesOrderHeaderRequest req, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        try
+        {
+            await mediator.Send(new UpdateSalesOrderHeaderCommand(
+                tenantId, no,
+                req.DueDate, req.CurrencyCode ?? string.Empty,
+                req.PaymentTermsCode ?? string.Empty,
+                req.PaymentMethodCode ?? string.Empty,
+                req.SalespersonCode ?? string.Empty,
+                req.ExternalDocumentNo), cancellationToken);
+            return Ok(ApiResponse<object?>.Ok(null));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
+    }
+
     [HttpPost("{no}/post")]
     public async Task<IActionResult> Post(string no, CancellationToken cancellationToken)
     {
@@ -208,3 +233,11 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
         return Guid.TryParse(claim, out var id) ? id : Guid.Empty;
     }
 }
+
+public record UpdateSalesOrderHeaderRequest(
+    DateTime? DueDate,
+    string? CurrencyCode,
+    string? PaymentTermsCode,
+    string? PaymentMethodCode,
+    string? SalespersonCode,
+    string? ExternalDocumentNo);

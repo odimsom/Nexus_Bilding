@@ -109,6 +109,14 @@ public class SalesLine : Entity
     public string IcPartnerCode { get; private set; }
     public decimal PrepmtVatAmountInvLcy { get; private set; }
 
+    // Service/Quotation fields
+    public short? ServiceBillingType { get; set; }  // 0=TiempoEstandar 1=ValorUnico 2=TiempoEstimado
+    public DateTime? ServiceStartDate { get; set; }
+    public DateTime? ServiceEndDate { get; set; }
+    public decimal? ServiceHours { get; set; }
+    public decimal? HourlyRate { get; set; }
+    public string? ResourceNo { get; set; }
+
     public static OperationResult<SalesLine, DomainError> Create(
         TenantIdentifier tenantId,
         short documentType,

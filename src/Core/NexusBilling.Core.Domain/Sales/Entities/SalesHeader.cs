@@ -63,6 +63,11 @@ public class SalesHeader : Entity
     public string ExternalDocumentNo { get; set; }
     public string Status { get; set; }
 
+    // Cotización fields
+    public DateTime? ValidUntilDate { get; set; }
+    public string? QuotedBy { get; set; }
+    public string? Observations { get; set; }
+
     public IReadOnlyCollection<object> DomainEvents => _domainEvents.AsReadOnly();
 
     public static OperationResult<SalesHeader, DomainError> Create(

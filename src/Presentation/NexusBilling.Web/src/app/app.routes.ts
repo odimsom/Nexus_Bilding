@@ -140,6 +140,21 @@ export const routes: Routes = [
             m => m.ItemCardPage
           )
       },
+      /* ── COTIZACIONES ──────────────────────────────────── */
+      {
+        path: 'quotes',
+        loadComponent: () =>
+          import('./features/quotations/presentation/pages/quotation-list/quotation-list.page').then(
+            m => m.QuotationListPage
+          )
+      },
+      {
+        path: 'quotes/:no',
+        loadComponent: () =>
+          import('./features/quotations/presentation/pages/quotation-card/quotation-card.page').then(
+            m => m.QuotationCardPage
+          )
+      },
       /* ── SERVICIO ───────────────────────────────────────── */
       {
         path: 'services',

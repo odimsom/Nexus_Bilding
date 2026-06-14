@@ -1,0 +1,40 @@
+
+    :host { display: block; }
+
+    .settings-tabs {
+      display: flex;
+      gap: 2px;
+      border-bottom: 1px solid var(--nx-border);
+    }
+
+    .settings-tab {
+      padding: 8px 16px;
+      font-size: var(--nx-text-sm);
+      font-weight: var(--nx-weight-medium);
+      color: var(--nx-text-muted);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .settings-tab:hover { color: var(--nx-text-body); }
+
+    .settings-tab.active {
+      color: var(--nx-action);
+      border-bottom-color: var(--nx-action);
+    }
+
+    .nx-callout {
+      padding: var(--nx-space-3) var(--nx-space-4);
+      border-radius: var(--nx-radius-md);
+      font-size: var(--nx-text-sm);
+    }
+    .nx-callout--info {
+      background: var(--nx-indigo-50, color-mix(in srgb, var(--nx-action) 8%, transparent));
+      border: 1px solid color-mix(in srgb, var(--nx-action) 20%, transparent);
+      color: var(--nx-text-body);
+    }
+  

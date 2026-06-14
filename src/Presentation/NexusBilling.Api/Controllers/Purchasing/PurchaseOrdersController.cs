@@ -41,6 +41,7 @@ using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Queries.G
 using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.CreatePurchaseOrder;
 using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.UpdatePurchaseOrderLines;
 using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.PostPurchaseOrder;
+using NexusBilling.Core.Application.Purchasing.Features.PurchaseOrders.Commands.UpdatePurchaseOrderHeader;
 
 namespace NexusBilling.Api.Controllers.Purchasing;
 
@@ -134,6 +135,29 @@ public class PurchaseOrdersController(IMediator mediator) : ControllerBase
         }
     }
 
+    [HttpPatch("{no}")]
+    public async Task<IActionResult> UpdateHeader(string no, [FromBody] UpdatePurchaseOrderHeaderRequest req, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        try
+        {
+            await mediator.Send(new UpdatePurchaseOrderHeaderCommand(
+                tenantId, no,
+                req.DueDate,
+                req.CurrencyCode ?? string.Empty,
+                req.PaymentTermsCode ?? string.Empty,
+                req.ExternalDocumentNo), cancellationToken);
+            return Ok(ApiResponse<object?>.Ok(null));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
+    }
+
     [HttpPut("{no}/lines")]
     public async Task<IActionResult> UpdateLines(string no, [FromBody] IReadOnlyList<PurchaseOrderLineRequest> lines, CancellationToken cancellationToken)
     {
@@ -173,6 +197,11 @@ public class PurchaseOrdersController(IMediator mediator) : ControllerBase
         {
             return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
         }
+        catch (Exception ex)
+        {
+            var inner = ex.InnerException?.Message ?? ex.Message;
+            return StatusCode(500, ApiResponse<object?>.Fail("INTERNAL_ERROR", $"Error al publicar la orden: {inner}"));
+        }
     }
 
     private Guid GetTenantId()
@@ -181,3 +210,9 @@ public class PurchaseOrdersController(IMediator mediator) : ControllerBase
         return Guid.TryParse(claim, out var id) ? id : Guid.Empty;
     }
 }
+
+public record UpdatePurchaseOrderHeaderRequest(
+    DateTime? DueDate,
+    string? CurrencyCode,
+    string? PaymentTermsCode,
+    string? ExternalDocumentNo);

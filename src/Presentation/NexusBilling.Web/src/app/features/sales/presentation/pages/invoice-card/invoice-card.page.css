@@ -1,0 +1,6 @@
+
+    :host { display: block; }
+    .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite;margin:2rem auto; }
+    .nx-spinner--sm { display:inline-block;width:14px;height:14px;border-width:2px;margin:0 var(--nx-space-2) 0 0;vertical-align:middle; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+  

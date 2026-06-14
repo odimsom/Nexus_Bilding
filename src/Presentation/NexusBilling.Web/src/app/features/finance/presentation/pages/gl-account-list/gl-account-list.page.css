@@ -1,0 +1,11 @@
+
+    :host { display: block; }
+    .filter-bar { display:flex;align-items:center;gap:var(--nx-space-3);flex-wrap:wrap;margin-bottom:var(--nx-space-4); }
+    .sortable { cursor:pointer;user-select:none;white-space:nowrap; }
+    .sortable:hover { color:var(--nx-text-body); }
+    .num { text-align:right; font-variant-numeric:tabular-nums; }
+    .nx-spinner { width:32px;height:32px;border:3px solid var(--nx-border);border-top-color:var(--nx-action);border-radius:50%;animation:spin 0.8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    tr.is-heading td { background: var(--nx-canvas-alt); }
+    tr.is-total td { background: var(--nx-canvas-alt); border-top: 1px solid var(--nx-border); }
+  

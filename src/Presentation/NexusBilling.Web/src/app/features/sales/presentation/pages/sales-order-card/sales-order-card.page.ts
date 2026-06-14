@@ -5,9 +5,14 @@ import { firstValueFrom } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../../../core/services/api.service';
 import { PdfService } from '../../../../../shared/services/pdf.service';
+import { PaymentTermsService } from '../../../../../core/services/payment-terms.service';
+import { PaymentMethodService } from '../../../../../core/services/payment-method.service';
+import { CurrencyService } from '../../../../../core/services/currency.service';
+import { SalespersonService } from '../../../../../core/services/salesperson.service';
 import { InvoiceService } from '../../../data/invoice.service';
 import { SalesOrderDetail } from '../../../domain/invoice.model';
 import { CustomerService, CustomerListItem } from '../../../../customers/data/customer.service';
+import { exportToCSV } from '../../../../../shared/utils/export.util';
 
 interface NewLine {
   itemNo: string;
@@ -17,6 +22,14 @@ interface NewLine {
   lineDiscountPct: number;
   unitOfMeasure: string;
   lineType: string;
+}
+
+interface Installment {
+  no: number;
+  dueDate: string;
+  amount: number;
+  paid: boolean;
+  paidDate: string;
 }
 
 @Component({
@@ -33,6 +46,10 @@ export class SalesOrderCardPage implements OnInit {
   private readonly api = inject(ApiService);
   private readonly pdfSvc = inject(PdfService);
   private readonly customerSvc = inject(CustomerService);
+  readonly paymentTermsSvc = inject(PaymentTermsService);
+  readonly paymentMethodSvc = inject(PaymentMethodService);
+  readonly currencySvc = inject(CurrencyService);
+  readonly salespersonSvc = inject(SalespersonService);
 
   // Detail view state
   order = signal<SalesOrderDetail | null>(null);
@@ -41,40 +58,50 @@ export class SalesOrderCardPage implements OnInit {
   posting = signal(false);
   printing = signal(false);
 
-  // New order form state
-  isNew = signal(false);
-  saving = signal(false);
-  errorMsg = signal('');
-  showCustomerDrop = signal(false);
-  customerSugg = signal<CustomerListItem[]>([]);
-
-  newHeader = {
-    documentType: 'Order',
-    sellToCustomerNo: '',
-    sellToCustomerName: '',
-    postingDate: new Date().toISOString().split('T')[0],
+  showEditModal = signal(false);
+  editSaving = signal(false);
+  editError = signal('');
+  editForm = {
     dueDate: '',
-    externalDocumentNo: '',
+    currencyCode: '',
     paymentTermsCode: '',
     paymentMethodCode: '',
-    currencyCode: '',
+    salespersonCode: '',
+    externalDocumentNo: '',
   };
 
-  // Shared lines state (new form + edit existing)
+  // Shared lines state (edit existing)
   newLines = signal<NewLine[]>([]);
   editingLines = signal(false);
   savingLines = signal(false);
 
+  // Installments
+  installments = signal<Installment[]>([]);
+  installmentCount = 3;
+
+  isDetailInstallments = computed(() => this.order()?.paymentTermsCode === 'CUOTAS');
+
+  paidCount = computed(() => this.installments().filter(i => i.paid).length);
+  paymentPct = computed(() => {
+    const total = this.installments().length;
+    return total > 0 ? Math.round(this.paidCount() / total * 100) : 0;
+  });
+  installmentTotal = computed(() => this.installments().reduce((s, i) => s + (i.amount || 0), 0));
+
   async ngOnInit(): Promise<void> {
+    this.paymentTermsSvc.load();
+    this.paymentMethodSvc.load();
+    this.currencySvc.load();
+    this.salespersonSvc.load();
     const no = this.route.snapshot.paramMap.get('no') ?? '';
     if (no === 'new') {
-      this.isNew.set(true);
-      this.loading.set(false);
+      this.router.navigate(['/sales']);
       return;
     }
     try {
       const detail = await this.svc.getOrderDetail(no);
       this.order.set(detail);
+      this.loadInstallments(no);
     } catch {
       this.order.set(null);
     } finally {
@@ -82,27 +109,75 @@ export class SalesOrderCardPage implements OnInit {
     }
   }
 
-  // ── Customer autocomplete ──────────────────────
-  async searchCustomers(e: Event): Promise<void> {
-    const q = (e.target as HTMLInputElement).value.trim();
-    this.newHeader.sellToCustomerNo = '';
-    if (q.length < 1) { this.showCustomerDrop.set(false); return; }
-    await this.customerSvc.load({ search: q, pageSize: 8 });
-    this.customerSugg.set(this.customerSvc.items());
-    this.showCustomerDrop.set(true);
+  private installmentKey(no: string): string { return `nx_inst_${no}`; }
+
+  private loadInstallments(orderNo: string): void {
+    try {
+      const raw = localStorage.getItem(this.installmentKey(orderNo));
+      if (raw) this.installments.set(JSON.parse(raw));
+    } catch { /* ignore */ }
   }
 
-  selectCustomer(c: CustomerListItem): void {
-    this.newHeader.sellToCustomerNo = c.no;
-    this.newHeader.sellToCustomerName = c.name;
-    if (!this.newHeader.paymentTermsCode && c.paymentTermsCode) {
-      this.newHeader.paymentTermsCode = c.paymentTermsCode;
+  private saveInstallments(orderNo: string): void {
+    localStorage.setItem(this.installmentKey(orderNo), JSON.stringify(this.installments()));
+  }
+
+  onPaymentTermsChange(code: string): void {
+    if (code === 'CUOTAS') {
+      this.generateInstallments();
+    } else {
+      this.installments.set([]);
     }
-    this.showCustomerDrop.set(false);
   }
 
-  hideCustomerDrop(): void {
-    setTimeout(() => this.showCustomerDrop.set(false), 150);
+  generateInstallments(): void {
+    const total = this.totalWithVat();
+    const count = this.installmentCount;
+    if (count <= 0) return;
+    const amt = total > 0 ? Math.round((total / count) * 100) / 100 : 0;
+    const today = new Date();
+    const rows: Installment[] = Array.from({ length: count }, (_, i) => {
+      const d = new Date(today);
+      d.setMonth(d.getMonth() + i + 1);
+      return {
+        no: i + 1,
+        dueDate: d.toISOString().split('T')[0],
+        amount: i === count - 1 && total > 0 ? Math.round((total - amt * (count - 1)) * 100) / 100 : amt,
+        paid: false,
+        paidDate: '',
+      };
+    });
+    this.installments.set(rows);
+  }
+
+  addInstallmentRow(): void {
+    const existing = this.installments();
+    const lastDate = existing.length > 0 ? existing[existing.length - 1].dueDate : new Date().toISOString().split('T')[0];
+    const d = new Date(lastDate);
+    d.setMonth(d.getMonth() + 1);
+    this.installments.update(rows => [...rows, {
+      no: rows.length + 1,
+      dueDate: d.toISOString().split('T')[0],
+      amount: 0,
+      paid: false,
+      paidDate: '',
+    }]);
+    const ord = this.order();
+    if (ord) this.saveInstallments(ord.no);
+  }
+
+  removeInstallmentRow(i: number): void {
+    this.installments.update(rows => rows.filter((_, idx) => idx !== i).map((r, idx) => ({ ...r, no: idx + 1 })));
+    const ord = this.order();
+    if (ord) this.saveInstallments(ord.no);
+  }
+
+  togglePaid(inst: Installment): void {
+    inst.paid = !inst.paid;
+    inst.paidDate = inst.paid ? new Date().toISOString().split('T')[0] : '';
+    this.installments.update(rows => [...rows]);
+    const ord = this.order();
+    if (ord) this.saveInstallments(ord.no);
   }
 
   // ── Lines ──────────────────────────────────────
@@ -126,50 +201,6 @@ export class SalesOrderCardPage implements OnInit {
   subtotal = computed(() => this.newLines().reduce((s, l) => s + this.lineTotal(l), 0));
   totalVat = computed(() => Math.round(this.subtotal() * 0.18 * 100) / 100);
   totalWithVat = computed(() => Math.round((this.subtotal() + this.totalVat()) * 100) / 100);
-
-  // ── Save new order ─────────────────────────────
-  async saveOrder(): Promise<void> {
-    if (!this.newHeader.sellToCustomerNo) {
-      this.errorMsg.set('Debe seleccionar un cliente.');
-      return;
-    }
-    const lines = this.newLines();
-    if (lines.length === 0) {
-      this.errorMsg.set('Debe agregar al menos una línea.');
-      return;
-    }
-    this.saving.set(true);
-    this.errorMsg.set('');
-    try {
-      const no = await this.svc.createOrder({
-        documentType: this.newHeader.documentType,
-        sellToCustomerNo: this.newHeader.sellToCustomerNo,
-        sellToCustomerName: this.newHeader.sellToCustomerName,
-        postingDate: this.newHeader.postingDate,
-        dueDate: this.newHeader.dueDate || null,
-        externalDocumentNo: this.newHeader.externalDocumentNo,
-        paymentTermsCode: this.newHeader.paymentTermsCode,
-        paymentMethodCode: this.newHeader.paymentMethodCode,
-        currencyCode: this.newHeader.currencyCode,
-        salespersonCode: '',
-        seriesCode: this.newHeader.documentType === 'Quote' ? 'COT' : 'ORD',
-        lines: lines.map(l => ({
-          itemNo: l.itemNo,
-          description: l.description,
-          quantity: l.quantity,
-          unitPrice: l.unitPrice,
-          lineDiscountPct: l.lineDiscountPct,
-          unitOfMeasure: l.unitOfMeasure,
-          lineType: l.lineType,
-        })),
-      });
-      this.router.navigate(['/sales', no]);
-    } catch (e: any) {
-      this.errorMsg.set(e?.error?.error?.message ?? 'Error al guardar la orden.');
-    } finally {
-      this.saving.set(false);
-    }
-  }
 
   // ── Edit lines on existing order ───────────────
   startEditLines(): void {
@@ -214,6 +245,47 @@ export class SalesOrderCardPage implements OnInit {
       alert(e?.error?.error?.message ?? 'Error al guardar las líneas.');
     } finally {
       this.savingLines.set(false);
+    }
+  }
+
+  // ── Header editing ─────────────────────────────
+  openEditHeader(): void {
+    const ord = this.order();
+    if (!ord) return;
+    const toDate = (val: string | null | undefined) =>
+      val ? new Date(val).toISOString().split('T')[0] : '';
+    this.editForm = {
+      dueDate: toDate(ord.dueDate),
+      currencyCode: ord.currencyCode ?? '',
+      paymentTermsCode: ord.paymentTermsCode ?? '',
+      paymentMethodCode: ord.paymentMethodCode ?? '',
+      salespersonCode: ord.salespersonCode ?? '',
+      externalDocumentNo: ord.externalDocumentNo ?? '',
+    };
+    this.editError.set('');
+    this.showEditModal.set(true);
+  }
+
+  async saveEditHeader(): Promise<void> {
+    const ord = this.order();
+    if (!ord || this.editSaving()) return;
+    this.editSaving.set(true);
+    this.editError.set('');
+    try {
+      await this.svc.updateOrderHeader(ord.no, {
+        dueDate: this.editForm.dueDate || null,
+        currencyCode: this.editForm.currencyCode,
+        paymentTermsCode: this.editForm.paymentTermsCode,
+        paymentMethodCode: this.editForm.paymentMethodCode,
+        salespersonCode: this.editForm.salespersonCode,
+        externalDocumentNo: this.editForm.externalDocumentNo || null,
+      });
+      this.showEditModal.set(false);
+      this.order.set(await this.svc.getOrderDetail(ord.no));
+    } catch (e: any) {
+      this.editError.set(e?.error?.error?.message ?? 'Error al guardar los cambios.');
+    } finally {
+      this.editSaving.set(false);
     }
   }
 
@@ -273,7 +345,16 @@ export class SalesOrderCardPage implements OnInit {
   }
 
   docTypeLabel(t: string): string {
-    return ({ Order: 'Pedido', Quote: 'Cotización', Invoice: 'Factura' } as Record<string, string>)[t] ?? t;
+    return ({ Order: 'Orden', Quote: 'Cotización', Invoice: 'Factura' } as Record<string, string>)[t] ?? t;
+  }
+
+  exportLines(): void {
+    const ord = this.order();
+    if (!ord?.lines?.length) return;
+    exportToCSV(`lineas_${ord.no}`,
+      ['No. Línea', 'No. Producto', 'Descripción', 'Cantidad', 'U/M', 'Precio Unit.', 'Dto %', 'Importe', 'c/IVA'],
+      ord.lines.map(l => [l.lineNo, l.no, l.description, l.quantity, l.unitOfMeasure, l.unitPrice, l.lineDiscount, l.amount, l.amountIncludingVat])
+    );
   }
 
   statusClass(s: string): string {

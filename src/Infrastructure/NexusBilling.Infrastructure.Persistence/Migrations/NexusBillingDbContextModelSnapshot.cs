@@ -59354,6 +59354,12 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("no");
 
+                    b.Property<string>("Observations")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("observations");
+
                     b.Property<string>("PaymentMethodCode")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -59371,6 +59377,12 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("PostingDate")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("posting_date");
+
+                    b.Property<string>("QuotedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("quoted_by");
 
                     b.Property<string>("SalespersonCode")
                         .IsRequired()
@@ -59404,6 +59416,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("ValidUntilDate")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("valid_until_date");
 
                     b.HasKey("Id");
 
@@ -61195,6 +61211,10 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("gross_weight");
 
+                    b.Property<decimal?>("HourlyRate")
+                        .HasColumnType("numeric")
+                        .HasColumnName("hourly_rate");
+
                     b.Property<string>("IcPartnerCode")
                         .IsRequired()
                         .HasColumnType("text")
@@ -61388,9 +61408,31 @@ namespace NexusBilling.Infrastructure.Persistence.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("reserve");
 
+                    b.Property<string>("ResourceNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("resource_no");
+
                     b.Property<string>("SellToCustomerNo")
                         .HasColumnType("text")
                         .HasColumnName("sell_to_customer_no");
+
+                    b.Property<short?>("ServiceBillingType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("service_billing_type");
+
+                    b.Property<DateTime?>("ServiceEndDate")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("service_end_date");
+
+                    b.Property<decimal?>("ServiceHours")
+                        .HasColumnType("numeric")
+                        .HasColumnName("service_hours");
+
+                    b.Property<DateTime?>("ServiceStartDate")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("service_start_date");
 
                     b.Property<DateTime?>("ShipmentDate")
                         .HasColumnType("timestamp without time zone")

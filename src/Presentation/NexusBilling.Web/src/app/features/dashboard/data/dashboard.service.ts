@@ -16,6 +16,8 @@ export interface DashboardStats {
   totalPurchasesAllTime: number;
   recentOrders: RecentOrder[];
   monthlySales: MonthlyTotal[];
+  monthlyPurchases: MonthlyTotal[];
+  openQuotations: number;
 }
 
 export interface RecentOrder {

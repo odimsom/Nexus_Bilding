@@ -1,0 +1,13 @@
+
+    :host { display: block; }
+    .new-grid { display:grid;grid-template-columns:1fr 1fr;gap:var(--nx-space-4); }
+    .card-body-pad { padding:var(--nx-space-5) var(--nx-space-6); }
+    .nx-input--inline { padding:4px var(--nx-space-2);height:30px;font-size:var(--nx-text-sm);width:100%;min-width:0; }
+    .nx-input--num { text-align:right; }
+    .vendor-drop { position:absolute;top:100%;left:0;right:0;z-index:200;background:var(--nx-surface);border:1px solid var(--nx-border);border-radius:var(--nx-radius-md);box-shadow:var(--nx-shadow-lg);max-height:240px;overflow-y:auto;margin-top:2px; }
+    .vendor-drop__item { display:flex;align-items:center;gap:var(--nx-space-3);width:100%;padding:var(--nx-space-2) var(--nx-space-3);background:none;border:none;cursor:pointer;text-align:left; }
+    .vendor-drop__item:hover { background:var(--nx-surface-raised); }
+    .vendor-drop__no { font-family:var(--nx-font-mono);font-size:var(--nx-text-xs);color:var(--nx-text-muted);min-width:90px;flex-shrink:0; }
+    .vendor-drop__name { font-size:var(--nx-text-sm);font-weight:var(--nx-weight-medium);flex:1; }
+    .vendor-drop__city { font-size:var(--nx-text-xs);color:var(--nx-text-muted); }
+  

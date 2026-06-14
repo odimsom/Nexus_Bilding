@@ -15,7 +15,9 @@ public record DashboardStatsDto(
     decimal TotalPurchasesThisMonth,
     decimal TotalPurchasesAllTime,
     IReadOnlyList<RecentOrderDto> RecentOrders,
-    IReadOnlyList<MonthlyTotalDto> MonthlySales);
+    IReadOnlyList<MonthlyTotalDto> MonthlySales,
+    IReadOnlyList<MonthlyTotalDto> MonthlyPurchases,
+    int OpenQuotations = 0);
 
 public record RecentOrderDto(
     string No,

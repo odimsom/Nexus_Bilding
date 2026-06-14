@@ -106,7 +106,7 @@
                     } @else { <span style="color:var(--nx-text-muted);">—</span> }
                   </td>
                   <td style="font-size:var(--nx-text-sm);">{{ c.paymentTermsCode || '—' }}</td>
-                  <td class="num" [class.text-danger]="c.balance < 0">{{ c.balance | currency:'DOP':'symbol':'1.2-2' }}</td>
+                  <td class="num" [style.color]="c.balance < 0 ? 'var(--nx-red-600)' : 'inherit'">{{ c.balance | currency:'DOP':'symbol':'1.2-2' }}</td>
                   <td class="num" [style.color]="c.balanceDue > 0 ? 'var(--nx-red-600)' : 'inherit'">
                     {{ c.balanceDue | currency:'DOP':'symbol':'1.2-2' }}
                   </td>

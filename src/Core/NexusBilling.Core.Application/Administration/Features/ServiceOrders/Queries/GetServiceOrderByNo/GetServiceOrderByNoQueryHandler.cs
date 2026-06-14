@@ -15,7 +15,7 @@ public sealed class GetServiceOrderByNoQueryHandler(
 
     private static readonly Dictionary<short, string> StatusLabels = new()
     {
-        [0] = "Pendiente", [1] = "En Proceso", [2] = "Terminado", [3] = "En Espera"
+        [0] = "Pendiente", [1] = "En Proceso", [2] = "Terminado", [3] = "Facturada"
     };
 
     private static readonly Dictionary<short, string> LineTypeLabels = new()

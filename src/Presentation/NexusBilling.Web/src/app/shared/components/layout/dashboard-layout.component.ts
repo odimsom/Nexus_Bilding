@@ -232,6 +232,7 @@ export class DashboardLayoutComponent {
       '/gl':        'Mayor General',
       '/journal':   'Diario',
       '/settings':  'Configuración',
+      '/users':     'Usuarios',
       '/services':  'Órdenes de Servicio',
     };
     const base = '/' + (url.split('/')[1] || 'dashboard');
@@ -302,6 +303,7 @@ export class DashboardLayoutComponent {
         group: 'Administración',
         icon: 'settings-2',
         children: [
+          { label: 'Usuarios',      route: '/users',    icon: 'user-cog' },
           { label: 'Configuración', route: '/settings', icon: 'settings' },
         ]
       }
@@ -317,7 +319,7 @@ export class DashboardLayoutComponent {
     { id: 'vendors',   label: 'Proveedores',       desc: 'Gestión de suplidores',   icon: 'users-2',          route: '/vendors'   },
     { id: 'services',  label: 'Órdenes Servicio',  desc: 'Órdenes de servicio',     icon: 'clipboard-list',   route: '/services'  },
     { id: 'settings',  label: 'Configuración',     desc: 'Ajustes del sistema',     icon: 'settings',         route: '/settings'  },
-    { id: 'users',     label: 'Usuarios',          desc: 'Gestión de accesos',      icon: 'user-cog',         route: '/settings'  },
+    { id: 'users',     label: 'Usuarios',          desc: 'Gestión de accesos',      icon: 'user-cog',         route: '/users'     },
   ];
 
   readonly filteredPaletteItems = computed(() => {

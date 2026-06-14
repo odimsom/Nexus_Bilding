@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { GLEntryService } from '../../../data/gl-entry.service';
 import { ExcelExportService } from '../../../../../core/services/excel/excel-export.service';
@@ -15,7 +15,10 @@ import { ExcelExportService } from '../../../../../core/services/excel/excel-exp
 export class GLEntryListPage implements OnInit {
   readonly svc = inject(GLEntryService);
   private readonly excel = inject(ExcelExportService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
+  filterAccountNo = '';
   sortField = 'entryNo';
   sortAsc = false;
 
@@ -48,10 +51,19 @@ export class GLEntryListPage implements OnInit {
     return this.sortField === f ? (this.sortAsc ? '↑' : '↓') : '';
   }
 
-  ngOnInit(): void { this.reload(); }
+  ngOnInit(): void {
+    this.filterAccountNo = this.route.snapshot.queryParamMap.get('accountNo') ?? '';
+    this.reload();
+  }
 
   reload(): void {
-    this.svc.load();
+    this.svc.load({ glAccountNo: this.filterAccountNo || undefined });
+  }
+
+  clearAccountFilter(): void {
+    this.filterAccountNo = '';
+    this.router.navigate([], { queryParams: {}, replaceUrl: true });
+    this.reload();
   }
 
   async exportExcel(): Promise<void> {
@@ -86,6 +98,6 @@ export class GLEntryListPage implements OnInit {
   }
 
   goToPage(page: number): void {
-    this.svc.load({ page });
+    this.svc.load({ glAccountNo: this.filterAccountNo || undefined, page });
   }
 }

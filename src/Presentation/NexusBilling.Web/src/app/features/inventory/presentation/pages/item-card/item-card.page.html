@@ -172,8 +172,7 @@
             <div class="nx-factbox__sectionlabel">Acciones Rápidas</div>
             <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
               <button class="nx-btn nx-btn--secondary nx-btn--sm nx-btn--block" (click)="openEdit()">Editar Producto</button>
-              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block" (click)="openLedger()">Diario de Producto</button>
-              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block">Movimientos de Producto</button>
+              <button class="nx-btn nx-btn--subtle nx-btn--sm nx-btn--block" (click)="openLedger()">Movimientos de Producto</button>
               @if (item()!.blocked) {
                 <button class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block" [disabled]="actionLoading()" (click)="toggleBlock()">
                   @if (actionLoading()) { Procesando… } @else { ✓ Desbloquear }

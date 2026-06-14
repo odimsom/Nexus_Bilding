@@ -33,10 +33,10 @@ public class PurchaseHeader : Entity
     }
 
     public TenantIdentifier TenantId { get; private set; }
-    public string DocumentType { get; private set; }
-    public string No { get; private set; }
-    public string BuyFromVendorNo { get; private set; }
-    public string PayToName { get; private set; }
+    public string DocumentType { get; private set; } = string.Empty;
+    public string No { get; private set; } = string.Empty;
+    public string BuyFromVendorNo { get; private set; } = string.Empty;
+    public string PayToName { get; private set; } = string.Empty;
     public DateTime PostingDate { get; set; }
     public DateTime? DueDate { get; set; }
     public string Status { get; set; } = "Open";

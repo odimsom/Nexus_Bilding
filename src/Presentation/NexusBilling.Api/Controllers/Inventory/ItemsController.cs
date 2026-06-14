@@ -42,18 +42,18 @@ namespace NexusBilling.Api.Controllers.Inventory;
 public record UpsertItemRequest(
     string? No,
     string Description,
-    string Description2,
+    string? Description2,
     string BaseUnitOfMeasure,
     decimal UnitPrice,
     decimal UnitCost,
-    decimal StandardCost,
-    string Type,
-    string ItemCategoryCode,
-    string InventoryPostingGroup,
-    string GenProdPostingGroup,
-    string VatProdPostingGroup,
-    string VendorNo,
-    string VendorItemNo
+    decimal StandardCost = 0m,
+    string? Type = null,
+    string? ItemCategoryCode = null,
+    string? InventoryPostingGroup = null,
+    string? GenProdPostingGroup = null,
+    string? VatProdPostingGroup = null,
+    string? VendorNo = null,
+    string? VendorItemNo = null
 );
 
 [Authorize]
@@ -112,10 +112,10 @@ public sealed class ItemsController(IMediator mediator) : ControllerBase
         if (tenantId == Guid.Empty)
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
-        var cmd = new UpsertItemCommand(tenantId, null, req.No, req.Description, req.Description2,
-            req.BaseUnitOfMeasure, req.UnitPrice, req.UnitCost, req.StandardCost, req.Type,
-            req.ItemCategoryCode, req.InventoryPostingGroup, req.GenProdPostingGroup,
-            req.VatProdPostingGroup, req.VendorNo, req.VendorItemNo);
+        var cmd = new UpsertItemCommand(tenantId, null, req.No, req.Description, req.Description2 ?? string.Empty,
+            req.BaseUnitOfMeasure, req.UnitPrice, req.UnitCost, req.StandardCost, req.Type ?? "Inventory",
+            req.ItemCategoryCode ?? string.Empty, req.InventoryPostingGroup ?? string.Empty, req.GenProdPostingGroup ?? string.Empty,
+            req.VatProdPostingGroup ?? string.Empty, req.VendorNo ?? string.Empty, req.VendorItemNo ?? string.Empty);
 
         var result = await mediator.Send(cmd, cancellationToken);
         return result.Created
@@ -131,10 +131,10 @@ public sealed class ItemsController(IMediator mediator) : ControllerBase
         if (tenantId == Guid.Empty)
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
-        var cmd = new UpsertItemCommand(tenantId, no, req.No, req.Description, req.Description2,
-            req.BaseUnitOfMeasure, req.UnitPrice, req.UnitCost, req.StandardCost, req.Type,
-            req.ItemCategoryCode, req.InventoryPostingGroup, req.GenProdPostingGroup,
-            req.VatProdPostingGroup, req.VendorNo, req.VendorItemNo);
+        var cmd = new UpsertItemCommand(tenantId, no, req.No, req.Description, req.Description2 ?? string.Empty,
+            req.BaseUnitOfMeasure, req.UnitPrice, req.UnitCost, req.StandardCost, req.Type ?? "Inventory",
+            req.ItemCategoryCode ?? string.Empty, req.InventoryPostingGroup ?? string.Empty, req.GenProdPostingGroup ?? string.Empty,
+            req.VatProdPostingGroup ?? string.Empty, req.VendorNo ?? string.Empty, req.VendorItemNo ?? string.Empty);
 
         var result = await mediator.Send(cmd, cancellationToken);
         return result.Created

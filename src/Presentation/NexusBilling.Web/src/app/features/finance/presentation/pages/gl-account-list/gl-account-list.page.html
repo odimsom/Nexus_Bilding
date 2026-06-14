@@ -14,8 +14,11 @@
         </p>
       </div>
       <div class="nx-page-actions">
-        <button class="nx-btn nx-btn--secondary nx-btn--sm">Diario General</button>
-        <button class="nx-btn nx-btn--primary nx-btn--sm">Nueva Cuenta</button>
+        <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="exportExcel()" [disabled]="svc.loading() || visibleItems().length === 0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar Excel
+        </button>
+        <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="goToJournal()">Diario General</button>
       </div>
     </div>
 
@@ -73,7 +76,7 @@
               @for (acc of visibleItems(); track acc.no) {
                 <tr [class.is-heading]="acc.accountType === 1 || acc.accountType === 2" [class.is-total]="acc.accountType === 3 || acc.accountType === 4">
                   <td class="nx-td--doc">
-                    <a [routerLink]="['/finance/gl-accounts', acc.no]" class="nx-link">{{ acc.no }}</a>
+                    <button class="nx-link" style="background:none;border:none;padding:0;cursor:pointer;font:inherit;" (click)="viewEntries(acc.no)">{{ acc.no }}</button>
                   </td>
                   <td [style.padding-left]="acc.accountType === 0 ? 'var(--nx-space-5)' : 'var(--nx-space-3)'"
                       [style.font-weight]="acc.accountType === 0 ? 'var(--nx-weight-normal)' : 'var(--nx-weight-semibold)'"

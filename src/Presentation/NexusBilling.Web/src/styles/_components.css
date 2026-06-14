@@ -415,7 +415,7 @@ textarea.nx-input {
 .nx-card__foot {
   padding: var(--nx-space-3) var(--nx-space-4);
   border-top: var(--nx-border-w) solid var(--nx-border-subtle);
-  background: var(--nx-slate-25);
+  background: var(--nx-surface-sunken);
   display: flex; align-items: center; gap: var(--nx-space-3);
 }
 
@@ -1240,3 +1240,50 @@ textarea.nx-input {
   font-size: var(--text-sm);
 }
 
+/* ================================================================
+ * MODAL
+ * ================================================================ */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.modal-box {
+  background: var(--nx-surface);
+  border-radius: var(--nx-radius-xl);
+  width: min(720px, 96vw);
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  box-shadow: var(--nx-shadow-xl);
+}
+.modal-box--wide {
+  width: min(1000px, 96vw);
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--nx-space-5) var(--nx-space-6);
+  border-bottom: 1px solid var(--nx-border);
+}
+.modal-body {
+  overflow-y: auto;
+  padding: var(--nx-space-5) var(--nx-space-6);
+  flex: 1;
+}
+.modal-footer {
+  padding: var(--nx-space-4) var(--nx-space-6);
+  border-top: 1px solid var(--nx-border);
+  display: flex; justify-content: flex-end; gap: var(--nx-space-3);
+}
+
+/* ================================================================
+ * FORM LAYOUTS
+ * ================================================================ */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nx-space-4);
+}
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: 1fr; }
+}

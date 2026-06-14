@@ -100,6 +100,34 @@ export interface QuotationPdfData {
   companyName?: string;
 }
 
+export interface ServiceOrderPdfData {
+  no: string;
+  customerName: string;
+  customerNo: string;
+  orderDate: string | null;
+  startingDate: string | null;
+  finishingDate: string | null;
+  paymentTermsCode?: string | null;
+  currencyCode: string;
+  status: string;
+  description?: string | null;
+  contractNo?: string | null;
+  lines: Array<{
+    lineNo: number;
+    no?: string;
+    description: string;
+    quantity: number;
+    unitPrice: number;
+    lineDiscount: number;
+    amount: number;
+    amountIncludingVat: number;
+    unitOfMeasure?: string;
+  }>;
+  amount: number;
+  amountIncludingVat: number;
+  companyName?: string;
+}
+
 export interface PurchaseOrderPdfData {
   no: string;
   vendorName: string;
@@ -128,6 +156,148 @@ export interface PurchaseOrderPdfData {
 
 @Injectable({ providedIn: 'root' })
 export class PdfService {
+
+  async printServiceOrder(data: ServiceOrderPdfData): Promise<void> {
+    const pdfMake = await import('pdfmake/build/pdfmake');
+    const pdfFonts = await import('pdfmake/build/vfs_fonts');
+    (pdfMake as any).default.vfs = (pdfFonts as any).default.vfs;
+    const make = (pdfMake as any).default;
+
+    const currency = data.currencyCode || 'DOP';
+    const fmt = (n: number) => `${currency} ${n.toLocaleString('es-DO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    const docDef = {
+      pageSize: 'LETTER',
+      pageMargins: [40, 50, 40, 50],
+      defaultStyle: { font: 'Roboto', fontSize: 9 },
+      content: [
+        {
+          columns: [
+            {
+              stack: [
+                { text: data.companyName ?? 'Nexus Billing', style: 'company' },
+                { text: 'nexus.server.synsetsolutions.com', color: '#6B7280', fontSize: 8 }
+              ]
+            },
+            {
+              stack: [
+                { text: 'Orden de Servicio', style: 'docType' },
+                { text: data.no, style: 'docNo' },
+                { text: data.status, color: '#6B7280', fontSize: 8, bold: true }
+              ],
+              alignment: 'right'
+            }
+          ],
+          margin: [0, 0, 0, 16]
+        },
+        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1, lineColor: '#E5E7EB' }], margin: [0, 0, 0, 12] },
+        {
+          columns: [
+            {
+              stack: [
+                { text: 'CLIENTE', style: 'fieldLabel' },
+                { text: data.customerName, bold: true, fontSize: 10 },
+                { text: `No. ${data.customerNo}`, color: '#6B7280', fontSize: 8 },
+                ...(data.description ? [{ text: data.description, fontSize: 8, color: '#6B7280', margin: [0, 4, 0, 0] }] : [])
+              ]
+            },
+            {
+              stack: [
+                { text: 'FECHA ORDEN', style: 'fieldLabel' },
+                { text: data.orderDate ?? '—', style: 'monoText' },
+                { text: 'INICIO', style: 'fieldLabel', margin: [0, 6, 0, 0] },
+                { text: data.startingDate ?? '—', style: 'monoText' }
+              ]
+            },
+            {
+              stack: [
+                { text: 'FINALIZACIÓN', style: 'fieldLabel' },
+                { text: data.finishingDate ?? '—', style: 'monoText' },
+                { text: 'CONDICIÓN PAGO', style: 'fieldLabel', margin: [0, 6, 0, 0] },
+                { text: data.paymentTermsCode || '—' }
+              ]
+            },
+            {
+              stack: [
+                { text: 'CONTRATO', style: 'fieldLabel' },
+                { text: data.contractNo || '—', style: 'monoText' },
+                { text: 'MONEDA', style: 'fieldLabel', margin: [0, 6, 0, 0] },
+                { text: currency }
+              ]
+            }
+          ],
+          margin: [0, 0, 0, 16]
+        },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['auto', 'auto', '*', 'auto', 'auto', 'auto', 'auto'],
+            body: [
+              [
+                { text: 'No.', style: 'tableHeader' },
+                { text: 'Ref.', style: 'tableHeader' },
+                { text: 'Descripción', style: 'tableHeader' },
+                { text: 'Cant.', style: 'tableHeader', alignment: 'right' },
+                { text: 'U/M', style: 'tableHeader', alignment: 'center' },
+                { text: 'Precio Unit.', style: 'tableHeader', alignment: 'right' },
+                { text: 'Importe', style: 'tableHeader', alignment: 'right' }
+              ],
+              ...data.lines.map(l => [
+                { text: l.lineNo.toString(), style: 'monoText', fontSize: 8, color: '#6B7280' },
+                { text: l.no || '—', style: 'monoText', fontSize: 8 },
+                { text: l.description, fontSize: 8 },
+                { text: l.quantity.toLocaleString('es-DO', { minimumFractionDigits: 2 }), alignment: 'right', style: 'monoText', fontSize: 8 },
+                { text: l.unitOfMeasure || 'U', alignment: 'center', fontSize: 8, color: '#6B7280' },
+                { text: l.unitPrice.toLocaleString('es-DO', { minimumFractionDigits: 2 }), alignment: 'right', style: 'monoText', fontSize: 8 },
+                { text: l.amount.toLocaleString('es-DO', { minimumFractionDigits: 2 }), alignment: 'right', bold: true, style: 'monoText', fontSize: 8 }
+              ])
+            ]
+          },
+          layout: {
+            hLineWidth: (i: number, node: any) => i === 0 || i === 1 || i === node.table.body.length ? 1 : 0.5,
+            hLineColor: () => '#E5E7EB',
+            vLineWidth: () => 0,
+            paddingTop: () => 6,
+            paddingBottom: () => 6
+          },
+          margin: [0, 0, 0, 16]
+        },
+        {
+          columns: [
+            { text: '' },
+            {
+              width: 200,
+              table: {
+                widths: ['*', 'auto'],
+                body: [
+                  [{ text: 'Subtotal', color: '#6B7280' }, { text: fmt(data.amount), alignment: 'right', style: 'monoText' }],
+                  [{ text: 'ITBIS (18%)', color: '#6B7280' }, { text: fmt(data.amountIncludingVat - data.amount), alignment: 'right', style: 'monoText' }],
+                  [{ text: 'Total', bold: true, fontSize: 11 }, { text: fmt(data.amountIncludingVat), alignment: 'right', bold: true, fontSize: 11, style: 'monoText' }]
+                ]
+              },
+              layout: {
+                hLineWidth: (i: number, node: any) => i === node.table.body.length - 1 ? 1 : 0.5,
+                hLineColor: () => '#E5E7EB',
+                vLineWidth: () => 0,
+                paddingTop: () => 5,
+                paddingBottom: () => 5
+              }
+            }
+          ]
+        }
+      ],
+      styles: {
+        company:     { fontSize: 16, bold: true, color: '#0C7156' },
+        docType:     { fontSize: 11, color: '#6B7280' },
+        docNo:       { fontSize: 18, bold: true, color: '#111827' },
+        fieldLabel:  { fontSize: 7, color: '#9CA3AF', bold: true, margin: [0, 0, 0, 2] },
+        tableHeader: { bold: true, fontSize: 8, color: '#374151', fillColor: '#F9FAFB' },
+        monoText:    { font: 'Roboto', fontSize: 9 }
+      }
+    };
+
+    make.createPdf(docDef).open();
+  }
 
   async printPurchaseOrder(data: PurchaseOrderPdfData): Promise<void> {
     const pdfMake = await import('pdfmake/build/pdfmake');

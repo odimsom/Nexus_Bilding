@@ -8,7 +8,12 @@
     <div class="nx-page-header">
       <div>
         <h1 class="nx-page-title">Facturas de Venta</h1>
-        <p class="nx-page-subtitle">Facturas publicadas de clientes</p>
+        <p class="nx-page-subtitle">
+          Facturas publicadas de clientes
+          @if (filterCustomerNo) {
+            &nbsp;<span class="nx-badge nx-badge--info" style="font-size:var(--nx-text-xs);">Cliente: {{ filterCustomerNo }}</span>
+          }
+        </p>
       </div>
       <div class="nx-page-actions">
         <button class="nx-btn nx-btn--secondary" (click)="exportExcel()" [disabled]="filtered().length === 0">
@@ -25,18 +30,24 @@
     } @else {
 
       <!-- KPI strip -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--nx-space-3);margin-bottom:var(--nx-space-5);">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--nx-space-3);margin-bottom:var(--nx-space-5);">
         <div class="nx-stat">
           <span class="nx-stat__label">Total período</span>
           <span class="nx-stat__value nx-num" style="font-size:var(--nx-text-xl);">RD$ {{ totalAmount() | number:'1.0-0' }}</span>
         </div>
         <div class="nx-stat">
           <span class="nx-stat__label">Facturas</span>
-          <span class="nx-stat__value" style="font-size:var(--nx-text-xl);">{{ svc.invoices().length }}</span>
+          <span class="nx-stat__value" style="font-size:var(--nx-text-xl);">{{ filtered().length }}</span>
         </div>
         <div class="nx-stat">
           <span class="nx-stat__label">ITBIS total</span>
           <span class="nx-stat__value nx-num" style="font-size:var(--nx-text-xl);">RD$ {{ totalItbis() | number:'1.0-0' }}</span>
+        </div>
+        <div class="nx-stat">
+          <span class="nx-stat__label">Vencidas</span>
+          <span class="nx-stat__value" style="font-size:var(--nx-text-xl);" [style.color]="overdueCount() > 0 ? 'var(--nx-red-600)' : 'inherit'">
+            {{ overdueCount() }}
+          </span>
         </div>
       </div>
 
@@ -46,6 +57,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input class="nx-input" placeholder="Buscar No., cliente, referencia…" [(ngModel)]="searchText" (ngModelChange)="applyFilter()" />
           </div>
+          <button class="nx-btn nx-btn--sm"
+            [class.nx-btn--danger]="showOverdueOnly"
+            [class.nx-btn--ghost]="!showOverdueOnly"
+            (click)="showOverdueOnly = !showOverdueOnly; applyFilter()">
+            Solo vencidas @if (overdueCount() > 0) { ({{ overdueCount() }}) }
+          </button>
           <div style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">
             {{ filtered().length }} documentos
           </div>
@@ -76,14 +93,15 @@
               </thead>
               <tbody>
                 @for (inv of filtered(); track inv.no) {
-                  <tr style="cursor:pointer;" [routerLink]="['/invoices', inv.no]">
+                  <tr style="cursor:pointer;" [routerLink]="['/invoices', inv.no]" [class.overdue-row]="isOverdue(inv)">
                     <td class="nx-td--doc"><a class="nx-link">{{ inv.no }}</a></td>
                     <td style="font-weight:var(--nx-weight-medium);">{{ inv.sellToCustomerName || inv.billToName }}</td>
                     <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">
                       {{ inv.postingDate | date:'dd/MM/yyyy' }}
                     </td>
-                    <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">
+                    <td [style.color]="isOverdue(inv) ? 'var(--nx-red-600)' : 'var(--nx-text-muted)'" style="font-size:var(--nx-text-sm);font-weight:var(--nx-weight-medium);">
                       {{ inv.dueDate ? (inv.dueDate | date:'dd/MM/yyyy') : '—' }}
+                      @if (isOverdue(inv)) { <span style="font-size:var(--nx-text-xs);">(vencida)</span> }
                     </td>
                     <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ inv.salespersonCode || '—' }}</td>
                     <td>

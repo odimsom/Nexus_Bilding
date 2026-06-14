@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { GLAccountService, GLAccountSortField } from '../../../data/gl-account.service';
 import { GLAccount } from '../../../domain/gl-account.model';
+import { ExcelExportService } from '../../../../../core/services/excel/excel-export.service';
 
 @Component({
   selector: 'app-gl-account-list',
@@ -14,6 +15,8 @@ import { GLAccount } from '../../../domain/gl-account.model';
 })
 export class GLAccountListPage implements OnInit {
   readonly svc = inject(GLAccountService);
+  private readonly router = inject(Router);
+  private readonly excel = inject(ExcelExportService);
 
   searchText = '';
   showBlocked: 'all' | 'active' | 'blocked' = 'active';
@@ -59,5 +62,36 @@ export class GLAccountListPage implements OnInit {
   typeLabel(t: number): string {
     const types = ['Registro', 'Encabezado', 'Total', 'Inicio-Total', 'Fin-Total'];
     return types[t] ?? 'Desconocido';
+  }
+
+  viewEntries(accountNo: string): void {
+    this.router.navigate(['/gl-entries'], { queryParams: { accountNo } });
+  }
+
+  goToJournal(): void {
+    this.router.navigate(['/journal']);
+  }
+
+  async exportExcel(): Promise<void> {
+    await this.excel.exportAsExcel({
+      filename: 'Plan_de_Cuentas',
+      title: 'Plan de Cuentas',
+      subtitle: 'Nexus Billing - Módulo de Finanzas',
+      sheetName: 'Cuentas GL',
+      columns: [
+        { header: 'No. Cuenta', key: 'no', width: 14 },
+        { header: 'Nombre', key: 'name', width: 40 },
+        { header: 'Tipo', key: 'tipo', width: 15 },
+        { header: 'Saldo', key: 'balance', width: 18, numFmt: '#,##0.00', alignment: { horizontal: 'right' } },
+        { header: 'Bloqueada', key: 'blocked', width: 12 },
+      ],
+      data: this.visibleItems().map(a => ({
+        no: a.no,
+        name: a.name,
+        tipo: this.typeLabel(a.accountType),
+        balance: a.balance ?? 0,
+        blocked: a.blocked ? 'Sí' : 'No',
+      })),
+    });
   }
 }

@@ -122,4 +122,4 @@ public class SalespersonsController(ISalespersonPurchaserRepository repo, IUnitO
     }
 }
 
-public record SalespersonRequest(string Code, string Name, string? Email, string? Phone, string? JobTitle);
+public record SalespersonRequest(string Name, string? Code = null, string? Email = null, string? Phone = null, string? JobTitle = null);

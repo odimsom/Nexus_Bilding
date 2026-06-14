@@ -170,110 +170,145 @@
           <span class="nx-crumb--current">{{ invoice()!.no }}</span>
         </nav>
 
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center gap-4">
-            <button routerLink="/purchase-invoices" class="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors">
-              <i class="fi fi-rr-arrow-left"></i>
-            </button>
-            <div>
-              <div class="flex items-center gap-3 mb-1">
-                <h1 class="text-3xl font-bold text-white">Factura {{ invoice()!.no }}</h1>
-                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-xs font-medium">Registrada</span>
-              </div>
-              <p class="text-neutral-400">Proveedor: <span class="text-neutral-300">{{ invoice()!.payToName }}</span></p>
+        <div class="nx-page-header">
+          <div style="flex:1;min-width:0;">
+            <h1 class="nx-page-title" style="font-family:var(--nx-font-mono);letter-spacing:0;">{{ invoice()!.no }}</h1>
+            <div style="display:flex;align-items:center;gap:var(--nx-space-3);margin-top:var(--nx-space-1);">
+              <span class="nx-badge nx-badge--info"><span class="nx-badge__dot"></span>Registrada</span>
+              <span style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">{{ invoice()!.payToName }}</span>
             </div>
           </div>
-          <div class="flex items-center gap-3">
-            <button class="px-4 py-2 bg-neutral-800 text-white rounded-lg hover:bg-neutral-700 transition-colors border border-neutral-700 font-medium text-sm flex items-center gap-2">
-              <i class="fi fi-rr-print"></i> Imprimir
+          <div class="nx-page-actions">
+            <button class="nx-btn nx-btn--secondary nx-btn--sm" [disabled]="printing()" (click)="printPdf()">
+              @if (printing()) {
+                <div class="nx-spinner" style="width:14px;height:14px;border-width:2px;"></div>
+              } @else {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              }
+              Imprimir
             </button>
           </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-6 mb-6">
-          <div class="bg-neutral-900 border border-neutral-800 rounded-xl p-5 shadow-sm">
-            <h3 class="text-sm font-medium text-neutral-400 uppercase tracking-wider mb-4">Proveedor</h3>
-            <div class="space-y-3 text-sm">
-              <div class="flex flex-col">
-                <span class="text-neutral-500">No. Proveedor</span>
-                <a [routerLink]="['/vendors', invoice()!.buyFromVendorNo]"
-                   class="text-teal-400 font-medium hover:text-teal-300 transition-colors flex items-center gap-1 mt-0.5">
-                  {{ invoice()!.buyFromVendorNo }}
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
+        <div style="display:grid;grid-template-columns:1fr 300px;gap:var(--nx-space-4);align-items:start;margin-top:var(--nx-space-4);">
+          <div style="display:flex;flex-direction:column;gap:var(--nx-space-4);">
+
+            <div class="nx-card">
+              <div class="nx-card__head"><div class="nx-card__title">Información general</div></div>
+              <div class="nx-card__body">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 var(--nx-space-6);">
+                  <dl class="nx-kv nx-kv--ruled">
+                    <dt class="nx-kv__k">No.</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.no }}</dd>
+                    <dt class="nx-kv__k">Proveedor</dt>
+                    <dd class="nx-kv__v">
+                      <a [routerLink]="['/vendors', invoice()!.buyFromVendorNo]" class="nx-link">
+                        {{ invoice()!.payToName }}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 17 10-10"/><path d="M7 7h10v10"/></svg>
+                      </a>
+                    </dd>
+                    <dt class="nx-kv__k">No. Proveedor</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.buyFromVendorNo }}</dd>
+                  </dl>
+                  <dl class="nx-kv nx-kv--ruled">
+                    <dt class="nx-kv__k">Fecha de registro</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.postingDate | date:'dd/MM/yyyy' }}</dd>
+                    <dt class="nx-kv__k">Condición de pago</dt>
+                    <dd class="nx-kv__v">{{ invoice()!.paymentTermsCode || '—' }}</dd>
+                    <dt class="nx-kv__k">Moneda</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.currencyCode || 'DOP' }}</dd>
+                  </dl>
+                </div>
               </div>
-              <div class="flex flex-col">
-                <span class="text-neutral-500">Nombre</span>
-                <span class="text-neutral-200 font-medium">{{ invoice()!.payToName }}</span>
+            </div>
+
+            <div class="nx-card">
+              <div class="nx-card__head">
+                <div class="nx-card__title">Líneas de factura</div>
+                <span style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">{{ invoice()!.lines.length }} línea{{ invoice()!.lines.length !== 1 ? 's' : '' }}</span>
               </div>
+              @if (invoice()!.lines.length === 0) {
+                <div class="nx-empty" style="padding:var(--nx-space-8);">
+                  <p class="nx-empty__text">Sin líneas de detalle.</p>
+                </div>
+              } @else {
+                <div style="overflow-x:auto;">
+                  <table class="nx-table">
+                    <thead>
+                      <tr>
+                        <th>Descripción</th>
+                        <th style="width:60px;">U/M</th>
+                        <th class="nx-th--num" style="width:80px;">Cant.</th>
+                        <th class="nx-th--num" style="width:120px;">Costo unit.</th>
+                        <th class="nx-th--num" style="width:110px;">Subtotal</th>
+                        <th class="nx-th--num" style="width:100px;">ITBIS</th>
+                        <th class="nx-th--num" style="width:130px;">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (line of invoice()!.lines; track $index) {
+                        <tr>
+                          <td>{{ line.description }}</td>
+                          <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ line.unitOfMeasureCode || '—' }}</td>
+                          <td class="nx-td--num">{{ line.quantity | number:'1.0-4' }}</td>
+                          <td class="nx-td--num">{{ line.unitCost | number:'1.2-2' }}</td>
+                          <td class="nx-td--num">{{ line.amount | number:'1.2-2' }}</td>
+                          <td class="nx-td--num" style="color:var(--nx-text-muted);">{{ line.vat | number:'1.2-2' }}</td>
+                          <td class="nx-td--num" style="font-weight:var(--nx-weight-semibold);">{{ line.amountIncludingVat | number:'1.2-2' }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+                <div class="nx-card__foot" style="display:flex;justify-content:flex-end;">
+                  <dl class="nx-kv" style="grid-template-columns:auto auto;gap:var(--nx-space-1) var(--nx-space-6);text-align:right;min-width:280px;">
+                    <dt class="nx-kv__k">Subtotal</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ invoice()!.amount | number:'1.2-2' }}</dd>
+                    <dt class="nx-kv__k">ITBIS (18%)</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ (invoice()!.amountIncludingVat - invoice()!.amount) | number:'1.2-2' }}</dd>
+                    <dt class="nx-kv__k" style="font-weight:var(--nx-weight-bold);color:var(--nx-text-strong);">Total</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-lg);font-weight:var(--nx-weight-bold);color:var(--nx-text-strong);">
+                      {{ invoice()!.currencyCode || 'RD$' }} {{ invoice()!.amountIncludingVat | number:'1.2-2' }}
+                    </dd>
+                  </dl>
+                </div>
+              }
             </div>
           </div>
 
-          <div class="bg-neutral-900 border border-neutral-800 rounded-xl p-5 shadow-sm">
-            <h3 class="text-sm font-medium text-neutral-400 uppercase tracking-wider mb-4">Detalles</h3>
-            <div class="space-y-3 text-sm">
-              <div class="flex flex-col">
-                <span class="text-neutral-500">Fecha de Registro</span>
-                <span class="text-neutral-200 font-medium">{{ invoice()!.postingDate | date:'dd/MM/yyyy' }}</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-neutral-500">Condición de Pago</span>
-                <span class="text-neutral-200 font-medium">{{ invoice()!.paymentTermsCode || 'N/A' }}</span>
-              </div>
+          <div class="nx-factbox">
+            <div class="nx-factbox__head">
+              <div class="nx-factbox__eyebrow">Factura de Compra</div>
+              <div class="nx-factbox__title">{{ invoice()!.no }}</div>
             </div>
-          </div>
-
-          <div class="bg-gradient-to-br from-teal-900/40 to-blue-900/40 border border-teal-800/30 rounded-xl p-5 shadow-sm flex flex-col justify-center relative overflow-hidden">
-            <div class="absolute -right-6 -bottom-6 opacity-10">
-              <i class="fi fi-rr-sack-dollar text-8xl"></i>
+            <div class="nx-factbox__section">
+              <div class="nx-factbox__sectionlabel">Importes</div>
+              <dl class="nx-kv">
+                <dt class="nx-kv__k" style="font-size:var(--nx-text-xs);">Subtotal</dt>
+                <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-sm);">{{ invoice()!.amount | number:'1.2-2' }}</dd>
+                <dt class="nx-kv__k" style="font-size:var(--nx-text-xs);">ITBIS</dt>
+                <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-sm);">{{ (invoice()!.amountIncludingVat - invoice()!.amount) | number:'1.2-2' }}</dd>
+                <dt class="nx-kv__k" style="font-size:var(--nx-text-xs);">Total c/IVA</dt>
+                <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-sm);font-weight:var(--nx-weight-bold);">{{ invoice()!.amountIncludingVat | number:'1.2-2' }}</dd>
+              </dl>
             </div>
-            <h3 class="text-sm font-medium text-teal-400/80 uppercase tracking-wider mb-2">Total Factura</h3>
-            <div class="text-4xl font-bold text-white mb-1">
-              {{ invoice()!.amountIncludingVat | currency:'DOP':'symbol':'1.2-2' }}
+            <div class="nx-factbox__section">
+              <div class="nx-factbox__sectionlabel">Relacionado</div>
+              <ul class="nx-linklist">
+                <li>
+                  <a [routerLink]="['/vendors', invoice()!.buyFromVendorNo]" class="nx-link">
+                    Ver ficha del proveedor
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 17 10-10"/><path d="M7 7h10v10"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/purchase-invoices" class="nx-link">
+                    Todas las facturas de compra
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 17 10-10"/><path d="M7 7h10v10"/></svg>
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div class="text-sm text-teal-300/70">
-              Subtotal: {{ invoice()!.amount | currency:'DOP':'symbol':'1.2-2' }}
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden flex-1 shadow-sm">
-          <div class="p-4 border-b border-neutral-800 bg-neutral-900/50">
-            <h2 class="font-medium text-white flex items-center gap-2">
-              <i class="fi fi-rr-list text-teal-500"></i>
-              Líneas de Factura
-            </h2>
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm whitespace-nowrap">
-              <thead class="bg-neutral-950 text-neutral-400">
-                <tr>
-                  <th class="px-6 py-3 font-medium">Descripción</th>
-                  <th class="px-6 py-3 font-medium text-right">Cantidad</th>
-                  <th class="px-6 py-3 font-medium text-right">Precio Unitario</th>
-                  <th class="px-6 py-3 font-medium text-right">Monto</th>
-                  <th class="px-6 py-3 font-medium text-right">ITBIS</th>
-                  <th class="px-6 py-3 font-medium text-right">Total</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-neutral-800/50">
-                @for (line of invoice()!.lines; track $index) {
-                  <tr class="hover:bg-neutral-800/30 transition-colors">
-                    <td class="px-6 py-4 text-neutral-200">{{ line.description }}</td>
-                    <td class="px-6 py-4 text-right text-neutral-300">{{ line.quantity }} <span class="text-neutral-500 text-xs ml-1">{{ line.unitOfMeasureCode }}</span></td>
-                    <td class="px-6 py-4 text-right text-neutral-300">{{ line.unitCost | currency:'DOP':'symbol':'1.2-2' }}</td>
-                    <td class="px-6 py-4 text-right text-neutral-300">{{ line.amount | currency:'DOP':'symbol':'1.2-2' }}</td>
-                    <td class="px-6 py-4 text-right text-neutral-400 text-xs">{{ line.vat | currency:'DOP':'symbol':'1.2-2' }}</td>
-                    <td class="px-6 py-4 text-right font-medium text-teal-400">{{ line.amountIncludingVat | currency:'DOP':'symbol':'1.2-2' }}</td>
-                  </tr>
-                }
-                @if (!invoice()!.lines.length) {
-                  <tr>
-                    <td colspan="6" class="px-6 py-8 text-center text-neutral-500 italic">No hay líneas en esta factura.</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
           </div>
         </div>
       }

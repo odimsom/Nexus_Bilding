@@ -89,7 +89,7 @@ public sealed class PostPurchaseOrderCommandHandler(
                     var ile = ileResult.GetValue()!;
                     Set(ile, "ItemNo", l.No);
                     Set(ile, "PostingDate", DateTime.UtcNow);
-                    Set(ile, "EntryType", 1); // Purchase
+                    Set(ile, "EntryType", (short)1); // Purchase
                     Set(ile, "DocumentNo", invoiceNo);
                     Set(ile, "Quantity", l.Quantity);
                     await itemLedgerRepo.AddAsync(ile, ct);

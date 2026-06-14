@@ -10,11 +10,11 @@ public class PaymentTerms : Entity
     private PaymentTerms() { }
 
     public TenantIdentifier TenantId { get; private set; }
-    public string Code { get; private set; }
-    public string DueDateCalculation { get; private set; }
-    public string DiscountDateCalculation { get; private set; }
+    public string Code { get; set; }
+    public string DueDateCalculation { get; private set; } = string.Empty;
+    public string DiscountDateCalculation { get; private set; } = string.Empty;
     public decimal Discount { get; private set; }
-    public string Description { get; private set; }
+    public string Description { get; set; }
     public bool CalcPmtDiscOnCrMemos { get; private set; }
 
     public static OperationResult<PaymentTerms, DomainError> Create(TenantIdentifier tenantId)

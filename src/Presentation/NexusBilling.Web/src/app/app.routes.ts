@@ -170,6 +170,14 @@ export const routes: Routes = [
             m => m.ServiceOrderCardPage
           )
       },
+      /* ── SEGURIDAD ─────────────────────────────────────── */
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./features/security/presentation/pages/user-list/user-list.page').then(
+            m => m.UserListPage
+          )
+      },
       /* ── CONFIGURACIÓN Y SEGURIDAD ──────────────────────── */
       {
         path: 'settings',

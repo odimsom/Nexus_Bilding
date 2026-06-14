@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NoSeriesService, NoSeriesItem } from '../../data/no-series.service';
+import { EcfService, NcfSequence } from '../../data/ecf.service';
 import { UserService, AppUser } from '../../../../features/security/data/user.service';
 import { PaymentTermsService } from '../../../../core/services/payment-terms.service';
 import { PaymentMethodService } from '../../../../core/services/payment-method.service';
@@ -11,15 +12,6 @@ import { SalespersonService } from '../../../../core/services/salesperson.servic
 
 type SettingsTab = 'company' | 'ncf' | 'payment' | 'users' | 'posting' | 'sequences' | 'ecf' | 'salespersons';
 
-interface NcfSeries {
-  type: string;
-  typeLabel: string;
-  prefix: string;
-  currentNo: number;
-  toNo: number;
-  expiryDate: string;
-  active: boolean;
-}
 
 @Component({
   selector: 'app-settings',
@@ -31,6 +23,7 @@ interface NcfSeries {
 export class SettingsPage implements OnInit {
   readonly activeTab   = signal<SettingsTab>('company');
   readonly noSeriesSvc = inject(NoSeriesService);
+  readonly ecfSvc      = inject(EcfService);
   readonly paymentTermsSvc = inject(PaymentTermsService);
   readonly paymentMethodSvc = inject(PaymentMethodService);
   readonly currencySvc = inject(CurrencyService);
@@ -48,6 +41,49 @@ export class SettingsPage implements OnInit {
     { id: 'users',        label: 'Usuarios' },
     { id: 'sequences',    label: 'Secuencias' },
   ];
+
+  // ── Payment Terms modal ─────────────────────────────────────────
+  readonly showPtModal = signal(false);
+  readonly ptSaving    = signal(false);
+  readonly ptError     = signal('');
+  ptForm = { isNew: true, code: '', description: '' };
+
+  openPtModal(): void {
+    this.ptForm = { isNew: true, code: '', description: '' };
+    this.ptError.set('');
+    this.showPtModal.set(true);
+  }
+  editPtModal(pt: { code: string; description: string }): void {
+    this.ptForm = { isNew: false, code: pt.code, description: pt.description };
+    this.ptError.set('');
+    this.showPtModal.set(true);
+  }
+  closePtModal(): void { this.showPtModal.set(false); }
+
+  async savePt(): Promise<void> {
+    if (!this.ptForm.code.trim() || !this.ptForm.description.trim()) {
+      this.ptError.set('Código y descripción son obligatorios.');
+      return;
+    }
+    this.ptSaving.set(true);
+    this.ptError.set('');
+    try {
+      if (this.ptForm.isNew) await this.paymentTermsSvc.create(this.ptForm.code, this.ptForm.description);
+      else await this.paymentTermsSvc.update(this.ptForm.code, this.ptForm.description);
+      this.closePtModal();
+    } catch (e: any) {
+      this.ptError.set(e?.error?.error?.message ?? 'Error al guardar.');
+    } finally {
+      this.ptSaving.set(false);
+    }
+  }
+
+  async deletePt(code: string): Promise<void> {
+    if (!confirm(`¿Eliminar la condición de pago "${code}"?`)) return;
+    try { await this.paymentTermsSvc.delete(code); } catch (e: any) {
+      alert(e?.error?.error?.message ?? 'Error al eliminar.');
+    }
+  }
 
   // ── Payment Method modal ────────────────────────────────────────
   readonly showPmModal = signal(false);
@@ -179,14 +215,128 @@ export class SettingsPage implements OnInit {
   }
 
   // ── ECF form state ──────────────────────────────────────────────
+  readonly ecfSaving = signal(false);
+  readonly ecfError  = signal('');
+  readonly ecfSuccess = signal(false);
   ecfForm = {
-    rnc: '101-23456-7',
-    representativeName: 'Francisco Castro',
+    rnc: '',
+    representativeName: '',
     environment: 0,
-    p12Path: 'certificados/nexus_billing.p12',
     p12Password: '',
     isActive: true
   };
+
+  async saveEcfConfig(): Promise<void> {
+    if (!this.ecfForm.rnc.trim()) { this.ecfError.set('El RNC es obligatorio.'); return; }
+    this.ecfSaving.set(true);
+    this.ecfError.set('');
+    this.ecfSuccess.set(false);
+    try {
+      await this.ecfSvc.saveConfig({
+        rnc: this.ecfForm.rnc.trim(),
+        representativeName: this.ecfForm.representativeName.trim(),
+        environment: this.ecfForm.environment,
+        isActive: this.ecfForm.isActive
+      });
+      this.ecfSuccess.set(true);
+      setTimeout(() => this.ecfSuccess.set(false), 3000);
+    } catch (e: any) {
+      this.ecfError.set(e?.error?.error?.message ?? 'Error al guardar la configuración ECF.');
+    } finally { this.ecfSaving.set(false); }
+  }
+
+  // ── NCF Sequences modal ─────────────────────────────────────────
+  readonly showNcfModal   = signal(false);
+  readonly ncfSaving      = signal(false);
+  readonly ncfError       = signal('');
+  editingNcfId: string | null = null;
+
+  readonly NCF_LABELS: Record<string, string> = {
+    'E31': 'Facturas de Crédito Fiscal Electrónicas',
+    'E32': 'Facturas para Consumidor Final Electrónicas',
+    'E33': 'Notas de Débito Electrónicas',
+    'E34': 'Notas de Crédito Electrónicas',
+    'E41': 'Compras Electrónicas',
+    'E43': 'Gastos Menores Electrónicos',
+    'E44': 'Regímenes Especiales de Tributación Electrónicos',
+    'E45': 'Gubernamentales Electrónicos',
+    'E46': 'Exportaciones Electrónicas',
+    'E47': 'Pagos al Exterior Electrónicos',
+  };
+
+  ncfForm: {
+    ncfType: string;
+    currentNumber: number;
+    maxNumber: number;
+    expirationDate: string;
+  } = { ncfType: '', currentNumber: 1, maxNumber: 1000, expirationDate: '' };
+
+  ncfLabel(type: string): string {
+    return this.NCF_LABELS[type] ?? type;
+  }
+
+  openNewNcf(): void {
+    this.editingNcfId = null;
+    this.ncfForm = { ncfType: '', currentNumber: 1, maxNumber: 1000, expirationDate: '' };
+    this.ncfError.set('');
+    this.showNcfModal.set(true);
+  }
+
+  editNcf(seq: NcfSequence): void {
+    this.editingNcfId = seq.id;
+    this.ncfForm = {
+      ncfType: seq.ncfType,
+      currentNumber: seq.currentNumber,
+      maxNumber: seq.maxNumber,
+      expirationDate: seq.expirationDate
+    };
+    this.ncfError.set('');
+    this.showNcfModal.set(true);
+  }
+
+  closeNcfModal(): void { this.showNcfModal.set(false); }
+
+  async saveNcf(): Promise<void> {
+    if (!this.ncfForm.ncfType.trim()) { this.ncfError.set('El tipo de NCF es obligatorio.'); return; }
+    if (!this.ncfForm.expirationDate) { this.ncfError.set('La fecha de expiración es obligatoria.'); return; }
+    if (this.ncfForm.maxNumber <= this.ncfForm.currentNumber) {
+      this.ncfError.set('El número máximo debe ser mayor al número actual.');
+      return;
+    }
+    this.ncfSaving.set(true);
+    this.ncfError.set('');
+    try {
+      if (this.editingNcfId) {
+        await this.ecfSvc.updateNcfSequence(this.editingNcfId, {
+          ncfType: this.ncfForm.ncfType.toUpperCase().trim(),
+          currentNumber: this.ncfForm.currentNumber,
+          maxNumber: this.ncfForm.maxNumber,
+          expirationDate: this.ncfForm.expirationDate
+        });
+      } else {
+        await this.ecfSvc.createNcfSequence({
+          ncfType: this.ncfForm.ncfType.toUpperCase().trim(),
+          currentNumber: this.ncfForm.currentNumber,
+          maxNumber: this.ncfForm.maxNumber,
+          expirationDate: this.ncfForm.expirationDate
+        });
+      }
+      this.showNcfModal.set(false);
+    } catch (e: any) {
+      this.ncfError.set(e?.error?.error?.message ?? 'Error al guardar la secuencia NCF.');
+    } finally { this.ncfSaving.set(false); }
+  }
+
+  async deleteNcf(id: string): Promise<void> {
+    if (!confirm('¿Eliminar esta secuencia NCF? Esta acción no se puede deshacer.')) return;
+    try { await this.ecfSvc.deleteNcfSequence(id); } catch (e: any) {
+      alert(e?.error?.error?.message ?? 'Error al eliminar.');
+    }
+  }
+
+  ncfAvailable(seq: NcfSequence): number {
+    return seq.maxNumber - seq.currentNumber;
+  }
 
   // ── NoSeries form state ─────────────────────────────────────────
   readonly showSeriesModal = signal(false);
@@ -228,7 +378,17 @@ export class SettingsPage implements OnInit {
       this.paymentMethodSvc.load(),
       this.currencySvc.load(),
       this.salespersonSvc.load(),
+      this.ecfSvc.loadConfig(),
+      this.ecfSvc.loadNcfSequences(),
     ]);
+
+    const cfg = this.ecfSvc.config();
+    if (cfg) {
+      this.ecfForm.rnc = cfg.rnc;
+      this.ecfForm.representativeName = cfg.representativeName;
+      this.ecfForm.environment = cfg.environment;
+      this.ecfForm.isActive = cfg.isActive;
+    }
   }
 
   openNewUser(): void {
@@ -350,16 +510,4 @@ export class SettingsPage implements OnInit {
     return prefix + String(next).padStart(digits.length, '0');
   }
 
-  readonly ncfSeries: NcfSeries[] = [
-    { type: 'B01', typeLabel: 'Crédito Fiscal',           prefix: 'B01', currentNo: 95000050, toNo: 95000500, expiryDate: '2025-12-31', active: true },
-    { type: 'B02', typeLabel: 'Consumidor Final',          prefix: 'B02', currentNo: 92000120, toNo: 92000500, expiryDate: '2025-12-31', active: true },
-    { type: 'B04', typeLabel: 'Nota de Débito',            prefix: 'B04', currentNo: 94000001, toNo: 94000100, expiryDate: '2025-12-31', active: true },
-    { type: 'B14', typeLabel: 'Regímenes Especiales',      prefix: 'B14', currentNo: 97000001, toNo: 97000050, expiryDate: '2025-12-31', active: false },
-    { type: 'B15', typeLabel: 'Gubernamentales',           prefix: 'B15', currentNo: 98000001, toNo: 98000050, expiryDate: '2025-12-31', active: false },
-    { type: 'B16', typeLabel: 'Zonas Francas / Exportación', prefix: 'B16', currentNo: 99000001, toNo: 99000050, expiryDate: '2025-12-31', active: false },
-  ];
-
-  available(s: NcfSeries): number {
-    return s.toNo - s.currentNo;
-  }
 }

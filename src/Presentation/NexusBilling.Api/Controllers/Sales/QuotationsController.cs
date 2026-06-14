@@ -7,19 +7,20 @@ using NexusBilling.Core.Application.Sales.Features.Quotations.Commands.ConvertQu
 using NexusBilling.Core.Application.Sales.Features.Quotations.Commands.CreateQuotation;
 using NexusBilling.Core.Application.Sales.Features.Quotations.Commands.DuplicateQuotation;
 using NexusBilling.Core.Application.Sales.Features.Quotations.Commands.UpdateQuotationHeader;
+using NexusBilling.Core.Application.Sales.Features.Quotations.Commands.UpdateQuotationLines;
 using NexusBilling.Core.Application.Sales.Features.Quotations.Queries.GetQuotationByNo;
 using NexusBilling.Core.Application.Sales.Features.Quotations.Queries.GetQuotations;
 
 namespace NexusBilling.Api.Controllers.Sales;
 
 public record QuotationLineRequest(
-    string LineType,
-    string ItemNo,
     string Description,
     decimal Quantity,
     decimal UnitPrice,
-    decimal LineDiscountPct,
-    string UnitOfMeasure,
+    string LineType = "Item",
+    string? ItemNo = null,
+    decimal LineDiscountPct = 0m,
+    string? UnitOfMeasure = null,
     decimal VatPct = 18m,
     short? ServiceBillingType = null,
     DateTime? ServiceStartDate = null,
@@ -32,15 +33,15 @@ public record CreateQuotationRequest(
     string SellToCustomerNo,
     string SellToCustomerName,
     DateTime PostingDate,
-    DateTime? ValidUntilDate,
-    string? QuotedBy,
-    string? Observations,
-    string CurrencyCode,
-    string PaymentTermsCode,
-    string PaymentMethodCode,
-    string? ExternalDocumentNo,
-    string? SeriesCode,
-    IReadOnlyList<QuotationLineRequest> Lines);
+    IReadOnlyList<QuotationLineRequest> Lines,
+    DateTime? ValidUntilDate = null,
+    string? QuotedBy = null,
+    string? Observations = null,
+    string? CurrencyCode = null,
+    string? PaymentTermsCode = null,
+    string? PaymentMethodCode = null,
+    string? ExternalDocumentNo = null,
+    string? SeriesCode = null);
 
 public record ConvertToOrderRequest(string? SeriesCode);
 
@@ -95,8 +96,8 @@ public sealed class QuotationsController(IMediator mediator) : ControllerBase
         if (tenantId == Guid.Empty) return Unauthorized();
 
         var lines = req.Lines.Select(l => new QuotationLineInput(
-            l.LineType, l.ItemNo, l.Description, l.Quantity, l.UnitPrice,
-            l.LineDiscountPct, l.UnitOfMeasure, l.VatPct,
+            l.LineType, l.ItemNo ?? string.Empty, l.Description, l.Quantity, l.UnitPrice,
+            l.LineDiscountPct, l.UnitOfMeasure ?? "UND", l.VatPct,
             l.ServiceBillingType, l.ServiceStartDate, l.ServiceEndDate,
             l.ServiceHours, l.HourlyRate, l.ResourceNo)).ToList();
 
@@ -168,6 +169,31 @@ public sealed class QuotationsController(IMediator mediator) : ControllerBase
                 req.PaymentMethodCode ?? string.Empty,
                 req.ExternalDocumentNo), ct);
             return Ok(ApiResponse<object?>.Ok(null));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, ApiResponse<object?>.Fail("INTERNAL_ERROR", "Error interno del servidor."));
+        }
+    }
+
+    [HttpPut("{no}/lines")]
+    public async Task<IActionResult> UpdateLines(string no, [FromBody] IReadOnlyList<QuotationLineRequest> lines, CancellationToken ct)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty) return Unauthorized();
+
+        var lineData = lines.Select(l => new QuotationLineData(
+            l.ItemNo, l.Description, l.Quantity, l.UnitPrice,
+            l.LineDiscountPct, l.UnitOfMeasure, l.VatPct, l.LineType)).ToList();
+
+        try
+        {
+            var result = await mediator.Send(new UpdateQuotationLinesCommand(tenantId, no, lineData), ct);
+            return Ok(ApiResponse<object>.Ok(new { amount = result.Amount, amountIncludingVat = result.AmountIncludingVat }));
         }
         catch (InvalidOperationException ex)
         {

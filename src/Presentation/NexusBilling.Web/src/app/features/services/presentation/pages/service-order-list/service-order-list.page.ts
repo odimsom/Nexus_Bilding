@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { ServiceOrderService, CreateServiceOrderData } from '../../../data/service-order.service';
@@ -12,6 +12,7 @@ import { ItemService, ItemListItem } from '../../../../inventory/data/item.servi
 import { PaymentTermsService } from '../../../../../core/services/payment-terms.service';
 import { PaymentMethodService } from '../../../../../core/services/payment-method.service';
 import { CurrencyService } from '../../../../../core/services/currency.service';
+import { ExcelExportService } from '../../../../../core/services/excel/excel-export.service';
 
 interface ServiceLine {
   no: string;
@@ -39,9 +40,11 @@ export class ServiceOrderListPage implements OnInit {
   private readonly customerSvc = inject(CustomerService);
   private readonly itemSvc = inject(ItemService);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   readonly paymentTermsSvc = inject(PaymentTermsService);
   readonly paymentMethodSvc = inject(PaymentMethodService);
   readonly currencySvc = inject(CurrencyService);
+  private readonly excel = inject(ExcelExportService);
 
   searchText = '';
   activeTab = signal<string>('all');
@@ -107,6 +110,8 @@ export class ServiceOrderListPage implements OnInit {
   ];
 
   async ngOnInit(): Promise<void> {
+    const customerNo = this.route.snapshot.queryParamMap.get('customerNo');
+    if (customerNo) this.searchText = customerNo;
     this.paymentTermsSvc.load();
     this.paymentMethodSvc.load();
     this.currencySvc.load();
@@ -319,6 +324,33 @@ export class ServiceOrderListPage implements OnInit {
   subtotal(): number { return this.lines.reduce((s, l) => s + this.lineAmount(l), 0); }
   itbis(): number { return this.subtotal() * 0.18; }
   total(): number { return this.subtotal() * 1.18; }
+
+  async exportExcel(): Promise<void> {
+    await this.excel.exportAsExcel({
+      filename: 'Ordenes_Servicio',
+      title: 'Órdenes de Servicio',
+      subtitle: 'Nexus Billing - Módulo de Servicios',
+      sheetName: 'Servicios',
+      columns: [
+        { header: 'No.', key: 'no', width: 15 },
+        { header: 'Tipo', key: 'tipo', width: 14 },
+        { header: 'Cliente No.', key: 'customerNo', width: 14 },
+        { header: 'Cliente', key: 'customerName', width: 35 },
+        { header: 'Descripción', key: 'description', width: 35 },
+        { header: 'Fecha', key: 'fecha', width: 14 },
+        { header: 'Estado', key: 'estado', width: 14 },
+      ],
+      data: this.sortedFiltered().map(o => ({
+        no: o.no,
+        tipo: o.documentType,
+        customerNo: o.customerNo,
+        customerName: o.customerName,
+        description: o.description,
+        fecha: o.orderDate ?? '',
+        estado: o.statusLabel,
+      })),
+    });
+  }
 
   async save(): Promise<void> {
     this.formError.set(null);

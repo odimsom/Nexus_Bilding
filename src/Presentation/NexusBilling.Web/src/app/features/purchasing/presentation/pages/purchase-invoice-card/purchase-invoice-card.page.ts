@@ -7,6 +7,7 @@ import { VendorService } from '../../../data/vendor.service';
 import { PurchaseInvoiceDetail, CreateInvoiceLineForm } from '../../../domain/purchase-invoice.model';
 import { Vendor } from '../../../domain/vendor.model';
 import { PaymentTermsService } from '../../../../../core/services/payment-terms.service';
+import { PdfService, PurchaseOrderPdfData } from '../../../../../shared/services/pdf.service';
 
 @Component({
   selector: 'app-purchase-invoice-card',
@@ -20,12 +21,14 @@ export class PurchaseInvoiceCardPage implements OnInit {
   private readonly router = inject(Router);
   private readonly service = inject(PurchaseInvoiceService);
   private readonly vendorSvc = inject(VendorService);
+  private readonly pdfSvc = inject(PdfService);
   readonly paymentTermsSvc = inject(PaymentTermsService);
 
   readonly invoice = signal<PurchaseInvoiceDetail | null>(null);
   readonly loading = signal(true);
   readonly isNew = signal(false);
   readonly saving = signal(false);
+  readonly printing = signal(false);
   readonly errorMsg = signal<string | null>(null);
 
   showVendorDrop = signal(false);
@@ -156,6 +159,38 @@ export class PurchaseInvoiceCardPage implements OnInit {
       this.errorMsg.set(e?.error?.error?.message ?? 'Error al registrar la factura.');
     } finally {
       this.saving.set(false);
+    }
+  }
+
+  async printPdf(): Promise<void> {
+    const inv = this.invoice();
+    if (!inv || this.printing()) return;
+    this.printing.set(true);
+    try {
+      const data: PurchaseOrderPdfData = {
+        no: inv.no,
+        vendorName: inv.payToName,
+        vendorNo: inv.buyFromVendorNo,
+        postingDate: inv.postingDate ? new Date(inv.postingDate).toLocaleDateString('es-DO') : '',
+        paymentTermsCode: inv.paymentTermsCode,
+        currencyCode: inv.currencyCode || 'DOP',
+        status: 'Registrada',
+        amount: inv.amount,
+        amountIncludingVat: inv.amountIncludingVat,
+        lines: inv.lines.map((l, i) => ({
+          lineNo: (i + 1) * 10000,
+          description: l.description,
+          quantity: l.quantity,
+          unitPrice: l.unitCost,
+          lineDiscountPct: 0,
+          amount: l.amount,
+          amountIncludingVat: l.amountIncludingVat,
+          unitOfMeasure: l.unitOfMeasureCode,
+        })),
+      };
+      await this.pdfSvc.printPurchaseOrder(data);
+    } finally {
+      this.printing.set(false);
     }
   }
 }

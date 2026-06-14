@@ -8,7 +8,10 @@ using NexusBilling.Core.Application.Administration.Features.NoSeries.Commands.Up
 using NexusBilling.Core.Application.Administration.Features.NoSeries.Queries.GetNoSeries;
 using NexusBilling.Core.Application.Administration.Features.ServiceOrders.Queries.GetServiceOrderByNo;
 using NexusBilling.Core.Application.Administration.Features.ServiceOrders.Queries.GetServiceOrders;
+using NexusBilling.Core.Application.Administration.Features.ServiceOrders.Commands.InvoiceServiceOrder;
 using NexusBilling.Core.Application.Dashboard.Features.DashboardStats.Queries.GetDashboardStats;
+using NexusBilling.Core.Domain.Administration.Repositories;
+using NexusBilling.Core.Domain.Interfaces.Repositories.Base;
 using NexusBilling.Core.Application.Inventory.Features.Items.Commands.AdjustInventory;
 using NexusBilling.Core.Application.Inventory.Features.Items.Commands.SetItemBlocked;
 using NexusBilling.Core.Application.Inventory.Features.Items.Commands.UpsertItem;
@@ -41,35 +44,36 @@ using NexusBilling.Core.Application.Security.Features.Users.Queries.GetUsers;
 namespace NexusBilling.Api.Controllers.Administration;
 
 public record ServiceOrderLineRequest(
-    string No,
     string Description,
     decimal Quantity,
     decimal UnitPrice,
-    decimal LineDiscountPct,
-    string UnitOfMeasure,
+    string? No = null,
+    decimal LineDiscountPct = 0m,
+    string? UnitOfMeasure = null,
+    decimal? VatPct = null,
     short LineType = 1);
 
 public record CreateServiceOrderRequest(
-    short DocumentType,
     string CustomerNo,
     string CustomerName,
     string Description,
     DateTime OrderDate,
-    DateTime? StartingDate,
-    DateTime? FinishingDate,
-    string PaymentTermsCode,
-    string PaymentMethodCode,
-    string SalespersonCode,
-    string CurrencyCode,
-    string ContractNo,
-    string? SeriesCode,
-    string? ManualNo,
-    IReadOnlyList<ServiceOrderLineRequest> Lines);
+    IReadOnlyList<ServiceOrderLineRequest> Lines,
+    short DocumentType = 0,
+    DateTime? StartingDate = null,
+    DateTime? FinishingDate = null,
+    string? PaymentTermsCode = null,
+    string? PaymentMethodCode = null,
+    string? SalespersonCode = null,
+    string? CurrencyCode = null,
+    string? ContractNo = null,
+    string? SeriesCode = null,
+    string? ManualNo = null);
 
 [Authorize]
 [ApiController]
 [Route("api/v1/service/orders")]
-public sealed class ServiceOrdersController(IMediator mediator) : ControllerBase
+public sealed class ServiceOrdersController(IMediator mediator, IServiceHeaderRepository serviceRepo, IUnitOfWork uow) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> GetList(
@@ -116,7 +120,7 @@ public sealed class ServiceOrdersController(IMediator mediator) : ControllerBase
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
         var lines = req.Lines.Select(l => new ServiceOrderLineInput(
-            l.No, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure, l.LineType))
+            l.No ?? string.Empty, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure ?? "UND", l.LineType))
             .ToList();
 
         var cmd = new CreateServiceOrderCommand(
@@ -156,8 +160,40 @@ public sealed class ServiceOrdersController(IMediator mediator) : ControllerBase
         if (tenantId == Guid.Empty)
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
-        // For now, return not implemented — future: update status
-        return Ok(ApiResponse<object>.Ok(new { no, status = req.Status }));
+        var order = await serviceRepo.GetByNoForTenantAsync(tenantId, no, cancellationToken);
+        if (order is null)
+            return NotFound(ApiResponse<object?>.NotFound($"Orden de servicio {no} no encontrada."));
+
+        if (req.Status <= order.Status)
+            return BadRequest(ApiResponse<object?>.Fail("INVALID_STATUS", "El estado destino debe ser mayor al estado actual."));
+
+        order.Status = req.Status;
+        if (req.Status == 1 && order.StartingDate is null)
+            order.StartingDate = DateTime.UtcNow;
+        if (req.Status == 2 && order.FinishingDate is null)
+            order.FinishingDate = DateTime.UtcNow;
+
+        await serviceRepo.UpdateAsync(order, cancellationToken);
+        await uow.SaveChangesAsync(cancellationToken);
+        return Ok(ApiResponse<object?>.Ok(null));
+    }
+
+    [HttpPost("{no}/invoice")]
+    public async Task<IActionResult> Invoice(string no, CancellationToken cancellationToken)
+    {
+        var tenantId = GetTenantId();
+        if (tenantId == Guid.Empty)
+            return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
+
+        try
+        {
+            var invoiceNo = await mediator.Send(new InvoiceServiceOrderCommand(tenantId, no), cancellationToken);
+            return Ok(ApiResponse<object>.Ok(new { invoiceNo }));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ApiResponse<object?>.Fail("BAD_REQUEST", ex.Message));
+        }
     }
 
     private Guid GetTenantId()

@@ -45,16 +45,16 @@ public record UpsertCustomerRequest(
     string Address,
     string City,
     string Contact,
-    string PhoneNo,
-    string Email,
-    decimal CreditLimit,
-    string VatRegistrationNo,
-    string PaymentTermsCode,
-    string PaymentMethodCode,
-    string SalespersonCode,
-    string CurrencyCode,
-    string CustomerPostingGroup,
-    string CountryRegionCode
+    string? PhoneNo,
+    string? Email,
+    decimal CreditLimit = 0m,
+    string? VatRegistrationNo = null,
+    string? PaymentTermsCode = null,
+    string? PaymentMethodCode = null,
+    string? SalespersonCode = null,
+    string? CurrencyCode = null,
+    string? CustomerPostingGroup = null,
+    string? CountryRegionCode = null
 );
 
 [Authorize]
@@ -114,9 +114,11 @@ public sealed class CustomersController(IMediator mediator) : ControllerBase
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
         var cmd = new UpsertCustomerCommand(tenantId, null, req.No, req.Name, req.Address, req.City,
-            req.Contact, req.PhoneNo, req.Email, req.CreditLimit, req.VatRegistrationNo,
-            req.PaymentTermsCode, req.PaymentMethodCode, req.SalespersonCode,
-            req.CurrencyCode, req.CustomerPostingGroup, req.CountryRegionCode);
+            req.Contact, req.PhoneNo ?? string.Empty, req.Email ?? string.Empty, req.CreditLimit,
+            req.VatRegistrationNo ?? string.Empty, req.PaymentTermsCode ?? string.Empty,
+            req.PaymentMethodCode ?? string.Empty, req.SalespersonCode ?? string.Empty,
+            req.CurrencyCode ?? string.Empty, req.CustomerPostingGroup ?? string.Empty,
+            req.CountryRegionCode ?? string.Empty);
 
         var result = await mediator.Send(cmd, cancellationToken);
         return result.Created
@@ -133,9 +135,11 @@ public sealed class CustomersController(IMediator mediator) : ControllerBase
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
         var cmd = new UpsertCustomerCommand(tenantId, no, req.No, req.Name, req.Address, req.City,
-            req.Contact, req.PhoneNo, req.Email, req.CreditLimit, req.VatRegistrationNo,
-            req.PaymentTermsCode, req.PaymentMethodCode, req.SalespersonCode,
-            req.CurrencyCode, req.CustomerPostingGroup, req.CountryRegionCode);
+            req.Contact, req.PhoneNo ?? string.Empty, req.Email ?? string.Empty, req.CreditLimit,
+            req.VatRegistrationNo ?? string.Empty, req.PaymentTermsCode ?? string.Empty,
+            req.PaymentMethodCode ?? string.Empty, req.SalespersonCode ?? string.Empty,
+            req.CurrencyCode ?? string.Empty, req.CustomerPostingGroup ?? string.Empty,
+            req.CountryRegionCode ?? string.Empty);
 
         var result = await mediator.Send(cmd, cancellationToken);
         return result.Created

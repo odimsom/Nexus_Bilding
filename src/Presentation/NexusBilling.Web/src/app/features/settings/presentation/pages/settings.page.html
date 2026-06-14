@@ -28,12 +28,12 @@
     <!-- ── EMPRESA ─────────────────────────────────────────────── -->
     @if (activeTab() === 'company') {
       <div style="max-width:680px;">
+        <div class="nx-callout nx-callout--info" style="margin-bottom:var(--nx-space-4);">
+          La información de empresa se gestiona desde la base de datos del sistema. Contacta al administrador para modificarla.
+        </div>
         <div class="nx-card" style="margin-bottom:var(--nx-space-4);">
           <div class="nx-card__head">
             <div class="nx-card__title">Información de la Empresa</div>
-            <div class="nx-card__actions">
-              <button class="nx-btn nx-btn--primary nx-btn--sm">Guardar</button>
-            </div>
           </div>
           <div class="nx-card__body" style="display:flex;flex-direction:column;gap:var(--nx-space-4);">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--nx-space-4);">
@@ -103,7 +103,7 @@
               </div>
               <div>
                 <p style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);margin-bottom:var(--nx-space-2);">PNG, JPG o SVG. Máximo 2MB.</p>
-                <button class="nx-btn nx-btn--secondary nx-btn--sm">Subir logo</button>
+                <button class="nx-btn nx-btn--secondary nx-btn--sm" disabled title="Próximamente">Subir logo</button>
               </div>
             </div>
           </div>
@@ -119,60 +119,111 @@
             <h2 style="font-size:var(--nx-text-base);font-weight:var(--nx-weight-semibold);">Secuencias NCF — DGII</h2>
             <p style="font-size:var(--nx-text-sm);color:var(--nx-text-muted);">Administra los números de comprobante fiscal autorizados por la DGII.</p>
           </div>
-          <button class="nx-btn nx-btn--primary nx-btn--sm">+ Nueva Secuencia</button>
+          <button class="nx-btn nx-btn--primary nx-btn--sm" (click)="openNewNcf()">+ Nueva Secuencia</button>
         </div>
 
-        <div class="nx-card" style="overflow:hidden;">
-          <div style="overflow-x:auto;">
-            <table class="nx-table" aria-label="Secuencias NCF">
-              <thead>
-                <tr>
-                  <th>Tipo NCF</th>
-                  <th>Prefijo</th>
-                  <th class="nx-th--num">No. Actual</th>
-                  <th class="nx-th--num">Hasta No.</th>
-                  <th class="nx-th--num">Disponibles</th>
-                  <th>Vence</th>
-                  <th>Estado</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (s of ncfSeries; track s.type) {
-                  <tr>
-                    <td>
-                      <div style="font-weight:var(--nx-weight-medium);">{{ s.typeLabel }}</div>
-                      <div style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);font-family:var(--nx-font-mono);">{{ s.type }}</div>
-                    </td>
-                    <td class="nx-td--doc">{{ s.prefix }}</td>
-                    <td class="nx-td--num nx-num">{{ s.currentNo | number:'8.0-0' }}</td>
-                    <td class="nx-td--num nx-num">{{ s.toNo | number:'8.0-0' }}</td>
-                    <td class="nx-td--num">
-                      <span class="nx-num" [style.color]="available(s) < 100 ? 'var(--nx-money-negative)' : available(s) < 500 ? 'var(--nx-amber-600)' : ''">
-                        {{ available(s) | number:'1.0-0' }}
-                      </span>
-                    </td>
-                    <td style="font-size:var(--nx-text-sm);">{{ s.expiryDate }}</td>
-                    <td>
-                      @if (s.active) {
-                        <span class="nx-badge nx-badge--success"><span class="nx-badge__dot"></span>Activa</span>
-                      } @else {
-                        <span class="nx-badge nx-badge--outline">Inactiva</span>
-                      }
-                    </td>
-                    <td>
-                      <button class="nx-btn nx-btn--ghost nx-btn--sm">Editar</button>
-                    </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
+        @if (ecfSvc.loadingNcf()) {
+          <div class="nx-empty"><div class="nx-spinner"></div></div>
+        } @else if (ecfSvc.ncfSequences().length === 0) {
+          <div class="nx-empty" style="padding:var(--nx-space-8);">
+            <p class="nx-empty__title">Sin secuencias NCF configuradas</p>
+            <p class="nx-empty__text">Registra las secuencias de comprobantes autorizadas por la DGII.</p>
+            <button class="nx-btn nx-btn--primary nx-btn--sm" style="margin-top:var(--nx-space-3);" (click)="openNewNcf()">+ Nueva Secuencia</button>
           </div>
-        </div>
+        } @else {
+          <div class="nx-card" style="overflow:hidden;">
+            <div style="overflow-x:auto;">
+              <table class="nx-table" aria-label="Secuencias NCF">
+                <thead>
+                  <tr>
+                    <th>Tipo NCF</th>
+                    <th class="nx-th--num">No. Actual</th>
+                    <th class="nx-th--num">Hasta No.</th>
+                    <th class="nx-th--num">Disponibles</th>
+                    <th>Vence</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (s of ecfSvc.ncfSequences(); track s.id) {
+                    <tr>
+                      <td>
+                        <div style="font-weight:var(--nx-weight-medium);">{{ ncfLabel(s.ncfType) }}</div>
+                        <div style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);font-family:var(--nx-font-mono);">{{ s.ncfType }}</div>
+                      </td>
+                      <td class="nx-td--num nx-num">{{ s.currentNumber | number:'1.0-0' }}</td>
+                      <td class="nx-td--num nx-num">{{ s.maxNumber | number:'1.0-0' }}</td>
+                      <td class="nx-td--num">
+                        <span class="nx-num" [style.color]="ncfAvailable(s) < 100 ? 'var(--nx-red-600)' : ncfAvailable(s) < 500 ? 'var(--nx-amber-600)' : ''">
+                          {{ ncfAvailable(s) | number:'1.0-0' }}
+                        </span>
+                      </td>
+                      <td style="font-size:var(--nx-text-sm);">{{ s.expirationDate | date:'dd/MM/yyyy' }}</td>
+                      <td style="display:flex;gap:var(--nx-space-1);">
+                        <button class="nx-btn nx-btn--ghost nx-btn--sm" (click)="editNcf(s)">Editar</button>
+                        <button class="nx-btn nx-btn--ghost nx-btn--sm" style="color:var(--nx-red-500);" (click)="deleteNcf(s.id)">Eliminar</button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        }
 
         <div class="nx-callout nx-callout--info" style="margin-top:var(--nx-space-4);">
           <strong>Nota DGII:</strong> Los NCF deben solicitarse en la Oficina Virtual de la DGII (dgii.gov.do). Las secuencias con menos de 100 disponibles requieren renovación inmediata.
         </div>
+
+        <!-- NCF Modal -->
+        @if (showNcfModal()) {
+          <div class="modal-backdrop" (click)="closeNcfModal()">
+            <div class="modal-box" (click)="$event.stopPropagation()" style="max-width:480px;">
+              <div class="modal-header">
+                <h2 class="nx-page-title" style="margin:0;">{{ editingNcfId ? 'Editar Secuencia NCF' : 'Nueva Secuencia NCF' }}</h2>
+                <button class="nx-iconbtn" (click)="closeNcfModal()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+              </div>
+              <div class="modal-body">
+                @if (ncfError()) { <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ ncfError() }}</div> }
+                <div class="form-grid">
+                  <div class="nx-field" style="grid-column:1/-1;">
+                    <label class="nx-label">Tipo de NCF *</label>
+                    @if (editingNcfId) {
+                      <input class="nx-input" [value]="ncfForm.ncfType" disabled style="opacity:.6;font-family:var(--nx-font-mono);" />
+                    } @else {
+                      <select class="nx-select" [(ngModel)]="ncfForm.ncfType">
+                        <option value="">— Seleccionar tipo —</option>
+                        @for (entry of NCF_LABELS | keyvalue; track entry.key) {
+                          <option [value]="entry.key">{{ entry.key }} — {{ entry.value }}</option>
+                        }
+                      </select>
+                    }
+                  </div>
+                  <div class="nx-field">
+                    <label class="nx-label">No. Actual</label>
+                    <input class="nx-input nx-num" type="number" [(ngModel)]="ncfForm.currentNumber" min="1" />
+                  </div>
+                  <div class="nx-field">
+                    <label class="nx-label">No. Máximo *</label>
+                    <input class="nx-input nx-num" type="number" [(ngModel)]="ncfForm.maxNumber" min="1" />
+                  </div>
+                  <div class="nx-field" style="grid-column:1/-1;">
+                    <label class="nx-label">Fecha de Expiración *</label>
+                    <input class="nx-input" type="date" [(ngModel)]="ncfForm.expirationDate" />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="nx-btn nx-btn--ghost" (click)="closeNcfModal()">Cancelar</button>
+                <button class="nx-btn nx-btn--primary" [disabled]="ncfSaving()" (click)="saveNcf()">
+                  @if (ncfSaving()) { Guardando… } @else { Guardar }
+                </button>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     }
 
@@ -183,10 +234,18 @@
           <div class="nx-card__head">
             <div class="nx-card__title">Configuración DGII (e-CF)</div>
             <div class="nx-card__actions">
-              <button class="nx-btn nx-btn--primary nx-btn--sm">Guardar Cambios</button>
+              <button class="nx-btn nx-btn--primary nx-btn--sm" [disabled]="ecfSaving()" (click)="saveEcfConfig()">
+                @if (ecfSaving()) { Guardando… } @else { Guardar Cambios }
+              </button>
             </div>
           </div>
           <div class="nx-card__body" style="display:flex;flex-direction:column;gap:var(--nx-space-4);">
+            @if (ecfError()) {
+              <div class="nx-callout nx-callout--danger">{{ ecfError() }}</div>
+            }
+            @if (ecfSuccess()) {
+              <div class="nx-callout nx-callout--success">Configuración ECF guardada correctamente.</div>
+            }
             <div class="nx-callout nx-callout--info">
               Para emitir comprobantes fiscales electrónicos, tu empresa debe estar registrada como emisor ante la DGII y poseer un certificado digital (.p12).
             </div>
@@ -221,7 +280,7 @@
                   <label class="nx-field" style="flex:1;">
                     <span class="nx-label">Archivo de certificado</span>
                     <div style="display:flex;gap:var(--nx-space-2);">
-                      <input type="text" class="nx-input" readonly [value]="ecfForm.p12Path || 'No seleccionado'" />
+                      <input type="text" class="nx-input" readonly value="No seleccionado" />
                       <button class="nx-btn nx-btn--secondary">Seleccionar</button>
                     </div>
                   </label>
@@ -251,23 +310,30 @@
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--nx-space-4);">
-          <!-- Condiciones de pago (read-only por ahora) -->
+          <!-- Condiciones de pago con CRUD -->
           <div class="nx-card">
             <div class="nx-card__head">
               <div class="nx-card__title">Condiciones de Pago</div>
+              <div class="nx-card__actions">
+                <button class="nx-btn nx-btn--ghost nx-btn--sm" (click)="openPtModal()">+ Agregar</button>
+              </div>
             </div>
             <div style="overflow:hidden;">
               <table class="nx-table">
-                <thead><tr><th>Código</th><th>Descripción</th></tr></thead>
+                <thead><tr><th>Código</th><th>Descripción</th><th></th></tr></thead>
                 <tbody>
                   @for (pt of paymentTermsSvc.terms(); track pt.code) {
                     <tr>
                       <td class="nx-td--doc">{{ pt.code }}</td>
                       <td>{{ pt.description }}</td>
+                      <td style="display:flex;gap:var(--nx-space-1);">
+                        <button class="nx-btn nx-btn--ghost nx-btn--sm" (click)="editPtModal(pt)">Editar</button>
+                        <button class="nx-btn nx-btn--ghost nx-btn--sm" style="color:var(--nx-red-500);" (click)="deletePt(pt.code)">Eliminar</button>
+                      </td>
                     </tr>
                   }
                   @if (paymentTermsSvc.terms().length === 0) {
-                    <tr><td colspan="2" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-4);">Sin condiciones configuradas.</td></tr>
+                    <tr><td colspan="3" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-4);">Sin condiciones configuradas.</td></tr>
                   }
                 </tbody>
               </table>
@@ -336,6 +402,39 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal Condición de Pago -->
+      @if (showPtModal()) {
+        <div class="modal-backdrop" (click)="closePtModal()">
+          <div class="modal-box" (click)="$event.stopPropagation()" style="max-width:420px;">
+            <div class="modal-header">
+              <h2 class="nx-page-title" style="margin:0;">{{ ptForm.isNew ? 'Nueva Condición de Pago' : 'Editar Condición de Pago' }}</h2>
+              <button class="nx-iconbtn" (click)="closePtModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="modal-body">
+              @if (ptError()) { <div class="nx-callout nx-callout--danger" style="margin-bottom:var(--nx-space-3);">{{ ptError() }}</div> }
+              <div class="form-grid">
+                <div class="nx-field">
+                  <label class="nx-label">Código *</label>
+                  <input class="nx-input" [(ngModel)]="ptForm.code" [disabled]="!ptForm.isNew" [style.opacity]="!ptForm.isNew ? '.6' : '1'" placeholder="CM, 30D…" style="text-transform:uppercase;" />
+                </div>
+                <div class="nx-field">
+                  <label class="nx-label">Descripción *</label>
+                  <input class="nx-input" [(ngModel)]="ptForm.description" placeholder="Contado, 30 Días…" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="nx-btn nx-btn--ghost" (click)="closePtModal()">Cancelar</button>
+              <button class="nx-btn nx-btn--primary" [disabled]="ptSaving()" (click)="savePt()">
+                @if (ptSaving()) { Guardando… } @else { Guardar }
+              </button>
+            </div>
+          </div>
+        </div>
+      }
 
       <!-- Modal Método de Pago -->
       @if (showPmModal()) {
@@ -572,7 +671,7 @@
             <div class="nx-card__head">
               <div class="nx-card__title">Grupos de Clientes</div>
               <div class="nx-card__actions">
-                <button class="nx-btn nx-btn--ghost nx-btn--sm">+ Agregar</button>
+                <button class="nx-btn nx-btn--ghost nx-btn--sm" disabled title="Próximamente">+ Agregar</button>
               </div>
             </div>
             <div style="overflow:hidden;">
@@ -591,7 +690,7 @@
             <div class="nx-card__head">
               <div class="nx-card__title">Grupos de Proveedores</div>
               <div class="nx-card__actions">
-                <button class="nx-btn nx-btn--ghost nx-btn--sm">+ Agregar</button>
+                <button class="nx-btn nx-btn--ghost nx-btn--sm" disabled title="Próximamente">+ Agregar</button>
               </div>
             </div>
             <div style="overflow:hidden;">

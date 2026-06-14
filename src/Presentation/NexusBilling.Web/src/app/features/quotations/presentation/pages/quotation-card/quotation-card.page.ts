@@ -37,6 +37,17 @@ interface FormLine {
   resourceNo: string | null;
 }
 
+interface EditLine {
+  lineType: 'Item' | 'Service';
+  itemNo: string;
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  lineDiscountPct: number;
+  unitOfMeasure: string;
+  vatPct: number;
+}
+
 @Component({
   selector: 'app-quotation-card',
   standalone: true,
@@ -69,6 +80,11 @@ export class QuotationCardPage implements OnInit {
   showDupDialog = signal(false);
   dupDate = new Date().toISOString().split('T')[0];
   dupValidUntil = '';
+
+  editingLines = signal(false);
+  linesSaving = signal(false);
+  linesError = signal('');
+  editLines = signal<EditLine[]>([]);
 
   showEditModal = signal(false);
   editSaving = signal(false);
@@ -152,26 +168,90 @@ export class QuotationCardPage implements OnInit {
 
   // Lines
   addLine(type: 'Item' | 'Service'): void {
-    this.newLines.update(lines => [...lines, {
-      lineType: type,
-      itemNo: '',
-      description: '',
-      quantity: type === 'Service' ? 1 : 1,
-      unitPrice: 0,
-      lineDiscountPct: 0,
-      unitOfMeasure: type === 'Service' ? 'HRS' : 'UND',
-      vatPct: 18,
-      serviceBillingType: type === 'Service' ? 1 : null,
-      serviceStartDate: null,
-      serviceEndDate: null,
-      serviceHours: null,
-      hourlyRate: null,
-      resourceNo: null,
-    }]);
+    if (this.editingLines()) {
+      this.editLines.update(l => [...l, {
+        lineType: type,
+        itemNo: '',
+        description: '',
+        quantity: 1,
+        unitPrice: 0,
+        lineDiscountPct: 0,
+        unitOfMeasure: type === 'Service' ? 'HRS' : 'UND',
+        vatPct: 18,
+      }]);
+    } else {
+      this.newLines.update(lines => [...lines, {
+        lineType: type,
+        itemNo: '',
+        description: '',
+        quantity: 1,
+        unitPrice: 0,
+        lineDiscountPct: 0,
+        unitOfMeasure: type === 'Service' ? 'HRS' : 'UND',
+        vatPct: 18,
+        serviceBillingType: type === 'Service' ? 1 : null,
+        serviceStartDate: null,
+        serviceEndDate: null,
+        serviceHours: null,
+        hourlyRate: null,
+        resourceNo: null,
+      }]);
+    }
   }
 
   removeLine(i: number): void {
     this.newLines.update(lines => lines.filter((_, idx) => idx !== i));
+  }
+
+  removeEditLine(i: number): void {
+    this.editLines.update(l => l.filter((_, idx) => idx !== i));
+  }
+
+  startEditLines(): void {
+    const d = this.detail();
+    if (!d) return;
+    this.editLines.set(d.lines.map(l => ({
+      lineType: (l.lineType === 'Service' ? 'Service' : 'Item') as 'Item' | 'Service',
+      itemNo: l.no ?? '',
+      description: l.description,
+      quantity: l.quantity,
+      unitPrice: l.unitPrice,
+      lineDiscountPct: l.lineDiscountPct,
+      unitOfMeasure: l.unitOfMeasure,
+      vatPct: l.vatPct ?? 18,
+    })));
+    this.linesError.set('');
+    this.editingLines.set(true);
+  }
+
+  cancelEditLines(): void {
+    this.editingLines.set(false);
+    this.linesError.set('');
+  }
+
+  lineEditTotal(line: EditLine): number {
+    const base = line.quantity * line.unitPrice;
+    const afterDisc = base * (1 - (line.lineDiscountPct || 0) / 100);
+    return Math.round(afterDisc * (1 + (line.vatPct || 0) / 100) * 100) / 100;
+  }
+
+  async saveEditLines(): Promise<void> {
+    const d = this.detail();
+    if (!d || this.linesSaving()) return;
+    const lines = this.editLines();
+    const invalid = lines.find(l => !l.description?.trim());
+    if (invalid) { this.linesError.set('Todas las líneas deben tener descripción.'); return; }
+    this.linesSaving.set(true);
+    this.linesError.set('');
+    try {
+      await this.svc.updateLines(d.no, lines);
+      this.detail.set(await this.svc.getByNo(d.no));
+      this.editingLines.set(false);
+    } catch (e: any) {
+      this.linesError.set(e?.error?.error?.message ?? 'Error al guardar las líneas.');
+    } finally {
+      this.linesSaving.set(false);
+    }
   }
 
   recalcServiceLine(i: number): void {

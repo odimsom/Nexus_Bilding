@@ -65,4 +65,13 @@ export class ServiceOrderService {
   async getDetail(no: string): Promise<ServiceOrderDetail> {
     return firstValueFrom(this.api.get<ServiceOrderDetail>(`service/orders/${encodeURIComponent(no)}`));
   }
+
+  async updateStatus(no: string, status: number): Promise<void> {
+    await firstValueFrom(this.api.patch<void>(`service/orders/${encodeURIComponent(no)}/status`, { status }));
+  }
+
+  async invoiceServiceOrder(no: string): Promise<string> {
+    const res = await firstValueFrom(this.api.post<{ invoiceNo: string }>(`service/orders/${encodeURIComponent(no)}/invoice`, {}));
+    return res.invoiceNo;
+  }
 }

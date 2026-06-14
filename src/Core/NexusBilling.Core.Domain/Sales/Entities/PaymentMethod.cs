@@ -13,11 +13,11 @@ public class PaymentMethod : Entity
     public string Code { get; set; }
     public string Description { get; set; }
     public short BalAccountType { get; private set; }
-    public string BalAccountNo { get; private set; }
+    public string BalAccountNo { get; private set; } = string.Empty;
     public bool DirectDebit { get; private set; }
-    public string DirectDebitPmtTermsCode { get; private set; }
-    public string PmtExportLineDefinition { get; private set; }
-    public string BankDataConversionPmtType { get; private set; }
+    public string DirectDebitPmtTermsCode { get; private set; } = string.Empty;
+    public string PmtExportLineDefinition { get; private set; } = string.Empty;
+    public string BankDataConversionPmtType { get; private set; } = string.Empty;
 
     public static OperationResult<PaymentMethod, DomainError> Create(TenantIdentifier tenantId)
     {

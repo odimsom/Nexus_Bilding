@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { QuotationService } from '../../../data/quotation.service';
 import { QuotationListItem } from '../../../domain/quotation.model';
@@ -16,6 +16,7 @@ import { ExcelExportService } from '../../../../../core/services/excel/excel-exp
 export class QuotationListPage implements OnInit {
   readonly svc = inject(QuotationService);
   private readonly excel = inject(ExcelExportService);
+  private readonly route = inject(ActivatedRoute);
 
   search = '';
   statusFilter = '';
@@ -23,6 +24,8 @@ export class QuotationListPage implements OnInit {
   filtered = signal<QuotationListItem[]>([]);
 
   async ngOnInit() {
+    const customerNo = this.route.snapshot.queryParamMap.get('customerNo');
+    if (customerNo) this.search = customerNo;
     await this.svc.load({ pageSize: 200 });
     this.applyFilter();
   }

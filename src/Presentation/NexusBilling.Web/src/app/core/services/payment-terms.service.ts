@@ -21,14 +21,36 @@ export class PaymentTermsService {
   private readonly api = inject(ApiService);
 
   terms = signal<PaymentTerm[]>([]);
+  private loaded = false;
 
   async load(): Promise<void> {
-    if (this.terms().length > 0) return;
+    if (this.loaded) return;
     try {
       const result = await firstValueFrom(this.api.get<PaymentTerm[]>('administration/payment-terms'));
       this.terms.set(result ?? FALLBACK);
+      this.loaded = true;
     } catch {
       this.terms.set(FALLBACK);
     }
+  }
+
+  private async reload(): Promise<void> {
+    this.loaded = false;
+    await this.load();
+  }
+
+  async create(code: string, description: string): Promise<void> {
+    await firstValueFrom(this.api.post<PaymentTerm>('administration/payment-terms', { code, description }));
+    await this.reload();
+  }
+
+  async update(code: string, description: string): Promise<void> {
+    await firstValueFrom(this.api.put<PaymentTerm>(`administration/payment-terms/${code}`, { code, description }));
+    await this.reload();
+  }
+
+  async delete(code: string): Promise<void> {
+    await firstValueFrom(this.api.delete(`administration/payment-terms/${code}`));
+    await this.reload();
   }
 }

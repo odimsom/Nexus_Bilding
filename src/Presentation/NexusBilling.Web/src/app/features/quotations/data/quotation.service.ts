@@ -60,6 +60,22 @@ export class QuotationService {
     await firstValueFrom(this.api.patch<void>(`sales/quotations/${encodeURIComponent(no)}`, data));
   }
 
+  async updateLines(no: string, lines: Array<{
+    lineType: string;
+    itemNo: string;
+    description: string;
+    quantity: number;
+    unitPrice: number;
+    lineDiscountPct: number;
+    unitOfMeasure: string;
+    vatPct: number;
+  }>): Promise<{ amount: number; amountIncludingVat: number }> {
+    return firstValueFrom(
+      this.api.put<{ amount: number; amountIncludingVat: number }>(
+        `sales/quotations/${encodeURIComponent(no)}/lines`, lines)
+    );
+  }
+
   async duplicate(no: string, newPostingDate: string, newValidUntilDate: string | null, seriesCode = 'COT'): Promise<string> {
     const res = await firstValueFrom(
       this.api.post<{ no: string }>(`sales/quotations/${encodeURIComponent(no)}/duplicate`, {

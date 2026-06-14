@@ -144,6 +144,12 @@
           <div class="nx-factbox__section">
             <div style="display:flex;flex-direction:column;gap:var(--nx-space-2);">
               <button class="nx-btn nx-btn--secondary nx-btn--sm nx-btn--block" (click)="openEdit()">Editar Proveedor</button>
+              <a [routerLink]="['/purchase-invoices']" [queryParams]="{vendorNo: vendor()!.no}" class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block">
+                Ver Facturas de Compra
+              </a>
+              <a [routerLink]="['/purchases']" [queryParams]="{vendorNo: vendor()!.no}" class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block">
+                Ver Órdenes de Compra
+              </a>
               <a routerLink="/purchase-invoices/new" [queryParams]="{vendorNo: vendor()!.no, vendorName: vendor()!.name}" class="nx-btn nx-btn--ghost nx-btn--sm nx-btn--block">
                 Nueva Factura de Compra
               </a>

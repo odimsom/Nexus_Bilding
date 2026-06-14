@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InvoiceService } from '../../../data/invoice.service';
 import { ExcelExportService } from '../../../../../core/services/excel/excel-export.service';
@@ -16,6 +16,7 @@ import { CreateSalesOrderModalComponent } from '../../components/create-sales-or
 export class SalesOrderListPage implements OnInit {
   readonly svc = inject(InvoiceService);
   readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   showNewOrderModal = signal(false);
   private readonly excel = inject(ExcelExportService);
 
@@ -29,7 +30,11 @@ export class SalesOrderListPage implements OnInit {
   searchText = '';
   filtered = signal<any[]>([]);
 
-  async ngOnInit(): Promise<void> { await this.reload(); }
+  async ngOnInit(): Promise<void> {
+    const customerNo = this.route.snapshot.queryParamMap.get('customerNo');
+    if (customerNo) this.searchText = customerNo;
+    await this.reload();
+  }
 
   async reload(): Promise<void> {
     await this.svc.loadOrders();
@@ -43,7 +48,11 @@ export class SalesOrderListPage implements OnInit {
     if (this.activeTab !== 'all') list = list.filter(o => o.documentType === this.activeTab);
     if (this.searchText) {
       const q = this.searchText.toLowerCase();
-      list = list.filter(o => o.no.toLowerCase().includes(q) || (o.sellToCustomerName || '').toLowerCase().includes(q));
+      list = list.filter(o =>
+        o.no.toLowerCase().includes(q) ||
+        (o.sellToCustomerName || '').toLowerCase().includes(q) ||
+        (o.sellToCustomerNo || '').toLowerCase().includes(q)
+      );
     }
     this.filtered.set(list);
   }

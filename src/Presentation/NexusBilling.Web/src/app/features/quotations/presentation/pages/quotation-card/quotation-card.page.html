@@ -328,71 +328,142 @@
 
           <!-- Líneas -->
           <div class="nx-card">
-            <div class="nx-card__head"><div class="nx-card__title">Líneas de Cotización</div></div>
-            @if (!detail()!.lines.length) {
-              <div class="nx-empty" style="padding:var(--nx-space-8);">
-                <p class="nx-empty__text">Sin líneas de detalle.</p>
-              </div>
-            } @else {
+            <div class="nx-card__head">
+              <div class="nx-card__title">Líneas de Cotización</div>
+              @if (detail()!.status === 'Open' && !editingLines()) {
+                <div class="nx-card__actions">
+                  <button class="nx-btn nx-btn--ghost nx-btn--sm" (click)="startEditLines()">Editar líneas</button>
+                </div>
+              }
+              @if (editingLines()) {
+                <div class="nx-card__actions" style="gap:var(--nx-space-2);">
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine('Item')">+ Artículo</button>
+                  <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="addLine('Service')">+ Servicio</button>
+                  <button class="nx-btn nx-btn--ghost nx-btn--sm" (click)="cancelEditLines()">Cancelar</button>
+                  <button class="nx-btn nx-btn--primary nx-btn--sm" [disabled]="linesSaving()" (click)="saveEditLines()">
+                    @if (linesSaving()) { Guardando… } @else { Guardar líneas }
+                  </button>
+                </div>
+              }
+            </div>
+            @if (linesError()) {
+              <div class="nx-callout nx-callout--danger" style="margin:var(--nx-space-3) var(--nx-space-4) 0;">{{ linesError() }}</div>
+            }
+            @if (editingLines()) {
               <div style="overflow-x:auto;">
                 <table class="nx-table">
                   <thead>
                     <tr>
                       <th style="width:80px;">Tipo</th>
-                      <th>Descripción</th>
-                      <th class="nx-th--num" style="width:80px;">Cant.</th>
+                      <th>Descripción *</th>
+                      <th class="nx-th--num" style="width:90px;">Cant.</th>
                       <th style="width:60px;">U/M</th>
                       <th class="nx-th--num" style="width:120px;">Precio unit.</th>
                       <th class="nx-th--num" style="width:70px;">Dto. %</th>
-                      <th class="nx-th--num" style="width:110px;">Importe</th>
-                      <th class="nx-th--num" style="width:120px;">c/ITBIS</th>
+                      <th class="nx-th--num" style="width:80px;">ITBIS %</th>
+                      <th class="nx-th--num" style="width:110px;">Total</th>
+                      <th style="width:36px;"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    @for (line of detail()!.lines; track line.lineNo) {
+                    @for (line of editLines(); track $index; let i = $index) {
                       <tr>
                         <td>
                           <span class="nx-badge" [class]="line.lineType === 'Service' ? 'nx-badge--info' : 'nx-badge--outline'" style="font-size:10px;">
                             {{ line.lineType === 'Service' ? 'Servicio' : 'Artículo' }}
                           </span>
                         </td>
+                        <td><input class="nx-input nx-input--inline" [(ngModel)]="line.description" placeholder="Descripción" /></td>
+                        <td><input class="nx-input nx-input--inline nx-input--num" type="number" [(ngModel)]="line.quantity" min="0.001" step="1" style="width:75px;" /></td>
+                        <td><input class="nx-input nx-input--inline" [(ngModel)]="line.unitOfMeasure" style="width:55px;" /></td>
+                        <td><input class="nx-input nx-input--inline nx-input--num" type="number" [(ngModel)]="line.unitPrice" min="0" step="0.01" style="width:105px;" /></td>
+                        <td><input class="nx-input nx-input--inline nx-input--num" type="number" [(ngModel)]="line.lineDiscountPct" min="0" max="100" step="0.1" style="width:60px;" /></td>
                         <td>
-                          <div>{{ line.description }}</div>
-                          @if (line.lineType === 'Service') {
-                            <div style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-top:2px;">
-                              {{ billingTypeLabel(line.serviceBillingType) }}
-                              @if (line.serviceStartDate || line.serviceEndDate) {
-                                · {{ line.serviceStartDate || '?' }} → {{ line.serviceEndDate || '?' }}
-                              }
-                              @if (line.resourceNo) { · Recurso: {{ line.resourceNo }} }
-                            </div>
-                          }
+                          <select class="nx-input nx-input--inline" [(ngModel)]="line.vatPct" style="width:70px;">
+                            <option [ngValue]="0">0%</option>
+                            <option [ngValue]="18">18%</option>
+                          </select>
                         </td>
-                        <td class="nx-td--num">{{ line.quantity | number:'1.0-4' }}</td>
-                        <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ line.unitOfMeasure }}</td>
-                        <td class="nx-td--num">{{ line.unitPrice | number:'1.2-2' }}</td>
-                        <td class="nx-td--num">
-                          @if (line.lineDiscountPct > 0) { {{ line.lineDiscountPct | number:'1.1-2' }}% } @else { — }
+                        <td class="nx-td--num" style="font-size:var(--nx-text-sm);">{{ lineEditTotal(line) | number:'1.2-2' }}</td>
+                        <td>
+                          <button class="nx-iconbtn" style="color:var(--nx-red-500);" (click)="removeEditLine(i)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                          </button>
                         </td>
-                        <td class="nx-td--num">{{ line.amount | number:'1.2-2' }}</td>
-                        <td class="nx-td--num" style="font-weight:var(--nx-weight-semibold);">{{ line.amountIncludingVat | number:'1.2-2' }}</td>
                       </tr>
+                    }
+                    @if (editLines().length === 0) {
+                      <tr><td colspan="9" style="text-align:center;color:var(--nx-text-muted);padding:var(--nx-space-6);font-style:italic;">Sin líneas. Agrega un artículo o servicio.</td></tr>
                     }
                   </tbody>
                 </table>
               </div>
-              <div class="nx-card__foot" style="justify-content:flex-end;">
-                <dl class="nx-kv" style="display:grid;grid-template-columns:auto auto;gap:var(--nx-space-1) var(--nx-space-6);text-align:right;min-width:280px;">
-                  <dt class="nx-kv__k">Subtotal</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ detail()!.amount | number:'1.2-2' }}</dd>
-                  <dt class="nx-kv__k">ITBIS</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono">{{ (detail()!.amountIncludingVat - detail()!.amount) | number:'1.2-2' }}</dd>
-                  <dt class="nx-kv__k" style="font-weight:var(--nx-weight-bold);color:var(--nx-text-strong);">Total</dt>
-                  <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-lg);font-weight:var(--nx-weight-bold);">
-                    {{ detail()!.currencyCode || 'RD$' }} {{ detail()!.amountIncludingVat | number:'1.2-2' }}
-                  </dd>
-                </dl>
-              </div>
+            } @else {
+              @if (!detail()!.lines.length) {
+                <div class="nx-empty" style="padding:var(--nx-space-8);">
+                  <p class="nx-empty__text">Sin líneas de detalle.</p>
+                </div>
+              } @else {
+                <div style="overflow-x:auto;">
+                  <table class="nx-table">
+                    <thead>
+                      <tr>
+                        <th style="width:80px;">Tipo</th>
+                        <th>Descripción</th>
+                        <th class="nx-th--num" style="width:80px;">Cant.</th>
+                        <th style="width:60px;">U/M</th>
+                        <th class="nx-th--num" style="width:120px;">Precio unit.</th>
+                        <th class="nx-th--num" style="width:70px;">Dto. %</th>
+                        <th class="nx-th--num" style="width:110px;">Importe</th>
+                        <th class="nx-th--num" style="width:120px;">c/ITBIS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (line of detail()!.lines; track line.lineNo) {
+                        <tr>
+                          <td>
+                            <span class="nx-badge" [class]="line.lineType === 'Service' ? 'nx-badge--info' : 'nx-badge--outline'" style="font-size:10px;">
+                              {{ line.lineType === 'Service' ? 'Servicio' : 'Artículo' }}
+                            </span>
+                          </td>
+                          <td>
+                            <div>{{ line.description }}</div>
+                            @if (line.lineType === 'Service') {
+                              <div style="font-size:var(--nx-text-xs);color:var(--nx-text-muted);margin-top:2px;">
+                                {{ billingTypeLabel(line.serviceBillingType) }}
+                                @if (line.serviceStartDate || line.serviceEndDate) {
+                                  · {{ line.serviceStartDate || '?' }} → {{ line.serviceEndDate || '?' }}
+                                }
+                                @if (line.resourceNo) { · Recurso: {{ line.resourceNo }} }
+                              </div>
+                            }
+                          </td>
+                          <td class="nx-td--num">{{ line.quantity | number:'1.0-4' }}</td>
+                          <td style="color:var(--nx-text-muted);font-size:var(--nx-text-sm);">{{ line.unitOfMeasure }}</td>
+                          <td class="nx-td--num">{{ line.unitPrice | number:'1.2-2' }}</td>
+                          <td class="nx-td--num">
+                            @if (line.lineDiscountPct > 0) { {{ line.lineDiscountPct | number:'1.1-2' }}% } @else { — }
+                          </td>
+                          <td class="nx-td--num">{{ line.amount | number:'1.2-2' }}</td>
+                          <td class="nx-td--num" style="font-weight:var(--nx-weight-semibold);">{{ line.amountIncludingVat | number:'1.2-2' }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+                <div class="nx-card__foot" style="justify-content:flex-end;">
+                  <dl class="nx-kv" style="display:grid;grid-template-columns:auto auto;gap:var(--nx-space-1) var(--nx-space-6);text-align:right;min-width:280px;">
+                    <dt class="nx-kv__k">Subtotal</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ detail()!.amount | number:'1.2-2' }}</dd>
+                    <dt class="nx-kv__k">ITBIS</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono">{{ (detail()!.amountIncludingVat - detail()!.amount) | number:'1.2-2' }}</dd>
+                    <dt class="nx-kv__k" style="font-weight:var(--nx-weight-bold);color:var(--nx-text-strong);">Total</dt>
+                    <dd class="nx-kv__v nx-kv__v--mono" style="font-size:var(--nx-text-lg);font-weight:var(--nx-weight-bold);">
+                      {{ detail()!.currencyCode || 'RD$' }} {{ detail()!.amountIncludingVat | number:'1.2-2' }}
+                    </dd>
+                  </dl>
+                </div>
+              }
             }
           </div>
 

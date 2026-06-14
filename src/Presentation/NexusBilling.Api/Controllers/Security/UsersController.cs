@@ -44,15 +44,15 @@ public record CreateUserRequest(
     string Email,
     string Password,
     string FullName,
-    string EmployeeNo,
-    string GroupCode);
+    string? EmployeeNo = null,
+    string? GroupCode = null);
 
 public record UpdateUserRequest(
     string FullName,
     string Email,
-    string EmployeeNo,
-    string GroupCode,
-    string? NewPassword);
+    string? EmployeeNo = null,
+    string? GroupCode = null,
+    string? NewPassword = null);
 
 [Authorize]
 [ApiController]
@@ -78,7 +78,7 @@ public sealed class UsersController(IMediator mediator) : ControllerBase
     {
         var id = await mediator.Send(new CreateUserCommand(
             GetTenantId(), req.Username, req.Email, req.Password,
-            req.FullName, req.EmployeeNo, req.GroupCode), ct);
+            req.FullName, req.EmployeeNo ?? string.Empty, req.GroupCode ?? string.Empty), ct);
         return Ok(ApiResponse<object>.Ok(new { id }));
     }
 
@@ -87,7 +87,7 @@ public sealed class UsersController(IMediator mediator) : ControllerBase
     {
         var ok = await mediator.Send(new UpdateUserCommand(
             GetTenantId(), userId, req.FullName, req.Email,
-            req.EmployeeNo, req.GroupCode, req.NewPassword), ct);
+            req.EmployeeNo ?? string.Empty, req.GroupCode ?? string.Empty, req.NewPassword), ct);
         return ok ? Ok(ApiResponse<bool>.Ok(true)) : NotFound();
     }
 

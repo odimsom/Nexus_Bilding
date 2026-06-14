@@ -32,18 +32,30 @@
           </div>
         </div>
         <div class="nx-page-actions">
-          <button class="nx-btn nx-btn--secondary nx-btn--sm" disabled title="Próximamente">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          @if (actionError()) {
+            <span style="font-size:var(--nx-text-xs);color:var(--nx-red-500);">{{ actionError() }}</span>
+          }
+          <button class="nx-btn nx-btn--secondary nx-btn--sm" [disabled]="printing()" (click)="printPdf()">
+            @if (printing()) {
+              <div class="nx-spinner" style="width:14px;height:14px;border-width:2px;"></div>
+            } @else {
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            }
             Imprimir
           </button>
           @if (order()!.status === 0) {
-            <button class="nx-btn nx-btn--subtle nx-btn--sm" disabled title="Próximamente">
-              Iniciar Servicio
+            <button class="nx-btn nx-btn--subtle nx-btn--sm" [disabled]="working()" (click)="updateStatus(1)">
+              @if (working()) { Procesando… } @else { Iniciar Servicio }
             </button>
           }
           @if (order()!.status === 1) {
-            <button class="nx-btn nx-btn--primary nx-btn--sm" disabled title="Próximamente">
-              Finalizar
+            <button class="nx-btn nx-btn--primary nx-btn--sm" [disabled]="working()" (click)="updateStatus(2)">
+              @if (working()) { Procesando… } @else { Finalizar }
+            </button>
+          }
+          @if (order()!.status === 2) {
+            <button class="nx-btn nx-btn--primary nx-btn--sm" [disabled]="working()" (click)="invoiceOrder()">
+              @if (working()) { Generando factura… } @else { Facturar }
             </button>
           }
         </div>

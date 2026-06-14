@@ -43,28 +43,30 @@ using NexusBilling.Core.Application.Security.Features.Users.Queries.GetUsers;
 namespace NexusBilling.Api.Controllers.Sales;
 
 public record SalesOrderLineRequest(
-    string ItemNo,
     string Description,
     decimal Quantity,
     decimal UnitPrice,
-    decimal LineDiscountPct,
-    string UnitOfMeasure,
+    string? ItemNo = null,
+    decimal LineDiscountPct = 0m,
+    string? UnitOfMeasure = null,
+    decimal? VatPct = null,
     string LineType = "Item");
 
 public record CreateSalesOrderRequest(
-    string DocumentType,
     string SellToCustomerNo,
     string SellToCustomerName,
-    string ExternalDocumentNo,
-    string CurrencyCode,
-    string PaymentTermsCode,
-    string PaymentMethodCode,
-    string SalespersonCode,
     DateTime PostingDate,
-    DateTime? DueDate,
-    string? SeriesCode,
-    string? ManualNo,
-    IReadOnlyList<SalesOrderLineRequest> Lines);
+    IReadOnlyList<SalesOrderLineRequest> Lines,
+    string? DocumentType = null,
+    string? ExternalDocumentNo = null,
+    string? CurrencyCode = null,
+    string? PaymentTermsCode = null,
+    string? PaymentMethodCode = null,
+    string? SalespersonCode = null,
+    DateTime? DueDate = null,
+    string? SeriesCode = null,
+    string? ManualNo = null,
+    decimal? VatPct = null);
 
 [Authorize]
 [ApiController]
@@ -103,11 +105,11 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
             return Unauthorized(ApiResponse<object?>.Fail("UNAUTHORIZED", "Token inválido."));
 
         var lines = req.Lines.Select(l => new SalesOrderLineInput(
-            l.ItemNo, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure, l.LineType))
+            l.ItemNo ?? string.Empty, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure ?? "UND", l.LineType))
             .ToList();
 
         var cmd = new CreateSalesOrderCommand(
-            tenantId, req.DocumentType, req.SellToCustomerNo, req.SellToCustomerName,
+            tenantId, req.DocumentType ?? "Order", req.SellToCustomerNo, req.SellToCustomerName,
             req.ExternalDocumentNo ?? string.Empty, req.CurrencyCode ?? string.Empty,
             req.PaymentTermsCode ?? string.Empty, req.PaymentMethodCode ?? string.Empty,
             req.SalespersonCode ?? string.Empty, req.PostingDate, req.DueDate,
@@ -174,7 +176,7 @@ public sealed class SalesOrdersController(IMediator mediator) : ControllerBase
             var cmd = new UpdateSalesOrderLinesCommand(
                 tenantId, no,
                 lines.Select(l => new SalesOrderLineData(
-                    l.ItemNo, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure, l.LineType))
+                    l.ItemNo ?? string.Empty, l.Description, l.Quantity, l.UnitPrice, l.LineDiscountPct, l.UnitOfMeasure ?? "UND", l.LineType))
                 .ToList());
             var result = await mediator.Send(cmd, cancellationToken);
             return Ok(ApiResponse<object>.Ok(new { amount = result.Amount, amountIncludingVat = result.AmountIncludingVat }));

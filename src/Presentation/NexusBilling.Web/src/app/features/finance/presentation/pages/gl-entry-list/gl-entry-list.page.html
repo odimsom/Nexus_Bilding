@@ -12,10 +12,18 @@
         <h1 class="nx-page-title">Movimientos de Contabilidad (GL Entries)</h1>
         <p class="nx-page-subtitle">
           @if (svc.loading()) { Cargando… }
-          @else { Mostrando página {{ svc.currentPage() }} de {{ svc.totalPages() }} }
+          @else { Mostrando página {{ svc.currentPage() }} de {{ svc.totalPages() }} · {{ svc.totalItems() }} movimientos }
         </p>
       </div>
       <div class="nx-page-actions">
+        @if (filterAccountNo) {
+          <span class="nx-badge nx-badge--info" style="display:flex;align-items:center;gap:var(--nx-space-1);">
+            Cuenta: {{ filterAccountNo }}
+            <button class="nx-iconbtn nx-iconbtn--sm" style="width:16px;height:16px;min-width:0;" (click)="clearAccountFilter()" title="Quitar filtro">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        }
         <button class="nx-btn nx-btn--secondary nx-btn--sm" (click)="exportExcel()" [disabled]="svc.entries().length === 0">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Excel
         </button>
@@ -62,7 +70,7 @@
                   <td style="white-space:nowrap;color:var(--nx-text-strong);">{{ entry.postingDate | date:'dd/MM/yyyy' }}</td>
                   <td>{{ entry.documentType || '-' }}</td>
                   <td style="font-weight:var(--nx-weight-medium);">{{ entry.documentNo }}</td>
-                  <td><a [routerLink]="['/finance/gl-accounts', entry.glAccountNo]" class="nx-link">{{ entry.glAccountNo }}</a></td>
+                  <td>{{ entry.glAccountNo }}</td>
                   <td>{{ entry.glAccountName }}</td>
                   <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" [title]="entry.description">{{ entry.description }}</td>
                   <td class="num nx-num">

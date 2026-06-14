@@ -12,16 +12,16 @@ public class PurchaseLine : Entity
     public TenantIdentifier TenantId { get; private set; }
     public short DocumentType { get; private set; }
     public string? BuyFromVendorNo { get; private set; }
-    public string DocumentNo { get; private set; }
+    public string DocumentNo { get; private set; } = string.Empty;
     public int LineNo { get; private set; }
     public short Type { get; private set; }
-    public string No { get; private set; }
-    public string LocationCode { get; private set; }
-    public string PostingGroup { get; private set; }
+    public string No { get; private set; } = string.Empty;
+    public string LocationCode { get; private set; } = string.Empty;
+    public string PostingGroup { get; private set; } = string.Empty;
     public DateTime? ExpectedReceiptDate { get; private set; }
-    public string Description { get; private set; }
-    public string Description2 { get; private set; }
-    public string UnitOfMeasure { get; private set; }
+    public string Description { get; private set; } = string.Empty;
+    public string Description2 { get; private set; } = string.Empty;
+    public string UnitOfMeasure { get; private set; } = string.Empty;
     public decimal Quantity { get; private set; }
     public decimal OutstandingQuantity { get; private set; }
     public decimal QtyToInvoice { get; private set; }
@@ -40,8 +40,8 @@ public class PurchaseLine : Entity
     public decimal UnitsPerParcel { get; private set; }
     public decimal UnitVolume { get; private set; }
     public int ApplToItemEntry { get; private set; }
-    public string ShortcutDimension1Code { get; private set; }
-    public string ShortcutDimension2Code { get; private set; }
+    public string ShortcutDimension1Code { get; private set; } = string.Empty;
+    public string ShortcutDimension2Code { get; private set; } = string.Empty;
     public string? JobNo { get; private set; }
     public decimal IndirectCost { get; private set; }
     public bool RecalculateInvoiceDisc { get; private set; }
@@ -50,34 +50,34 @@ public class PurchaseLine : Entity
     public decimal AmtRcdNotInvoiced { get; private set; }
     public decimal QuantityReceived { get; private set; }
     public decimal QuantityInvoiced { get; private set; }
-    public string ReceiptNo { get; private set; }
+    public string ReceiptNo { get; private set; } = string.Empty;
     public int ReceiptLineNo { get; private set; }
     public decimal Profit { get; private set; }
     public string? PayToVendorNo { get; private set; }
     public decimal InvDiscountAmount { get; private set; }
-    public string VendorItemNo { get; private set; }
-    public string SalesOrderNo { get; private set; }
+    public string VendorItemNo { get; private set; } = string.Empty;
+    public string SalesOrderNo { get; private set; } = string.Empty;
     public int SalesOrderLineNo { get; private set; }
     public bool DropShipment { get; private set; }
-    public string GenBusPostingGroup { get; private set; }
-    public string GenProdPostingGroup { get; private set; }
+    public string GenBusPostingGroup { get; private set; } = string.Empty;
+    public string GenProdPostingGroup { get; private set; } = string.Empty;
     public short VatCalculationType { get; private set; }
-    public string TransactionType { get; private set; }
-    public string TransportMethod { get; private set; }
+    public string TransactionType { get; private set; } = string.Empty;
+    public string TransportMethod { get; private set; } = string.Empty;
     public int AttachedToLineNo { get; private set; }
-    public string EntryPoint { get; private set; }
+    public string EntryPoint { get; private set; } = string.Empty;
     public string? Area { get; private set; }
-    public string TransactionSpecification { get; private set; }
-    public string TaxAreaCode { get; private set; }
+    public string TransactionSpecification { get; private set; } = string.Empty;
+    public string TaxAreaCode { get; private set; } = string.Empty;
     public bool TaxLiable { get; private set; }
-    public string TaxGroupCode { get; private set; }
+    public string TaxGroupCode { get; private set; } = string.Empty;
     public bool UseTax { get; private set; }
-    public string VatBusPostingGroup { get; private set; }
-    public string VatProdPostingGroup { get; private set; }
+    public string VatBusPostingGroup { get; private set; } = string.Empty;
+    public string VatProdPostingGroup { get; private set; } = string.Empty;
     public string? CurrencyCode { get; private set; }
     public decimal OutstandingAmountLcy { get; private set; }
     public decimal AmtRcdNotInvoicedLcy { get; private set; }
-    public string BlanketOrderNo { get; private set; }
+    public string BlanketOrderNo { get; private set; } = string.Empty;
     public int BlanketOrderLineNo { get; private set; }
     public decimal VatBaseAmount { get; private set; }
     public decimal UnitCost { get; private set; }
@@ -85,9 +85,9 @@ public class PurchaseLine : Entity
     public decimal LineAmount { get; private set; }
     public decimal VatDifference { get; private set; }
     public decimal InvDiscAmountToInvoice { get; private set; }
-    public string VatIdentifier { get; private set; }
+    public string VatIdentifier { get; private set; } = string.Empty;
     public short IcPartnerRefType { get; private set; }
-    public string IcPartnerReference { get; private set; }
+    public string IcPartnerReference { get; private set; } = string.Empty;
     public decimal Prepayment { get; private set; }
     public decimal PrepmtLineAmount { get; private set; }
     public decimal PrepmtAmtInv { get; private set; }
@@ -96,16 +96,16 @@ public class PurchaseLine : Entity
     public decimal PrepmtVatBaseAmt { get; private set; }
     public decimal PrepaymentVat { get; private set; }
     public short PrepmtVatCalcType { get; private set; }
-    public string PrepaymentVatIdentifier { get; private set; }
-    public string PrepaymentTaxAreaCode { get; private set; }
+    public string PrepaymentVatIdentifier { get; private set; } = string.Empty;
+    public string PrepaymentTaxAreaCode { get; private set; } = string.Empty;
     public bool PrepaymentTaxLiable { get; private set; }
-    public string PrepaymentTaxGroupCode { get; private set; }
+    public string PrepaymentTaxGroupCode { get; private set; } = string.Empty;
     public decimal PrepmtAmtToDeduct { get; private set; }
     public decimal PrepmtAmtDeducted { get; private set; }
     public bool PrepaymentLine { get; private set; }
     public decimal PrepmtAmountInvInclVat { get; private set; }
     public decimal PrepmtAmountInvLcy { get; private set; }
-    public string IcPartnerCode { get; private set; }
+    public string IcPartnerCode { get; private set; } = string.Empty;
     public decimal PrepmtVatAmountInvLcy { get; private set; }
     public decimal PrepaymentVatDifference { get; private set; }
     public decimal PrepmtVatDiffToDeduct { get; private set; }
@@ -113,7 +113,7 @@ public class PurchaseLine : Entity
     public decimal OutstandingAmtExVatLcy { get; private set; }
     public decimal ARcdNotInvExVatLcy { get; private set; }
     public int DimensionSetId { get; private set; }
-    public string JobTaskNo { get; private set; }
+    public string JobTaskNo { get; private set; } = string.Empty;
     public short JobLineType { get; private set; }
     public decimal JobUnitPrice { get; private set; }
     public decimal JobTotalPrice { get; private set; }
@@ -125,17 +125,17 @@ public class PurchaseLine : Entity
     public decimal JobLineAmountLcy { get; private set; }
     public decimal JobLineDiscAmountLcy { get; private set; }
     public decimal JobCurrencyFactor { get; private set; }
-    public string JobCurrencyCode { get; private set; }
+    public string JobCurrencyCode { get; private set; } = string.Empty;
     public int JobPlanningLineNo { get; private set; }
     public decimal JobRemainingQty { get; private set; }
     public decimal JobRemainingQtyBase { get; private set; }
-    public string DeferralCode { get; private set; }
+    public string DeferralCode { get; private set; } = string.Empty;
     public DateTime? ReturnsDeferralStartDate { get; private set; }
-    public string ProdOrderNo { get; private set; }
-    public string VariantCode { get; private set; }
-    public string BinCode { get; private set; }
+    public string ProdOrderNo { get; private set; } = string.Empty;
+    public string VariantCode { get; private set; } = string.Empty;
+    public string BinCode { get; private set; } = string.Empty;
     public decimal QtyPerUnitOfMeasure { get; private set; }
-    public string UnitOfMeasureCode { get; private set; }
+    public string UnitOfMeasureCode { get; private set; } = string.Empty;
     public decimal QuantityBase { get; private set; }
     public decimal OutstandingQtyBase { get; private set; }
     public decimal QtyToInvoiceBase { get; private set; }
@@ -145,32 +145,32 @@ public class PurchaseLine : Entity
     public decimal QtyInvoicedBase { get; private set; }
     public DateTime? FaPostingDate { get; private set; }
     public short FaPostingType { get; private set; }
-    public string DepreciationBookCode { get; private set; }
+    public string DepreciationBookCode { get; private set; } = string.Empty;
     public decimal SalvageValue { get; private set; }
     public bool DeprUntilFaPostingDate { get; private set; }
     public bool DeprAcquisitionCost { get; private set; }
     public string? MaintenanceCode { get; private set; }
     public string? InsuranceNo { get; private set; }
-    public string BudgetedFaNo { get; private set; }
-    public string DuplicateInDepreciationBook { get; private set; }
+    public string BudgetedFaNo { get; private set; } = string.Empty;
+    public string DuplicateInDepreciationBook { get; private set; } = string.Empty;
     public bool UseDuplicationList { get; private set; }
-    public string ResponsibilityCenter { get; private set; }
-    public string CrossReferenceNo { get; private set; }
-    public string UnitOfMeasureCrossRef { get; private set; }
+    public string ResponsibilityCenter { get; private set; } = string.Empty;
+    public string CrossReferenceNo { get; private set; } = string.Empty;
+    public string UnitOfMeasureCrossRef { get; private set; } = string.Empty;
     public short CrossReferenceType { get; private set; }
-    public string CrossReferenceTypeNo { get; private set; }
-    public string ItemCategoryCode { get; private set; }
+    public string CrossReferenceTypeNo { get; private set; } = string.Empty;
+    public string ItemCategoryCode { get; private set; } = string.Empty;
     public bool Nonstock { get; private set; }
     public string? PurchasingCode { get; private set; }
-    public string ProductGroupCode { get; private set; }
+    public string ProductGroupCode { get; private set; } = string.Empty;
     public bool SpecialOrder { get; private set; }
-    public string SpecialOrderSalesNo { get; private set; }
+    public string SpecialOrderSalesNo { get; private set; } = string.Empty;
     public int SpecialOrderSalesLineNo { get; private set; }
     public bool CompletelyReceived { get; private set; }
     public DateTime? RequestedReceiptDate { get; private set; }
     public DateTime? PromisedReceiptDate { get; private set; }
-    public string LeadTimeCalculation { get; private set; }
-    public string InboundWhseHandlingTime { get; private set; }
+    public string LeadTimeCalculation { get; private set; } = string.Empty;
+    public string InboundWhseHandlingTime { get; private set; } = string.Empty;
     public DateTime? PlannedReceiptDate { get; private set; }
     public DateTime? OrderDate { get; private set; }
     public bool AllowItemChargeAssignment { get; private set; }
@@ -182,18 +182,18 @@ public class PurchaseLine : Entity
     public decimal ReturnShpdNotInvdLcy { get; private set; }
     public decimal ReturnQtyShipped { get; private set; }
     public decimal ReturnQtyShippedBase { get; private set; }
-    public string ReturnShipmentNo { get; private set; }
+    public string ReturnShipmentNo { get; private set; } = string.Empty;
     public int ReturnShipmentLineNo { get; private set; }
-    public string ReturnReasonCode { get; private set; }
-    public string RoutingNo { get; private set; }
-    public string OperationNo { get; private set; }
-    public string WorkCenterNo { get; private set; }
+    public string ReturnReasonCode { get; private set; } = string.Empty;
+    public string RoutingNo { get; private set; } = string.Empty;
+    public string OperationNo { get; private set; } = string.Empty;
+    public string WorkCenterNo { get; private set; } = string.Empty;
     public bool Finished { get; private set; }
     public int ProdOrderLineNo { get; private set; }
     public decimal OverheadRate { get; private set; }
     public bool MpsOrder { get; private set; }
     public short PlanningFlexibility { get; private set; }
-    public string SafetyLeadTime { get; private set; }
+    public string SafetyLeadTime { get; private set; } = string.Empty;
     public int RoutingReferenceNo { get; private set; }
 
     public static OperationResult<PurchaseLine, DomainError> Create(

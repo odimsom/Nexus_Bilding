@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InvoiceService } from '../../../data/invoice.service';
 import { Invoice } from '../../../domain/invoice.model';
@@ -16,17 +16,23 @@ import { ExcelExportService } from '../../../../../core/services/excel/excel-exp
 export class InvoiceListPage implements OnInit {
   readonly svc = inject(InvoiceService);
   private readonly excel = inject(ExcelExportService);
+  private readonly route = inject(ActivatedRoute);
 
   searchText = '';
+  filterCustomerNo = '';
+  showOverdueOnly = false;
   sortField = 'postingDate';
   sortAsc = false;
   filtered = signal<Invoice[]>([]);
 
-  totalAmount = computed(() => this.svc.invoices().reduce((s, i) => s + i.amountIncludingVat, 0));
-  totalItbis = computed(() => this.svc.invoices().reduce((s, i) => s + (i.amountIncludingVat - i.amount), 0));
+  totalAmount = computed(() => this.filtered().reduce((s, i) => s + i.amountIncludingVat, 0));
+  totalItbis = computed(() => this.filtered().reduce((s, i) => s + (i.amountIncludingVat - i.amount), 0));
+  overdueCount = computed(() => this.filtered().filter(i => this.isOverdue(i)).length);
 
   async ngOnInit(): Promise<void> {
-    await this.svc.loadInvoices();
+    this.filterCustomerNo = this.route.snapshot.queryParamMap.get('customerNo') ?? '';
+    if (this.filterCustomerNo) this.searchText = this.filterCustomerNo;
+    await this.svc.loadInvoices({ pageSize: 500 });
     this.applyFilter();
   }
 
@@ -69,9 +75,13 @@ export class InvoiceListPage implements OnInit {
       const q = this.searchText.toLowerCase();
       list = list.filter(i =>
         i.no.toLowerCase().includes(q) ||
+        (i.sellToCustomerNo || '').toLowerCase().includes(q) ||
         (i.sellToCustomerName || '').toLowerCase().includes(q) ||
         (i.externalDocumentNo || '').toLowerCase().includes(q)
       );
+    }
+    if (this.showOverdueOnly) {
+      list = list.filter(i => this.isOverdue(i));
     }
     list.sort((a, b) => {
       let av: string | number = '', bv: string | number = '';
@@ -86,5 +96,10 @@ export class InvoiceListPage implements OnInit {
       return this.sortAsc ? av - (bv as number) : (bv as number) - av;
     });
     this.filtered.set(list);
+  }
+
+  isOverdue(inv: { dueDate?: string | null }): boolean {
+    if (!inv.dueDate) return false;
+    return new Date(inv.dueDate) < new Date(new Date().toDateString());
   }
 }

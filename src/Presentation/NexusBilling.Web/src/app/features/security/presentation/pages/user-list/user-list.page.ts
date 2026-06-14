@@ -51,10 +51,13 @@ export class UserListPage implements OnInit {
   saving = signal(false);
   modalError = signal<string | null>(null);
   
-  form = { username: '', email: '', fullName: '', password: '', employeeNo: '' };
+  form = { username: '', email: '', fullName: '', password: '', employeeNo: '', groupCode: '' };
+
+  editingId = signal<string | null>(null);
+  editForm = { fullName: '', email: '', employeeNo: '', groupCode: '', newPassword: '' };
 
   async ngOnInit() {
-    await this.loadUsers();
+    await Promise.all([this.svc.loadUsers(), this.svc.loadGroups()]);
   }
 
   async loadUsers() {
@@ -62,7 +65,7 @@ export class UserListPage implements OnInit {
   }
 
   openModal() {
-    this.form = { username: '', email: '', fullName: '', password: '', employeeNo: '' };
+    this.form = { username: '', email: '', fullName: '', password: '', employeeNo: '', groupCode: '' };
     this.modalError.set(null);
     this.showModal.set(true);
   }
@@ -78,11 +81,48 @@ export class UserListPage implements OnInit {
     }
     this.saving.set(true);
     try {
-      await this.svc.create({ ...this.form, groupCode: '' });
+      await this.svc.create({ ...this.form });
       this.closeModal();
-      await this.loadUsers();
     } catch (e: any) {
       this.modalError.set(e?.error?.error?.message ?? 'Error al crear usuario.');
+    } finally {
+      this.saving.set(false);
+    }
+  }
+
+  openEdit(u: AppUser): void {
+    this.editingId.set(u.id);
+    this.editForm = {
+      fullName: u.fullName,
+      email: u.email,
+      employeeNo: u.employeeNo || '',
+      groupCode: u.groupCode || '',
+      newPassword: ''
+    };
+    this.modalError.set(null);
+  }
+
+  closeEdit(): void {
+    this.editingId.set(null);
+  }
+
+  async saveEdit(): Promise<void> {
+    if (!this.editForm.email?.trim()) {
+      this.modalError.set('El email es obligatorio.');
+      return;
+    }
+    this.saving.set(true);
+    try {
+      await this.svc.update(this.editingId()!, {
+        fullName: this.editForm.fullName,
+        email: this.editForm.email,
+        employeeNo: this.editForm.employeeNo,
+        groupCode: this.editForm.groupCode,
+        newPassword: this.editForm.newPassword || undefined
+      });
+      this.closeEdit();
+    } catch (e: any) {
+      this.modalError.set(e?.error?.error?.message ?? 'Error al actualizar usuario.');
     } finally {
       this.saving.set(false);
     }
@@ -95,7 +135,6 @@ export class UserListPage implements OnInit {
       } else {
         await this.svc.activate(u.id);
       }
-      await this.loadUsers();
     } catch {
       alert('Error al cambiar el estado del usuario.');
     }

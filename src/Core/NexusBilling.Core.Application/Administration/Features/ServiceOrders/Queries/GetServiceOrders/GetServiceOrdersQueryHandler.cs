@@ -13,7 +13,7 @@ public sealed class GetServiceOrdersQueryHandler(IServiceHeaderRepository repo)
 
     private static readonly Dictionary<short, string> StatusLabels = new()
     {
-        [0] = "Pendiente", [1] = "En Proceso", [2] = "Terminado", [3] = "En Espera"
+        [0] = "Pendiente", [1] = "En Proceso", [2] = "Terminado", [3] = "Facturada"
     };
 
     public async Task<(IReadOnlyList<ServiceOrderListItemDto> Items, int TotalCount)> Handle(

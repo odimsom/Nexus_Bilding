@@ -162,7 +162,7 @@ interface Installment {
                       <td style="position:relative;">
                         <input class="nx-input nx-input--sm" style="width:100%;font-family:var(--nx-font-mono);"
                           [(ngModel)]="line.itemNo"
-                          [placeholder]="line.type === 'Item' ? 'PROD-00001' : 'SRV-001'"
+                          [placeholder]="line.type === 'Service' ? 'Clic para ver servicios' : 'Clic para ver artículos'"
                           (focus)="onItemFocus(i)"
                           (input)="onItemInput(i)"
                           (blur)="closeSuggestionsDelayed(i)"
@@ -298,10 +298,11 @@ interface Installment {
   styles: [`
     :host { display: block; }
     .item-dropdown {
-      position: absolute; top: 100%; left: 0; right: 0; z-index: 200;
+      position: absolute; bottom: 100%; top: auto; left: 0; right: 0; z-index: 200;
       background: var(--nx-surface); border: 1px solid var(--nx-border);
       border-radius: var(--nx-radius-md); box-shadow: var(--nx-shadow-lg);
       max-height: 220px; overflow-y: auto;
+      margin-bottom: 2px;
     }
     .item-dropdown__item {
       display: flex; align-items: center; gap: var(--nx-space-2); width: 100%;
@@ -422,9 +423,15 @@ export class CreateSalesOrderModalComponent implements OnInit {
   }
 
   onItemFocus(i: number): void {
-    const q = this.lines[i].itemNo.toLowerCase();
-    const filtered = this.allItems.filter(it =>
-      it.no.toLowerCase().includes(q) || it.description.toLowerCase().includes(q)
+    const line = this.lines[i];
+    const q = line.itemNo.toLowerCase();
+    const isService = line.type === 'Service';
+    const pool = this.allItems.filter(it => {
+      const itType = (it.type ?? '').toLowerCase();
+      return isService ? itType === 'service' : itType !== 'service';
+    });
+    const filtered = pool.filter(it =>
+      !q || it.no.toLowerCase().includes(q) || it.description.toLowerCase().includes(q)
     ).slice(0, 8);
     this.lines[i] = { ...this.lines[i], suggestions: filtered, showSuggestions: filtered.length > 0 };
   }
@@ -511,7 +518,7 @@ export class CreateSalesOrderModalComponent implements OnInit {
 
     this.saving.set(true);
     try {
-      const seriesCode = { Order: 'PV', Quote: 'COT', Invoice: 'FAC' }[this.form.documentType] ?? 'PV';
+      const seriesCode = { Order: 'ORD', Quote: 'COT', Invoice: 'FAC' }[this.form.documentType] ?? 'ORD';
       const no = await this.invoiceSvc.createOrder({
         documentType: this.form.documentType,
         sellToCustomerNo: customerNo,

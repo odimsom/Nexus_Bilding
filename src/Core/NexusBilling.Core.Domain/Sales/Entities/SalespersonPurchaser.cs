@@ -14,13 +14,13 @@ public class SalespersonPurchaser : Entity
     public string Name { get; set; }
     public decimal Commission { get; private set; }
     public Guid Image { get; private set; }
-    public string GlobalDimension1Code { get; private set; }
-    public string GlobalDimension2Code { get; private set; }
-    public string EMail { get; set; }
-    public string PhoneNo { get; set; }
-    public string JobTitle { get; set; }
-    public string SearchEMail { get; private set; }
-    public string EMail2 { get; private set; }
+    public string GlobalDimension1Code { get; private set; } = string.Empty;
+    public string GlobalDimension2Code { get; private set; } = string.Empty;
+    public string EMail { get; set; } = string.Empty;
+    public string PhoneNo { get; set; } = string.Empty;
+    public string JobTitle { get; set; } = string.Empty;
+    public string SearchEMail { get; private set; } = string.Empty;
+    public string EMail2 { get; private set; } = string.Empty;
 
     public static OperationResult<SalespersonPurchaser, DomainError> Create(TenantIdentifier tenantId)
     {
